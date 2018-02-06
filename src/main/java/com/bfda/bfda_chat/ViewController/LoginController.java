@@ -1,4 +1,4 @@
-package com.bfda.bfda_chat;
+package com.bfda.bfda_chat.ViewController;
 
 import java.net.URL;
 import java.util.ResourceBundle;

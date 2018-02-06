@@ -1,4 +1,4 @@
-package com.bfda.bfda_chat;
+package com.bfda.bfda_chat.ViewController;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -18,7 +18,6 @@ public class RegisterController implements Initializable {
         label.setText("Hello World!");
     }
     
-    @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
