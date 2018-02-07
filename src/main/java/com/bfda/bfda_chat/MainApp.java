@@ -13,9 +13,9 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-
-        UserLogin userLogin = new UserLogin("mohamedfawzy1993" , "1234");
-        userLogin.login();
+//        Testing User Login , This Part of Code is Not Important
+//        UserLogin userLogin = new UserLogin("mohamedfawzy1993" , "1234");
+//        userLogin.login();
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/RegisterScene.fxml"));
         Scene scene = new Scene(root);
         scene.getStylesheets().add("/styles/Styles.css");
