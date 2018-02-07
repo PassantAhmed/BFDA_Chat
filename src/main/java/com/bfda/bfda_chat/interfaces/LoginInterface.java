@@ -5,10 +5,12 @@
  */
 package com.bfda.bfda_chat.interfaces;
 
+import java.sql.SQLException;
+
 /**
  *
  * @author Passant
  */
 public interface LoginInterface {
-    public void login(String username, String password);
+    public void login() throws SQLException;
 }

@@ -1,5 +1,6 @@
 package com.bfda.bfda_chat;
 
+import com.bfda.bfda_chat.model.UserLogin;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
@@ -12,11 +13,12 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+
+        UserLogin userLogin = new UserLogin("mohamedfawzy1993" , "1234");
+        userLogin.login();
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/RegisterScene.fxml"));
-        
         Scene scene = new Scene(root);
         scene.getStylesheets().add("/styles/Styles.css");
-        
         stage.setTitle("JavaFX and Maven");
         stage.setScene(scene);
         stage.show();

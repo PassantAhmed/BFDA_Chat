@@ -11,7 +11,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="BFDA_Chat" target="1.5" />
+      <module name="BFDA_Chat" target="1.7" />
       <module name="ChatApp" target="1.5" />
     </bytecodeTargetLevel>
   </component>
