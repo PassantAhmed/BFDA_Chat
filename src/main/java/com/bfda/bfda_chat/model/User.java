@@ -66,7 +66,7 @@ public class User {
         this.password = password;
     }
 
-    public boolean isGender() {
+    public boolean getGender() {
         return gender;
     }
 
