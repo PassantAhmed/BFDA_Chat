@@ -3,6 +3,8 @@ package com.bfda.bfda_chat.model;
 
 import java.sql.*;
 import com.mysql.jdbc.Driver;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 public class Database {
 
     private static Database instance;
@@ -43,4 +45,24 @@ public class Database {
         return user;
     }
 
+    
+    public void insertUser(User myUser){
+        try {
+            PreparedStatement pst = conn.prepareStatement("insert into User (id, name, username, email, password, gender, country, BirthDate, userPicture) values ( ?,  ?, ?, ?, ?, ?, ?, ?, ?)");
+            pst.setInt(1, myUser.getId());
+            pst.setString(2, myUser.getName());
+            pst.setString(3, myUser.getUsername());
+            pst.setString(4, myUser.getEmail());
+            pst.setString(5, myUser.getPassword());
+            pst.setBoolean(6, myUser.getGender());
+            pst.setString(7, myUser.getCountry());
+            //pst.setDate(8, myUser.getBirthdate());
+            pst.setString(9, myUser.getUserPic());
+            pst.executeUpdate();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
 }
