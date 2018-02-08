@@ -12,6 +12,12 @@
         <module>Server</module>
         <module>Common</module>
     </modules>
-
+    <dependencies>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>6.0.6</version>
+        </dependency>
+    </dependencies>
 
 </project>
