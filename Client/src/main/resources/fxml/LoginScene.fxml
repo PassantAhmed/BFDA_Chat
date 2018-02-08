@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="583.0" prefWidth="744.0" xmlns="http://javafx.com/javafx/8"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="viewcontroller.LoginController">
+
+   <children>
+      <AnchorPane layoutX="331.0" layoutY="465.0" prefHeight="93.0" prefWidth="395.0" style="-fx-background-color: #FFFF;">
+         <children>
+            <Label layoutX="80.0" layoutY="29.0" text="Don't have an account? ">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Hyperlink fx:id="signupButton" layoutX="247.0" layoutY="27.0" text="Sign up" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="331.0" layoutY="11.0" prefHeight="436.0" prefWidth="395.0" style="-fx-background-color: #FFFF;">
+         <children>
+            <Label layoutX="124.0" layoutY="36.0" text="BFDA_Chat">
+               <font>
+                  <Font name="Forte" size="25.0" />
+               </font>
+            </Label>
+            <TextField fx:id="userNameFieldForLogIn" layoutX="28.0" layoutY="90.0" prefHeight="48.0" prefWidth="327.0" promptText="Enter Your UserName" style="-fx-background-color: F0F5F7;" />
+            <TextField fx:id="passwordFieldForLogIn" layoutX="28.0" layoutY="152.0" prefHeight="48.0" prefWidth="327.0" promptText="Enter Your Password" style="-fx-background-color: F0F5F7;" />
+            <Button fx:id="loginButton" layoutX="28.0" layoutY="232.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="327.0" style="-fx-background-color: #3897f0;" text="Log in" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Button>
+            <Label layoutX="104.0" layoutY="373.0" text="Keep Saving Your Password" />
+            <Pane layoutX="231.0" layoutY="333.0" prefHeight="7.0" prefWidth="117.0" style="-fx-background-color: #3897f0;" />
+            <Pane layoutX="154.0" layoutY="333.0" prefHeight="7.0" prefWidth="76.0" style="-fx-background-color: ff0072;" />
+            <Pane layoutX="26.0" layoutY="333.0" prefHeight="7.0" prefWidth="127.0" style="-fx-background-color: #3897f0;" />
+         </children>
+      </AnchorPane>
+      <Pane layoutX="237.0" layoutY="365.0" prefHeight="0.0" prefWidth="6.0" style="-fx-background-color: fff072;" />
+      <AnchorPane layoutX="14.0" layoutY="11.0" prefHeight="546.0" prefWidth="298.0" style="-fx-background-color: #FFFF;">
+         <children>
+            <ImageView fitHeight="328.0" fitWidth="275.0" layoutX="15.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../styles/27721035_10211551788533568_878343751_n.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
