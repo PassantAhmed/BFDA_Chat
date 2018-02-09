@@ -1,4 +1,5 @@
 package model;
+import beans.User;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,6 +16,7 @@ public class Database {
 
         conn = DriverManager.getConnection(dbUrl , "mfawzy" , "\\c3d{kBj\\8UqUAny");
     }
+
 
     public static Database getInstance() throws SQLException, ClassNotFoundException {
         if(instance == null)

@@ -1,5 +1,6 @@
 package viewcontroller;
 
+import beans.User;
 import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -12,7 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import myutilities.ValidationChecks;
-import model.User;
+
 public class RegisterController implements Initializable {
      
     ValidationChecks checker = new ValidationChecks();
