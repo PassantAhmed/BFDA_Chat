@@ -20,7 +20,7 @@ public class RemoteServerToRegistry
         {
                 try
                 {
-                        Registry serverRegistry = LocateRegistry.createRegistry(4291);
+                        Registry serverRegistry = LocateRegistry.createRegistry(5220);
                         serverRegistry.rebind("serverRegistry", new ServerDBOperationImplementation());
                         System.out.println("Connecting");
 //                        serverRegistry.rebind("serverRegistry2", new ServerMessageSenderImplementation());
