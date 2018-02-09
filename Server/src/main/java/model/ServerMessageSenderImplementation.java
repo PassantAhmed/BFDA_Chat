@@ -6,12 +6,14 @@
 package model;
 
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 
 /**
  *
  * @author ahmedelgawesh
  */
-public class ServerMessageSenderImplementation implements serverInterfaces.ServerMessegeSender{
+public class ServerMessageSenderImplementation extends UnicastRemoteObject implements serverInterfaces.ServerMessegeSender{
+public ServerMessageSenderImplementation()throws RemoteException{}
 
     public void sendToClients(int recieverID) throws RemoteException {
         
