@@ -29,7 +29,6 @@ public class RemoteServerToRegistry
                 try
                 {
                         serverRegistry = LocateRegistry.createRegistry(5220);
-                        serverRegistry.rebind("serverRegistry", new ServerDBOperationImplementation());
                 }
                 catch (RemoteException ReEx)
                 {
@@ -38,10 +37,19 @@ public class RemoteServerToRegistry
 
         }
 
-        public void stopServer() throws RemoteException, NotBoundException {
+        public void startServer() throws RemoteException {
+                serverRegistry.rebind("serverRegistry", new ServerDBOperationImplementation());
+        }
 
+        public void stopServer() throws RemoteException, NotBoundException {
                 serverRegistry.unbind("serverRegistry");
         }
+
+        public String[] boundedObjects() throws RemoteException {
+                return serverRegistry.list();
+        }
+
+
 
 
    
