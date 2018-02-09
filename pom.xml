@@ -13,6 +13,7 @@
         <module>Common</module>
     </modules>
     <dependencies>
+
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -24,9 +25,6 @@
             <artifactId>jfoenix</artifactId>
             <version>8.0.1</version>
         </dependency>
-        
-
-        
     </dependencies>
 
 </project>

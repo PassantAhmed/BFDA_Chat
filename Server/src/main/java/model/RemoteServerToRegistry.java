@@ -23,20 +23,14 @@ public class RemoteServerToRegistry
                         Registry serverRegistry = LocateRegistry.createRegistry(5220);
                         serverRegistry.rebind("serverRegistry", new ServerDBOperationImplementation());
                         System.out.println("Connecting");
-//                        serverRegistry.rebind("serverRegistry2", new ServerMessageSenderImplementation());
 
                 }
                 catch (RemoteException ReEx)
                 {
                         System.out.println(ReEx);
                 }
-                                        System.out.println("Connecting");
 
         }
    
-//        public static void main(String[] args)
-//        {
-//            new RemoteServerToRegistry();
-//        }
-//        
+
 }
