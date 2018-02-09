@@ -1,5 +1,6 @@
 package model;
 
+import beans.User;
 import interfaces.LoginInterface;
 import java.sql.SQLException;
 
