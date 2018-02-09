@@ -1,9 +1,5 @@
 package model;
 import beans.User;
-<<<<<<< HEAD
-
-=======
->>>>>>> a107973be13c831ac4a389881824599636966984
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;

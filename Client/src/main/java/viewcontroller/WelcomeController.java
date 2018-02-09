@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import model.ServerConnection;
 import myutilities.ValidationChecks;
 
 public class WelcomeController implements Initializable {
@@ -26,19 +27,26 @@ public class WelcomeController implements Initializable {
     }
     public void connect(ActionEvent actionEvent) {
         String ipAddress = serverIpField.getText();
-        if(validateIp(ipAddress))
+        if(!validateIp(ipAddress))
+            errorLabel.setText("IP in Not Valid IP");
+        else
         {
+            connectToServer(ipAddress);
+        }
 
+    }
+
+    public void connectToServer(String ipAddress)
+    {
+        ServerConnection serverConnection = ServerConnection.getInstance(ipAddress);
+        if (serverConnection.establiseConnection())
+        {
+            return;
         }
         else
         {
-            errorLabel.setText("IP in Not Valid IP");
+            errorLabel.setText("Server is Not Reachable");
         }
-    }
-
-    public boolean connectToServer()
-    {
-        return true;
     }
 
 }
