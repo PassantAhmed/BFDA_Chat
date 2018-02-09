@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Circle?>
+
+<HBox alignment="CENTER_LEFT" maxWidth="+Infinity" prefHeight="80.0" prefWidth="250.0" spacing="10.0" style="-fx-background-color:rgba(0,0,0,0);" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+  <children>
+      <BorderPane prefHeight="80.0" prefWidth="250.0" style="-fx-background-color: #ccc;">
+         <left>
+        <Circle fx:id="circle" fill="DODGERBLUE" radius="24.999950000001263" stroke="BLACK" strokeType="INSIDE" BorderPane.alignment="CENTER" />
+         </left>
+         <center>
+            <ScrollPane hbarPolicy="NEVER" prefHeight="80.0" prefWidth="192.0" style="-fx-background-color: #ccc;" BorderPane.alignment="CENTER">
+               <content>
+                  <TextArea prefHeight="75.0" prefWidth="197.0" style="-fx-background-color: #ccc;" />
+               </content>
+            </ScrollPane>
+         </center>
+      </BorderPane>
+  </children>
+</HBox>
