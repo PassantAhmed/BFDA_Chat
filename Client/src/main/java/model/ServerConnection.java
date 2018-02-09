@@ -28,6 +28,7 @@ public class ServerConnection {
     public boolean establiseConnection()  {
         try {
             Registry reg = LocateRegistry.getRegistry(localIpAddress , 5220);
+            System.out.println(reg.list()[0]);
             Object obj = reg.lookup("serverRegistry");
             System.out.println("Done");
         } catch (RemoteException e) {

@@ -12,8 +12,8 @@
             <Font size="36.0" />
          </font>
       </Label>
-      <Button layoutX="293.0" layoutY="305.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="94.0" style="-fx-background-color: #e60000;" text="STOP" textFill="WHITE" />
-      <Button layoutX="211.0" layoutY="219.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="254.0" style="-fx-background-color: #2eb82e;" text="START" textFill="WHITE" />
+      <Button layoutX="293.0" layoutY="305.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="94.0" style="-fx-background-color: #e60000;" text="STOP" textFill="WHITE" onAction="#stopServer"/>
+      <Button layoutX="211.0" layoutY="219.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="254.0" style="-fx-background-color: #2eb82e;" text="START" textFill="WHITE" onAction="#startServer"/>
       <AnchorPane layoutX="101.0" layoutY="411.0" prefHeight="200.0" prefWidth="494.0" style="-fx-background-color: #e6eeff; -fx-background-radius: 50 10 10 35;">
          <children>
             <Label layoutX="50.0" layoutY="44.0" text="To Reset The System">

@@ -5,6 +5,7 @@
  */
 package model;
 
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -15,15 +16,20 @@ import java.rmi.registry.Registry;
  */
 public class RemoteServerToRegistry 
 {
-        
-        public  RemoteServerToRegistry()
+        private Registry serverRegistry;
+        private static RemoteServerToRegistry instance;
+        public static RemoteServerToRegistry getInstance()
+        {
+                if(instance == null)
+                        instance = new RemoteServerToRegistry();
+                return instance;
+        }
+        private RemoteServerToRegistry()
         {
                 try
                 {
-                        Registry serverRegistry = LocateRegistry.createRegistry(5220);
+                        serverRegistry = LocateRegistry.createRegistry(5220);
                         serverRegistry.rebind("serverRegistry", new ServerDBOperationImplementation());
-                        System.out.println("Connecting");
-
                 }
                 catch (RemoteException ReEx)
                 {
@@ -31,6 +37,13 @@ public class RemoteServerToRegistry
                 }
 
         }
+
+        public void stopServer() throws RemoteException, NotBoundException {
+
+                serverRegistry.unbind("serverRegistry");
+        }
+
+
    
 
 }
