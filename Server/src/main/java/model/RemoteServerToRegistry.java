@@ -22,18 +22,21 @@ public class RemoteServerToRegistry
                 {
                         Registry serverRegistry = LocateRegistry.createRegistry(4291);
                         serverRegistry.rebind("serverRegistry", new ServerDBOperationImplementation());
-                        serverRegistry.rebind("serverRegistry2", new ServerMessageSenderImplementation());
+                        System.out.println("Connecting");
+//                        serverRegistry.rebind("serverRegistry2", new ServerMessageSenderImplementation());
 
                 }
                 catch (RemoteException ReEx)
                 {
                         System.out.println(ReEx);
                 }
+                                        System.out.println("Connecting");
+
         }
    
-        public static void main(String[] args)
-        {
-            new RemoteServerToRegistry();
-        }
-        
+//        public static void main(String[] args)
+//        {
+//            new RemoteServerToRegistry();
+//        }
+//        
 }

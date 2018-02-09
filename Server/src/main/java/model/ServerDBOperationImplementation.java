@@ -7,13 +7,14 @@ package model;
 
 import beans.User;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 /**
  *
  * @author ahmedelgawesh
  */
-public class ServerDBOperationImplementation implements serverInterfaces.ServerDatabseOperation{
-
+public class ServerDBOperationImplementation extends UnicastRemoteObject implements serverInterfaces.ServerDatabseOperation{
+public ServerDBOperationImplementation()throws RemoteException{}
     public boolean clientLogin(String userName, String password) throws RemoteException 
     {
             return true;
