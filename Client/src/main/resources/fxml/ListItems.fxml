@@ -1,21 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.*?>
 <?import javafx.scene.shape.Circle?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.text.Font?>
 
-
-<HBox alignment="CENTER_LEFT" maxWidth="+Infinity" prefHeight="80.0" prefWidth="250.0" spacing="10.0" style="-fx-background-color:rgba(0,0,0,0);" 
-xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" >
+<HBox alignment="CENTER_LEFT" maxWidth="+Infinity" prefHeight="82.0" prefWidth="303.0" spacing="10.0" style="-fx-background-color:rgba(0,0,0,0);" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <children>
     <Pane prefHeight="80.0" prefWidth="77.0">
       <children>
@@ -23,28 +17,38 @@ xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" >
         <Circle fill="#74ff33" layoutX="62.0" layoutY="59.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" style="-fx-background-color:green;&#10;&#10;" />
       </children>
     </Pane>
-    <VBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="164.9998779296875" spacing="0.0" HBox.hgrow="ALWAYS">
-      <children>
-        <Label text="Muhammed Fawzy">
-          <font>
-            <Font name="Waree" size="15.0" />
-          </font>
-          <VBox.margin>
-            <Insets top="10.0" />
-          </VBox.margin>
-        </Label>
-        <Label text="Status" textAlignment="CENTER">
-          <font>
-            <Font name="Waree" size="13.0" />
-          </font>
-        </Label>
-      </children>
-      <padding>
-        <Insets bottom="10.0" />
-      </padding>
-      <HBox.margin>
-        <Insets bottom="10.0" top="10.0" />
-      </HBox.margin>
-    </VBox>
+      <Pane prefHeight="82.0" prefWidth="155.0">
+         <children>
+          <VBox alignment="CENTER_LEFT" layoutY="12.0" prefHeight="62.0" prefWidth="139.0" spacing="0.0">
+            <children>
+              <Label prefHeight="22.0" prefWidth="159.0" text="Muhammed Fawzy">
+                <font>
+                  <Font name="Waree" size="15.0" />
+                </font>
+                <VBox.margin>
+                  <Insets top="10.0" />
+                </VBox.margin>
+              </Label>
+              <Label text="Status" textAlignment="CENTER">
+                <font>
+                  <Font name="Waree" size="13.0" />
+                </font>
+              </Label>
+            </children>
+            <padding>
+              <Insets bottom="10.0" />
+            </padding>
+          </VBox>
+         </children>
+      </Pane>
+      <AnchorPane prefHeight="82.0" prefWidth="64.0">
+         <children>
+            <Label layoutX="20.0" layoutY="1.0" prefHeight="34.0" prefWidth="24.0" text="...">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
   </children>
 </HBox>

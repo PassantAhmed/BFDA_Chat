@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="654.0" prefWidth="707.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ClientsController">
+   <children>
+      <ScrollPane hbarPolicy="NEVER" layoutX="40.0" layoutY="43.0" pannable="true" prefHeight="566.0" prefWidth="626.0">
+         <content>
+            <ListView prefHeight="563.0" prefWidth="625.0" />
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>
