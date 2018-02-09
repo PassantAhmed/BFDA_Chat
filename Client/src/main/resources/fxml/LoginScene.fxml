@@ -10,9 +10,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="583.0" prefWidth="744.0" xmlns="http://javafx.com/javafx/8"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="viewcontroller.LoginController">
+<AnchorPane id="AnchorPane" prefHeight="583.0" prefWidth="744.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewcontroller.LoginController">
 
    <children>
       <AnchorPane layoutX="331.0" layoutY="465.0" prefHeight="93.0" prefWidth="395.0" style="-fx-background-color: #FFFF;">
@@ -34,7 +32,7 @@
             </Label>
             <TextField fx:id="userNameFieldForLogIn" layoutX="28.0" layoutY="90.0" prefHeight="48.0" prefWidth="327.0" promptText="Enter Your UserName" style="-fx-background-color: F0F5F7;" />
             <TextField fx:id="passwordFieldForLogIn" layoutX="28.0" layoutY="152.0" prefHeight="48.0" prefWidth="327.0" promptText="Enter Your Password" style="-fx-background-color: F0F5F7;" />
-            <Button fx:id="loginButton" layoutX="28.0" layoutY="232.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="327.0" style="-fx-background-color: #3897f0;" text="Log in" textFill="WHITE">
+            <Button fx:id="loginButton" layoutX="28.0" layoutY="232.0" mnemonicParsing="false" onAction="#login" prefHeight="36.0" prefWidth="327.0" style="-fx-background-color: #3897f0;" text="Log in" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -43,6 +41,11 @@
             <Pane layoutX="231.0" layoutY="333.0" prefHeight="7.0" prefWidth="117.0" style="-fx-background-color: #3897f0;" />
             <Pane layoutX="154.0" layoutY="333.0" prefHeight="7.0" prefWidth="76.0" style="-fx-background-color: ff0072;" />
             <Pane layoutX="26.0" layoutY="333.0" prefHeight="7.0" prefWidth="127.0" style="-fx-background-color: #3897f0;" />
+            <Label fx:id="notValidLbl" layoutX="30.0" layoutY="288.0" prefHeight="17.0" prefWidth="327.0" textFill="#d72121">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <Pane layoutX="237.0" layoutY="365.0" prefHeight="0.0" prefWidth="6.0" style="-fx-background-color: fff072;" />
