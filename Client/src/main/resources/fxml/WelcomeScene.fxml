@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="583.0" prefWidth="744.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewcontroller.LoginController">
+<AnchorPane id="AnchorPane" prefHeight="583.0" prefWidth="744.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewcontroller.WelcomeController">
 
    <children>
       <AnchorPane layoutX="169.0" layoutY="317.0" prefHeight="217.0" prefWidth="395.0" style="-fx-background-color: #FFFF;">
@@ -19,8 +19,8 @@
                   <Font name="Forte" size="25.0" />
                </font>
             </Label>
-            <TextField fx:id="userNameFieldForLogIn" layoutX="28.0" layoutY="89.0" prefHeight="48.0" prefWidth="327.0" promptText="Enter Server IP Address" style="-fx-background-color: F0F5F7;" />
-            <Button fx:id="loginButton" layoutX="252.0" layoutY="161.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="102.0" style="-fx-background-color: #3897f0;" text="Connect" textFill="WHITE">
+            <TextField fx:id="serverIpField" layoutX="28.0" layoutY="89.0" prefHeight="48.0" prefWidth="327.0" promptText="Enter Server IP Address" style="-fx-background-color: F0F5F7;" />
+            <Button fx:id="loginButton" layoutX="252.0" layoutY="161.0" mnemonicParsing="false" onAction="#connect" prefHeight="39.0" prefWidth="102.0" style="-fx-background-color: #3897f0;" text="Connect" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -28,6 +28,7 @@
             <Pane layoutX="214.0" layoutY="56.0" prefHeight="7.0" prefWidth="138.0" style="-fx-background-color: #3897f0;" />
             <Pane layoutX="137.0" layoutY="56.0" prefHeight="7.0" prefWidth="102.0" style="-fx-background-color: ff0072;" />
             <Pane layoutX="25.0" layoutY="56.0" prefHeight="7.0" prefWidth="127.0" style="-fx-background-color: #3897f0;" />
+            <Label fx:id="errorLabel" layoutX="28.0" layoutY="173.0" textFill="RED" />
          </children>
       </AnchorPane>
       <Pane layoutX="237.0" layoutY="365.0" prefHeight="0.0" prefWidth="6.0" style="-fx-background-color: fff072;" />

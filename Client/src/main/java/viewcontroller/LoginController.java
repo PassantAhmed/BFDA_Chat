@@ -9,25 +9,57 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import myutilities.ValidationChecks;
+//import model.UserLogin;
 
 public class LoginController implements Initializable {
-    
+
     @FXML
     private TextField userNameFieldForLogIn;
-    
+
     @FXML
     private TextField passwordFieldForLogIn;
-    
+
     @FXML
     private Button loginButton;
-    
+
     @FXML
     private Hyperlink signupButton;
-    
-    
-    
-    
+
+    @FXML
+    private Label notValidLbl;
+
+    ValidationChecks checker = new ValidationChecks();
+    //UserLogin userLogin;
+
+    @FXML
+    private void login(ActionEvent event) {
+
+        String userName = userNameFieldForLogIn.getText();
+        String password = passwordFieldForLogIn.getText();
+
+        if (validateLogin(userName, password) == true) {
+
+            //data is valid, send username and password to server
+        } else {
+            // not valid msg
+            notValidLbl.setText("invalid username or password");
+        }
+
+    }
+
+    private boolean validateLogin(String userName, String password) {
+        boolean valid = false;
+        if (checker.isUserName(userName) == true && checker.isValidPassword(password) == true) {
+            valid = true;
+        } else {
+            valid = false;
+        }
+        return valid;
+    }
+
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+
+    }
 }
