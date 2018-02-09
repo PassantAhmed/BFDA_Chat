@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="654.0" prefWidth="707.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SettingsController">
+   <children>
+      <Label layoutX="142.0" layoutY="113.0" text="To Change Server State">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <Button layoutX="293.0" layoutY="305.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="94.0" style="-fx-background-color: #e60000;" text="STOP" textFill="WHITE" />
+      <Button layoutX="211.0" layoutY="219.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="254.0" style="-fx-background-color: #2eb82e;" text="START" textFill="WHITE" />
+      <AnchorPane layoutX="101.0" layoutY="411.0" prefHeight="200.0" prefWidth="494.0" style="-fx-background-color: #e6eeff; -fx-background-radius: 50 10 10 35;">
+         <children>
+            <Label layoutX="50.0" layoutY="44.0" text="To Reset The System">
+               <font>
+                  <Font size="18.0" />
+               </font> 
+            </Label>
+            <Label layoutX="66.0" layoutY="75.0" text="Hint: All users will be deleted after pressing on the below button." textFill="#ea3838">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <Button layoutX="147.0" layoutY="129.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="182.0" style="-fx-background-color: #001a33; -fx-background-radius: 30 20 30 20;" text="RESET" textFill="WHITE">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
