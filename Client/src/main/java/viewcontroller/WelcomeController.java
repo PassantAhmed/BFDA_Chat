@@ -6,19 +6,41 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import myutilities.ValidationChecks;
 
 public class WelcomeController implements Initializable {
     
-    @FXML
-    private Label label;
-    
-    @FXML
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
-    }
+    @FXML private Label errorLabel;
+    @FXML private TextField serverIpField;
+
     
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
+
+    public boolean validateIp(String ipAddress)
+    {
+        ValidationChecks validationChecks = new ValidationChecks();
+        return validationChecks.isIP(ipAddress);
+    }
+    public void connect(ActionEvent actionEvent) {
+        String ipAddress = serverIpField.getText();
+        if(validateIp(ipAddress))
+        {
+
+        }
+        else
+        {
+            errorLabel.setText("IP in Not Valid IP");
+        }
+    }
+
+    public boolean connectToServer()
+    {
+        return true;
+    }
+
 }
+
+
