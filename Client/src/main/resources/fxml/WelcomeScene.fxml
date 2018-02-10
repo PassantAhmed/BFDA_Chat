@@ -9,10 +9,10 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="583.0" prefWidth="744.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewcontroller.WelcomeController">
+<AnchorPane id="AnchorPane" prefHeight="583.0" prefWidth="744.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewcontroller.WelcomeController">
 
    <children>
-      <AnchorPane layoutX="169.0" layoutY="317.0" prefHeight="217.0" prefWidth="395.0" style="-fx-background-color: #FFFF;">
+      <AnchorPane layoutX="173.0" layoutY="345.0" prefHeight="217.0" prefWidth="395.0" style="-fx-background-color: #FFFF;">
          <children>
             <Label layoutX="25.0" layoutY="16.0" text="Enter Server ip">
                <font>
