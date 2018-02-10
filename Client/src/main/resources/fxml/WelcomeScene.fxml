@@ -12,31 +12,48 @@
 <AnchorPane id="AnchorPane" prefHeight="583.0" prefWidth="744.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewcontroller.WelcomeController">
 
    <children>
-      <AnchorPane layoutX="173.0" layoutY="345.0" prefHeight="217.0" prefWidth="395.0" style="-fx-background-color: #FFFF;">
+      <AnchorPane layoutX="173.0" layoutY="278.0" prefHeight="285.0" prefWidth="395.0" style="-fx-background-color: #FFF; -fx-background-radius: 10 10 10 10;">
          <children>
-            <Label layoutX="25.0" layoutY="16.0" text="Enter Server ip">
+            <TextField fx:id="serverIpField" alignment="CENTER" layoutX="28.0" layoutY="116.0" prefHeight="48.0" prefWidth="327.0" promptText="Enter Server IP Address" style="-fx-background-color: #ffe6ff;">
                <font>
-                  <Font name="Forte" size="25.0" />
-               </font>
-            </Label>
-            <TextField fx:id="serverIpField" layoutX="28.0" layoutY="89.0" prefHeight="48.0" prefWidth="327.0" promptText="Enter Server IP Address" style="-fx-background-color: F0F5F7;" />
-            <Button fx:id="loginButton" layoutX="204.0" layoutY="161.0" mnemonicParsing="false" onAction="#connect" prefHeight="39.0" prefWidth="150.0" style="-fx-background-color: #3897f0;" text="Connect" textFill="WHITE">
+                  <Font size="18.0" />
+               </font></TextField>
+            <Button fx:id="loginButton" layoutX="118.0" layoutY="207.0" mnemonicParsing="false" onAction="#connect" prefHeight="39.0" prefWidth="150.0" style="-fx-background-color: #001a33; -fx-background-radius: 20 5 20 5;" text="Connect" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
-            <Pane layoutX="214.0" layoutY="56.0" prefHeight="7.0" prefWidth="138.0" style="-fx-background-color: #3897f0;" />
-            <Pane layoutX="137.0" layoutY="56.0" prefHeight="7.0" prefWidth="102.0" style="-fx-background-color: ff0072;" />
-            <Pane layoutX="25.0" layoutY="56.0" prefHeight="7.0" prefWidth="127.0" style="-fx-background-color: #3897f0;" />
             <Label fx:id="errorLabel" layoutX="28.0" layoutY="173.0" textFill="RED" />
+            <Label fx:id="errorIpMessage" layoutX="42.0" layoutY="145.0" textFill="#8f1c1c">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Pane layoutX="226.0" layoutY="83.0" prefHeight="7.0" prefWidth="138.0" style="-fx-background-color: #ff6699;" />
+            <Pane layoutX="20.0" layoutY="83.0" prefHeight="7.0" prefWidth="138.0" style="-fx-background-color: #ff6699;" />
+            <Pane layoutX="129.0" layoutY="83.0" prefHeight="7.0" prefWidth="118.0" style="-fx-background-color: #001a33;" />
+            <Label layoutX="28.0" layoutY="37.0" text="Enter Server ip" textFill="#2c214c">
+               <font>
+                  <Font name="Forte" size="31.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <Pane layoutX="237.0" layoutY="365.0" prefHeight="0.0" prefWidth="6.0" style="-fx-background-color: fff072;" />
-      <AnchorPane layoutX="214.0" layoutY="17.0" prefHeight="270.0" prefWidth="298.0" style="-fx-background-color: #FFFF;">
+      <AnchorPane layoutX="272.0" layoutY="1.0" prefHeight="90.0" prefWidth="138.0">
          <children>
-            <ImageView fitHeight="328.0" fitWidth="275.0" layoutX="15.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="189.0" fitWidth="225.0" layoutX="1.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../styles/27721035_10211551788533568_878343751_n.png" />
+                  <Image url="@../styles/logo.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="167.0" layoutY="44.0" prefHeight="266.0" prefWidth="371.0">
+         <children>
+            <ImageView fitHeight="303.0" fitWidth="441.0" layoutX="-45.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../styles/bestfriendsdailyapp.png" />
                </image>
             </ImageView>
          </children>
