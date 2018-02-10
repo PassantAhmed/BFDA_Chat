@@ -2,7 +2,10 @@ package model;
 
 import beans.User;
 import interfaces.LoginInterface;
+import java.rmi.RemoteException;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class UserLogin implements LoginInterface {
 
@@ -10,6 +13,7 @@ public class UserLogin implements LoginInterface {
     String password;
     User resultUser;
     Database database;
+    ServerDBOperationImplementation serverOperationClass;
     public UserLogin(String userName , String password)
     {
         this.userName = userName;
@@ -29,9 +33,16 @@ public class UserLogin implements LoginInterface {
         this.password = password;
     }
 
+    //for add user and login
     public void searchForUser() throws SQLException {
 
-        resultUser = database.getUserObject(userName);
+        try {
+                         resultUser = serverOperationClass.clientAddAnotherClient(userName);
+              } 
+        catch (RemoteException ex)
+        {
+                        Logger.getLogger(UserLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public boolean verifyUser()

@@ -18,7 +18,7 @@ import java.util.List;
 public interface ServerDatabseOperation  extends  Remote
 {
     //this function for checking auth of user
-    public boolean clientLogin(String userName,String password) throws RemoteException;
+    //    public beans.User clientLogin(String userName,String password) throws RemoteException;
     
     //its for clients registration
     public boolean clientRegister(User clientData) throws RemoteException;
@@ -30,7 +30,7 @@ public interface ServerDatabseOperation  extends  Remote
     public boolean clientSignHisModeStatus(String clientMode) throws RemoteException;
     
     //its for clients to add new user
-    public boolean clientAddAnotherClient(String anotherClientToAdd) throws RemoteException;
+    public User clientAddAnotherClient(String anotherClientToAdd) throws RemoteException;
     
     //its for clients to add new chat Group
     public int clientCreateGroupChat(String groupName) throws RemoteException;
