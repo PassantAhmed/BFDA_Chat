@@ -27,8 +27,6 @@ public class ServerDBOperationImplementation extends UnicastRemoteObject impleme
                 
                 public ServerDBOperationImplementation()throws RemoteException
                 {
-    
-
                                 try  
                                 {
                                              dbClass =Database.getInstance();
@@ -73,14 +71,39 @@ public class ServerDBOperationImplementation extends UnicastRemoteObject impleme
                                  return true;
                 }
 
-                public boolean clientSignHisFlagStatus(boolean clientFlag) throws RemoteException
+                public boolean clientSignHisFlagStatus(beans.User user,boolean clientFlag) throws RemoteException
                 {
-                                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                                 try
+                                {
+                                            PreparedStatement pst = conn.prepareStatement("update User set statusFlag=?  where id=?");
+                                            pst.setBoolean(1, clientFlag);
+                                            pst.setInt(1, user.getId());
+                                            pst.executeUpdate();          
+                                 }
+                                 catch (SQLException ex) 
+                                 {
+                                            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+                                            return false;
+                                }
+                                 return true;
                 }
 
-                public boolean clientSignHisModeStatus(String clientMode) throws RemoteException
+                public boolean clientSignHisModeStatus(beans.User user,String clientMode) throws RemoteException
                 {
-                                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                                  try
+                                {
+                                            PreparedStatement pst = conn.prepareStatement("update User set statusMode=?  where id=?");
+                                            pst.setString(1, clientMode);
+                                            pst.setInt(1, user.getId());
+                                            pst.executeUpdate();          
+                                 }
+                                 catch (SQLException ex) 
+                                 {
+                                            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+                                            return false;
+                                }
+                                 return true;
+
                 }
 
                 @Override

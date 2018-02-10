@@ -24,10 +24,10 @@ public interface ServerDatabseOperation  extends  Remote
     public boolean clientRegister(User clientData) throws RemoteException;
     
      //its for clients on or off status ~Flag
-    public boolean clientSignHisFlagStatus(boolean clientFlag) throws RemoteException;
+    public boolean clientSignHisFlagStatus(User usr,boolean clientFlag) throws RemoteException;
     
      //its for clients Mode ~ avalibale or away etc ...
-    public boolean clientSignHisModeStatus(String clientMode) throws RemoteException;
+    public boolean clientSignHisModeStatus(User usr,String clientMode) throws RemoteException;
     
     //its for clients to add new user
     public User clientAddAnotherClient(String anotherClientToAdd) throws RemoteException;
