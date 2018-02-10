@@ -6,27 +6,29 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="621.0" prefWidth="556.0" xmlns:fx="http://javafx.com/fxml"
-            fx:controller="viewcontroller.RegisterController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="621.0" prefWidth="556.0" style="-fx-background-color: #FFF;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewcontroller.RegisterController">
 <children>
-      <Label layoutX="199.0" layoutY="14.0" text="LOGO">
-         <font>
-            <Font size="55.0" />
-         </font>
-      </Label>
-      <AnchorPane layoutX="35.0" layoutY="93.0" prefHeight="499.0" prefWidth="486.0" style="-fx-background-color: #ccc;">
+      <AnchorPane layoutX="51.0" layoutY="95.0" prefHeight="487.0" prefWidth="463.0" style="-fx-background-color: #ffe6ff; -fx-background-radius: 10 10 10 10;">
          <children>
-            <Label layoutX="215.0" layoutY="443.0" text="Login">
+            <Label layoutX="206.0" layoutY="445.0" text="Login" textFill="#001a33" underline="true">
                <font>
-                  <Font name="System Bold" size="14.0" />
+                  <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Label layoutX="167.0" layoutY="415.0" text="already have an account?" />
+            <Label layoutX="133.0" layoutY="417.0" text="already have an account?">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
             <Label layoutX="253.0" layoutY="270.0" text="Gender" />
-            <Button layoutX="109.0" layoutY="357.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="262.0" text="Register" />
+            <Button layoutX="99.0" layoutY="348.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="262.0" style="-fx-background-color: #001a33; -fx-background-radius: 20 5 20 5;" text="Register" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font></Button>
             <Label layoutX="253.0" layoutY="23.0" text="Username" />
             <Label layoutX="254.0" layoutY="189.0" text="Re-Password" />
             <Label layoutX="254.0" layoutY="106.0" text="Password" />
@@ -43,6 +45,15 @@
             <RadioButton layoutX="333.0" layoutY="297.0" mnemonicParsing="false" text="Female" />
             <DatePicker layoutX="24.0" layoutY="293.0" prefHeight="26.0" prefWidth="170.0" />
             <Label layoutX="24.0" layoutY="270.0" text="Date of Birth" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="215.0" layoutY="-1.0" prefHeight="114.0" prefWidth="125.0">
+         <children>
+            <ImageView fitHeight="115.0" fitWidth="112.0" layoutX="1.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../styles/logo.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </children>

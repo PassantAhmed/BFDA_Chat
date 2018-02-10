@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<HBox alignment="CENTER_LEFT" maxWidth="+Infinity" prefHeight="82.0" prefWidth="303.0" spacing="10.0" style="-fx-background-color:rgba(0,0,0,0);" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<HBox alignment="CENTER_LEFT" maxWidth="+Infinity" prefHeight="82.0" prefWidth="255.0" spacing="10.0" style="-fx-background-color: #FFF;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <children>
     <Pane prefHeight="80.0" prefWidth="77.0">
       <children>
@@ -17,7 +17,7 @@
         <Circle fill="#74ff33" layoutX="62.0" layoutY="59.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" style="-fx-background-color:green;&#10;&#10;" />
       </children>
     </Pane>
-      <Pane prefHeight="82.0" prefWidth="155.0">
+      <Pane prefHeight="82.0" prefWidth="116.0">
          <children>
           <VBox alignment="CENTER_LEFT" layoutY="12.0" prefHeight="62.0" prefWidth="139.0" spacing="0.0">
             <children>
@@ -43,7 +43,7 @@
       </Pane>
       <AnchorPane prefHeight="82.0" prefWidth="64.0">
          <children>
-            <Label layoutX="20.0" layoutY="1.0" prefHeight="34.0" prefWidth="24.0" text="...">
+            <Label layoutX="19.0" layoutY="1.0" prefHeight="34.0" prefWidth="24.0" text="...">
                <font>
                   <Font size="36.0" />
                </font>
