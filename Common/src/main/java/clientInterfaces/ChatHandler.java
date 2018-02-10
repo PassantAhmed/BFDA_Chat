@@ -8,5 +8,6 @@ public interface ChatHandler extends Remote , Serializable{
 
     public void updateChat(String chatID , String msg , String clientID)throws RemoteException;
     public void updateAnnouncement(String msg)throws RemoteException;
+    public boolean updateConnection() throws RemoteException;
 
 }

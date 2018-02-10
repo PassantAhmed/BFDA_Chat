@@ -2,19 +2,14 @@ package model;
 
 import clientInterfaces.ClientObj;
 import serverInterfaces.ClientRegister;
-
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Vector;
 
-/**
- * Created by Muhammed Fawzy on 2/10/2018.
- */
 public class ClientRegisterImp extends UnicastRemoteObject implements  ClientRegister , Serializable {
 
-    public static List<ClientObj> clientObject = new ArrayList<ClientObj>();
+    public static Vector<ClientObj> clientObject = new Vector<ClientObj>();
 
     protected ClientRegisterImp() throws RemoteException {
 
