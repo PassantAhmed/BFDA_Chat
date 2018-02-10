@@ -18,5 +18,7 @@ public class MainApp extends Application {
         primaryStage.setScene(scene);
         primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.show();
+
+
     }
 }

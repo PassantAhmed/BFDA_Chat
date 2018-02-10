@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -19,7 +20,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="666.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:controller="viewcontroller.MainWindowController" prefHeight="666.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1">
   <center>
     <GridPane BorderPane.alignment="CENTER">
       <children>
@@ -205,7 +206,10 @@
                               <Label layoutX="88.0" layoutY="32.0" text="Dateeeeeeeeeeeeee" />
                            </children>
                         </AnchorPane>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fcf;" GridPane.rowIndex="3" />
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fcf;" GridPane.rowIndex="3">
+                           <children>
+                              <TextArea fx:id="announceArea" prefHeight="200.0" prefWidth="250.0" />
+                           </children></AnchorPane>
               </children>
               <columnConstraints>
                 <ColumnConstraints fillWidth="true" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />

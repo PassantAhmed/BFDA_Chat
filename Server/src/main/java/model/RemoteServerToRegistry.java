@@ -38,7 +38,7 @@ public class RemoteServerToRegistry
         }
 
         public void startServer() throws RemoteException {
-                serverRegistry.rebind("serverRegistry", new ServerDBOperationImplementation());
+                serverRegistry.rebind("serverRegistry", new ServerObject());
         }
 
         public void stopServer() throws RemoteException, NotBoundException {

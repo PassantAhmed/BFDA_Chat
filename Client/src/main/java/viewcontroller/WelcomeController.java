@@ -1,17 +1,25 @@
 package viewcontroller;
 
+import java.io.IOException;
 import java.net.URL;
+import java.rmi.RemoteException;
 import java.util.ResourceBundle;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import model.ClientObject;
 import model.ServerConnection;
 import myutilities.ValidationChecks;
+import serverInterfaces.ServerObj;
 
 public class WelcomeController implements Initializable {
     
@@ -34,18 +42,26 @@ public class WelcomeController implements Initializable {
             errorLabel.setText("IP in Not Valid IP");
         else
         {
-            new Thread(()->{connectToServer(ipAddress);}).start();
+            new Thread(()->{
+                try {
+                    connectToServer(ipAddress);
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+            }).start();
         }
 
     }
 
-    public void connectToServer(String ipAddress)
-    {
-        ServerConnection serverConnection = ServerConnection.getInstance(ipAddress);
+    public void connectToServer(String ipAddress) throws RemoteException {
+        ServerConnection serverConnection = ServerConnection.getInstance();
+        serverConnection.setHost(ipAddress);
         connectionEstablishingMode(true);
         if (serverConnection.establiseConnection())
         {
             Platform.runLater(()->{errorLabel.setText("Connection Establised !");});
+            ServerObj serverObj = (ServerObj)ServerConnection.getInstance().getRegisteryObject();
+            serverObj.getClientRegister().registerUser(new ClientObject());
 
         }
         else

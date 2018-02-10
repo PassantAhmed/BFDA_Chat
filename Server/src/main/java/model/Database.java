@@ -13,8 +13,8 @@ public class Database {
 
 
         String dbUrl = "jdbc:mysql://35.202.50.71:3306/Chatdb";
-
         conn = DriverManager.getConnection(dbUrl , "mfawzy" , "\\c3d{kBj\\8UqUAny");
+
     }
 
 

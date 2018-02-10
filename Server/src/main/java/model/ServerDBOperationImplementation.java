@@ -15,6 +15,7 @@ import java.util.List;
  */
 public class ServerDBOperationImplementation extends UnicastRemoteObject implements serverInterfaces.ServerDatabseOperation{
 public ServerDBOperationImplementation()throws RemoteException{}
+
     public boolean clientLogin(String userName, String password) throws RemoteException 
     {
             return true;

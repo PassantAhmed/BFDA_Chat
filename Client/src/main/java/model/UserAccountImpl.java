@@ -1,15 +1,21 @@
 package model;
 
 import beans.User;
-import clientInterfaces.UserAccountInterface;
+import clientInterfaces.UserAccount;
 
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 
-public class UserAccountImpl implements UserAccountInterface {
+public class UserAccountImpl extends UnicastRemoteObject implements UserAccount {
 
-    public UserAccountImpl(Object controller){
+    public UserAccountImpl(Object controller) throws RemoteException {
 
     }
+
+    protected UserAccountImpl() throws RemoteException {
+    }
+
     public void updateUserStatus(String userID, String status) {
 
     }
