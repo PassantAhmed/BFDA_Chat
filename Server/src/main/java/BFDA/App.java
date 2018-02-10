@@ -20,7 +20,7 @@ public class App extends Application
     }
 
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/DashboardScene.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/SettingsScene.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         //primaryStage.initStyle(StageStyle.UNDECORATED);
