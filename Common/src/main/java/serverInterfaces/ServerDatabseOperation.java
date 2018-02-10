@@ -18,7 +18,7 @@ import java.util.List;
 public interface ServerDatabseOperation  extends  Remote
 {
     //this function for checking auth of user
-//    public beans.User clientLogin(String userName,String password) throws RemoteException;
+    //    public beans.User clientLogin(String userName,String password) throws RemoteException;
     
     //its for clients registration
     public boolean clientRegister(User clientData) throws RemoteException;
