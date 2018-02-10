@@ -18,35 +18,16 @@ public class RegisterController implements Initializable {
      
     ValidationChecks checker = new ValidationChecks();
     
-    @FXML
-    private ComboBox<String> countryid;
-
-    @FXML
-    private TextField dobid;
-
-    @FXML
-    private TextField emailid;
-
-    @FXML
-    private TextField fullnameid;
-
-    @FXML
-    private ToggleGroup genderGroup;
-
-    @FXML
-    private Label hyperloginid;
-    
-    @FXML
-    private TextField passwordid;
-
-    @FXML
-    private TextField repasswordid;
-
-    @FXML
-    private Button submitid;
-
-    @FXML
-    private TextField usernameid;
+    @FXML private ComboBox<String> countryid;
+    @FXML private TextField dobid;
+    @FXML private TextField emailid;
+    @FXML private TextField fullnameid;
+    @FXML private ToggleGroup genderGroup;
+    @FXML private Label hyperloginid;
+    @FXML private TextField passwordid;
+    @FXML private TextField repasswordid;
+    @FXML private Button submitid;
+    @FXML private TextField usernameid;
 
 
 

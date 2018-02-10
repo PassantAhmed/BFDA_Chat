@@ -28,7 +28,7 @@ public class ServerDBOperationImplementation extends UnicastRemoteObject impleme
                 
                 public ServerDBOperationImplementation()throws RemoteException
                 {
-                                try  
+                                try
                                 {
                                              dbClass =Database.getInstance();
                                              conn=dbClass.getConnection();
@@ -42,12 +42,7 @@ public class ServerDBOperationImplementation extends UnicastRemoteObject impleme
                                             Logger.getLogger(ServerDBOperationImplementation.class.getName()).log(Level.SEVERE, null, ex);
                                 }
                 }
-                /*
-                public boolean clientLogin(String userName, String password) throws RemoteException 
-                {
-                                    return true;
-                }
-                 */
+
                 public boolean clientRegister(User clientData) throws RemoteException 
                 {
                                 try
