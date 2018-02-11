@@ -33,8 +33,8 @@ public class DashboardController implements Initializable{
     @FXML private Button settingsBtn;
     private List<Button> buttons = new ArrayList<>();
 
-    private final String NOT_Clicked = "-fx-background-color: #004080;";
-    private final String Clicked = "-fx-background-color: #003366;";
+    private final String NOT_Clicked = "-fx-background-color:  #b9798b;";
+    private final String Clicked = "-fx-background-color:  #b0697d;";
 
 
     @Override

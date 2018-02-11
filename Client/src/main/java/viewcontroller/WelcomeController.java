@@ -39,7 +39,7 @@ public class WelcomeController implements Initializable {
     public void connect(ActionEvent actionEvent) {
         String ipAddress = serverIpField.getText();
         if(!validateIp(ipAddress))
-            errorLabel.setText("IP in Not Valid IP");
+            errorLabel.setText("IP is not a valid IP, please re-write a valid one..");
         else
         {
             new Thread(()->{
