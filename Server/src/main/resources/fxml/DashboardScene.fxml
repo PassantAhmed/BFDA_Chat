@@ -14,33 +14,33 @@
 <AnchorPane id="AnchorPane" prefHeight="653.0" prefWidth="927.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DashboardController">
 
    <children>
-      <AnchorPane layoutX="1.0" prefHeight="654.0" prefWidth="222.0" style="-fx-background-color: #ffffe6;">
+      <AnchorPane layoutX="1.0" prefHeight="654.0" prefWidth="222.0" style="-fx-background-color: #f0f0f5;">
          <children>
             <VBox layoutX="1.0" layoutY="240.0" prefHeight="242.0" prefWidth="222.0" style="-fx-background-color: #80aaff;">
                <children>
-                  <Button fx:id="viewClientsBtn" onAction="#viewClient" mnemonicParsing="false" prefHeight="64.0" prefWidth="222.0" style="-fx-background-color: #004080;" text="View Client Info" textFill="WHITE">
+                  <Button fx:id="viewClientsBtn" mnemonicParsing="false" onAction="#viewClient" prefHeight="64.0" prefWidth="222.0" style="-fx-background-color: #b9798b;" text="View Client Info" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Button>
-                  <Button fx:id="viewStatisticsBtn" onAction="#viewStatistics" mnemonicParsing="false" prefHeight="57.0" prefWidth="222.0" style="-fx-background-color: #003366;" text="View Statistics" textFill="WHITE">
+                  <Button fx:id="viewStatisticsBtn" mnemonicParsing="false" onAction="#viewStatistics" prefHeight="57.0" prefWidth="222.0" style="-fx-background-color: #b0697d;" text="View Statistics" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Button>
-                  <Button fx:id="announcementsBtn" onAction="#viewAnnounce" mnemonicParsing="false" prefHeight="57.0" prefWidth="222.0" style="-fx-background-color: #004080;" text="Announcements " textFill="WHITE">
+                  <Button fx:id="announcementsBtn" mnemonicParsing="false" onAction="#viewAnnounce" prefHeight="57.0" prefWidth="222.0" style="-fx-background-color: #b9798b;" text="Announcements " textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Button>
-                  <Button fx:id="settingsBtn" onAction="#viewSettings" mnemonicParsing="false" prefHeight="62.0" prefWidth="222.0" style="-fx-background-color: #004080;" text="Settings" textFill="WHITE">
+                  <Button fx:id="settingsBtn" mnemonicParsing="false" onAction="#viewSettings" prefHeight="62.0" prefWidth="222.0" style="-fx-background-color: #b9798b;" text="Settings" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Button>
                </children>
             </VBox>
-            <AnchorPane layoutX="57.0" layoutY="29.0" prefHeight="51.0" prefWidth="102.0" style="-fx-background-color: #ffffe6;">
+            <AnchorPane layoutX="57.0" layoutY="29.0" prefHeight="51.0" prefWidth="102.0" style="-fx-background-color: #f0f0f5;">
                <children>
                   <ImageView fitHeight="92.0" fitWidth="93.0" layoutX="5.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -52,7 +52,7 @@
          </children>
       </AnchorPane>
       <Pane fx:id="basePane" layoutX="225.0" prefHeight="654.0" prefWidth="702.0" />
-      <AnchorPane layoutX="50.0" layoutY="99.0" prefHeight="80.0" prefWidth="131.0" style="-fx-background-color: #ffffe6;">
+      <AnchorPane layoutX="50.0" layoutY="99.0" prefHeight="80.0" prefWidth="131.0" style="-fx-background-color: #f0f0f5;">
          <children>
             <ImageView fitHeight="93.0" fitWidth="137.0" layoutX="-7.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -69,8 +69,10 @@
             <LinearGradient endX="0.748091661293088" endY="1.0" startX="0.7366412070416313">
                <stops>
                   <Stop color="#a4a4a4" />
+                  <Stop color="#7186af" offset="0.007633587786259542" />
                   <Stop color="BLACK" offset="0.9961832061068702" />
-                  <Stop color="#003366" offset="1.0" />
+                  <Stop color="#1d283e" offset="0.9961832061068702" />
+                  <Stop color="#1d283e" offset="1.0" />
                </stops>
             </LinearGradient>
          </textFill>
