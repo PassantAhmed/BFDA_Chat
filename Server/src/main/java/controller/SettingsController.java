@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import model.ConnectionValidation;
 import model.RemoteServerToRegistry;
 import java.net.URL;
 import java.rmi.NotBoundException;
@@ -23,7 +24,7 @@ public class SettingsController implements Initializable{
 
     @FXML private Button startButton;
     @FXML private Button stopButton;
-
+    private boolean isServerRunning = false;
     private RemoteServerToRegistry remoteServerToRegistry;
 
     public void initialize(URL location, ResourceBundle resources) {
@@ -40,6 +41,7 @@ public class SettingsController implements Initializable{
                 e.printStackTrace();
             }
         }).start();
+        isServerRunning = false;
         startButton.setDisable(false);
         stopButton.setDisable(true);
 
@@ -49,11 +51,24 @@ public class SettingsController implements Initializable{
         new Thread(()->{
             try {
                 remoteServerToRegistry.startServer();
+
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
         }).start();
+        isServerRunning = true;
+        checkActiveUsers();
         startButton.setDisable(true);
         stopButton.setDisable(false);
     }
+
+    private void checkActiveUsers()
+    {
+        System.out.print(isServerRunning);
+        new Thread(()-> {
+            while (isServerRunning)
+                new ConnectionValidation().checkActiveUsers();
+        }).start();
+    }
+
 }
