@@ -7,6 +7,7 @@ import serverInterfaces.ServerObj;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.SQLException;
 
 
 public class ServerObject extends UnicastRemoteObject implements ServerObj, Serializable {
@@ -15,7 +16,7 @@ public class ServerObject extends UnicastRemoteObject implements ServerObj, Seri
     private DatabaseUserOperation databaseUserOperation;
     private ServerMessegeSender serverMessegeSender;
 
-    public ServerObject() throws RemoteException {
+    public ServerObject() throws RemoteException, SQLException {
 
         clientServerRegister = new ClientServerRegisterImp();
         databaseUserOperation = new model.DatabaseUserOperation();

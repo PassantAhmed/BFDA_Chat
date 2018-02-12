@@ -28,6 +28,7 @@ public class ChatImpl extends UnicastRemoteObject implements ChatHandler {
     @Override
     public void updateAnnouncement(String msg)
     {
+        mainController.updateAnnounce(msg);
         System.out.print(msg);
     }
 

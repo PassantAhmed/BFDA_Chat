@@ -5,15 +5,18 @@
  */
 package controller;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import model.ConnectionValidation;
 import model.RemoteServerToRegistry;
 import java.net.URL;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 /**
@@ -29,6 +32,7 @@ public class SettingsController implements Initializable{
 
     public void initialize(URL location, ResourceBundle resources) {
         remoteServerToRegistry = RemoteServerToRegistry.getInstance();
+        stopButton.setDisable(true);
     }
 
     public void stopServer(ActionEvent actionEvent)  {
@@ -51,15 +55,17 @@ public class SettingsController implements Initializable{
         new Thread(()->{
             try {
                 remoteServerToRegistry.startServer();
-
+                isServerRunning = true;
+                checkActiveUsers();
+                startButton.setDisable(true);
+                stopButton.setDisable(false);
             } catch (RemoteException e) {
-                e.printStackTrace();
+                showError("Connection Port May Be Used");
+               return;
+            }catch (SQLException ex) {
+                showError("There is an Issue With your network , Check Administrator");
             }
         }).start();
-        isServerRunning = true;
-        checkActiveUsers();
-        startButton.setDisable(true);
-        stopButton.setDisable(false);
     }
 
     private void checkActiveUsers()
@@ -71,4 +77,10 @@ public class SettingsController implements Initializable{
         }).start();
     }
 
+
+    private void showError(String errorMsg)
+    {
+        Platform.runLater(()->{ new Alert(Alert.AlertType.ERROR , errorMsg).show();
+        });
+    }
 }
