@@ -17,6 +17,10 @@ public class ClientObject extends UnicastRemoteObject implements ClientObj , Ser
     private ChatHandler chatHandler;
     private UserAccount userAccount;
 
+    public static void setUserData(User userData) {
+        ClientObject.userData = userData;
+    }
+    private static User userData;
     public ClientObject() throws RemoteException {
         chatHandler = new ChatImpl();
         userAccount = new UserAccountImpl();
@@ -40,6 +44,6 @@ public class ClientObject extends UnicastRemoteObject implements ClientObj , Ser
 
     @Override
     public User getUserData() throws RemoteException {
-        return new User();
+        return userData;
     }
 }

@@ -21,12 +21,12 @@ import java.util.logging.Logger;
  * @author ahmedelgawesh
  */
 
-public class DatabaseUserOperation extends UnicastRemoteObject implements serverInterfaces.DatabaseUserOperation {
+public class DatabaseUserOperation  {
 
     Database dbClass;
     Connection conn;
 
-    public DatabaseUserOperation() throws RemoteException {
+    public DatabaseUserOperation() {
         try {
             dbClass = Database.getInstance();
             conn = dbClass.getConnection();
@@ -85,7 +85,6 @@ public class DatabaseUserOperation extends UnicastRemoteObject implements server
 
     }
 
-    @Override
     public User clientAddAnotherClient(String anotherClientToAdd) throws RemoteException {
         User user = new beans.User();
         try {

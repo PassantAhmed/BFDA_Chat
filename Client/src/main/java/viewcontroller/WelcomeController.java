@@ -61,7 +61,7 @@ public class WelcomeController implements Initializable {
         if (serverConnection.establiseConnection())
         {
             Platform.runLater(()->{errorLabel.setText("Connection Establised !");});
-            ServerObj serverObj = (ServerObj)ServerConnection.getInstance().getRegisteryObject();
+            ServerObj serverObj = ServerConnection.getInstance().getRegisteryObject();
             serverObj.getClientServerRegister().registerUser(new ClientObject());
             flag =  true;
         }
@@ -100,7 +100,7 @@ public class WelcomeController implements Initializable {
                 root = FXMLLoader.load(getClass().getResource("/fxml/LoginScene.fxml"));
                 Scene scene = new Scene(root);
                 Stage stage = new Stage();
-                stage.setTitle("New Window");
+                stage.setTitle("BFDA Chat | Login");
                 stage.setScene(scene);
                 Stage currentStage = (Stage)loginButton.getScene().getWindow();
                 currentStage.close();
