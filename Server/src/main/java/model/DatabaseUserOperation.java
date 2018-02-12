@@ -26,13 +26,11 @@ public class DatabaseUserOperation  {
     Database dbClass;
     Connection conn;
 
-    public DatabaseUserOperation() {
+    public DatabaseUserOperation() throws SQLException {
         try {
             dbClass = Database.getInstance();
             conn = dbClass.getConnection();
-        } catch (SQLException ex) {
-            Logger.getLogger(DatabaseUserOperation.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
+        }catch (ClassNotFoundException ex) {
             Logger.getLogger(DatabaseUserOperation.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

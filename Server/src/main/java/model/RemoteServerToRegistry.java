@@ -9,6 +9,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.sql.SQLException;
 
 /**
  *
@@ -37,8 +38,9 @@ public class RemoteServerToRegistry
 
         }
 
-        public void startServer() throws RemoteException {
+        public void startServer() throws RemoteException, SQLException {
                 serverRegistry.rebind("serverRegistry", new ServerObject());
+
         }
 
         public void stopServer() throws RemoteException, NotBoundException {
