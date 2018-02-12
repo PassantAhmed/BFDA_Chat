@@ -1,4 +1,4 @@
-package myutilities;
+package utilities;
 
 /**
  * Created by Muhammed Fawzy on 2/10/2018.

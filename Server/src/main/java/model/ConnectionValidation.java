@@ -3,8 +3,6 @@ package model;
 import clientInterfaces.ClientObj;
 
 import java.rmi.RemoteException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Vector;
 
 /**
@@ -20,7 +18,7 @@ public class ConnectionValidation {
 
             try {
                 Thread.sleep(1000);
-                for(ClientObj obj : ClientRegisterImp.clientObject)
+                for(ClientObj obj : ClientServerRegisterImp.clientObject)
                 {
                     try {
                         obj.getChatHandler().updateConnection();
@@ -45,7 +43,7 @@ public class ConnectionValidation {
         for(ClientObj clientObj : inActiveUsers)
         {
             System.out.println("Removing Inactives");
-            ClientRegisterImp.clientObject.remove(clientObj);
+            ClientServerRegisterImp.clientObject.remove(clientObj);
         }
         inActiveUsers.clear();
     }

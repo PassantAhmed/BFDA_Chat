@@ -1,16 +1,11 @@
 package BFDA;
 
-import clientInterfaces.ClientObj;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import model.ClientRegisterImp;
-import model.RemoteServerToRegistry;
-
-import java.rmi.RemoteException;
 
 
 public class App extends Application

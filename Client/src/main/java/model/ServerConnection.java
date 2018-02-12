@@ -1,5 +1,7 @@
 package model;
 
+import serverInterfaces.ServerObj;
+
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -10,7 +12,7 @@ public class ServerConnection {
 
     private static String localIpAddress;
     private static ServerConnection instance;
-    Object obj ;
+    ServerObj obj ;
     public static ServerConnection getInstance()
     {
         if (instance == null)
@@ -24,7 +26,7 @@ public class ServerConnection {
 
     }
 
-    public Object getRegisteryObject()
+    public ServerObj getRegisteryObject()
     {
         return obj;
     }
@@ -32,7 +34,7 @@ public class ServerConnection {
     public boolean establiseConnection()  {
         try {
             Registry reg = LocateRegistry.getRegistry(localIpAddress , 5220);
-            obj =  reg.lookup("serverRegistry");
+            obj = (ServerObj) reg.lookup("serverRegistry");
             System.out.println("Done");
         } catch (RemoteException e) {
             System.out.println(e);

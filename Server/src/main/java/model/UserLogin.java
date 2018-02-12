@@ -13,7 +13,7 @@ public class UserLogin implements LoginInterface {
     String password;
     User resultUser;
     Database database;
-    ServerDBOperationImplementation serverOperationClass;
+    DatabaseUserOperation serverOperationClass;
     public UserLogin(String userName , String password)
     {
         this.userName = userName;

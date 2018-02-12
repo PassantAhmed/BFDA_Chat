@@ -1,7 +1,7 @@
 package model;
 
-import serverInterfaces.ClientRegister;
-import serverInterfaces.ServerDatabseOperation;
+import serverInterfaces.ClientServerRegister;
+import serverInterfaces.DatabaseUserOperation;
 import serverInterfaces.ServerMessegeSender;
 import serverInterfaces.ServerObj;
 
@@ -12,31 +12,31 @@ import java.rmi.server.UnicastRemoteObject;
 
 public class ServerObject extends UnicastRemoteObject implements ServerObj ,  Serializable   {
 
-    private ClientRegister clientRegister;
-    private ServerDatabseOperation serverDatabseOperation;
+    private ClientServerRegister clientServerRegister;
+    private DatabaseUserOperation databaseUserOperation;
     private ServerMessegeSender serverMessegeSender;
 
     public ServerObject() throws RemoteException {
 
-        clientRegister = new ClientRegisterImp();
-        serverDatabseOperation = new ServerDBOperationImplementation();
+        clientServerRegister = new ClientServerRegisterImp();
+        databaseUserOperation = new model.DatabaseUserOperation();
         serverMessegeSender = new ServerMessageSenderImplementation();
     }
 
-    public ClientRegister getClientRegister() {
-        return clientRegister;
+    public ClientServerRegister getClientServerRegister() {
+        return clientServerRegister;
     }
 
-    public void setClientRegister(ClientRegister clientRegister) {
-        this.clientRegister = clientRegister;
+    public void setClientServerRegister(ClientServerRegister clientServerRegister) {
+        this.clientServerRegister = clientServerRegister;
     }
 
-    public ServerDatabseOperation getServerDatabseOperation() {
-        return serverDatabseOperation;
+    public DatabaseUserOperation getDatabaseUserOperation() {
+        return databaseUserOperation;
     }
 
-    public void setServerDatabseOperation(ServerDatabseOperation serverDatabseOperation) {
-        this.serverDatabseOperation = serverDatabseOperation;
+    public void setDatabaseUserOperation(DatabaseUserOperation databaseUserOperation) {
+        this.databaseUserOperation = databaseUserOperation;
     }
 
     public ServerMessegeSender getServerMessegeSender() {

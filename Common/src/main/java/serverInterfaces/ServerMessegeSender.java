@@ -7,6 +7,7 @@ package serverInterfaces;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.Vector;
 
 /**
  *
@@ -15,5 +16,6 @@ import java.rmi.RemoteException;
 public interface ServerMessegeSender  extends Remote
 {  
           public void sendToClients(int recieverID) throws RemoteException;
+          public void chatStartRequest(Vector<String> emails) throws RemoteException;
           
 }

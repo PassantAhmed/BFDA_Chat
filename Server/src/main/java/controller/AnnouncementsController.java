@@ -9,9 +9,8 @@ import clientInterfaces.ClientObj;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
-import model.ClientRegisterImp;
+import model.ClientServerRegisterImp;
 
-import javax.xml.soap.Text;
 import java.rmi.RemoteException;
 
 /**
@@ -25,7 +24,7 @@ public class AnnouncementsController  {
     public void sendAnnounce(ActionEvent actionEvent) {
         String msg = announcementText.getText();
         new Thread(()->{
-                for (ClientObj clientObj : ClientRegisterImp.clientObject) {
+                for (ClientObj clientObj : ClientServerRegisterImp.clientObject) {
                     try
                     {
                         clientObj.getChatHandler().updateAnnouncement(msg);

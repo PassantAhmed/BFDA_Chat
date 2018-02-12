@@ -8,10 +8,10 @@ import java.rmi.RemoteException;
  */
 public interface ServerObj extends Remote {
 
-    public ClientRegister getClientRegister() throws RemoteException ;
-    public void setClientRegister(ClientRegister clientRegister) throws RemoteException;
-    public ServerDatabseOperation getServerDatabseOperation()throws RemoteException;
-    public void setServerDatabseOperation(ServerDatabseOperation serverDatabseOperation) throws RemoteException;
+    public ClientServerRegister getClientServerRegister() throws RemoteException ;
+    public void setClientServerRegister(ClientServerRegister clientServerRegister) throws RemoteException;
+    public DatabaseUserOperation getDatabaseUserOperation()throws RemoteException;
+    public void setDatabaseUserOperation(DatabaseUserOperation databaseUserOperation) throws RemoteException;
     public ServerMessegeSender getServerMessegeSender()throws RemoteException;
     public void setServerMessegeSender(ServerMessegeSender serverMessegeSender)throws RemoteException;
 }

@@ -1,5 +1,6 @@
 package model;
 
+import beans.User;
 import clientInterfaces.ChatHandler;
 import clientInterfaces.ClientObj;
 import clientInterfaces.UserAccount;
@@ -35,5 +36,10 @@ public class ClientObject extends UnicastRemoteObject implements ClientObj , Ser
 
     public void setUserAccount(UserAccount userAccount) {
         this.userAccount = userAccount;
+    }
+
+    @Override
+    public User getUserData() throws RemoteException {
+        return new User();
     }
 }

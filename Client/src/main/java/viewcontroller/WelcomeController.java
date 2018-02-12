@@ -2,7 +2,6 @@ package viewcontroller;
 
 import java.io.IOException;
 import java.net.URL;
-import java.rmi.RemoteException;
 import java.util.ResourceBundle;
 
 import javafx.application.Platform;
@@ -44,8 +43,9 @@ public class WelcomeController implements Initializable {
         {
             new Thread(()->{
                 try {
-                    connectToServer(ipAddress);
-                } catch (RemoteException e) {
+                    if(connectToServer(ipAddress))
+                        openLogin();
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             }).start();
@@ -53,22 +53,26 @@ public class WelcomeController implements Initializable {
 
     }
 
-    public void connectToServer(String ipAddress) throws RemoteException {
+    public boolean connectToServer(String ipAddress) throws IOException {
         ServerConnection serverConnection = ServerConnection.getInstance();
         serverConnection.setHost(ipAddress);
         connectionEstablishingMode(true);
+        boolean flag = false;
         if (serverConnection.establiseConnection())
         {
             Platform.runLater(()->{errorLabel.setText("Connection Establised !");});
             ServerObj serverObj = (ServerObj)ServerConnection.getInstance().getRegisteryObject();
-            serverObj.getClientRegister().registerUser(new ClientObject());
-
+            serverObj.getClientServerRegister().registerUser(new ClientObject());
+            flag =  true;
         }
         else
         {
             Platform.runLater(()->{errorLabel.setText("Server is Not Reachable");});
+            flag =  false;
         }
         connectionEstablishingMode(false);
+        return flag;
+
     }
 
     public void connectionEstablishingMode(boolean status)
@@ -84,6 +88,31 @@ public class WelcomeController implements Initializable {
                 loginButton.setDisable(false);
                 loginButton.setText("Connect");
                 serverIpField.setDisable(false);});
+    }
+
+
+    public void openLogin()
+    {
+        Platform.runLater(()->{
+
+            Parent root = null;
+            try {
+                root = FXMLLoader.load(getClass().getResource("/fxml/LoginScene.fxml"));
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.setTitle("New Window");
+                stage.setScene(scene);
+                Stage currentStage = (Stage)loginButton.getScene().getWindow();
+                currentStage.close();
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+        });
+
+
     }
 
 }

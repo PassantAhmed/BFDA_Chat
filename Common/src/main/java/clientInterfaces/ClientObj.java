@@ -1,5 +1,7 @@
 package clientInterfaces;
 
+import beans.User;
+
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
@@ -13,4 +15,5 @@ public interface ClientObj extends Remote {
     public void setChatHandler(ChatHandler chatHandler) throws RemoteException;
     public UserAccount getUserAccount()throws RemoteException;
     public void setUserAccount(UserAccount userAccount)throws RemoteException;
+    public User getUserData() throws RemoteException;
 }
