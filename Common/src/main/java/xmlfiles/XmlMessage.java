@@ -10,6 +10,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLOutputFactory;
 import javax.xml.stream.XMLStreamException;
@@ -26,106 +27,12 @@ public class XmlMessage {
     private static final String NAME_SPACE = "http://www.w3.org/2001/XMLSchema-instance";
     private static String fileName;
 
-    public XmlMessage(String chatName) {
-        userMessages = new ArrayList<>();
-        fileName = chatName;
-    }
-
-    private static boolean readXmlFile(String fileName) {
-        boolean readFlag = false;
-        Message message = new Message();
-        ArrayList<String> toUsers = new ArrayList<>();
-        XMLInputFactory inputFactory = XMLInputFactory.newFactory();
-        boolean fromFlag, toFlag, dateFlag, contentFlag;
-        fromFlag = toFlag = dateFlag = contentFlag = false;
-        try {
-            XMLStreamReader streamReader = inputFactory.createXMLStreamReader(new FileInputStream("src\\xmlfiles\\"+fileName+".xml"));
-            while (streamReader.hasNext()) {
-                int eventType = streamReader.getEventType();
-
-                switch (eventType) {
-
-                    case XMLStreamReader.START_ELEMENT:
-
-                        if (streamReader.getLocalName().equals("from")) {
-                            fromFlag = true;
-                            toFlag = dateFlag = contentFlag = false; 
-                        } else if (streamReader.getLocalName().equals("to")) {
-                            toFlag = true;
-                            fromFlag = dateFlag = contentFlag = false; 
-                        } else if (streamReader.getLocalName().equals("date")) {
-                            dateFlag = true;
-                            fromFlag = toFlag = contentFlag = false; 
-                        } else if (streamReader.getLocalName().equals("content")) {
-                            contentFlag = true;
-                            fromFlag = toFlag = dateFlag = false; 
-                        }  
-                        
-                        if (streamReader.getAttributeCount() > 0) {
-                            for (int counter = 0; counter < streamReader.getAttributeCount(); counter++) {
-
-                                if (streamReader.getAttributeLocalName(counter).equals("color")) {
-                                    message.setMessageFontColor(streamReader.getAttributeValue(counter));
-                                } 
-                                
-                                else if (streamReader.getAttributeLocalName(counter).equals("font-size")) {
-                                    message.setMessageFontSize(streamReader.getAttributeValue(counter));
-                                } 
-                                
-                                else if (streamReader.getAttributeLocalName(counter).equals("font-family")) {
-                                    message.setMessageFontFamily(streamReader.getAttributeValue(counter));
-                                }
-                            }
-                        }
-                        break;
-
-                    case XMLStreamReader.CHARACTERS:
-                        if (!streamReader.getText().isEmpty()) {
-                            if(fromFlag){
-                                message.setFromUser(streamReader.getText());
-                            }
-                            
-                            else if(toFlag){
-                                toUsers.add(streamReader.getText());
-                                message.setToUsers(toUsers);
-                            }
-                            
-                            else if(dateFlag){
-                                //message.setMessageDate(streamReader.getText());
-                            }
-                            
-                            else if(contentFlag){
-                                message.setMessageContent(streamReader.getText());
-                            }
-                        }
-                        break;
-                }
-
-                userMessages.add(message);
-                streamReader.next();
-            }
-
-            streamReader.close();
-
-        } catch (XMLStreamException ex) {
-            readFlag = false;
-        } catch (FileNotFoundException ex) {
-            readFlag = false;
-        }
-        return readFlag;
-    }
-
-    public static boolean appendXmlFile(String chatName, ArrayList<Message> messages) {
-        boolean appendFlag = false;
-        appendFlag = readXmlFile(chatName);
-        return appendFlag && writeXmlFile(messages);
-    }
-
-    public static boolean writeXmlFile(ArrayList<Message> messages) {
+    public static boolean writeXmlFile(String userName, String chatName, ArrayList<Message> messages) {
+        Date date = new Date();
         boolean writeFlag = false;
         try {
             XMLOutputFactory xmlOutputFactory = XMLOutputFactory.newFactory();
-            XMLStreamWriter xmlStreamWriter = xmlOutputFactory.createXMLStreamWriter(new FileOutputStream("src\\xmlfiles\\" + fileName + ".xml"));
+            XMLStreamWriter xmlStreamWriter = xmlOutputFactory.createXMLStreamWriter(new FileOutputStream("src\\xmlfiles\\" + userName + "_" +chatName+ "_" +date.getTime() + ".xml"));
 
             xmlStreamWriter.writeStartDocument("utf-8", "1.0");
             xmlStreamWriter.writeCharacters(System.lineSeparator());
@@ -140,6 +47,7 @@ public class XmlMessage {
             xmlStreamWriter.writeNamespace("xsi", NAME_SPACE);
 
             xmlStreamWriter.writeAttribute("xsi:noNamespaceSchemaLocation", "schema.xsd");
+            xmlStreamWriter.writeAttribute("owner", userName);
             xmlStreamWriter.writeCharacters(System.lineSeparator());
 
             for (Message message : messages) {
@@ -159,7 +67,7 @@ public class XmlMessage {
                 }
 
                 xmlStreamWriter.writeStartElement("date");
-                //xmlStreamWriter.writeCharacters(message.getMessageDate());
+                xmlStreamWriter.writeCharacters(String.valueOf(message.getMessageDate()));
                 xmlStreamWriter.writeEndElement();
                 xmlStreamWriter.writeCharacters(System.lineSeparator());
 
@@ -183,11 +91,10 @@ public class XmlMessage {
 
             writeFlag = true;
 
-        } catch (XMLStreamException ex) {
+        } catch (XMLStreamException | FileNotFoundException  ex) {
             writeFlag = false;
-        } catch (FileNotFoundException ex) {
-            writeFlag = false;
-        }
+        } 
+        
         return writeFlag;
     }
 

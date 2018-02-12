@@ -9,7 +9,7 @@
 						<xs:element name="to" type="xs:string" minOccurs="1" maxOccurs="unbounded"></xs:element>
 						<xs:element name="date" type="xs:string" />
 						<xs:element name="content" type="xs:string" >
-							<xs:attribute name="color" type="xs:string" default="#000000"/>
+							<xs:attribute name="color" type="xs:string" default="#000"/>
 							<xs:attribute name="font-size" type="xs:string" default="15"/>
 							<xs:attribute name="font-family" type="xs:string" default="Calibri"/>
 						</xs:element>
@@ -18,5 +18,6 @@
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
+        <xs:attribute name="owner" type="xs:string" default="system"/>
 </xs:element>
 </xs:schema>

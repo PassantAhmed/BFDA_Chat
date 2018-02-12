@@ -6,6 +6,7 @@
 package beans;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -19,7 +20,7 @@ public class Message {
     private String messageFontColor;
     private String messageFontFamily;
     private String messageFontSize;
-    //private Date messageDate;
+    private Date messageDate;
 
     public String getFromUser() {
         return fromUser;
@@ -69,12 +70,12 @@ public class Message {
         this.messageFontSize = messageFontSize;
     }
 
-//    public Date getMessageDate() {
-//        return messageDate;
-//    }
-//
-//    public void setMessageDate(Date messageDate) {
-//        this.messageFontSize = messageDate;
-//    }
+    public Date getMessageDate() {
+        return messageDate;
+    }
+
+    public void setMessageDate(Date messageDate) {
+        this.messageDate = messageDate;
+    }
 
 }
