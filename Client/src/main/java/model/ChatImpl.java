@@ -1,10 +1,14 @@
 package model;
 
 import beans.Message;
+import beans.User;
 import clientInterfaces.ChatHandler;
 import viewcontroller.MainController;
+import viewcontroller.MainWindowController;
+
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.HashMap;
 import java.util.Vector;
 
 
@@ -22,8 +26,8 @@ public class ChatImpl extends UnicastRemoteObject implements ChatHandler {
     }
 
     @Override
-    public void updateChat(String chatID, Message message) {
-
+    public void updateChat(String chatID, Message message)
+    {
         mainController.updateAnnounce(message.getMessageContent());
     }
 
