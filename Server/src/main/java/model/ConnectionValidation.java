@@ -23,8 +23,9 @@ public class ConnectionValidation {
                     try {
                         obj.getChatHandler().updateConnection();
                     } catch (RemoteException e) {
+
                         inActiveUsers.add(obj);
-                        System.out.println("Adding to be Removed");
+                        System.out.println("Adding to be Removed   "+e.toString());
                     }
                 }
                 removeInactiveFromList();

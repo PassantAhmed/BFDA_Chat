@@ -5,6 +5,9 @@
  */
 package model;
 
+import beans.Message;
+import beans.User;
+
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.Vector;
@@ -13,17 +16,23 @@ import java.util.Vector;
  * @author ahmedelgawesh
  */
 public class ServerMessageSenderImplementation extends UnicastRemoteObject implements serverInterfaces.ServerMessegeSender {
+
+    ChatFlowControl chatFlowControl ;
+
     public ServerMessageSenderImplementation() throws RemoteException {
-
-    }
-
-    public void sendToClients(int recieverID) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        chatFlowControl = new ChatFlowControl();
     }
 
     @Override
-    public void chatStartRequest(Vector<String> emails) throws RemoteException {
-
+    public void chatStartRequest(String chatID, Vector<String> users) throws RemoteException {
+        chatFlowControl.registerNewChat(chatID , users);
     }
+
+    @Override
+    public void sendMsgToChat(String chatID, Message message) throws RemoteException {
+        chatFlowControl.sendMsg(chatID , message);
+    }
+
+
 
 }

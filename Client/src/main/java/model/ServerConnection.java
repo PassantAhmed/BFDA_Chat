@@ -10,9 +10,9 @@ import java.util.Objects;
 
 public class ServerConnection {
 
-    private static String localIpAddress;
+    private String localIpAddress;
     private static ServerConnection instance;
-    ServerObj obj ;
+    private ServerObj obj ;
     public static ServerConnection getInstance()
     {
         if (instance == null)
@@ -45,6 +45,10 @@ public class ServerConnection {
         }
         return true;
     }
+
+
+
+
 
 
 
