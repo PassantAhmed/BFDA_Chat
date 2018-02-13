@@ -12,48 +12,39 @@ import java.rmi.registry.Registry;
 import java.sql.SQLException;
 
 /**
- *
  * @author ahmedelgawesh
  */
-public class RemoteServerToRegistry 
-{
-        private Registry serverRegistry;
-        private static RemoteServerToRegistry instance;
-        public static RemoteServerToRegistry getInstance()
-        {
-                if(instance == null)
-                        instance = new RemoteServerToRegistry();
-                return instance;
-        }
-        private RemoteServerToRegistry()
-        {
-                try
-                {
-                        serverRegistry = LocateRegistry.createRegistry(5220);
-                }
-                catch (RemoteException ReEx)
-                {
-                        System.out.println(ReEx);
-                }
+public class RemoteServerToRegistry {
+    private Registry serverRegistry;
+    private static RemoteServerToRegistry instance;
 
+    public static RemoteServerToRegistry getInstance() {
+        if (instance == null)
+            instance = new RemoteServerToRegistry();
+        return instance;
+    }
+
+    private RemoteServerToRegistry() {
+        try {
+            serverRegistry = LocateRegistry.createRegistry(5220);
+        } catch (RemoteException ReEx) {
+            System.out.println(ReEx);
         }
 
-        public void startServer() throws RemoteException, SQLException {
-                serverRegistry.rebind("serverRegistry", new ServerObject());
+    }
 
-        }
+    public void startServer() throws RemoteException, SQLException {
+        serverRegistry.rebind("serverRegistry", new ServerObject());
 
-        public void stopServer() throws RemoteException, NotBoundException {
-                serverRegistry.unbind("serverRegistry");
-        }
+    }
 
-        public String[] boundedObjects() throws RemoteException {
-                return serverRegistry.list();
-        }
+    public void stopServer() throws RemoteException, NotBoundException {
+        serverRegistry.unbind("serverRegistry");
+    }
 
+    public String[] boundedObjects() throws RemoteException {
+        return serverRegistry.list();
+    }
 
-
-
-   
 
 }

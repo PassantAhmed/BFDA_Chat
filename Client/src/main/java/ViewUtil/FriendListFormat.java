@@ -32,7 +32,6 @@ public class FriendListFormat extends ListCell<User> {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
 

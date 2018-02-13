@@ -1,14 +1,10 @@
 package model;
 
 import beans.Message;
-import beans.User;
 import clientInterfaces.ChatHandler;
 import viewcontroller.MainController;
-import viewcontroller.MainWindowController;
-
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.HashMap;
 import java.util.Vector;
 
 

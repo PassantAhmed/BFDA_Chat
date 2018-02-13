@@ -14,9 +14,8 @@ public class UserLogin implements LoginInterface {
     String password;
 
 
-
     private User resultUser;
-    Database database ;
+    Database database;
     DatabaseUserOperation serverOperationClass;
 
     public UserLogin(String userName, String password) {
@@ -58,13 +57,12 @@ public class UserLogin implements LoginInterface {
             return false;
     }
 
-
     public boolean login() throws SQLException {
         searchForUser();
         if (verifyUser())
             return true;
         else
-           return false;
+            return false;
     }
 
     public User getResultUser() {
