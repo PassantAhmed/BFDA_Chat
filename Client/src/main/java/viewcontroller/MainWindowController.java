@@ -13,11 +13,13 @@ import model.ChatImpl;
 import java.net.URL;
 import java.rmi.RemoteException;
 import java.util.ResourceBundle;
+import javafx.scene.image.ImageView;
 
 public class MainWindowController implements Initializable{
     @FXML private Circle profilePicCircle;
     @FXML private TextArea announceArea;
     @FXML private ScrollPane scroll;
+    @FXML private Button italicWordBtn;
 
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -27,6 +29,8 @@ public class MainWindowController implements Initializable{
         announceArea.setEditable(false);
         scroll.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scroll.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        
+        italicWordBtn.setGraphic(new ImageView(new Image(getClass().getResourceAsStream(("..\\styles\\bestfriendsdailyapp.png")))));
 
     }
 

@@ -84,5 +84,4 @@ public class MainController implements Initializable {
         chatID = localchatID.equals(chatID) ? chatID : localchatID;
     }
 
-
 }
