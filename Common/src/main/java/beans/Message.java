@@ -5,17 +5,20 @@
  */
 package beans;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Vector;
 
 /**
  *
  * @author Passant
  */
-public class Message {
+public class Message implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     private String fromUser;
-    private ArrayList<String> toUsers;
+    private Vector<String> toUsers;
     private String messageContent;
     private String messageFontColor;
     private String messageFontFamily;
@@ -30,11 +33,11 @@ public class Message {
         this.fromUser = fromUser;
     }
 
-    public ArrayList<String> getToUsers() {
+    public Vector<String> getToUsers() {
         return toUsers;
     }
 
-    public void setToUsers(ArrayList<String> toUsers) {
+    public void setToUsers(Vector<String> toUsers) {
         this.toUsers = toUsers;
     }
 
