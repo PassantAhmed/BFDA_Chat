@@ -17,19 +17,17 @@ import java.util.ResourceBundle;
 public class MainWindowController implements Initializable{
     @FXML private Circle profilePicCircle;
     @FXML private TextArea announceArea;
-    private ChatImpl chat;
+    @FXML private ScrollPane scroll;
+
     public void initialize(URL location, ResourceBundle resources) {
 
         profilePicCircle.setFill(new ImagePattern(new Image("https://thumb7.shutterstock.com/" +
                 "display_pic_with_logo/1833737/493883845/" +
                 "stock-photo-woman-profile-face-girl-profile-493883845.jpg")));
         announceArea.setEditable(false);
-        try {
-            chat = new ChatImpl();
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-        chat.setMainController(this);
+        scroll.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scroll.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+
     }
 
     public void closeWindow(ActionEvent actionEvent) {

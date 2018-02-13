@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -20,7 +27,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="666.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewcontroller.MainWindowController">
+<BorderPane prefHeight="666.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewcontroller.MainWindowController">
   <center>
     <GridPane BorderPane.alignment="CENTER">
       <children>
@@ -74,26 +81,28 @@
                 <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #FFF;" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.rowSpan="2">
                   <children>
                     <ScrollPane fx:id="scroll" fitToWidth="true" style="-fx-background-color:transparent" VBox.vgrow="ALWAYS">
-                      <VBox maxWidth="1.7976931348623157E308" style="-fx-background-color: #00284d;">
-                        <children>
-                          <fx:include maxWidth="+Infinity" minWidth="-Infinity" prefWidth="250.0" source="ListItems.fxml" />
-                          <fx:include source="ListItems.fxml" />
-                          <fx:include source="ListItems.fxml" />
-                          <fx:include source="ListItems.fxml" />
-                          <fx:include source="ListItems.fxml" />
-                          <fx:include source="ListItems.fxml" />
-                          <fx:include source="ListItems.fxml" />
-                          <fx:include source="ListItems.fxml" />
-                          <fx:include source="ListItems.fxml" />
-                          <fx:include source="ListItems.fxml" />
-                          <fx:include source="ListItems.fxml" />
-                          <fx:include source="ListItems.fxml" />
-                          <fx:include source="ListItems.fxml" />
-                          <fx:include source="ListItems.fxml" />
-                          <fx:include source="ListItems.fxml" />
-                          <fx:include source="ListItems.fxml" />
-                        </children>
-                      </VBox>
+                       <content>
+                         <VBox maxWidth="1.7976931348623157E308" style="-fx-background-color: #00284d;">
+                           <children>
+                             <fx:include maxWidth="+Infinity" minWidth="-Infinity" prefWidth="250.0" source="ListItems.fxml" />
+                             <fx:include source="ListItems.fxml" />
+                             <fx:include source="ListItems.fxml" />
+                             <fx:include source="ListItems.fxml" />
+                             <fx:include source="ListItems.fxml" />
+                             <fx:include source="ListItems.fxml" />
+                             <fx:include source="ListItems.fxml" />
+                             <fx:include source="ListItems.fxml" />
+                             <fx:include source="ListItems.fxml" />
+                             <fx:include source="ListItems.fxml" />
+                             <fx:include source="ListItems.fxml" />
+                             <fx:include source="ListItems.fxml" />
+                             <fx:include source="ListItems.fxml" />
+                             <fx:include source="ListItems.fxml" />
+                             <fx:include source="ListItems.fxml" />
+                             <fx:include source="ListItems.fxml" />
+                           </children>
+                         </VBox>
+                       </content>
                     </ScrollPane>
                   </children>
                   <GridPane.margin>
@@ -125,7 +134,7 @@
                                  </font></Button>
                            </children>
                         </AnchorPane>
-                        <AnchorPane prefHeight="60.0" prefWidth="441.0" style="-fx-background-color: #001a33;">
+                        <AnchorPane prefHeight="80.0" prefWidth="441.0" style="-fx-background-color: #00284d; -fx-border-color: #00284d;">
                            <children>
                               <Label layoutX="73.0" layoutY="11.0" text="Name" textFill="WHITE">
                                  <font>
@@ -156,17 +165,17 @@
                                     </Button>
                                     <Button layoutX="243.0" layoutY="9.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="U" />
                                     <ColorPicker layoutX="95.0" layoutY="9.0" prefHeight="26.0" prefWidth="47.0" style="-fx-background-color: #ff6699;" />
-                                    <Spinner layoutX="288.0" layoutY="9.0" prefHeight="26.0" prefWidth="142.0" />
-                                    <Button layoutX="48.0" layoutY="10.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="35.0" text="Send File" />
+                                    <Button layoutX="12.0" layoutY="10.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="71.0" text="Send File" />
+                                    <ComboBox layoutX="288.0" layoutY="9.0" prefHeight="25.0" prefWidth="137.0" />
                                  </children>
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane layoutX="1.0" layoutY="60.0" prefHeight="485.0" prefWidth="438.0">
+                        <AnchorPane layoutX="1.0" layoutY="80.0" prefHeight="467.0" prefWidth="438.0">
                            <children>
-                              <ScrollPane layoutX="1.0" prefHeight="487.0" prefWidth="436.0">
+                              <ScrollPane layoutX="1.0" prefHeight="468.0" prefWidth="436.0">
                                  <content>
-                                    <VBox prefHeight="484.0" prefWidth="433.0" style="-fx-background-color: #ffe6ff;" />
+                                    <VBox prefHeight="465.0" prefWidth="433.0" style="-fx-background-color: #ffe6ff;" />
                                  </content>
                               </ScrollPane>
                            </children>
@@ -176,23 +185,9 @@
                </children></HBox>
         <HBox fillHeight="true" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color:white&#10;&#10;&#10;" GridPane.columnIndex="3" GridPane.rowIndex="0" GridPane.rowSpan="3">
           <children>
-            <GridPane maxHeight="-1.0" maxWidth="1.7976931348623157E308" minWidth="-Infinity" style="-fx-border-color: #001a33;" HBox.hgrow="ALWAYS">
+            <GridPane maxHeight="-1.0" maxWidth="1.7976931348623157E308" minWidth="-Infinity" style="-fx-border-color: #00284d;" HBox.hgrow="ALWAYS">
               <children>
-                <HBox alignment="TOP_RIGHT" prefHeight="46.0" prefWidth="202.0" spacing="5.0" style="&#10;" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER">
-                  <children>
-                              <AnchorPane prefHeight="46.0" prefWidth="107.0">
-                                 <children>
-                          <Button layoutX="191.0" layoutY="1.0" mnemonicParsing="false" onAction="#closeWindow" prefHeight="10.0" prefWidth="10.0" style="-fx-background-color:white&#10;" text="x" />
-                          <Button layoutX="162.0" mnemonicParsing="false" prefHeight="10.0" prefWidth="10.0" style="-fx-background-color:white&#10;" text="□" />
-                          <Button layoutX="136.0" mnemonicParsing="false" prefHeight="10.0" prefWidth="10.0" style="-fx-background-color:white&#10;&#10;" text="ــ" />
-                                 </children>
-                              </AnchorPane>
-                  </children>
-                  <GridPane.margin>
-                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                  </GridPane.margin>
-                </HBox>
-                        <AnchorPane prefHeight="242.0" prefWidth="251.0" style="-fx-background-color: #FFF;" GridPane.rowIndex="1">
+                        <AnchorPane prefHeight="148.0" prefWidth="250.0" style="-fx-background-color: #FFF;" GridPane.rowIndex="1">
                            <children>
                               <Circle fx:id="profilePicCircle11" fill="DODGERBLUE" layoutX="125.0" layoutY="66.0" radius="52.0" smooth="true" stroke="BLACK" strokeType="INSIDE" style="" />
                               <Label alignment="CENTER" layoutX="1.0" layoutY="128.0" prefHeight="27.0" prefWidth="249.0" text="Nameeeeee">
@@ -218,14 +213,15 @@
                         </AnchorPane>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffe6ff;" GridPane.rowIndex="3">
                            <children>
-                              <TextArea fx:id="announceArea" prefHeight="200.0" prefWidth="250.0" style="-fx-background-color: #ffe6ff;" />
+                              <TextArea fx:id="announceArea" layoutX="16.0" layoutY="15.0" prefHeight="185.0" prefWidth="223.0" style="-fx-background-color: #ffe6ff;" />
                            </children></AnchorPane>
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #00284d; -fx-border-color: #00284d;" />
               </children>
               <columnConstraints>
                 <ColumnConstraints fillWidth="true" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints maxHeight="40.0" minHeight="0.0" percentHeight="10.0" prefHeight="40.0" vgrow="ALWAYS" />
+                <RowConstraints maxHeight="40.0" minHeight="0.0" percentHeight="11.5" prefHeight="40.0" vgrow="ALWAYS" />
                 <RowConstraints maxHeight="180.0" minHeight="10.0" prefHeight="180.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="180.0" minHeight="10.0" prefHeight="180.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="180.0" minHeight="10.0" prefHeight="180.0" vgrow="SOMETIMES" />

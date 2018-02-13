@@ -7,28 +7,24 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import myutilities.ValidationChecks;
 
 public class RegisterController implements Initializable {
      
-    ValidationChecks checker = new ValidationChecks();
-    
-    @FXML private ComboBox<String> countryid;
-    @FXML private TextField dobid;
+    private ValidationChecks checker = new ValidationChecks();
+    @FXML private Spinner<String> countryid;
+    @FXML private DatePicker dobid;
     @FXML private TextField emailid;
     @FXML private TextField fullnameid;
     @FXML private ToggleGroup genderGroup;
-    @FXML private Label hyperloginid;
     @FXML private TextField passwordid;
     @FXML private TextField repasswordid;
-    @FXML private Button submitid;
     @FXML private TextField usernameid;
 
+
+    @FXML private Label hyperloginid;
+    @FXML private Button submitid;
 
 
     
@@ -41,20 +37,15 @@ public class RegisterController implements Initializable {
         String repassword = repasswordid.getText();
         user.setName(fullnameid.getText());
         user.setEmail(emailid.getText());
-        //user.setBirthdate((Date) dobid.getText());
+        user.setBirthdate(dobid.getValue());
         user.setCountry(countryid.getValue());
-   
-        if(genderGroup.getSelectedToggle().getUserData().toString() == "male"){
-            genderBoolean = true;
-        }else{
-            genderBoolean = false;
-        }
-        
+
+        genderBoolean = genderGroup.getSelectedToggle().getUserData().toString() == "male";
         user.setGender(genderBoolean);
         
-        if(validateUser(user)==true){
+        if(validateUser(user)){
             //check if passwords matches
-            if(user.getPassword() == repassword){
+            if(user.getPassword().equals(repassword)){
                 //data is valid send user object to server
             }
         }
@@ -63,10 +54,10 @@ public class RegisterController implements Initializable {
     private boolean validateUser(User user){
         boolean isValid =false;
         
-        if(checker.isName(user.getName()) == true 
-                && checker.isUserName(user.getUsername()) == true
-                && checker.isEmail(user.getEmail()) == true
-                && checker.isValidPassword(user.getPassword()) == true){
+        if(checker.isName(user.getName())
+                && checker.isUserName(user.getUsername())
+                && checker.isEmail(user.getEmail())
+                && checker.isValidPassword(user.getPassword())){
         
             isValid =true;
         }

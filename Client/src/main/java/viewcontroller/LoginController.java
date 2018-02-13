@@ -94,13 +94,15 @@ public class LoginController implements Initializable {
 
             Parent root = null;
             try {
-                root = FXMLLoader.load(getClass().getResource("/fxml/MainChatWindow.fxml"));
-                Scene scene = new Scene(root);
+
                 Stage stage = new Stage();
+                root =FXMLLoader.load(getClass().getResource("/fxml/MainChat.fxml"));
+                Scene scene = new Scene(root);
                 stage.setTitle("BFDA Chat | Main");
                 stage.setScene(scene);
                 Stage currentStage = (Stage)loginButton.getScene().getWindow();
                 currentStage.close();
+                stage.setResizable(false);
                 stage.show();
             } catch (IOException e) {
                 e.printStackTrace();

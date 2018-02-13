@@ -42,6 +42,7 @@ public class ClientServerRegisterImp extends UnicastRemoteObject implements Clie
             e.printStackTrace();
         }
         return user;
+
     }
 
     @Override
