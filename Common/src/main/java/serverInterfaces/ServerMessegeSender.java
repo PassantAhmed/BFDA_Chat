@@ -5,6 +5,9 @@
  */
 package serverInterfaces;
 
+import beans.Message;
+import beans.User;
+
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.Vector;
@@ -13,9 +16,9 @@ import java.util.Vector;
  *
  * @author ahmedelgawesh
  */
-public interface ServerMessegeSender  extends Remote
+public interface ServerMessegeSender extends Remote
 {  
-          public void sendToClients(int recieverID) throws RemoteException;
-          public void chatStartRequest(Vector<String> emails) throws RemoteException;
-          
+          public void chatStartRequest(String chatID , Vector<String> users) throws RemoteException;
+          public void sendMsgToChat(String ChatID , Message message) throws RemoteException;
+
 }

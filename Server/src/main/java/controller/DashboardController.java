@@ -33,21 +33,22 @@ public class DashboardController implements Initializable{
     @FXML private Button settingsBtn;
     private List<Button> buttons = new ArrayList<>();
 
-    private final String NOT_Clicked = "-fx-background-color:  #b9798b;";
-    private final String Clicked = "-fx-background-color:  #b0697d;";
+    private Node viewClientNode ;
+    private Node viewStatNode;
+    private Node viewAnnounce;
+    private Node viewSettings;
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         buttonsArray();
-
+        initNodes();
     }
 
 
     public void viewClient(ActionEvent actionEvent) throws IOException {
-        Node newLoadedPane = FXMLLoader.load(getClass().getResource("/fxml/ClientsScene.fxml"));
         basePane.getChildren().clear();
-        basePane.getChildren().add(newLoadedPane);
+        basePane.getChildren().add(viewClientNode);
         setButtonStyle(viewClientsBtn);
     }
 
@@ -55,7 +56,7 @@ public class DashboardController implements Initializable{
     public void viewStatistics(ActionEvent actionEvent) throws IOException {
         Node newLoadedPane = FXMLLoader.load(getClass().getResource("/fxml/StatisticsScene.fxml"));
         basePane.getChildren().clear();
-        basePane.getChildren().add(newLoadedPane);
+        basePane.getChildren().add(viewStatNode);
         setButtonStyle(viewStatisticsBtn);
 
     }
@@ -63,7 +64,7 @@ public class DashboardController implements Initializable{
     public void viewAnnounce(ActionEvent actionEvent) throws IOException {
         Node newLoadedPane = FXMLLoader.load(getClass().getResource("/fxml/AnnouncementsScene.fxml"));
         basePane.getChildren().clear();
-        basePane.getChildren().add(newLoadedPane);
+        basePane.getChildren().add(viewAnnounce);
         setButtonStyle(announcementsBtn);
 
     }
@@ -71,7 +72,7 @@ public class DashboardController implements Initializable{
     public void viewSettings(ActionEvent actionEvent) throws IOException {
         Node newLoadedPane = FXMLLoader.load(getClass().getResource("/fxml/SettingsScene.fxml"));
         basePane.getChildren().clear();
-        basePane.getChildren().add(newLoadedPane);
+        basePane.getChildren().add(viewSettings);
         setButtonStyle(settingsBtn);
 
     }
@@ -80,8 +81,11 @@ public class DashboardController implements Initializable{
     {
         for(Button button : buttons)
         {
+            String NOT_Clicked = "-fx-background-color:  #b9798b;";
+            String clicked = "-fx-background-color:  #b0697d;";
+
             if(button == btn)
-                button.setStyle(Clicked);
+                button.setStyle(clicked);
             else
                 button.setStyle(NOT_Clicked);
         }
@@ -93,6 +97,21 @@ public class DashboardController implements Initializable{
         buttons.add(announcementsBtn);
         buttons.add(settingsBtn);
     }
+
+    private void initNodes()
+    {
+        try {
+            viewClientNode = FXMLLoader.load(getClass().getResource("/fxml/ClientsScene.fxml"));
+            viewStatNode = FXMLLoader.load(getClass().getResource("/fxml/StatisticsScene.fxml"));
+            viewAnnounce = FXMLLoader.load(getClass().getResource("/fxml/AnnouncementsScene.fxml"));
+            viewSettings = FXMLLoader.load(getClass().getResource("/fxml/SettingsScene.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
 
 
 
