@@ -8,11 +8,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 import model.ChatImpl;
 import model.ClientChatFlowControl;
 import model.ClientObject;
-import model.ServerConnection;
-import serverInterfaces.ServerObj;
 
 
 import java.net.URL;
@@ -24,20 +26,28 @@ import java.util.Vector;
 
 public class MainController implements Initializable {
 
-    @FXML
-    private ListView<User> friendsListView;
-    @FXML
-    private TextArea announceArea1;
-    @FXML
-    private Button sendBtn;
+    @FXML private ListView<User> friendsListView;
+    @FXML private TextArea announceArea1;
+    @FXML private Button sendBtn;
+    @FXML private TextField chatField;
 
-
+    //--Formating Components
+    @FXML private Button bold;
+    @FXML private Button italic;
+    @FXML private ColorPicker fontColorPicker;
+    @FXML private ComboBox<String> fontList;
+    @FXML private ComboBox<Integer> sizeList;
     //Temp
     @FXML
     private Label name;
     private String chatID = "mdskrefc";
     //--
     private ClientChatFlowControl clientChatFlowControl;
+
+    //--TextFormatFlags
+    private boolean isBold = false;
+    private boolean isItalic = false;
+    private Color fontColor = Color.BLACK;
 
     public MainController() throws RemoteException {
         clientChatFlowControl = new ClientChatFlowControl();
@@ -60,14 +70,16 @@ public class MainController implements Initializable {
         announceArea1.setEditable(false);
         ChatImpl.setMainController(this);
         name.setText(ClientObject.getUserDataInternal().getUsername());
+        formatBarValues();
+        formatBarActions();
+
+
 
     }
-
 
     public void updateAnnounce(String accouncementString) {
         announceArea1.setText(accouncementString);
     }
-
 
     public void sendMessage(ActionEvent actionEvent) throws RemoteException {
         Message message = new Message();
@@ -78,8 +90,34 @@ public class MainController implements Initializable {
     public void sendBtn(ActionEvent actionEvent) throws RemoteException {
         Vector<String> users = new Vector<>();
         users.add("AhmedAhmed");
+        users.add("gamal");
         users.add(ClientObject.getUserDataInternal().getUsername());
         String localchatID = clientChatFlowControl.sendNewChatRequest(chatID, users);
         chatID = localchatID.equals(chatID) ? chatID : localchatID;
     }
+
+    public void updateTextStyle() {
+        FontWeight fontWeight = isBold ? FontWeight.BOLD : FontWeight.NORMAL;
+        FontPosture fontPosture = isItalic ? FontPosture.ITALIC : FontPosture.REGULAR;
+        chatField.setFont(Font.font(fontList.getValue() ,fontWeight , fontPosture , sizeList.getValue()));
+        chatField.setStyle("-fx-text-fill: "+fontColorPicker.getValue().toString().replace("0x" , "#"));
+    }
+
+    private void formatBarActions() {
+        bold.setOnAction(param->{isBold = !isBold; updateTextStyle();});
+        italic.setOnAction(param->{isItalic = !isItalic; updateTextStyle();});
+        fontColorPicker.setOnAction(param->{fontColor = fontColorPicker.getValue(); updateTextStyle();});
+        fontList.setOnAction(param->{updateTextStyle();});
+        sizeList.setOnAction(param->{updateTextStyle();});
+    }
+
+    private void formatBarValues() {
+        fontList.getItems().addAll(Font.getFontNames());
+        fontList.getSelectionModel().select("Arial");
+        sizeList.getItems().addAll(11,12,13,14,15,16,17);
+        sizeList.getSelectionModel().select(4);
+        fontColorPicker.setValue(Color.BLACK);
+    }
+
+
 }

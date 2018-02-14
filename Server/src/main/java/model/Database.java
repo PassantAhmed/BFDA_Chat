@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 public class Database {
 
     private static Database instance;
-    private Connection conn;
+    private volatile Connection conn;
 
     private Database() throws ClassNotFoundException, SQLException {
 

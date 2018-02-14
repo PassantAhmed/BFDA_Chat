@@ -28,11 +28,6 @@ public class ServerObject extends UnicastRemoteObject implements ServerObj, Seri
     }
 
 
-    public DatabaseUserOperation getDatabaseUserOperation() {
-        return databaseUserOperation;
-    }
-
-
     public ServerMessegeSender getServerMessegeSender() {
         return serverMessegeSender;
     }
