@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="621.0" prefWidth="556.0" style="-fx-background-color: #FFF;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewcontroller.RegisterController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="621.0" prefWidth="556.0" style="-fx-background-color: #FFF;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewcontroller.RegisterController">
 <children>
       <AnchorPane layoutX="51.0" layoutY="95.0" prefHeight="487.0" prefWidth="463.0" style="-fx-background-color: #ffe6ff; -fx-background-radius: 10 10 10 10;">
          <children>
@@ -36,18 +36,21 @@
             <Label layoutX="24.0" layoutY="189.0" text="Country" />
             <Label layoutX="24.0" layoutY="106.0" text="Full Name" />
             <Label layoutX="24.0" layoutY="23.0" text="Email" />
-            <TextField fx:id="emailid" layoutX="24.0" layoutY="46.0" prefHeight="26.0" prefWidth="169.0" />
-            <TextField fx:id="fullnameid" layoutX="24.0" layoutY="131.0" prefHeight="26.0" prefWidth="169.0" />
-            <TextField fx:id="usernameid" layoutX="253.0" layoutY="46.0" prefHeight="26.0" prefWidth="169.0" />
-            <TextField fx:id="passwordid" layoutX="253.0" layoutY="131.0" prefHeight="26.0" prefWidth="169.0" />
-            <TextField fx:id="repasswordid" layoutX="253.0" layoutY="213.0" prefHeight="26.0" prefWidth="169.0" />
-            <Spinner fx:id="countryid" layoutX="24.0" layoutY="213.0" prefHeight="26.0" prefWidth="170.0" />
+            <TextField fx:id="emailid" layoutX="24.0" layoutY="46.0" prefHeight="26.0" prefWidth="169.0" style="-fx-background-radius: 20 5 20 5;" />
+            <TextField fx:id="fullnameid" layoutX="24.0" layoutY="131.0" prefHeight="26.0" prefWidth="169.0" style="-fx-background-radius: 20 5 20 5;" />
+            <TextField fx:id="usernameid" layoutX="253.0" layoutY="46.0" prefHeight="26.0" prefWidth="169.0" style="-fx-background-radius: 5 20 5 20;" />
+            <TextField fx:id="passwordid" layoutX="253.0" layoutY="131.0" prefHeight="26.0" prefWidth="169.0" style="-fx-background-radius: 5 20 5 20;" />
+            <TextField fx:id="repasswordid" layoutX="253.0" layoutY="213.0" prefHeight="26.0" prefWidth="169.0" style="-fx-background-radius: 5 20 5 20;" />
+            <Spinner fx:id="countryid" layoutX="24.0" layoutY="213.0" prefHeight="26.0" prefWidth="170.0" style="-fx-background-radius: 20 5 5 5;" />
              <fx:define>
                  <ToggleGroup fx:id="genderGroup" />
              </fx:define>
-            <RadioButton layoutX="269.0" layoutY="297.0" mnemonicParsing="false" selected="true" text="Male"/>
-            <RadioButton layoutX="333.0" layoutY="297.0" mnemonicParsing="false" text="Female" toggleGroup="$genderGroup" />
-            <DatePicker fx:id="dobid" layoutX="24.0" layoutY="293.0" prefHeight="26.0" prefWidth="170.0" />
+            <RadioButton layoutX="269.0" layoutY="297.0" mnemonicParsing="false" selected="true" text="Male" />
+            <RadioButton layoutX="333.0" layoutY="297.0" mnemonicParsing="false" text="Female">
+               <toggleGroup>
+                  <ToggleGroup fx:id="genderGroup" />
+               </toggleGroup></RadioButton>
+            <DatePicker fx:id="dobid" layoutX="24.0" layoutY="293.0" prefHeight="26.0" prefWidth="170.0" style="-fx-background-radius: 20 5 5 5;" />
             <Label layoutX="24.0" layoutY="270.0" text="Date of Birth" />
          </children>
       </AnchorPane>

@@ -15,11 +15,11 @@
    <children>
       <AnchorPane layoutX="309.0" layoutY="19.0" prefHeight="546.0" prefWidth="406.0" style="-fx-background-color: #FFF; -fx-background-radius: 10 10 10 10;">
          <children>
-            <TextField fx:id="userNameFieldForLogIn" alignment="CENTER" layoutX="28.0" layoutY="140.0" prefHeight="48.0" prefWidth="327.0" promptText="Enter Your UserName" style="-fx-background-color: #ffe6ff;">
+            <TextField fx:id="userNameFieldForLogIn" alignment="CENTER" layoutX="28.0" layoutY="140.0" prefHeight="48.0" prefWidth="327.0" promptText="Enter Your UserName" style="-fx-background-color: #ffe6ff; -fx-background-radius: 20 5 20 5;">
                <font>
                   <Font size="18.0" />
                </font></TextField>
-            <TextField fx:id="passwordFieldForLogIn" alignment="CENTER" layoutX="28.0" layoutY="214.0" prefHeight="48.0" prefWidth="327.0" promptText="Enter Your Password" style="-fx-background-color: #ffe6ff;">
+            <TextField fx:id="passwordFieldForLogIn" alignment="CENTER" layoutX="28.0" layoutY="214.0" prefHeight="48.0" prefWidth="327.0" promptText="Enter Your Password" style="-fx-background-color: #ffe6ff; -fx-background-radius: 20 5 20 5;">
                <font>
                   <Font size="18.0" />
                </font></TextField>

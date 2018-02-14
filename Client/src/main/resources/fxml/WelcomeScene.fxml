@@ -14,7 +14,7 @@
    <children>
       <AnchorPane layoutX="173.0" layoutY="278.0" prefHeight="285.0" prefWidth="395.0" style="-fx-background-color: #FFF; -fx-background-radius: 10 10 10 10;">
          <children>
-            <TextField fx:id="serverIpField" alignment="CENTER" layoutX="28.0" layoutY="116.0" prefHeight="48.0" prefWidth="327.0" promptText="Enter Server IP Address" style="-fx-background-color: #ffe6ff;">
+            <TextField fx:id="serverIpField" alignment="CENTER" layoutX="28.0" layoutY="116.0" prefHeight="48.0" prefWidth="327.0" promptText="Enter Server IP Address" style="-fx-background-color: #ffe6ff; -fx-background-radius: 20 5 20 5;">
                <font>
                   <Font size="18.0" />
                </font></TextField>
