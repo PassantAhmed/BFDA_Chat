@@ -16,14 +16,14 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <Button fx:id="sendAnnouncementBtn" onAction="#sendAnnounce" layoutX="156.0" layoutY="280.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="182.0" style="-fx-background-color: #003566; -fx-background-radius: 10 15 10 15;" text="SEND" textFill="WHITE">
+            <Button fx:id="sendAnnouncementBtn" layoutX="156.0" layoutY="280.0" mnemonicParsing="false" onAction="#sendAnnounce" prefHeight="44.0" prefWidth="182.0" style="-fx-background-color: #003566; -fx-background-radius: 20 5 20 5;" text="SEND" textFill="WHITE">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
             <ScrollPane fx:id="announcementScrollPane" hbarPolicy="NEVER" layoutX="22.0" layoutY="32.0" pannable="true" prefHeight="194.0" prefWidth="450.0">
                <content>
-                  <TextArea fx:id="announcementText" prefHeight="192.0" prefWidth="447.0" />
+                  <TextArea fx:id="announcementText" prefHeight="192.0" prefWidth="447.0" style="-fx-background-radius: 20 5 20 5;" />
                </content>
             </ScrollPane>
          </children>
