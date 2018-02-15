@@ -18,18 +18,16 @@ import javafx.scene.control.Label;
  *
  * @author Passant
  */
-public class ClientInfoController {
-    @FXML private JFXTextField clientFullName;
-    @FXML private JFXTextField clientName;
-    @FXML private JFXTextField clientEmail;
-    @FXML private JFXPasswordField clientPassword;
-    @FXML private JFXToggleButton clientGender;
-    @FXML private JFXDatePicker clientDob;
-    @FXML private JFXComboBox clientStatus;
-    @FXML private JFXComboBox clientCountry;
-    @FXML private Label hintMessage;
+public class ProfileController {
+    @FXML private JFXTextField userFullName;
+    @FXML private JFXTextField userName;
+    @FXML private JFXTextField userEmail;
+    @FXML private JFXPasswordField userPassword;
+    @FXML private JFXToggleButton userGender;
+    @FXML private JFXDatePicker userDob;
+    @FXML private JFXComboBox userStatus;
+    @FXML private JFXComboBox userCountry;
+    @FXML private Label warningMessage;
     @FXML private JFXButton cancelBtn;
-    @FXML private JFXButton saveAllChangesBtn;
-    
-            
+    @FXML private JFXButton saveChangesBtn;
 }
