@@ -101,7 +101,42 @@ public class DatabaseUserOperation  {
         return user;
     }
 
-
+    public boolean isEmailExist(String email){
+        boolean emailExist =false;
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement("select * from User where email = ?");
+             preparedStatement.setString(1, email);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()){
+                //email is exist
+                emailExist =  true;
+            }else{
+                emailExist =  false;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseUserOperation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return emailExist;
+    }
+    
+    public boolean isUsernameExist(String username){
+        boolean usernameExist =false;
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement("select * from User where username = ?");
+             preparedStatement.setString(1, username);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()){
+                //email is exist
+                usernameExist =  true;
+            }else{
+                usernameExist =  false;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseUserOperation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return usernameExist;
+    }    
+    
     public int clientCreateGroupChat(String groupName) throws RemoteException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
