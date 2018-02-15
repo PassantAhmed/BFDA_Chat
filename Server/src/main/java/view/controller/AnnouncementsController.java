@@ -5,7 +5,7 @@
  */
 package view.controller;
 
-import clientInterfaces.ClientObj;
+import client.interfaces.ClientObj;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;

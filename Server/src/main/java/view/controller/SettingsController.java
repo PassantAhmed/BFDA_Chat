@@ -64,6 +64,8 @@ public class SettingsController implements Initializable{
                return;
             }catch (SQLException ex) {
                 showError("There is an Issue With your network , Check Administrator");
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
             }
         }).start();
     }

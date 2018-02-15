@@ -8,6 +8,7 @@ public class ControllerManager {
     private LoginController loginController;
 
     private static ControllerManager instance;
+
     public static ControllerManager getInstance() {
         if(instance == null)
             instance = new ControllerManager();
