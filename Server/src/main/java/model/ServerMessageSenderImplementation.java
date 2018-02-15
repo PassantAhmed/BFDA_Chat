@@ -6,7 +6,7 @@
 package model;
 
 import beans.Message;
-import beans.User;
+import server.interfaces.ServerMessegeSender;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -15,7 +15,7 @@ import java.util.Vector;
 /**
  * @author ahmedelgawesh
  */
-public class ServerMessageSenderImplementation extends UnicastRemoteObject implements serverInterfaces.ServerMessegeSender {
+public class ServerMessageSenderImplementation extends UnicastRemoteObject implements ServerMessegeSender {
 
     ChatFlowControl chatFlowControl ;
 

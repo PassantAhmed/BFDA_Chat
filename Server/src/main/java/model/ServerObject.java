@@ -1,9 +1,9 @@
 package model;
 
 import model.database.DatabaseUserOperation;
-import serverInterfaces.ClientServerRegister;
-import serverInterfaces.ServerMessegeSender;
-import serverInterfaces.ServerObj;
+import server.interfaces.ClientServerRegister;
+import server.interfaces.ServerMessegeSender;
+import server.interfaces.ServerObj;
 
 import java.io.Serializable;
 import java.rmi.RemoteException;

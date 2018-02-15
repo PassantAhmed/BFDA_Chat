@@ -18,7 +18,15 @@ public class User implements Serializable {
     private String userPic;
     private boolean status;
     private String mode;
+    private int newMsgCount;
 
+    public int getNewMsgCount() {
+        return newMsgCount;
+    }
+
+    public void setNewMsgCount(int newMsgCount) {
+        this.newMsgCount = newMsgCount;
+    }
 
     public int getId() {
         return id;

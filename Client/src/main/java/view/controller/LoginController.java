@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 import model.ClientObject;
 import model.ServerConnection;
 import view.util.ValidationChecks;
-import serverInterfaces.ServerObj;
+import server.interfaces.ServerObj;
 //import model.UserLogin;
 
 public class LoginController implements Initializable {

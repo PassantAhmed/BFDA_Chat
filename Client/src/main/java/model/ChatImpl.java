@@ -1,7 +1,7 @@
 package model;
 
 import beans.Message;
-import clientInterfaces.ChatHandler;
+import client.interfaces.ChatHandler;
 import controller.ClientChatFlowControl;
 import view.controller.MainController;
 

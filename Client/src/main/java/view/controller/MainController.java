@@ -57,8 +57,7 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        friendListFormat = new FriendListFormat(this);
-        friendsListView.setCellFactory(param -> friendListFormat);
+        friendsListView.setCellFactory(param -> new FriendListFormat(this));
 
         List<User> userList = new ArrayList<>();
         for (int i = 0; i < 30; i++) {
@@ -91,12 +90,19 @@ public class MainController implements Initializable {
     }
 
     public void sendBtn(ActionEvent actionEvent) throws RemoteException {
-        Vector<String> users = new Vector<>();
-        users.add("AhmedAhmed");
-        users.add("gamal");
-        users.add(ClientObject.getUserDataInternal().getUsername());
-        String localchatID = clientChatFlowControl.sendNewChatRequest(chatID, users);
-        chatID = localchatID.equals(chatID) ? chatID : localchatID;
+//        Vector<String> users = new Vector<>();
+//        users.add("AhmedAhmed");
+//        users.add("gamal");
+//        users.add(ClientObject.getUserDataInternal().getUsername());
+//        String localchatID = clientChatFlowControl.sendNewChatRequest(chatID, users);
+//        chatID = localchatID.equals(chatID) ? chatID : localchatID;
+        ArrayList<User> users = new ArrayList<>();
+          for(User user : friendsListView.getItems())
+          {
+              user.setNewMsgCount(5);
+              users.add(user);
+          }
+          friendsListView.getItems().setAll(users);
     }
 
     public void updateTextStyle() {

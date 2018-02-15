@@ -1,0 +1,22 @@
+.root {
+    -fx-font-family: "Charter";
+    -fx-font-size: 15;
+}
+
+.solartab .tab:selected  {
+    -fx-background-color: blue;
+}
+
+.tab:selected .tab-label {
+    -fx-font-weight: bold;
+}
+
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-background-color: #00284d;
+}
+
+.tab-pane
+{
+    -fx-border-width: 2;
+
+}

@@ -1,9 +1,9 @@
 package model;
 
 import beans.User;
-import clientInterfaces.ChatHandler;
-import clientInterfaces.ClientObj;
-import clientInterfaces.UserAccount;
+import client.interfaces.ChatHandler;
+import client.interfaces.ClientObj;
+import client.interfaces.UserAccount;
 
 import java.io.Serializable;
 import java.rmi.RemoteException;
@@ -12,7 +12,7 @@ import java.rmi.server.UnicastRemoteObject;
 /**
  * Created by Muhammed Fawzy on 2/10/2018.
  */
-public class ClientObject extends UnicastRemoteObject implements ClientObj , Serializable {
+public class ClientObject extends UnicastRemoteObject implements ClientObj, Serializable {
 
     private ChatHandler chatHandler;
     private UserAccount userAccount;

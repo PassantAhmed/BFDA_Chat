@@ -2,7 +2,7 @@ package controller;
 
 import beans.Message;
 import model.ServerConnection;
-import serverInterfaces.ServerObj;
+import server.interfaces.ServerObj;
 import java.rmi.RemoteException;
 import java.util.HashMap;
 import java.util.Vector;

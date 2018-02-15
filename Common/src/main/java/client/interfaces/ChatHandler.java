@@ -1,4 +1,4 @@
-package clientInterfaces;
+package client.interfaces;
 
 import beans.Message;
 import beans.User;
