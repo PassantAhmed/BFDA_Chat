@@ -6,7 +6,6 @@
 package model.database;
 
 import beans.User;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,44 +15,61 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.database.Database;
+import model.database.DatabaseUserOperation;
 
 /**
+ *
  * @author ahmedelgawesh
  */
-public class FriendsCrudDB {
+public class FriendsCrudDB
+{
     Database dbClass;
     Connection conn;
     Statement stmt = null;
 
-    public FriendsCrudDB() throws SQLException {
+    public  FriendsCrudDB() throws SQLException
+    {
 
-        try {
+        try
+        {
             dbClass = Database.getInstance();
             conn = dbClass.getConnection();
-        } catch (ClassNotFoundException ex) {
+        }
+        catch (ClassNotFoundException ex)
+        {
             Logger.getLogger(DatabaseUserOperation.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
 
+
+
     /***********************************  insert **********************************************************/
 
-    public boolean insert(String sqlStatm) {
+    public  boolean insert (String sqlStatm)
+    {
 
-        try {
+        try
+        {
             //Create statement
             stmt = conn.createStatement();
             stmt.executeUpdate(sqlStatm);
             System.out.println("Records inserted");
 
-        } catch (SQLException e) {
+        }
+        catch (SQLException e)
+        {
             e.printStackTrace();
             return false;
         }
 
-        try {
+        try
+        {
             stmt.close();
-        } catch (SQLException ex) {
+        }
+        catch (SQLException ex)
+        {
             Logger.getLogger(FriendsCrudDB.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
@@ -62,18 +78,98 @@ public class FriendsCrudDB {
     }
 
 
+
+
+
+
+    /***********************************  delete **********************************************************/
+
+    public  boolean delete (String sqlStatm)
+    {
+
+        try
+        {
+            //Create statement
+            stmt = conn.createStatement();
+            stmt.executeUpdate(sqlStatm);
+            System.out.println("Records deleted");
+
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+            return false;
+        }
+
+        try
+        {
+            stmt.close();
+        }
+        catch (SQLException ex)
+        {
+            Logger.getLogger(FriendsCrudDB.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+
+        return true;
+    }
+
+
+
+    /***********************************  update **********************************************************/
+
+    public  boolean update (String sqlStatm)
+    {
+
+        try
+        {
+            //Create statement
+            stmt = conn.createStatement();
+            stmt.executeUpdate(sqlStatm);
+            System.out.println("Records updated");
+
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+            return false;
+        }
+
+        try
+        {
+            stmt.close();
+        }
+        catch (SQLException ex)
+        {
+            Logger.getLogger(FriendsCrudDB.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+
+        return true;
+    }
+
+
+
+
+
     /************************************ select *******************************************************/
-    public List<beans.User> select(String strStatement) {
+    public List<beans.User> select(String strStatement)
+    {
         ArrayList<beans.User> clients = new ArrayList<beans.User>();
-        try {
+        try
+        {
 
             stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(strStatement);
-            while (rs.next()) {
+            while (rs.next())
+            {
 
 
                 //int id,String name,String username,String email,String password,boolean gender,String country,LocalDate birthdate,String userPic,boolean status,String mode
-                clients.add(new beans.User(rs.getInt("id"), rs.getString("name"), rs.getString("username"), rs.getString("email"), rs.getString("password"), rs.getBoolean("gender"), rs.getString("country"), rs.getDate(utilities.SqlParser.fromSqlToLocal("birthdate"), rs.getString("userPic"), rs.getBoolean("status"), rs.getString("mode")));
+                clients.add(new beans.User(rs.getInt("id"),rs.getString("name"),rs.getString("username"),
+                        rs.getString("email"),rs.getString("password"),rs.getBoolean("gender"),
+                        rs.getString("country"),utilities.SqlParser.fromSqlToLocal(rs.getDate("birthdate")),
+                        rs.getString("userPic"),rs.getBoolean("status"),rs.getString("mode")));
                 //fawzy:hat3ml fill l kol el data enta lesa btkmlha sa7 ?
                 //sobhy:kont h3mlha kolha bassant 2alt malhash lzma lma a3ml search tgbly 2l datakolha
                 //fawzy: howa el fekra eny mesh ha3ml customize .. ana ma3rfsh emta hast5dm anhy data
@@ -87,7 +183,9 @@ public class FriendsCrudDB {
                 //fawzy: yala salam :D
                 //sobhy: :D  2st2znk t2fl 2l team viewer :D salam
             }
-        } catch (SQLException ex) {
+        }
+        catch (SQLException ex)
+        {
             Logger.getLogger(DatabaseUserOperation.class.getName()).log(Level.SEVERE, null, ex);
         }
 

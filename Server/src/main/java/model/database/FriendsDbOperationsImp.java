@@ -16,7 +16,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import server.interfaces.FriendsDbOperations;
-import serverInterfaces.FriendsDbOperations;
 
 /**
  *
@@ -24,55 +23,72 @@ import serverInterfaces.FriendsDbOperations;
  */
 public class FriendsDbOperationsImp extends UnicastRemoteObject implements FriendsDbOperations
 {
-    
+
     FriendsCrudDB friendsCrud;
-    
-    public  FriendsDbOperationsImp() throws RemoteException, SQLException 
-    {
-                friendsCrud= new FriendsCrudDB();
-  
-   }
 
-    @Override
-    public ArrayList<beans.User> searchForUser(String usrInformation) 
-    
+    public  FriendsDbOperationsImp() throws RemoteException, SQLException
     {
-            String selectStatement = "select id,name,username,email,password,gender,country,birthdate,userPic,status,mode from user where id= '"+usrInformation+"' or username= '"+usrInformation+"'";
-            return (ArrayList<User>) friendsCrud.select(selectStatement);
+        friendsCrud = new FriendsCrudDB();
+
     }
-            
-   
 
+    /********************  search for user to add *******************************/
+    @Override
+    public ArrayList<beans.User> searchForUser(String usrInformation)
+
+    {
+        String selectStatement = "select id,name,username,email,password,gender,country,birthdate,userPic,status,mode from user where id= '"+usrInformation+"' or username= '"+usrInformation+"'";
+        return (ArrayList<User>) friendsCrud.select(selectStatement);
+    }
+
+
+
+
+    /********************** send to user a friend request  **********************************/
     @Override
     public boolean sendFriendRequest(int myId,int userId)
     {
-            String sqlStatm= "INSERT INTO Friend (userid,friendid,requestflag) VALUES ('"+myId+",'"+userId+"',false)";
-            boolean checkOperation = friendsCrud.insert(sqlStatm);
-            return checkOperation;
+
+        String sqlStatm= "INSERT INTO Friend (userid,friendid,requestflag) VALUES ('"+myId+",'"+userId+"',false)";
+        boolean checkOperation = friendsCrud.insert(sqlStatm);
+        return checkOperation;
     }
 
+
+    /******************************* accept a friend request ******************************/
     @Override
-    public void approveFriendRequset()
+    public boolean approveFriendRequset(int myId,int userId)
     {
-        //user update for the flag to true where id 
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //user update for the flag to true where id
+        String sqlStatm = "update Friend set requestflag=true where (userid,friendid) VALUES ('"+myId+"','"+userId+"')";
+        boolean checkOperation=friendsCrud.update(sqlStatm);
+        return checkOperation;
     }
 
+    /****************** don't accept friend request  *******************************/
     @Override
-    public void refuseFriendRequest()
+    public boolean refuseFriendRequest(int myId,int userId)
     {
-    //use delete statment    
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //use delete statment
+        String sqlStatm = "delete * from Friend  where (userid,friendid) VALUES ('"+myId+"','"+userId+"')";
+        boolean checkOperation= friendsCrud.delete(sqlStatm);
+        return checkOperation;
+
+
     }
 
+
+    /********************* select all your friends **********************************/
     @Override
-    public void retrieveAllFriends() 
+    public ArrayList<beans.User> retrieveAllFriends(int myId)
     {
-        //as select but from friend table 
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //as select but from friend table
+
+        String selectStatement = "select id,name,username,email,password,gender,country,birthdate,userPic,status,mode from user where id='"+myId+"' and friend.user_id=user.id";
+        return (ArrayList<User>) friendsCrud.select(selectStatement);
+
+
     }
 
-     
 
-    
 }
