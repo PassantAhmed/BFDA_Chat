@@ -14,7 +14,7 @@
    <children>
       <AnchorPane layoutX="173.0" layoutY="278.0" prefHeight="285.0" prefWidth="395.0" style="-fx-background-color: #FFF; -fx-background-radius: 10 10 10 10;">
          <children>
-            <TextField fx:id="serverIpField" alignment="CENTER" layoutX="28.0" layoutY="116.0" prefHeight="48.0" prefWidth="327.0" promptText="Enter Server IP Address" style="-fx-background-color: #ffe6ff; -fx-background-radius: 20 5 20 5;">
+            <TextField fx:id="serverIpField1" alignment="CENTER" layoutX="28.0" layoutY="116.0" prefHeight="48.0" prefWidth="76.0" promptText=". . ." style="-fx-background-color: #ffe6ff; -fx-background-radius: 20 5 5 5;">
                <font>
                   <Font size="18.0" />
                </font></TextField>
@@ -37,6 +37,21 @@
                   <Font name="Forte" size="31.0" />
                </font>
             </Label>
+            <TextField fx:id="serverIpField2" alignment="CENTER" layoutX="116.0" layoutY="116.0" prefHeight="48.0" prefWidth="76.0" promptText=". . ." style="-fx-background-color: #ffe6ff; -fx-background-radius: 5;">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="serverIpField3" alignment="CENTER" layoutX="206.0" layoutY="115.0" prefHeight="48.0" prefWidth="76.0" promptText=". . ." style="-fx-background-color: #ffe6ff; -fx-background-radius: 5;">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="serverIpField4" alignment="CENTER" layoutX="296.0" layoutY="115.0" prefHeight="48.0" prefWidth="76.0" promptText=". . ." style="-fx-background-color: #ffe6ff; -fx-background-radius: 5 5 20 5;">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </TextField>
          </children>
       </AnchorPane>
       <Pane layoutX="237.0" layoutY="365.0" prefHeight="0.0" prefWidth="6.0" style="-fx-background-color: fff072;" />

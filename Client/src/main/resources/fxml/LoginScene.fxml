@@ -13,7 +13,7 @@
 <AnchorPane id="AnchorPane" prefHeight="583.0" prefWidth="744.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.LoginController">
 
    <children>
-      <AnchorPane layoutX="309.0" layoutY="19.0" prefHeight="546.0" prefWidth="406.0" style="-fx-background-color: #FFF; -fx-background-radius: 10 10 10 10;">
+      <AnchorPane layoutX="319.0" layoutY="19.0" prefHeight="546.0" prefWidth="406.0" style="-fx-background-color: #FFF; -fx-background-radius: 10 10 10 10;">
          <children>
             <TextField fx:id="userNameFieldForLogIn" alignment="CENTER" layoutX="28.0" layoutY="140.0" prefHeight="48.0" prefWidth="327.0" promptText="Enter Your UserName" style="-fx-background-color: #ffe6ff; -fx-background-radius: 20 5 20 5;">
                <font>
@@ -28,17 +28,20 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Button>
-            <Label layoutX="39.0" layoutY="328.0" text="Hint: Keep Saving Your Password" />
+            <Label layoutX="39.0" layoutY="328.0" text="Hint: Keep Saving Your Password">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
             <Label fx:id="notValidLbl" layoutX="30.0" layoutY="276.0" prefHeight="26.0" prefWidth="327.0" textFill="#d72121">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <AnchorPane layoutX="5.0" layoutY="425.0" prefHeight="93.0" prefWidth="395.0" style="-fx-background-color: #FFFF;">
+            <AnchorPane layoutX="5.0" layoutY="424.0" prefHeight="93.0" prefWidth="395.0" style="-fx-background-color: #FFFF;">
                <children>
                   <Label layoutX="111.0" layoutY="29.0" text="Don't have an account? ">
                      <font>
-                        <Font size="16.0" />
+                        <Font name="System Bold" size="16.0" />
                      </font>
                   </Label>
                   <Hyperlink fx:id="signupButton" layoutX="151.0" layoutY="53.0" text="Sign up" textFill="#001a33" underline="true">
@@ -67,7 +70,7 @@
          <children>
             <AnchorPane layoutX="48.0" layoutY="73.0" prefHeight="90.0" prefWidth="138.0">
                <children>
-                  <ImageView fitHeight="189.0" fitWidth="225.0" layoutX="1.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="189.0" fitWidth="225.0" layoutX="1.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../styles/logo.png" />
                      </image>
@@ -76,7 +79,7 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <ImageView fitHeight="303.0" fitWidth="441.0" layoutX="-86.0" layoutY="142.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="303.0" fitWidth="441.0" layoutX="-86.0" layoutY="195.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../styles/bestfriendsdailyapp.png" />
          </image>
