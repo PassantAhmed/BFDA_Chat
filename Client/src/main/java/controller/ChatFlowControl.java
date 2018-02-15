@@ -1,9 +1,5 @@
 package controller;
 
-
-    public class ChatFlowControl {
-
-
-
+public class ChatFlowControl {
 
 }
