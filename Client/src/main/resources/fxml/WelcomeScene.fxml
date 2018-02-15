@@ -29,9 +29,9 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Pane layoutX="226.0" layoutY="83.0" prefHeight="7.0" prefWidth="138.0" style="-fx-background-color: #ff6699;" />
+            <Pane layoutX="244.0" layoutY="83.0" prefHeight="7.0" prefWidth="138.0" style="-fx-background-color: #ff6699;" />
             <Pane layoutX="20.0" layoutY="83.0" prefHeight="7.0" prefWidth="138.0" style="-fx-background-color: #ff6699;" />
-            <Pane layoutX="129.0" layoutY="83.0" prefHeight="7.0" prefWidth="118.0" style="-fx-background-color: #001a33;" />
+            <Pane layoutX="129.0" layoutY="83.0" prefHeight="7.0" prefWidth="138.0" style="-fx-background-color: #001a33;" />
             <Label layoutX="28.0" layoutY="37.0" text="Enter Server ip" textFill="#2c214c">
                <font>
                   <Font name="Forte" size="31.0" />

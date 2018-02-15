@@ -13,17 +13,17 @@
 <AnchorPane id="AnchorPane" prefHeight="583.0" prefWidth="744.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.LoginController">
 
    <children>
-      <AnchorPane layoutX="319.0" layoutY="19.0" prefHeight="546.0" prefWidth="406.0" style="-fx-background-color: #FFF; -fx-background-radius: 10 10 10 10;">
+      <AnchorPane layoutX="319.0" layoutY="19.0" prefHeight="546.0" prefWidth="406.0" style="-fx-background-radius: 10 10 10 10; -fx-background-color: #FFF;">
          <children>
-            <TextField fx:id="userNameFieldForLogIn" alignment="CENTER" layoutX="28.0" layoutY="140.0" prefHeight="48.0" prefWidth="327.0" promptText="Enter Your UserName" style="-fx-background-color: #ffe6ff; -fx-background-radius: 20 5 20 5;">
+            <TextField fx:id="userNameFieldForLogIn" alignment="CENTER" layoutX="41.0" layoutY="140.0" prefHeight="48.0" prefWidth="327.0" promptText="Enter Your UserName" style="-fx-background-color: #ffe6ff; -fx-background-radius: 20 20 5 5;">
                <font>
                   <Font size="18.0" />
                </font></TextField>
-            <TextField fx:id="passwordFieldForLogIn" accessibleRole="PASSWORD_FIELD" alignment="CENTER" layoutX="28.0" layoutY="214.0" prefHeight="48.0" prefWidth="327.0" promptText="Enter Your Password" style="-fx-background-color: #ffe6ff; -fx-background-radius: 20 5 20 5;">
+            <TextField fx:id="passwordFieldForLogIn" accessibleRole="PASSWORD_FIELD" alignment="CENTER" layoutX="41.0" layoutY="213.0" prefHeight="48.0" prefWidth="327.0" promptText="Enter Your Password" style="-fx-background-color: #ffe6ff; -fx-background-radius: 5 5 20 20;">
                <font>
                   <Font size="18.0" />
                </font></TextField>
-            <Button fx:id="loginButton" layoutX="28.0" layoutY="379.0" mnemonicParsing="false" onAction="#login" prefHeight="36.0" prefWidth="327.0" style="-fx-background-color: #001a33; -fx-background-radius: 20 5 20 5;" text="Log in" textFill="WHITE">
+            <Button fx:id="loginButton" layoutX="40.0" layoutY="379.0" mnemonicParsing="false" onAction="#login" prefHeight="36.0" prefWidth="327.0" style="-fx-background-color: #001a33; -fx-background-radius: 20 5 20 5;" text="Log in" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
@@ -37,7 +37,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <AnchorPane layoutX="5.0" layoutY="424.0" prefHeight="93.0" prefWidth="395.0" style="-fx-background-color: #FFFF;">
+            <AnchorPane layoutX="5.0" layoutY="424.0" prefHeight="93.0" prefWidth="395.0" style="-fx-background-color: #FFF;">
                <children>
                   <Label layoutX="111.0" layoutY="29.0" text="Don't have an account? ">
                      <font>
@@ -61,11 +61,10 @@
                   </ImageView>
                </children>
             </AnchorPane>
-            <Pane layoutX="236.0" layoutY="312.0" prefHeight="7.0" prefWidth="138.0" style="-fx-background-color: #ff6699;" />
+            <Pane layoutX="238.0" layoutY="312.0" prefHeight="7.0" prefWidth="138.0" style="-fx-background-color: #ff6699;" />
             <Pane layoutX="133.0" layoutY="312.0" prefHeight="7.0" prefWidth="128.0" style="-fx-background-color: #001a33;" />
          </children>
       </AnchorPane>
-      <Pane layoutX="237.0" layoutY="365.0" prefHeight="0.0" prefWidth="6.0" style="-fx-background-color: fff072;" />
       <AnchorPane layoutX="14.0" layoutY="11.0" prefHeight="546.0" prefWidth="298.0">
          <children>
             <AnchorPane layoutX="48.0" layoutY="73.0" prefHeight="90.0" prefWidth="138.0">

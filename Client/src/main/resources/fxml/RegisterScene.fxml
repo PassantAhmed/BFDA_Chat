@@ -12,9 +12,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="621.0" prefWidth="556.0" style="-fx-background-color: #FFF;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.RegisterController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="693.0" prefWidth="586.0" style="-fx-background-color: #FFF;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.RegisterController">
 <children>
-      <AnchorPane layoutX="51.0" layoutY="95.0" prefHeight="487.0" prefWidth="463.0" style="-fx-background-color: #ffe6ff; -fx-background-radius: 10 10 10 10;">
+      <AnchorPane layoutX="61.0" layoutY="147.0" prefHeight="487.0" prefWidth="463.0" style="-fx-background-color: #ffe6ff; -fx-background-radius: 10 10 10 10;">
          <children>
             <Label fx:id="hyperloginid" layoutX="206.0" layoutY="445.0" text="Login" textFill="#001a33" underline="true">
                <font>
@@ -36,9 +36,9 @@
             <Label layoutX="24.0" layoutY="189.0" text="Country" />
             <Label layoutX="24.0" layoutY="106.0" text="Full Name" />
             <Label layoutX="24.0" layoutY="23.0" text="Email" />
-            <TextField fx:id="emailid" layoutX="24.0" layoutY="46.0" prefHeight="26.0" prefWidth="169.0" style="-fx-background-radius: 20 5 20 5;" />
-            <TextField fx:id="fullnameid" layoutX="24.0" layoutY="131.0" prefHeight="26.0" prefWidth="169.0" style="-fx-background-radius: 20 5 20 5;" />
-            <TextField fx:id="usernameid" layoutX="253.0" layoutY="46.0" prefHeight="26.0" prefWidth="169.0" style="-fx-background-radius: 5 20 5 20;" />
+            <TextField fx:id="emailid" layoutX="24.0" layoutY="46.0" prefHeight="26.0" prefWidth="169.0" promptText="ex: a@yahoo.com" style="-fx-background-radius: 20 5 20 5; -fx-padding: 5 20 5 20;" />
+            <TextField fx:id="fullnameid" layoutX="24.0" layoutY="131.0" prefHeight="26.0" prefWidth="169.0" promptText="ex : ahmed ali" style="-fx-padding: 5 20 5 20; -fx-background-radius: 20 5 20 5;" />
+            <TextField fx:id="usernameid" layoutX="253.0" layoutY="46.0" prefHeight="26.0" prefWidth="169.0" promptText="ex: ahmed" style="-fx-padding: 5 20 5 20; -fx-background-radius: 5 20 5 20;" />
             <TextField fx:id="passwordid" accessibleRole="PASSWORD_FIELD" layoutX="253.0" layoutY="131.0" prefHeight="26.0" prefWidth="169.0" style="-fx-background-radius: 5 20 5 20;" />
             <TextField fx:id="repasswordid" accessibleRole="PASSWORD_FIELD" layoutX="253.0" layoutY="213.0" prefHeight="26.0" prefWidth="169.0" style="-fx-background-radius: 5 20 5 20;" />
             <Spinner fx:id="countryid" layoutX="24.0" layoutY="213.0" prefHeight="26.0" prefWidth="170.0" style="-fx-background-radius: 20 5 5 5;" />
@@ -56,9 +56,18 @@
       </AnchorPane>
       <AnchorPane layoutX="215.0" layoutY="-1.0" prefHeight="114.0" prefWidth="125.0">
          <children>
-            <ImageView fitHeight="115.0" fitWidth="112.0" layoutX="1.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="115.0" fitWidth="112.0" layoutX="13.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../styles/logo.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="166.0" layoutY="51.0" prefHeight="145.0" prefWidth="153.0">
+         <children>
+            <ImageView fitHeight="145.0" fitWidth="247.0" layoutX="13.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../styles/bfda.png" />
                </image>
             </ImageView>
          </children>
