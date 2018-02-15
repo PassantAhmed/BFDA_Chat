@@ -97,7 +97,6 @@ public class MainController implements Initializable {
         announceArea1.setText(accouncementString);
     }
 
-
     public void sendBtn(ActionEvent actionEvent) throws RemoteException, SQLException {
         ServerMessegeSender serverMessegeSender = ServerConnection.getInstance().getRegisteryObject().getServerMessegeSender();
         Message message = new Message();
@@ -152,10 +151,12 @@ public class MainController implements Initializable {
 
     public String getCurrentChatID(){ return currentChatID; }
 
-    public List<Message> getCurrentChatList()
+    public List<Message> getCurrentChatObserver()
     {
         return chatBoxListVIew.getItems();
     }
+
+
 
 
 }
