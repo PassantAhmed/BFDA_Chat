@@ -28,6 +28,26 @@ public class User implements Serializable {
         this.newMsgCount = newMsgCount;
     }
 
+        public User() 
+    {
+    
+    }
+
+    //id;name;username;email;password;gender;country;birthdate;userPic;status;mode;
+    public User(int id,String name,String username,String email,String password,boolean gender,String country,LocalDate birthdate,String userPic,boolean status,String mode)
+     {
+        this.id = id;
+        this.name=name;
+        this.username = username;
+        this.email= email;
+        this.password=password;
+        this.gender=gender;
+        this.country=country;
+        this.birthdate=birthdate;
+        this.userPic=userPic;
+        this.status=status;
+        this.mode=mode; 
+    }
     public int getId() {
         return id;
     }
