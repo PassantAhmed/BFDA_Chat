@@ -19,7 +19,7 @@
                <font>
                   <Font size="18.0" />
                </font></TextField>
-            <TextField fx:id="passwordFieldForLogIn" alignment="CENTER" layoutX="28.0" layoutY="214.0" prefHeight="48.0" prefWidth="327.0" promptText="Enter Your Password" style="-fx-background-color: #ffe6ff; -fx-background-radius: 20 5 20 5;">
+            <TextField fx:id="passwordFieldForLogIn" accessibleRole="PASSWORD_FIELD" alignment="CENTER" layoutX="28.0" layoutY="214.0" prefHeight="48.0" prefWidth="327.0" promptText="Enter Your Password" style="-fx-background-color: #ffe6ff; -fx-background-radius: 20 5 20 5;">
                <font>
                   <Font size="18.0" />
                </font></TextField>
