@@ -1,6 +1,7 @@
 package model;
 
-import clientInterfaces.ClientObj;
+
+import client.interfaces.ClientObj;
 
 import java.rmi.RemoteException;
 import java.util.Vector;

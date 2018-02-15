@@ -6,6 +6,7 @@
 package beans;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Vector;
@@ -23,7 +24,26 @@ public class Message implements Serializable {
     private String messageFontColor;
     private String messageFontFamily;
     private String messageFontSize;
-    private Date messageDate;
+    private boolean isItalic;
+    private boolean isBold;
+    private LocalDateTime messageDate;
+
+
+    public boolean isItalic() {
+        return isItalic;
+    }
+
+    public void setItalic(boolean italic) {
+        isItalic = italic;
+    }
+
+    public boolean isBold() {
+        return isBold;
+    }
+
+    public void setBold(boolean bold) {
+        isBold = bold;
+    }
 
     public String getFromUser() {
         return fromUser;
@@ -73,11 +93,11 @@ public class Message implements Serializable {
         this.messageFontSize = messageFontSize;
     }
 
-    public Date getMessageDate() {
+    public LocalDateTime getMessageDate() {
         return messageDate;
     }
 
-    public void setMessageDate(Date messageDate) {
+    public void setMessageDate(LocalDateTime messageDate) {
         this.messageDate = messageDate;
     }
 

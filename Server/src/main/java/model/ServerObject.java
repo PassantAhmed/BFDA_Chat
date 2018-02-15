@@ -1,8 +1,9 @@
 package model;
 
-import serverInterfaces.ClientServerRegister;
-import serverInterfaces.ServerMessegeSender;
-import serverInterfaces.ServerObj;
+import model.database.DatabaseUserOperation;
+import server.interfaces.ClientServerRegister;
+import server.interfaces.ServerMessegeSender;
+import server.interfaces.ServerObj;
 
 import java.io.Serializable;
 import java.rmi.RemoteException;
@@ -19,7 +20,7 @@ public class ServerObject extends UnicastRemoteObject implements ServerObj, Seri
     public ServerObject() throws RemoteException, SQLException {
 
         clientServerRegister = new ClientServerRegisterImp();
-        databaseUserOperation = new model.DatabaseUserOperation();
+        databaseUserOperation = new DatabaseUserOperation();
         serverMessegeSender = new ServerMessageSenderImplementation();
     }
 

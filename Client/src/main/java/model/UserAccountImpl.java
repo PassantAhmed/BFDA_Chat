@@ -1,7 +1,7 @@
 package model;
 
 import beans.User;
-import clientInterfaces.UserAccount;
+import client.interfaces.UserAccount;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;

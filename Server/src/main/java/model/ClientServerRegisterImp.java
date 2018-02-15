@@ -1,8 +1,9 @@
 package model;
 
 import beans.User;
-import clientInterfaces.ClientObj;
-import serverInterfaces.ClientServerRegister;
+import client.interfaces.ClientObj;
+import server.interfaces.ClientServerRegister;
+
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;

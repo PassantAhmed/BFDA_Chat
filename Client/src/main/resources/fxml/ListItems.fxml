@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<HBox alignment="CENTER_LEFT" maxWidth="+Infinity" prefHeight="82.0" prefWidth="255.0" spacing="10.0"  xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<HBox alignment="CENTER_LEFT" maxWidth="+Infinity" prefHeight="82.0" prefWidth="255.0" spacing="10.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
   <children>
     <Pane prefHeight="80.0" prefWidth="77.0">
       <children>
@@ -43,7 +43,7 @@
       </Pane>
       <AnchorPane prefHeight="82.0" prefWidth="64.0">
          <children>
-            <Label layoutX="19.0" layoutY="1.0" prefHeight="34.0" prefWidth="24.0" text="...">
+            <Label fx:id="msgCount" layoutX="19.0" layoutY="1.0" prefHeight="34.0" prefWidth="24.0" text="...">
                <font>
                   <Font size="36.0" />
                </font>

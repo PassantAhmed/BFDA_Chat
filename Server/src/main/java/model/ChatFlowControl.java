@@ -2,7 +2,8 @@ package model;
 
 import beans.Message;
 import beans.User;
-import clientInterfaces.ClientObj;
+import client.interfaces.ClientObj;
+
 import java.rmi.RemoteException;
 import java.util.HashMap;
 import java.util.Vector;
@@ -74,5 +75,7 @@ public class ChatFlowControl {
     private boolean isOnline(ClientObj user) throws RemoteException {
         return ClientServerRegisterImp.clientObject.contains(user);
     }
+
+
 
 }

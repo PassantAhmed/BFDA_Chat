@@ -1,4 +1,4 @@
-package viewcontroller;
+package view.controller;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;

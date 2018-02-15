@@ -1,8 +1,8 @@
-package serverInterfaces;
+package server.interfaces;
 
 
 import beans.User;
-import clientInterfaces.ClientObj;
+import client.interfaces.ClientObj;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
