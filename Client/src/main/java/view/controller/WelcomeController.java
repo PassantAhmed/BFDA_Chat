@@ -23,7 +23,10 @@ import server.interfaces.ServerObj;
 public class WelcomeController implements Initializable {
     
     @FXML private Label errorLabel;
-    @FXML private TextField serverIpField;
+    @FXML private TextField serverIpField1;
+    @FXML private TextField serverIpField2;
+    @FXML private TextField serverIpField3;
+    @FXML private TextField serverIpField4;
     @FXML private Button loginButton;
 
     public void initialize(URL url, ResourceBundle rb) {
@@ -36,7 +39,7 @@ public class WelcomeController implements Initializable {
         return validationChecks.isIP(ipAddress);
     }
     public void connect(ActionEvent actionEvent) {
-        String ipAddress = serverIpField.getText();
+        String ipAddress = serverIpField1.getText() + "." + serverIpField2.getText() + "." + serverIpField4.getText() + "." + serverIpField4.getText();
         if(!validateIp(ipAddress))
             errorLabel.setText("IP is not a valid IP, please re-write a valid one..");
         else
@@ -82,12 +85,20 @@ public class WelcomeController implements Initializable {
                 errorLabel.setText("");
                 loginButton.setText("Connecting ... ");
                 loginButton.setDisable(true);
-                serverIpField.setDisable(true);});
+                serverIpField1.setDisable(true);
+                serverIpField2.setDisable(true);
+                serverIpField3.setDisable(true);
+                serverIpField4.setDisable(true);
+            });
         else
             Platform.runLater(()-> {
                 loginButton.setDisable(false);
                 loginButton.setText("Connect");
-                serverIpField.setDisable(false);});
+                serverIpField1.setDisable(false);
+                serverIpField2.setDisable(false);
+                serverIpField3.setDisable(false);
+                serverIpField4.setDisable(false);
+            });
     }
 
 
