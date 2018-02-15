@@ -17,7 +17,7 @@ public class ServerObject extends UnicastRemoteObject implements ServerObj, Seri
     private DatabaseUserOperation databaseUserOperation;
     private ServerMessegeSender serverMessegeSender;
 
-    public ServerObject() throws RemoteException, SQLException {
+    public ServerObject() throws RemoteException, SQLException, ClassNotFoundException {
 
         clientServerRegister = new ClientServerRegisterImp();
         databaseUserOperation = new DatabaseUserOperation();

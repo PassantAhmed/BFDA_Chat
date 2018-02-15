@@ -2,8 +2,8 @@ package model;
 
 import beans.Message;
 import client.interfaces.ChatHandler;
-import controller.ClientChatFlowControl;
-import view.controller.MainController;
+import javafx.application.Platform;
+import view.controller.ControllerManager;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -12,33 +12,31 @@ import java.util.Vector;
 
 public class ChatImpl extends UnicastRemoteObject implements ChatHandler {
 
-    private static MainController mainController;
-    private ClientChatFlowControl clientChatFlowControl;
+    private ControllerManager mainController;
     public ChatImpl() throws RemoteException {
-        clientChatFlowControl = new ClientChatFlowControl();
+        this.mainController = ControllerManager.getInstance();
     }
 
-    public static void setMainController(MainController mainController)
-    {
-        ChatImpl.mainController = mainController;
-    }
+
+
+
 
     @Override
     public void updateChat(String chatID, Message message)
     {
-        mainController.updateAnnounce(message.getMessageContent());
+        System.out.println(mainController.getWelcomeController() == null);
+        if(mainController.getMainController().getCurrentChatID().equals(chatID))
+            Platform.runLater(()->{mainController.getMainController().getCurrentChatList().add(message);});
     }
 
     @Override
     public void registerChat(String chatID, Vector<String> users) throws RemoteException {
-        System.out.println("Registering");
-        ClientChatFlowControl.setChatMap(chatID , users);
     }
 
     @Override
     public void updateAnnouncement(String msg)
     {
-        mainController.updateAnnounce(msg);
+        mainController.getMainController().updateAnnounce(msg);
         System.out.print(msg);
     }
 
@@ -46,6 +44,8 @@ public class ChatImpl extends UnicastRemoteObject implements ChatHandler {
     public boolean updateConnection() {
         return true;
     }
+
+
 
 
 }

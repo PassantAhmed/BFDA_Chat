@@ -16,12 +16,13 @@ public class ClientObject extends UnicastRemoteObject implements ClientObj, Seri
 
     private ChatHandler chatHandler;
     private UserAccount userAccount;
+    private static User userData;
 
     public static void setUserData(User userData) {
         ClientObject.userData = userData;
     }
     public static User getUserDataInternal(){return userData;};
-    private static User userData;
+
 
     public ClientObject() throws RemoteException {
         chatHandler = new ChatImpl();

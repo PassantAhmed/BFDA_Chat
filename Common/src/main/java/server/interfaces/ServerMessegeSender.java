@@ -10,6 +10,7 @@ import beans.User;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.sql.SQLException;
 import java.util.Vector;
 
 /**
@@ -17,8 +18,9 @@ import java.util.Vector;
  * @author ahmedelgawesh
  */
 public interface ServerMessegeSender extends Remote
-{  
-          public void chatStartRequest(String chatID , Vector<String> users) throws RemoteException;
-          public void sendMsgToChat(String ChatID , Message message) throws RemoteException;
-
+{
+    public String getChatOfClient(String user ,String clientName) throws RemoteException, SQLException;
+    public void sendMsg(String chatMemberID , Message msg) throws RemoteException, SQLException;
+    public String getChatRoomOfClient(String myName , String clientName) throws RemoteException, SQLException;
+    public String getChatMemberID(String userName , String chatRoomID) throws SQLException , RemoteException;
 }

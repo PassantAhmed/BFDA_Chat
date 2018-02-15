@@ -33,7 +33,7 @@ public class RemoteServerToRegistry {
 
     }
 
-    public void startServer() throws RemoteException, SQLException {
+    public void startServer() throws RemoteException, SQLException, ClassNotFoundException {
         serverRegistry.rebind("serverRegistry", new ServerObject());
 
     }

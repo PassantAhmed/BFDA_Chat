@@ -4,10 +4,7 @@ import beans.Message;
 import utilities.SqlParser;
 
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Vector;
 
 public class DatabaseChatOperation  {
@@ -24,30 +21,30 @@ public class DatabaseChatOperation  {
     }
 
     public String getChatRoomOfClient(String myName , String clientName) throws SQLException {
-
+        System.out.println(clientName);
+        System.out.println(myName);
         String query = "SELECT * FROM Chatdb.FullChatRoomData where userName = ? and ChatRoom_id in " +
-                "(select ChatRoom_id from Chatdb.FullChatRoomData where userName = ?) and type = 0;";
+                "(select ChatRoom_id from Chatdb.FullChatRoomData where userName = ? ) and type = 0 ;";
         preparedStatement = connection.prepareStatement(query);
         preparedStatement.setString(1 , clientName);
         preparedStatement.setString(2 , myName);
+
         resultSet = preparedStatement.executeQuery();
         if(resultSet.next())
             return resultSet.getString(1);
         else
-            return createChatRoomWithUser("" , clientName , myName);
+            return createChatRoomWithUser("No Name" , clientName , myName);
 
 
     }
 
     public String createChatRoomWithUser(String chatRoomName , String clientName , String myName) throws SQLException {
-        String chatRoomID = getChatRoomOfClient(myName , clientName);
-        if(chatRoomID == null)
-        {
-            chatRoomID = createChatRoom(chatRoomName , "0");
+
+            String chatRoomID = createChatRoom(chatRoomName , "0");
             addClientToChatRoom(chatRoomID , myName);
             addClientToChatRoom(chatRoomID , clientName);
-        }
-        return chatRoomID;
+
+            return chatRoomID;
 
     }
 
@@ -65,10 +62,10 @@ public class DatabaseChatOperation  {
     }
 
     public String sendMsgtoDatabase(String chatMemberID , Message message) throws SQLException {
-        String query = "INSERT INTO `Chatdb`.`ChatMsg` " +
-                "(`ChatMember_id`, `MsgBody`, `MsgFont`, `MsgSize`, `MsgIsBold`, `MsgIsItalic`, `MsgColor`, `DateStamp`) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, '?);";
-        preparedStatement = connection.prepareStatement(query);
+        String query = "INSERT INTO ChatMsg " +
+                "(ChatMember_id, MsgBody, MsgFont, MsgSize, MsgIsBold, MsgIsItalic, MsgColor, DateStamp ) " +
+                "VALUES ( ? , ? , ? , ? , ? , ? , ? , ? );";
+        preparedStatement = connection.prepareStatement(query , Statement.RETURN_GENERATED_KEYS);
         preparedStatement.setString(1 , chatMemberID);
         preparedStatement.setString(2 , message.getMessageContent());
         preparedStatement.setString(3 , message.getMessageFontFamily());
@@ -78,7 +75,7 @@ public class DatabaseChatOperation  {
         preparedStatement.setString(7 , message.getMessageFontColor());
         preparedStatement.setTimestamp(8 , SqlParser.fromLocalDateTimeToSql(message.getMessageDate()));
         preparedStatement.executeUpdate();
-        connection.commit();
+        //connection.commit();
 
         ResultSet rs = preparedStatement.getGeneratedKeys();
         if (rs.next())
@@ -100,11 +97,11 @@ public class DatabaseChatOperation  {
     private String createChatRoom(String chatRoomName , String type) throws SQLException {
 
         String query = "INSERT INTO `Chatdb`.`ChatRoom` (`ChatName`, `Type`, `Active`) VALUES (?, ?, '1');";
-        preparedStatement = connection.prepareStatement(query);
+        preparedStatement = connection.prepareStatement(query , 1);
         preparedStatement.setString(1 , chatRoomName);
         preparedStatement.setString(2 , type);
         preparedStatement.executeUpdate();
-        connection.commit();
+//        connection.commit();
         ResultSet rs = preparedStatement.getGeneratedKeys();
         if (rs.next())
             return rs.getString(1);
@@ -118,7 +115,7 @@ public class DatabaseChatOperation  {
         preparedStatement.setString(1 , chatRoomID);
         preparedStatement.setString(2 , users);
         preparedStatement.executeUpdate();
-        connection.commit();
+        //connection.commit();
 
     }
 
@@ -148,21 +145,38 @@ public class DatabaseChatOperation  {
     }
 
     public Vector<String> chatMembers(String chatMsgID) throws SQLException {
-        String query = "select User.username from User , ChatMember where ChatRoom_id =" +
-                "    (select ChatRoom.id from ChatRoom , ChatMsg , ChatMember " +
-                "    where ChatMsg.id = ?" +
-                "    and ChatMember.id = ChatMsg.ChatMember_id " +
-                "    and ChatRoom.id = ChatMember.ChatRoom_id ) " +
-                "    and ChatMember.ChatRoom_id = ChatMember.ChatRoom_id " +
-                "    and User.id = ChatMember.User_id ;";
-        preparedStatement.setString(1,chatMsgID);
+        String query = "select User.username from User , ChatMember , ChatRoom where " +
+                "ChatRoom_id = (select ChatRoom.id from ChatRoom , ChatMsg , ChatMember " +
+                "where ChatMsg.id = ? " +
+                "and ChatMember.id = ChatMsg.ChatMember_id " +
+                "and ChatRoom.id = ChatMember.ChatRoom_id ) " +
+                "and ChatMember.ChatRoom_id = ChatRoom.id " +
+                "and User.id = ChatMember.User_id";
+
+        preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setInt(1,Integer.parseInt(chatMsgID));
         resultSet = preparedStatement.executeQuery();
         Vector<String> members = new Vector<>();
-        while(resultSet.next())
-            members.add(resultSet.getString(1));
+        while(resultSet.next()){
+            String res = resultSet.getString(1);
+            members.add(res);
+            System.out.println(res);
+        }
         return members;
 
     }
+
+    public String getChatRoomForChatMember(String chatMemberID) throws SQLException {
+        String query = "select ChatMember.ChatRoom_id from ChatMember where ChatMember.id = ? ";
+        preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setString(1 , chatMemberID);
+        resultSet = preparedStatement.executeQuery();
+        if(resultSet.next())
+            return resultSet.getString(1);
+        else
+            return null;
+    }
+
 
 
 }

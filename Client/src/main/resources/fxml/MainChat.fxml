@@ -67,7 +67,10 @@
          <children>
             <ScrollPane prefHeight="450.0" prefWidth="440.0">
                <content>
-                  <VBox prefHeight="447.0" prefWidth="438.0" />
+                  <VBox prefHeight="447.0" prefWidth="438.0">
+                     <children>
+                        <ListView fx:id="chatBoxListVIew" prefHeight="447.0" prefWidth="438.0" />
+                     </children></VBox>
                </content>
             </ScrollPane>
             <AnchorPane prefHeight="42.0" prefWidth="439.0" style="-fx-background-color: #ffe6ff;">
@@ -90,8 +93,8 @@
             </AnchorPane>
             <AnchorPane prefHeight="78.0" prefWidth="440.0" style="-fx-background-color: #ffe6ff;">
                <children>
-                  <TextField fx:id="chatField" layoutX="7.0" layoutY="10.0" onAction="#sendMessage" prefHeight="46.0" prefWidth="358.0" />
-                  <Button fx:id="sendBtn" alignment="CENTER" layoutX="372.0" layoutY="11.0" mnemonicParsing="false" onAction="#sendBtn" prefHeight="42.0" prefWidth="54.0" style="-fx-background-color: #001a33; -fx-background-radius: 35 25 35 25;" text="Send" textFill="WHITE">
+                  <TextField fx:id="chatField" layoutX="7.0" layoutY="10.0" onAction="#sendBtn" prefHeight="46.0" prefWidth="358.0" />
+                  <Button onAction="#sendBtn" fx:id="sendBtn" alignment="CENTER" layoutX="372.0" layoutY="11.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="54.0" style="-fx-background-color: #001a33; -fx-background-radius: 35 25 35 25;" text="Send" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>

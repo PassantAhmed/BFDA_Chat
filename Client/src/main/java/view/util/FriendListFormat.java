@@ -12,19 +12,24 @@ import javafx.scene.shape.Circle;
 import view.controller.MainController;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
+import java.sql.SQLException;
 
 public class FriendListFormat extends ListCell<User> {
 
-    Node parent ;
+
+    private Node parent ;
     private Circle profilePicCircle;
     private Circle statusCircle;
     private Label name;
     private Label status;
     private Image img ;
     private Label msgCount;
-    int unReadMsg = 0;
+    private MainController mainController;
     public FriendListFormat(MainController mainController)
     {
+
+        this.mainController = mainController;
 
         try {
             parent = FXMLLoader.load(getClass().getResource("/fxml/ListItems.fxml"));
@@ -34,8 +39,6 @@ public class FriendListFormat extends ListCell<User> {
             status = (Label)parent.lookup("#status");
             msgCount = (Label)parent.lookup("#msgCount");
             img = new Image("https://www.filmibeat.com/img/220x90x275/popcorn/profile_photos/scarlett-johansson-20141121172716-5935.jpg");
-            parent.setOnMouseClicked(param->{ unReadMsg = 0; updateMsgCount();});
-
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -62,7 +65,15 @@ public class FriendListFormat extends ListCell<User> {
             status.setText(item.getMode());
             msgCount.setText(Integer.toString(item.getNewMsgCount()));
             setGraphic(parent);
-
+            parent.setOnMouseClicked(param->{
+                try {
+                    mainController.setCurrentChatID(item.getUsername());
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            });
         }
         else
         {
@@ -72,9 +83,5 @@ public class FriendListFormat extends ListCell<User> {
 
     }
 
-    public void updateMsgCount()
-    {
-        msgCount.setText(Integer.toString(unReadMsg));
-    }
 
 }

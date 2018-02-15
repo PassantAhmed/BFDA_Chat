@@ -108,8 +108,8 @@ public class WelcomeController implements Initializable {
 
             Parent root = null;
             try {
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                root = fxmlLoader.load(getClass().getResource("/fxml/LoginScene.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LoginScene.fxml"));
+                root = fxmlLoader.load();
                 Scene scene = new Scene(root);
                 Stage stage = new Stage();
                 stage.setTitle("BFDA Chat | Login");

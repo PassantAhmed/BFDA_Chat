@@ -1,7 +1,9 @@
 package view.controller;
 
-import controller.ClientChatFlowControl;
 import javafx.collections.ObservableList;
+import model.ServerConnection;
+import server.interfaces.ServerMessegeSender;
+import view.util.ChatBoxFormat;
 import view.util.FriendListFormat;
 import beans.Message;
 import beans.User;
@@ -14,20 +16,21 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
-import model.ChatImpl;
 import model.ClientObject;
 
 
 import java.net.URL;
 import java.rmi.RemoteException;
+import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.Vector;
 
 public class MainController implements Initializable {
 
     @FXML private ListView<User> friendsListView;
+    @FXML private ListView<Message> chatBoxListVIew;
     @FXML private TextArea announceArea1;
     @FXML private Button sendBtn;
     @FXML private TextField chatField;
@@ -38,12 +41,14 @@ public class MainController implements Initializable {
     @FXML private ColorPicker fontColorPicker;
     @FXML private ComboBox<String> fontList;
     @FXML private ComboBox<Integer> sizeList;
+
     //Temp
     @FXML
     private Label name;
-    private String chatID = "mdskrefc";
+    private String currentChatID ;
+    private String currentChatMemberID ;
     //--
-    private ClientChatFlowControl clientChatFlowControl;
+
 
     //--TextFormatFlags
     private boolean isBold = false;
@@ -51,58 +56,64 @@ public class MainController implements Initializable {
     private Color fontColor = Color.BLACK;
     private FriendListFormat friendListFormat;
     public MainController() throws RemoteException {
-        clientChatFlowControl = new ClientChatFlowControl();
+
+
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         friendsListView.setCellFactory(param -> new FriendListFormat(this));
-
         List<User> userList = new ArrayList<>();
-        for (int i = 0; i < 30; i++) {
+
             User user = new User();
-            user.setName("Mohamed" + i);
+            user.setName("Mohamed Fawzy");
+            user.setUsername("Mohamedfawzy1993");
             user.setStatus(false);
             user.setMode("Hello From the Other Side");
             userList.add(user);
-        }
+
+            user = new User();
+            user.setName("Ahmed");
+            user.setUsername("Ahmedahmed");
+            user.setStatus(false);
+            user.setMode("Hello From the Other Side");
+
+
+            userList.add(user);
+
+        chatBoxListVIew.setStyle("-fx-padding: 10 0 0 0;");
+        chatBoxListVIew.setCellFactory(param ->  new ChatBoxFormat());
+//        chatBoxListVIew.getItems().addAll(messages);
 
         friendsListView.getItems().addAll(userList);
         announceArea1.setEditable(false);
-        ChatImpl.setMainController(this);
         name.setText(ClientObject.getUserDataInternal().getUsername());
         formatBarValues();
         formatBarActions();
-
-
-
     }
 
     public void updateAnnounce(String accouncementString) {
         announceArea1.setText(accouncementString);
     }
 
-    public void sendMessage(ActionEvent actionEvent) throws RemoteException {
-        Message message = new Message();
-        message.setMessageContent("Hello Dude");
-        clientChatFlowControl.sendMsg(chatID, message);
-    }
 
-    public void sendBtn(ActionEvent actionEvent) throws RemoteException {
-//        Vector<String> users = new Vector<>();
-//        users.add("AhmedAhmed");
-//        users.add("gamal");
-//        users.add(ClientObject.getUserDataInternal().getUsername());
-//        String localchatID = clientChatFlowControl.sendNewChatRequest(chatID, users);
-//        chatID = localchatID.equals(chatID) ? chatID : localchatID;
-        ArrayList<User> users = new ArrayList<>();
-          for(User user : friendsListView.getItems())
-          {
-              user.setNewMsgCount(5);
-              users.add(user);
-          }
-          friendsListView.getItems().setAll(users);
+    public void sendBtn(ActionEvent actionEvent) throws RemoteException, SQLException {
+        ServerMessegeSender serverMessegeSender = ServerConnection.getInstance().getRegisteryObject().getServerMessegeSender();
+        Message message = new Message();
+        if(!chatField.getText().isEmpty() || chatField.getText() != null)
+        {
+            message.setMessageContent(chatField.getText());
+            message.setMessageFontFamily(fontList.getValue());
+            message.setMessageFontSize(sizeList.getValue().toString());
+            message.setMessageFontColor(fontColor.toString().replace("0x" , "#"));
+            message.setFromUser(ClientObject.getUserDataInternal().getUsername());
+            message.setBold(isBold);
+            message.setItalic(isItalic);
+            message.setMessageDate(LocalDateTime.now());
+        }
+            serverMessegeSender.sendMsg(currentChatMemberID , message );
+
     }
 
     public void updateTextStyle() {
@@ -131,6 +142,19 @@ public class MainController implements Initializable {
     public ObservableList getFriendList()
     {
         return friendsListView.getItems();
+    }
+
+    public void setCurrentChatID(String userName) throws RemoteException, SQLException {
+        ServerMessegeSender serverMessegeSender = ServerConnection.getInstance().getRegisteryObject().getServerMessegeSender();
+        currentChatID = serverMessegeSender.getChatRoomOfClient(ClientObject.getUserDataInternal().getUsername() , userName);
+        currentChatMemberID = serverMessegeSender.getChatMemberID(ClientObject.getUserDataInternal().getUsername() ,currentChatID);
+    }
+
+    public String getCurrentChatID(){ return currentChatID; }
+
+    public List<Message> getCurrentChatList()
+    {
+        return chatBoxListVIew.getItems();
     }
 
 
