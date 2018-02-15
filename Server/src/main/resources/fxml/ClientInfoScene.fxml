@@ -18,13 +18,13 @@
    <children>
       <Pane prefHeight="654.0" prefWidth="702.0">
          <children>
-            <Circle fx:id="userImage" fill="DODGERBLUE" layoutX="351.0" layoutY="119.0" radius="100.0" stroke="BLACK" strokeType="INSIDE" />
-            <Label fx:id="userName" alignment="CENTER" layoutX="1.0" layoutY="227.0" prefHeight="35.0" prefWidth="702.0" text="User Name">
+            <Circle fx:id="userImage" fill="DODGERBLUE" layoutX="347.0" layoutY="117.0" radius="61.0" stroke="BLACK" strokeType="INSIDE" />
+            <Label fx:id="userName" alignment="CENTER" layoutX="1.0" layoutY="187.0" prefHeight="35.0" prefWidth="702.0" text="User Name">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <VBox layoutX="125.0" layoutY="269.0" prefHeight="357.0" prefWidth="467.0" style="-fx-background-color: #ffffe6; -fx-background-radius: 10 10 20 20;">
+            <VBox layoutX="92.0" layoutY="231.0" prefHeight="370.0" prefWidth="518.0" style="-fx-background-color: #FFF; -fx-background-radius: 10 10 20 20;">
                <children>
                   <Label />
                   <HBox prefHeight="50.0" prefWidth="478.0">
@@ -100,12 +100,12 @@
                   </HBox>
                   <AnchorPane prefHeight="66.0" prefWidth="467.0">
                      <children>
-                        <Button fx:id="resetSystemBtn" layoutX="85.0" layoutY="21.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="162.0" style="-fx-background-color: #001a33; -fx-background-radius: 20 5 20 5;" text="Save Changes" textFill="WHITE">
+                        <Button fx:id="resetSystemBtn" layoutX="93.0" layoutY="33.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="162.0" style="-fx-background-color: #001a33; -fx-background-radius: 20 5 5 5;" text="Save Changes" textFill="WHITE">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Button>
-                        <Button fx:id="resetSystemBtn1" layoutX="259.0" layoutY="21.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="113.0" style="-fx-background-color: #001a33; -fx-background-radius: 5 20 5 20;" text="Cancel" textFill="WHITE">
+                        <Button fx:id="resetSystemBtn1" layoutX="292.0" layoutY="33.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="113.0" style="-fx-background-color: #001a33; -fx-background-radius: 5 5 20 5;" text="Cancel" textFill="WHITE">
                            <font>
                               <Font size="16.0" />
                            </font>
