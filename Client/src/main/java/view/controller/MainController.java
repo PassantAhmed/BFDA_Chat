@@ -1,6 +1,8 @@
-package viewcontroller;
+package view.controller;
 
-import ViewUtil.FriendListFormat;
+import controller.ClientChatFlowControl;
+import javafx.collections.ObservableList;
+import view.util.FriendListFormat;
 import beans.Message;
 import beans.User;
 
@@ -13,7 +15,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import model.ChatImpl;
-import model.ClientChatFlowControl;
 import model.ClientObject;
 
 
@@ -48,7 +49,7 @@ public class MainController implements Initializable {
     private boolean isBold = false;
     private boolean isItalic = false;
     private Color fontColor = Color.BLACK;
-
+    private FriendListFormat friendListFormat;
     public MainController() throws RemoteException {
         clientChatFlowControl = new ClientChatFlowControl();
     }
@@ -56,8 +57,9 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        friendListFormat = new FriendListFormat(this);
+        friendsListView.setCellFactory(param -> friendListFormat);
 
-        friendsListView.setCellFactory(param -> new FriendListFormat());
         List<User> userList = new ArrayList<>();
         for (int i = 0; i < 30; i++) {
             User user = new User();
@@ -66,6 +68,7 @@ public class MainController implements Initializable {
             user.setMode("Hello From the Other Side");
             userList.add(user);
         }
+
         friendsListView.getItems().addAll(userList);
         announceArea1.setEditable(false);
         ChatImpl.setMainController(this);
@@ -117,6 +120,11 @@ public class MainController implements Initializable {
         sizeList.getItems().addAll(11,12,13,14,15,16,17);
         sizeList.getSelectionModel().select(4);
         fontColorPicker.setValue(Color.BLACK);
+    }
+
+    public ObservableList getFriendList()
+    {
+        return friendsListView.getItems();
     }
 
 

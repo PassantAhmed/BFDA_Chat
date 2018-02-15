@@ -1,4 +1,4 @@
-package ViewUtil;
+package view.util;
 
 import beans.User;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import view.controller.MainController;
 
 import java.io.IOException;
 
@@ -20,7 +21,7 @@ public class FriendListFormat extends ListCell<User> {
     private Label name;
     private Label status;
     private Image img ;
-    public FriendListFormat()
+    public FriendListFormat(MainController mainController)
     {
         try {
             parent = FXMLLoader.load(getClass().getResource("/fxml/ListItems.fxml"));
@@ -29,9 +30,14 @@ public class FriendListFormat extends ListCell<User> {
             name = (Label)parent.lookup("#name");
             status = (Label)parent.lookup("#status");
             img = new Image("https://www.filmibeat.com/img/220x90x275/popcorn/profile_photos/scarlett-johansson-20141121172716-5935.jpg");
+            parent.setOnMouseClicked(param->{
+
+            });
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
     }
 
 

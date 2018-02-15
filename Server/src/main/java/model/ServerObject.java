@@ -1,5 +1,6 @@
 package model;
 
+import model.database.DatabaseUserOperation;
 import serverInterfaces.ClientServerRegister;
 import serverInterfaces.ServerMessegeSender;
 import serverInterfaces.ServerObj;
@@ -19,7 +20,7 @@ public class ServerObject extends UnicastRemoteObject implements ServerObj, Seri
     public ServerObject() throws RemoteException, SQLException {
 
         clientServerRegister = new ClientServerRegisterImp();
-        databaseUserOperation = new model.DatabaseUserOperation();
+        databaseUserOperation = new DatabaseUserOperation();
         serverMessegeSender = new ServerMessageSenderImplementation();
     }
 

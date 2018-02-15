@@ -1,14 +1,14 @@
-package model;
+package controller;
 
 import beans.Message;
-import beans.User;
+import model.ServerConnection;
 import serverInterfaces.ServerObj;
-
 import java.rmi.RemoteException;
 import java.util.HashMap;
 import java.util.Vector;
 
 public class ClientChatFlowControl {
+
     private static HashMap<String, Vector<String>> chatMap = new HashMap<>();
     private ServerConnection serverConnection = ServerConnection.getInstance();
     private ServerObj serverObj;

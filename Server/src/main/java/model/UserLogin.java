@@ -2,6 +2,8 @@ package model;
 
 import beans.User;
 import interfaces.LoginInterface;
+import model.database.Database;
+import model.database.DatabaseUserOperation;
 
 import java.rmi.RemoteException;
 import java.sql.SQLException;
@@ -15,15 +17,14 @@ public class UserLogin implements LoginInterface {
 
 
     private User resultUser;
-    Database database;
-    DatabaseUserOperation serverOperationClass;
+    private DatabaseUserOperation serverOperationClass;
 
     public UserLogin(String userName, String password) {
         this.userName = userName;
         this.password = password;
 
         try {
-            database = Database.getInstance();
+            Database database = Database.getInstance();
             serverOperationClass = new DatabaseUserOperation();
         } catch (SQLException e) {
             e.printStackTrace();
