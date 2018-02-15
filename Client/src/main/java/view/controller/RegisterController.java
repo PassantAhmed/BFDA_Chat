@@ -2,11 +2,14 @@ package view.controller;
 
 import beans.User;
 import java.net.URL;
+import java.rmi.RemoteException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import model.ServerConnection;
+import server.interfaces.ServerObj;
 import view.util.ValidationChecks;
 
 public class RegisterController implements Initializable {
@@ -25,10 +28,14 @@ public class RegisterController implements Initializable {
     @FXML private Label hyperloginid;
     @FXML private Button submitid;
 
-
+    ServerConnection serverConnection = ServerConnection.getInstance();
+    ServerObj serverObj = serverConnection.getRegisteryObject();
     
+    public RegisterController(){
+        getServerObject();
+    }
     @FXML
-    private void registerAction(ActionEvent event) {
+    private void registerAction(ActionEvent event) throws RemoteException {
         User user = new User();
         boolean genderBoolean;
         user.setUsername(usernameid.getText());
@@ -46,10 +53,15 @@ public class RegisterController implements Initializable {
             //check if passwords matches
             if(user.getPassword().equals(repassword)){
                 //data is valid send user object to server
+                serverObj.getClientServerRegister().newUserRegisteration(user);
             }
         }
     }
-    
+        private void getServerObject()
+    {
+        serverConnection = ServerConnection.getInstance();
+        serverObj = serverConnection.getRegisteryObject();
+    }
     private boolean validateUser(User user){
         boolean isValid =false;
         

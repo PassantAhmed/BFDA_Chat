@@ -136,7 +136,14 @@ public class DatabaseChatOperation  {
 
     public Vector<Message> getAllRoomMessages(String chatRoomID)
     {
-      return null;
+        String sql = "select " +
+                "from ChatMsg , ChatMember , ChatRoom\n" +
+                "where ChatRoom.id = ? " +
+                "and ChatMember.ChatRoom_id = ChatRoom.id\n" +
+                "and ChatMsg.ChatMember_id = ChatMember.id\n" +
+                "order by ChatMsg.DateStamp ";
+
+        return null;
     }
 
     public Message getMessage(String chatMsgID)
@@ -176,6 +183,9 @@ public class DatabaseChatOperation  {
         else
             return null;
     }
+
+
+
 
 
 
