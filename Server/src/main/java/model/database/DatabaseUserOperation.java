@@ -126,7 +126,7 @@ public class DatabaseUserOperation  {
              preparedStatement.setString(1, username);
             ResultSet resultSet = preparedStatement.executeQuery();
             if(resultSet.next()){
-                //email is exist
+                //username is exist
                 usernameExist =  true;
             }else{
                 usernameExist =  false;
