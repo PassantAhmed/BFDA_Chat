@@ -8,12 +8,9 @@ package model.database;
 import beans.User;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 import server.interfaces.FriendsDbOperations;
 
@@ -34,7 +31,7 @@ public class FriendsDbOperationsImp extends UnicastRemoteObject implements Frien
 
     /********************  search for user to add *******************************/
     @Override
-    public ArrayList<beans.User> searchForUser(String usrInformation)
+    public ArrayList<User> searchForUser(String usrInformation)
 
     {
         String selectStatement = "select id,name,username,email,password,gender,country,birthdate,userPic,status,mode from user where id= '"+usrInformation+"' or username= '"+usrInformation+"'";
@@ -49,7 +46,7 @@ public class FriendsDbOperationsImp extends UnicastRemoteObject implements Frien
     public boolean sendFriendRequest(int myId,int userId)
     {
 
-        String sqlStatm= "INSERT INTO Friend (userid,friendid,requestflag) VALUES ('"+myId+",'"+userId+"',false)";
+        String sqlStatm= "INSERT INTO Friend (userid,friendid,requestflag) VALUES ('"+myId+",'"+userId+"',0)";
         boolean checkOperation = friendsCrud.insert(sqlStatm);
         return checkOperation;
     }
@@ -61,7 +58,10 @@ public class FriendsDbOperationsImp extends UnicastRemoteObject implements Frien
     {
         //user update for the flag to true where id
         String sqlStatm = "update Friend set requestflag=true where (userid,friendid) VALUES ('"+myId+"','"+userId+"')";
-        boolean checkOperation=friendsCrud.update(sqlStatm);
+        boolean checkOperation = friendsCrud.update(sqlStatm);
+        sqlStatm= "INSERT INTO Friend (userid,friendid,requestflag) VALUES ('"+userId+",'"+myId+"',1)";
+        checkOperation = friendsCrud.update(sqlStatm);
+
         return checkOperation;
     }
 
@@ -77,17 +77,27 @@ public class FriendsDbOperationsImp extends UnicastRemoteObject implements Frien
 
     }
 
-
     /********************* select all your friends **********************************/
     @Override
-    public ArrayList<beans.User> retrieveAllFriends(int myId)
+    public ArrayList<User> retrieveAllFriends(int myId)
     {
         //as select but from friend table
-
-        String selectStatement = "select id,name,username,email,password,gender,country,birthdate,userPic,status,mode from user where id='"+myId+"' and friend.user_id=user.id";
+        String selectStatement = "select User.id , name , username , email , password , gender , country , birthdate , userPicture , statusFlag , statusMode " +
+                "from User , Friend " +
+                "where Friend.User_id = "+myId+" and Friend.RequestFlag = 1 " +
+                "and User.id = Friend.Friend_id";
         return (ArrayList<User>) friendsCrud.select(selectStatement);
+    }
 
-
+    @Override
+    public ArrayList<User> getAllFriendRequests(String myId) throws RemoteException {
+//
+        String selectStatement = "select User.id , name , username , email , password , gender , country , " +
+                "birthdate , userPicture , statusFlag , statusMode \n" +
+                "from User , Friend " +
+                "where Friend.User_id = "+myId+" and Friend.RequestFlag = 0 " +
+                "and User.id = Friend.Friend_id";
+        return (ArrayList<User>) friendsCrud.select(selectStatement);
     }
 
 

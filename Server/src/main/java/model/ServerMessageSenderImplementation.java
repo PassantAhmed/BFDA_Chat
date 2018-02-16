@@ -5,6 +5,7 @@
  */
 package model;
 
+import beans.Group;
 import beans.Message;
 import client.interfaces.ClientObj;
 import com.sun.security.ntlm.Server;
@@ -24,30 +25,11 @@ import java.util.Vector;
  */
 public class ServerMessageSenderImplementation extends UnicastRemoteObject implements ServerMessegeSender {
 
-//    ChatFlowControl chatFlowControl ;
-
-//    public ServerMessageSenderImplementation() throws RemoteException {
-////        chatFlowControl = new ChatFlowControl();
-////    }
-////
-////    @Override
-////    public void chatStartRequest(String chatID, Vector<String> users) throws RemoteException {
-////        chatFlowControl.registerNewChat(chatID , users);
-////    }
-////
-////    @Override
-////    public void sendMsgToChat(String chatID, Message message) throws RemoteException {
-////        chatFlowControl.sendMsg(chatID , message);
-////    }
-
-
-
     DatabaseChatOperation databaseChatOperation;
 
     public ServerMessageSenderImplementation() throws SQLException, ClassNotFoundException ,RemoteException {
         databaseChatOperation = new DatabaseChatOperation();
     }
-
 
     public String getChatOfClient(String user ,String clientName) throws SQLException {
         return databaseChatOperation.getChatRoomOfClient(user , clientName);
@@ -79,10 +61,15 @@ public class ServerMessageSenderImplementation extends UnicastRemoteObject imple
 
     }
 
-    public String getChatMemberID(String userName , String chatRoomID) throws SQLException
-    {
+    public String getChatMemberID(String userName , String chatRoomID) throws SQLException {
         return databaseChatOperation.getChatMemberID(userName , chatRoomID);
     }
 
+    public Vector<Message> getAllRoomMessages(String chatRoomID) throws SQLException {
+        return databaseChatOperation.getAllRoomMessages(chatRoomID);
+    }
 
+    public Vector<Group> getAllGroups(int myID) throws SQLException {
+       return databaseChatOperation.getAllGroups(myID);
+    }
 }

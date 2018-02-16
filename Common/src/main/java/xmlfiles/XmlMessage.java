@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Vector;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLOutputFactory;
 import javax.xml.stream.XMLStreamException;
@@ -27,7 +28,7 @@ public class XmlMessage {
     private static final String NAME_SPACE = "http://www.w3.org/2001/XMLSchema-instance";
     private static String fileName;
 
-    public static boolean writeXmlFile(String userName, String chatName, ArrayList<Message> messages) {
+    public static boolean writeXmlFile(String userName, String chatName, Vector<Message> messages) {
         Date date = new Date();
         boolean writeFlag = false;
         try {
@@ -92,6 +93,7 @@ public class XmlMessage {
             writeFlag = true;
 
         } catch (XMLStreamException | FileNotFoundException  ex) {
+            System.out.println(ex.toString());
             writeFlag = false;
         } 
         

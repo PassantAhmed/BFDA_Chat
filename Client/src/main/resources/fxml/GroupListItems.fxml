@@ -20,7 +20,6 @@
     <Pane prefHeight="80.0" prefWidth="77.0">
       <children>
         <Circle fx:id="profilePicCircle" fill="DODGERBLUE" layoutX="39.0" layoutY="42.0" radius="24.999950000001263" stroke="#aeaeae" strokeType="INSIDE" />
-        <Circle fx:id="statusCircle" fill="#74ff33" layoutX="62.0" layoutY="59.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" style="-fx-background-color:green;&#10;&#10;" />
       </children>
     </Pane>
       <Pane prefHeight="82.0" prefWidth="116.0">
@@ -35,11 +34,6 @@
                   <Insets top="10.0" />
                 </VBox.margin>
               </Label>
-              <Label fx:id="status" text="Status" textAlignment="CENTER">
-                <font>
-                  <Font name="Waree" size="13.0" />
-                </font>
-              </Label>
             </children>
             <padding>
               <Insets bottom="10.0" />
@@ -47,14 +41,6 @@
           </VBox>
          </children>
       </Pane>
-      <AnchorPane prefHeight="82.0" prefWidth="64.0">
-         <children>
-            <Label fx:id="msgCount" layoutX="19.0" layoutY="1.0" prefHeight="34.0" prefWidth="24.0" text="...">
-               <font>
-                  <Font size="36.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
+      <AnchorPane prefHeight="82.0" prefWidth="64.0" />
   </children>
 </HBox>

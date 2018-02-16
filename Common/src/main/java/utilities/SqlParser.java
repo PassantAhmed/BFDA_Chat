@@ -18,7 +18,7 @@ public class SqlParser  {
         return sqlDate;
     }
 
-    public static LocalDate fromSqlToLocal(Date date)
+    public static LocalDate fromSqlToLocalDate(Date date)
     {
         return date.toLocalDate();
     }
@@ -26,4 +26,10 @@ public class SqlParser  {
     public static java.sql.Timestamp fromLocalDateTimeToSql(LocalDateTime localDateTime) {
         return Timestamp.from(localDateTime.toInstant(ZoneOffset.ofHours(0)));
     }
+
+    public static LocalDateTime fromSqlTimeStampToLocalDateTime(Timestamp timeStamp)
+    {
+        return timeStamp.toLocalDateTime();
+    }
+
 }

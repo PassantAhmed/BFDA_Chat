@@ -12,15 +12,17 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.ComboBox?>
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="693.0" prefWidth="586.0" style="-fx-background-color: #FFF;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.RegisterController">
 <children>
       <AnchorPane layoutX="61.0" layoutY="147.0" prefHeight="487.0" prefWidth="463.0" style="-fx-background-color: #ffe6ff; -fx-background-radius: 10 10 10 10;">
          <children>
-            <Label fx:id="hyperloginid" layoutX="206.0" layoutY="445.0" text="Login" textFill="#001a33" underline="true">
+            <Hyperlink fx:id="hyperloginid" layoutX="206.0" layoutY="445.0" onAction="#loginBtn" text="Login" textFill="#001a33" underline="true">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
-            </Label>
+            </Hyperlink>
             <Label layoutX="133.0" layoutY="417.0" text="already have an account?">
                <font>
                   <Font size="18.0" />
@@ -41,7 +43,7 @@
             <TextField fx:id="usernameid" layoutX="253.0" layoutY="46.0" prefHeight="26.0" prefWidth="169.0" promptText="ex: ahmed" style="-fx-padding: 5 20 5 20; -fx-background-radius: 5 20 5 20;" />
             <TextField fx:id="passwordid" accessibleRole="PASSWORD_FIELD" layoutX="253.0" layoutY="131.0" prefHeight="26.0" prefWidth="169.0" style="-fx-background-radius: 5 20 5 20;" />
             <TextField fx:id="repasswordid" accessibleRole="PASSWORD_FIELD" layoutX="253.0" layoutY="213.0" prefHeight="26.0" prefWidth="169.0" style="-fx-background-radius: 5 20 5 20;" />
-            <Spinner fx:id="countryid" layoutX="24.0" layoutY="213.0" prefHeight="26.0" prefWidth="170.0" style="-fx-background-radius: 20 5 5 5;" />
+            <ComboBox fx:id="countryid" layoutX="24.0" layoutY="213.0" prefHeight="26.0" prefWidth="170.0" style="-fx-background-radius: 20 5 5 5;" />
              <fx:define>
                  <ToggleGroup fx:id="genderGroup" />
              </fx:define>

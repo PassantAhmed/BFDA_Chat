@@ -39,7 +39,7 @@ public class WelcomeController implements Initializable {
         return validationChecks.isIP(ipAddress);
     }
     public void connect(ActionEvent actionEvent) {
-        String ipAddress = serverIpField1.getText() + "." + serverIpField2.getText() + "." + serverIpField4.getText() + "." + serverIpField4.getText();
+        String ipAddress = serverIpField1.getText() + "." + serverIpField2.getText() + "." + serverIpField3.getText() + "." + serverIpField4.getText();
         if(!validateIp(ipAddress))
             errorLabel.setText("IP is not a valid IP, please re-write a valid one..");
         else

@@ -1,13 +1,22 @@
 package view.controller;
 
 import beans.User;
+
+import java.io.IOException;
 import java.net.URL;
 import java.rmi.RemoteException;
 import java.util.ResourceBundle;
+
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import model.ServerConnection;
 import server.interfaces.ServerObj;
 import view.util.ValidationChecks;
@@ -15,7 +24,7 @@ import view.util.ValidationChecks;
 public class RegisterController implements Initializable {
      
     private ValidationChecks checker = new ValidationChecks();
-    @FXML private Spinner<String> countryid;
+    @FXML private ComboBox<String> countryid;
     @FXML private DatePicker dobid;
     @FXML private TextField emailid;
     @FXML private TextField fullnameid;
@@ -25,7 +34,7 @@ public class RegisterController implements Initializable {
     @FXML private TextField usernameid;
 
 
-    @FXML private Label hyperloginid;
+    @FXML private Hyperlink hyperloginid;
     @FXML private Button submitid;
 
     ServerConnection serverConnection = ServerConnection.getInstance();
@@ -45,7 +54,6 @@ public class RegisterController implements Initializable {
         user.setEmail(emailid.getText());
         user.setBirthdate(dobid.getValue());
         user.setCountry(countryid.getValue());
-
         genderBoolean = genderGroup.getSelectedToggle().getUserData().toString() == "male";
         user.setGender(genderBoolean);
         
@@ -76,6 +84,31 @@ public class RegisterController implements Initializable {
         return isValid;
     }
     public void initialize(URL url, ResourceBundle rb) {
+
+        countryid.getItems().addAll("Egypt" , "USA" , "Canada");
         // TODO
-    }    
+    }
+
+    public void loginBtn(ActionEvent mouseEvent) {
+        Platform.runLater(()->{
+
+            Parent root = null;
+            try {
+
+                Stage stage = new Stage();
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LoginScene.fxml"));
+                root = fxmlLoader.load();
+                ControllerManager.getInstance().setLoginController(fxmlLoader.getController());
+                Scene scene = new Scene(root);
+                stage.setTitle("BFDA Chat | Register");
+                stage.setScene(scene);
+                Stage currentStage = (Stage)usernameid.getScene().getWindow();
+                currentStage.close();
+                stage.setResizable(false);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+    }
 }
