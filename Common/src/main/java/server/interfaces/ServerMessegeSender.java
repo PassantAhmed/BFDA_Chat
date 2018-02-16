@@ -21,9 +21,10 @@ import java.util.Vector;
 public interface ServerMessegeSender extends Remote
 {
     public String getChatOfClient(String user ,String clientName) throws RemoteException, SQLException;
-    public void sendMsg(String chatMemberID , Message msg) throws RemoteException, SQLException;
+    public void sendMsg(String chatMemberID ,String chatRoomID , Vector<String> messgaes , Message msg) throws RemoteException, SQLException;
     public String getChatRoomOfClient(String myName , String clientName) throws RemoteException, SQLException;
     public String getChatMemberID(String userName , String chatRoomID) throws SQLException , RemoteException;
     public Vector<Message> getAllRoomMessages(String chatRoomID) throws SQLException , RemoteException;
     public Vector<Group> getAllGroups(int myID) throws SQLException , RemoteException;
+    public Vector<String> getAllChatMember(String chatID) throws SQLException , RemoteException;
 }
