@@ -118,6 +118,7 @@ public class MainController implements Initializable {
             message.setBold(isBold);
             message.setItalic(isItalic);
             message.setMessageDate(LocalDateTime.now());
+
             new Thread(() -> {
                 try {
                     serverMessegeSender.sendMsg(currentChatMemberID, message);
