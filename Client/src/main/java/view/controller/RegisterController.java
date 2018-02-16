@@ -62,7 +62,7 @@ public class RegisterController implements Initializable {
             if(user.getPassword().equals(repassword)){
                 //data is valid send user object to server
                 boolean success = serverObj.getClientServerRegister().newUserRegisteration(user);
-                if(success== true){
+                if(success){
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LoginScene.fxml"));
                     Stage stage = new Stage();
                     Parent root = fxmlLoader.load();

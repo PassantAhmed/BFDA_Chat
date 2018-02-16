@@ -34,7 +34,7 @@ public class ServerMessageSenderImplementation extends UnicastRemoteObject imple
         return databaseChatOperation.getChatRoomOfClient(user , clientName);
     }
 
-    public void sendMsg(String chatMemberID , Message msg) throws SQLException, RemoteException {
+    public synchronized void sendMsg(String chatMemberID , Message msg) throws SQLException, RemoteException {
         String msgID = databaseChatOperation.sendMsgtoDatabase(chatMemberID , msg);
         String chatRoomID = databaseChatOperation.getChatRoomForChatMember(chatMemberID);
         Vector<String> chatMembers = databaseChatOperation.chatMembers(msgID);

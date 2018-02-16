@@ -109,7 +109,7 @@ public class MainController implements Initializable {
     public void sendBtn(ActionEvent actionEvent) throws RemoteException, SQLException {
         ServerMessegeSender serverMessegeSender = ServerConnection.getInstance().getRegisteryObject().getServerMessegeSender();
         Message message = new Message();
-        if(!chatField.getText().isEmpty() || chatField.getText() != null) {
+        if(!chatField.getText().isEmpty() && chatField.getText() != null) {
             message.setMessageContent(chatField.getText());
             message.setMessageFontFamily(fontList.getValue());
             message.setMessageFontSize(sizeList.getValue().toString());
@@ -122,8 +122,12 @@ public class MainController implements Initializable {
                 try {
                     serverMessegeSender.sendMsg(currentChatMemberID, message);
                 } catch (SQLException | RemoteException e) {
-                    new Alert(Alert.AlertType.ERROR, "Cannot Send Msg , System Error");
+                    Platform.runLater(()->{
+                        new Alert(Alert.AlertType.ERROR,
+                                "Cannot Send Msg , System Error  "+e.toString());
+                    });
                     e.printStackTrace();
+
                 }
             }).start();
         }

@@ -66,18 +66,19 @@ public class LoginController implements Initializable {
 
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-
+        connectToServer(ControllerManager.getInstance().getWelcomeController().getIpAddress());
     }
 
     private void getServerObject()
     {
         serverConnection = ServerConnection.getInstance();
         serverObj = serverConnection.getRegisteryObject();
+
     }
 
     public void verificateUser(String userName , String password) throws RemoteException {
         User loginUserResult;
-        connectToServer(ControllerManager.getInstance().getWelcomeController().getIpAddress());
+//        connectToServer(ControllerManager.getInstance().getWelcomeController().getIpAddress());
         getServerObject();
 
 
