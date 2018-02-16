@@ -8,7 +8,6 @@ package model;
 import beans.Group;
 import beans.Message;
 import client.interfaces.ClientObj;
-import com.sun.security.ntlm.Server;
 import model.database.DatabaseChatOperation;
 import server.interfaces.ClientServerRegister;
 import server.interfaces.ServerMessegeSender;
