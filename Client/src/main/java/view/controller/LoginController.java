@@ -144,9 +144,9 @@ public class LoginController implements Initializable {
             try {
 
                 Stage stage = new Stage();
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/RegisterScene.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/Register1Scene.fxml"));
                 root = fxmlLoader.load();
-                ControllerManager.getInstance().setRegisterController(fxmlLoader.getController());
+                ControllerManager.getInstance().setRegisterController1(fxmlLoader.getController());
                 Scene scene = new Scene(root);
                 stage.setTitle("BFDA Chat | Register");
                 stage.setScene(scene);

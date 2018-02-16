@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXToggleButton?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="522.0" prefWidth="764.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.RegisterController1">
+<children>
+      <Pane fx:id="firstScreenPane" layoutX="27.0" layoutY="21.0" prefHeight="490.0" prefWidth="710.0">
+         <children>
+            <AnchorPane layoutX="661.0" layoutY="451.0" prefHeight="18.0" prefWidth="25.0">
+               <children>
+                  <ImageView fx:id="goToNextPageBtn" fitHeight="26.0" fitWidth="31.0" layoutX="-4.0" layoutY="-2.0" onMousePressed="#changeToNextScene" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../styles/gotoreg2.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutY="130.0" prefHeight="98.0" prefWidth="142.0">
+               <children>
+                  <ImageView fitHeight="174.0" fitWidth="224.0" layoutX="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../styles/logo.png" />
+                     </image>
+                  </ImageView>
+                  <AnchorPane layoutX="-56.0" layoutY="83.0" prefHeight="145.0" prefWidth="153.0">
+                     <children>
+                        <ImageView fitHeight="428.0" fitWidth="303.0" layoutX="23.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../styles/bfda.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="firstRegPane" layoutX="249.0" layoutY="35.0" prefHeight="390.0" prefWidth="442.0" style="-fx-background-radius: 10 10 10 10; -fx-background-color: #FFF;">
+               <children>
+                  <AnchorPane layoutX="41.0" layoutY="317.0" prefHeight="58.0" prefWidth="359.0">
+                     <children>
+                        <Label layoutX="96.0" text="already have an account?">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Hyperlink fx:id="hyperloginid" layoutX="149.0" layoutY="16.0" onAction="#loginBtn" text="Login" textFill="#001a33" underline="true">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Hyperlink>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="28.0" layoutY="298.0" prefHeight="28.0" prefWidth="382.0">
+                     <children>
+                        <Pane layoutY="-1.0" prefHeight="7.0" prefWidth="138.0" style="-fx-background-color: #ff6699;" />
+                        <Pane layoutX="247.0" layoutY="-1.0" prefHeight="7.0" prefWidth="138.0" style="-fx-background-color: #ff6699;" />
+                        <Pane layoutX="125.0" layoutY="-1.0" prefHeight="7.0" prefWidth="128.0" style="-fx-background-color: #001a33;" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="46.0" layoutY="37.0" prefHeight="261.0" prefWidth="350.0">
+                     <children>
+                        <JFXTextField fx:id="emailid" focusColor="#001a33" labelFloat="true" layoutX="22.0" layoutY="57.0" prefHeight="26.0" prefWidth="317.0" promptText="Email" unFocusColor="WHITE" />
+                        <Label layoutX="23.0" layoutY="103.0" text="Date of Birth" />
+                        <JFXDatePicker fx:id="dobid" defaultColor="#cf4374" layoutX="149.0" layoutY="90.0" prefHeight="28.0" prefWidth="128.0" />
+                        <Label layoutX="24.0" layoutY="150.0" text="Country" />
+                        <JFXComboBox fx:id="countryid" focusColor="#cf4374" layoutX="148.0" layoutY="137.0" prefHeight="26.0" prefWidth="97.0" unFocusColor="#001a33" />
+                        <Label layoutX="25.0" layoutY="191.0" text="Gender" />
+                        <JFXToggleButton fx:id="userGender" layoutX="137.0" layoutY="171.0" onMousePressed="#changeBtnText" text="Male" toggleColor="#04437f" toggleLineColor="#f0568c" unToggleColor="#ef558b" unToggleLineColor="#001a33" />
+                        <JFXTextField fx:id="fullnameid" focusColor="#001a33" labelFloat="true" layoutX="21.0" layoutY="8.0" prefHeight="26.0" prefWidth="317.0" promptText="Full Name" unFocusColor="WHITE" />
+                        <Label fx:id="warningMsg" layoutX="24.0" layoutY="229.0" prefHeight="20.0" prefWidth="318.0" textFill="#972626">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
