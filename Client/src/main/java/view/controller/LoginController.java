@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 
 import beans.User;
 import client.interfaces.ClientObj;
+import com.jfoenix.controls.JFXButton;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,7 +27,7 @@ public class LoginController implements Initializable {
 
     @FXML private TextField userNameFieldForLogIn;
     @FXML private TextField passwordFieldForLogIn;
-    @FXML private Button loginButton;
+    @FXML private JFXButton loginButton;
     @FXML private Hyperlink signupButton;
     @FXML private Label notValidLbl;
     boolean loginResultFlag = false;

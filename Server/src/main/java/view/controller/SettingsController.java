@@ -5,6 +5,7 @@
  */
 package view.controller;
 
+import com.jfoenix.controls.JFXButton;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,8 +26,8 @@ import java.util.ResourceBundle;
  */
 public class SettingsController implements Initializable{
 
-    @FXML private Button startButton;
-    @FXML private Button stopButton;
+    @FXML private JFXButton startButton;
+    @FXML private JFXButton stopButton;
     private boolean isServerRunning = false;
     private RemoteServerToRegistry remoteServerToRegistry;
 

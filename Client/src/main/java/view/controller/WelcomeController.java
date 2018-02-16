@@ -1,5 +1,7 @@
 package view.controller;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXSpinner;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -11,7 +13,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -27,7 +28,8 @@ public class WelcomeController implements Initializable {
     @FXML private TextField serverIpField2;
     @FXML private TextField serverIpField3;
     @FXML private TextField serverIpField4;
-    @FXML private Button loginButton;
+    @FXML private JFXButton loginButton;
+    @FXML private JFXSpinner loader;
 
     public String getIpAddress() {
         return ipAddress;
@@ -37,6 +39,7 @@ public class WelcomeController implements Initializable {
 
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        setLoader();
     }
 
     public boolean validateIp(String ipAddress)
@@ -46,9 +49,11 @@ public class WelcomeController implements Initializable {
     }
     public void connect(ActionEvent actionEvent) {
         String ipAddress = serverIpField1.getText() + "." + serverIpField2.getText() + "." + serverIpField3.getText() + "." + serverIpField4.getText();
-        if(!validateIp(ipAddress))
+        loader.setVisible(true);
+        if(!validateIp(ipAddress)){
             errorLabel.setText("IP is not a valid IP, please re-write a valid one..");
-        else
+            setLoader();
+        } else
         {
             this.ipAddress = ipAddress;
             openLogin();
@@ -56,7 +61,9 @@ public class WelcomeController implements Initializable {
 
     }
 
-
+    private void setLoader(){
+        loader.setVisible(false);
+    }
 
     public void connectionEstablishingMode(boolean status)
     {

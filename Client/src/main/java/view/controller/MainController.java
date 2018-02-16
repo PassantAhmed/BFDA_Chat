@@ -28,7 +28,6 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import model.ClientObject;
 import view.util.GroupListFormat;
-import xmlfiles.XmlMessage;
 
 
 import java.io.IOException;
@@ -222,7 +221,7 @@ public class MainController implements Initializable {
     }
 
     public void saveChat(ActionEvent actionEvent) {
-        System.out.println(XmlMessage.writeXmlFile(ClientObject.getUserDataInternal().getUsername() , "" , messagesMap.get(currentChatID)));
+        //System.out.println(XmlMessage.writeXmlFile(ClientObject.getUserDataInternal().getUsername() , "" , messagesMap.get(currentChatID)));
     }
 
     public void logoutBtn(MouseEvent mouseEvent) throws IOException {
