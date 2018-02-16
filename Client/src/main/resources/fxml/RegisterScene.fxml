@@ -28,7 +28,7 @@
                   <Font size="18.0" />
                </font></Label>
             <Label layoutX="253.0" layoutY="270.0" text="Gender" />
-            <Button fx:id="submitid" layoutX="99.0" layoutY="348.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="262.0" style="-fx-background-color: #001a33; -fx-background-radius: 20 5 20 5;" text="Register" textFill="WHITE">
+            <Button fx:id="submitid" onAction="#registerAction" layoutX="99.0" layoutY="348.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="262.0" style="-fx-background-color: #001a33; -fx-background-radius: 20 5 20 5;" text="Register" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font></Button>
