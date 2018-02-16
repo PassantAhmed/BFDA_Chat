@@ -11,27 +11,29 @@ import java.rmi.server.UnicastRemoteObject;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ClientServerRegisterImp extends UnicastRemoteObject implements ClientServerRegister, Serializable {
 
-    public static Vector<ClientObj> clientObject = new Vector<ClientObj>();
+//    public static Vector<ClientObj> clientObject = new Vector<ClientObj>();
+    public static HashMap<String , ClientObj> clientObjHashMap = new HashMap<>();
 
     protected ClientServerRegisterImp() throws RemoteException {
 
     }
 
     @Override
-    public void registerUser(ClientObj clientObject) {
+    public void registerUser(String username , ClientObj clientObject) {
         System.out.print("Registered");
-        ClientServerRegisterImp.clientObject.add(clientObject);
+        ClientServerRegisterImp.clientObjHashMap.put(username , clientObject);
     }
 
     @Override
-    public void unRegisterUser(ClientObj clientObject) {
-        ClientServerRegisterImp.clientObject.remove(clientObject);
+    public void unRegisterUser(String username ) {
+        ClientServerRegisterImp.clientObjHashMap.remove(username);
     }
 
 

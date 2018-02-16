@@ -1,4 +1,4 @@
-package model;
+package model.user;
 
 import beans.User;
 import client.interfaces.UserAccount;
@@ -13,7 +13,7 @@ public class UserAccountImpl extends UnicastRemoteObject implements UserAccount 
 
     }
 
-    protected UserAccountImpl() throws RemoteException {
+    public UserAccountImpl() throws RemoteException {
     }
 
     public void updateUserStatus(String userID, String status) {

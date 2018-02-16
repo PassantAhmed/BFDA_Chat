@@ -4,6 +4,8 @@ import beans.User;
 import client.interfaces.ChatHandler;
 import client.interfaces.ClientObj;
 import client.interfaces.UserAccount;
+import model.chat.ChatImpl;
+import model.user.UserAccountImpl;
 
 import java.io.Serializable;
 import java.rmi.RemoteException;

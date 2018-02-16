@@ -29,6 +29,12 @@ public class WelcomeController implements Initializable {
     @FXML private TextField serverIpField4;
     @FXML private Button loginButton;
 
+    public String getIpAddress() {
+        return ipAddress;
+    }
+
+    private String ipAddress;
+
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
@@ -44,39 +50,13 @@ public class WelcomeController implements Initializable {
             errorLabel.setText("IP is not a valid IP, please re-write a valid one..");
         else
         {
-            new Thread(()->{
-                try {
-                    if(connectToServer(ipAddress))
-                        openLogin();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }).start();
+            this.ipAddress = ipAddress;
+            openLogin();
         }
 
     }
 
-    public boolean connectToServer(String ipAddress) throws IOException {
-        ServerConnection serverConnection = ServerConnection.getInstance();
-        serverConnection.setHost(ipAddress);
-        connectionEstablishingMode(true);
-        boolean flag = false;
-        if (serverConnection.establiseConnection())
-        {
-            Platform.runLater(()->{errorLabel.setText("Connection Establised !");});
-            ServerObj serverObj = ServerConnection.getInstance().getRegisteryObject();
-            serverObj.getClientServerRegister().registerUser(new ClientObject());
-            flag =  true;
-        }
-        else
-        {
-            Platform.runLater(()->{errorLabel.setText("Server is Not Reachable");});
-            flag =  false;
-        }
-        connectionEstablishingMode(false);
-        return flag;
 
-    }
 
     public void connectionEstablishingMode(boolean status)
     {
@@ -117,6 +97,7 @@ public class WelcomeController implements Initializable {
                 Stage currentStage = (Stage)loginButton.getScene().getWindow();
                 ControllerManager.getInstance().setLoginController(fxmlLoader.getController());
                 currentStage.close();
+                stage.setOnCloseRequest(param->{System.exit(0);});
                 stage.show();
             } catch (IOException e) {
                 e.printStackTrace();

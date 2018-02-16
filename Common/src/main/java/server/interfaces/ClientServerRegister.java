@@ -12,8 +12,8 @@ import java.rmi.RemoteException;
  */
 public interface ClientServerRegister extends Remote {
 
-    public void registerUser(ClientObj clientObject) throws RemoteException;
-    public void unRegisterUser(ClientObj clientObject)throws RemoteException;
+    public void registerUser(String username , ClientObj clientObject) throws RemoteException;
+    public void unRegisterUser(String username)throws RemoteException;
 
     public User userLogin(String username , String password) throws RemoteException;
     public Boolean newUserRegisteration(User user) throws RemoteException;

@@ -11,7 +11,7 @@ import java.util.Vector;
  */
 public class ConnectionValidation {
 
-    Vector<ClientObj> inActiveUsers = new Vector<>();
+    Vector<String> inActiveUsers = new Vector<>();
 
     public void checkActiveUsers()
     {
@@ -19,13 +19,13 @@ public class ConnectionValidation {
 
             try {
                 Thread.sleep(1000);
-                for(ClientObj obj : ClientServerRegisterImp.clientObject)
+                for(String key : ClientServerRegisterImp.clientObjHashMap.keySet())
                 {
                     try {
-                        obj.getChatHandler().updateConnection();
+                        ClientServerRegisterImp.clientObjHashMap.get(key).getChatHandler().updateConnection();
                     } catch (RemoteException e) {
 
-                        inActiveUsers.add(obj);
+                        inActiveUsers.add(key);
                         System.out.println("Adding to be Removed   "+e.toString());
                     }
                 }
@@ -42,10 +42,10 @@ public class ConnectionValidation {
 
     public void removeInactiveFromList()
     {
-        for(ClientObj clientObj : inActiveUsers)
+        for(String clientObj : inActiveUsers)
         {
             System.out.println("Removing Inactives");
-            ClientServerRegisterImp.clientObject.remove(clientObj);
+            ClientServerRegisterImp.clientObjHashMap.remove(clientObj);
         }
         inActiveUsers.clear();
     }
