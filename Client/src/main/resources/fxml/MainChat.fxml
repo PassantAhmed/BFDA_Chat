@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -28,7 +29,7 @@
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="666.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.MainController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="6.0" prefWidth="100.0" />
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="30.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="25.0" prefWidth="100.0" />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="44.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="25.0" prefWidth="100.0" />
   </columnConstraints>
@@ -42,9 +43,9 @@
             <Circle fx:id="profilePicCircle" fill="DODGERBLUE" radius="20.0" smooth="true" stroke="BLACK" strokeType="INSIDE" style="" />
          </children>
       </VBox>
-      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #00284d;" GridPane.columnIndex="2">
+      <Pane fx:id="chatHeader" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #00284d;" GridPane.columnIndex="2">
          <children>
-            <AnchorPane prefHeight="100.0" prefWidth="441.0" style="-fx-background-color: #00284d; -fx-border-color: #00284d;">
+            <AnchorPane fx:id="chatHead" prefHeight="100.0" prefWidth="441.0" style="-fx-background-color: #00284d; -fx-border-color: #00284d;">
                <children>
                   <Label fx:id="name" layoutX="73.0" layoutY="33.0" text="Name" textFill="WHITE">
                      <font>
@@ -61,49 +62,50 @@
             </AnchorPane>
          </children>
       </Pane>
-      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #00284d;" GridPane.columnIndex="3" />
+      <Pane fx:id="topSideArea" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #00284d;" GridPane.columnIndex="3" />
       <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-      <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+      <VBox fx:id="ChatArea" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #ffe6ff; -fx-border-color: lightgray;" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
          <children>
             <ScrollPane prefHeight="450.0" prefWidth="440.0">
                <content>
-                  <VBox prefHeight="447.0" prefWidth="438.0">
+                  <VBox prefHeight="447.0" prefWidth="446.0" style="-fx-background-color: #ffe6ff;">
                      <children>
-                        <ListView fx:id="chatBoxListVIew" prefHeight="447.0" prefWidth="438.0" />
-                     </children></VBox>
+                        <ListView fx:id="chatBoxListVIew" prefHeight="434.0" prefWidth="438.0" style="-fx-background-color: #ffe6ff;" />
+                     </children>
+                  </VBox>
                </content>
             </ScrollPane>
-            <AnchorPane prefHeight="42.0" prefWidth="439.0" style="-fx-background-color: #ffe6ff;">
+            <HBox alignment="CENTER" prefHeight="67.0" prefWidth="440.0" spacing="3.0" style="-fx-background-color: #ffe6ff;">
                <children>
-                  <Button fx:id="bold" layoutX="137.0" layoutY="9.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="33.0" text="B">
+                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="71.0" text="Send File" />
+                  <ColorPicker fx:id="fontColorPicker" prefHeight="26.0" prefWidth="47.0" style="-fx-background-color: #ff6699;" />
+                  <Button fx:id="bold" mnemonicParsing="false" prefHeight="26.0" prefWidth="33.0" text="B">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="italic" layoutX="173.0" layoutY="9.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="30.0" text="I">
+                  <Button fx:id="italic" mnemonicParsing="false" prefHeight="26.0" prefWidth="30.0" text="I">
                      <font>
                         <Font name="System Italic" size="12.0" />
                      </font>
                   </Button>
-                  <ColorPicker fx:id="fontColorPicker" layoutX="87.0" layoutY="9.0" prefHeight="26.0" prefWidth="47.0" style="-fx-background-color: #ff6699;" />
-                  <Button layoutX="12.0" layoutY="10.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="71.0" text="Send File" />
-                  <ComboBox fx:id="fontList" layoutX="208.0" layoutY="9.0" prefHeight="25.0" prefWidth="133.0" />
-                  <ComboBox fx:id="sizeList" layoutX="345.0" layoutY="8.0" prefHeight="25.0" prefWidth="81.0" />
+                  <ComboBox fx:id="fontList" prefHeight="25.0" prefWidth="133.0" />
+                  <ComboBox fx:id="sizeList" prefHeight="25.0" prefWidth="81.0" />
                </children>
-            </AnchorPane>
-            <AnchorPane prefHeight="78.0" prefWidth="440.0" style="-fx-background-color: #ffe6ff;">
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                <children>
-                  <TextField fx:id="chatField" layoutX="7.0" layoutY="10.0" onAction="#sendBtn" prefHeight="46.0" prefWidth="358.0" />
-                  <Button onAction="#sendBtn" fx:id="sendBtn" alignment="CENTER" layoutX="372.0" layoutY="11.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="54.0" style="-fx-background-color: #001a33; -fx-background-radius: 35 25 35 25;" text="Send" textFill="WHITE">
+                  <TextField fx:id="chatField" onAction="#sendBtn" prefHeight="46.0" prefWidth="358.0" />
+                  <Button fx:id="sendBtn" alignment="CENTER" mnemonicParsing="false" onAction="#sendBtn" prefHeight="42.0" prefWidth="54.0" style="-fx-background-color: #001a33; -fx-background-radius: 35 25 35 25;" text="Send" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Button>
                </children>
-            </AnchorPane>
+            </HBox>
          </children>
       </VBox>
-      <VBox prefHeight="566.0" prefWidth="0.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+      <VBox fx:id="sideArea" prefHeight="566.0" prefWidth="0.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
          <children>
             <AnchorPane prefHeight="155.0" prefWidth="184.0" style="-fx-background-color: ffe6ff;">
                <children>
@@ -160,7 +162,10 @@
                   <ListView fx:id="friendsListView" prefHeight="200.0" prefWidth="200.0" />
                </content>
           </Tab>
-          <Tab style="-fx-background-color: #FFB84D;" text="Untitled Tab 2" />
+          <Tab style="-fx-background-color: #FFB84D;" text="Groups">
+               <content>
+                  <ListView fx:id="chatGroupsList" prefHeight="200.0" prefWidth="200.0" />
+               </content></Tab>
         </tabs>
       </TabPane>
    </children>

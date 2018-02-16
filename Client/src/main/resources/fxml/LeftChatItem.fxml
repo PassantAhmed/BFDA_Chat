@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.layout.*?>
@@ -13,11 +14,18 @@
 
 <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Circle fx:id="profilePicID" fill="DODGERBLUE" radius="18.0" stroke="TRANSPARENT" strokeType="INSIDE">
+      <VBox alignment="CENTER" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 100; -fx-background-color: DODGERBLUE;">
+         <children>
+            <Text fx:id="senderLetter" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: lightgray;" text="S">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Text>
+         </children>
          <HBox.margin>
-            <Insets left="10.0" />
+            <Insets left="6.0" />
          </HBox.margin>
-      </Circle>
+      </VBox>
       <VBox alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: lightgray; -fx-background-radius: 10 50 50 10;" HBox.hgrow="NEVER">
          <HBox.margin>
             <Insets left="6.0" right="6.0" />

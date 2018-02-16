@@ -24,10 +24,8 @@ public class ChatBoxFormat extends ListCell<Message> {
 
 
     private Node usedParent;
-    private Circle profilePicCircle;
     Text msgText;
-
-
+    Text senderLetter;
 
     public ChatBoxFormat()
     {
@@ -36,25 +34,10 @@ public class ChatBoxFormat extends ListCell<Message> {
 
             FXMLLoader.load(getClass().getResource("/fxml/LeftChatItem.fxml"));
             FXMLLoader.load(getClass().getResource("/fxml/RightChatItem.fxml"));
-
-//
-//            statusCircle = (Circle)parent.lookup("#statusCircle");
-//            name = (Label)parent.lookup("#name");
-//            status = (Label)parent.lookup("#status");
-//            msgCount = (Label)parent.lookup("#msgCount");
-//            img = new Image("https://www.filmibeat.com/img/220x90x275/popcorn/profile_photos/scarlett-johansson-20141121172716-5935.jpg");
-//            parent.setOnMouseClicked(param->{ unReadMsg = 0; updateMsgCount();});
-
-
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-
-
     }
-
 
     @Override
     protected void updateItem(Message item, boolean empty) {
@@ -62,11 +45,6 @@ public class ChatBoxFormat extends ListCell<Message> {
         try {
             if(!empty)
             {
-
-                System.out.println(item.getFromUser());
-                System.out.println(ClientObject.getUserDataInternal().getUsername());
-                System.out.println(item.getFromUser().equals(ClientObject.getUserDataInternal().getUsername()));
-
                 if(item.getFromUser().equals(ClientObject.getUserDataInternal().getUsername()))
                     usedParent = getCurrentParent(true);
                 else
@@ -77,6 +55,7 @@ public class ChatBoxFormat extends ListCell<Message> {
                 msgText.setFont(Font.font(item.getMessageFontFamily() ,fontWeight , fontPosture , Integer.valueOf(item.getMessageFontSize())));
                 msgText.setText(item.getMessageContent());
                 msgText.setStyle("-fx-fill: "+item.getMessageFontColor());
+                senderLetter.setText(item.getFromUser().substring(0, 1).toUpperCase());
                 setGraphic(usedParent);
                 this.setStyle("-fx-background-color: white");
             }
@@ -90,16 +69,16 @@ public class ChatBoxFormat extends ListCell<Message> {
         }
     }
 
-
     private Node getCurrentParent(boolean flag) throws IOException {
 
         if(flag) return FXMLLoader.load(getClass().getResource("/fxml/RightChatItem.fxml"));
         else return FXMLLoader.load(getClass().getResource("/fxml/LeftChatItem.fxml"));
 
     }
+
     private void initComponent(Node usedParent)
     {
-        profilePicCircle = (Circle)usedParent.lookup("#profilePicID");
         msgText = (Text)usedParent.lookup("#msgText");
+        senderLetter = (Text)usedParent.lookup("#senderLetter");
     }
 }

@@ -5,6 +5,7 @@
  */
 package server.interfaces;
 
+import beans.Group;
 import beans.Message;
 import beans.User;
 
@@ -24,4 +25,5 @@ public interface ServerMessegeSender extends Remote
     public String getChatRoomOfClient(String myName , String clientName) throws RemoteException, SQLException;
     public String getChatMemberID(String userName , String chatRoomID) throws SQLException , RemoteException;
     public Vector<Message> getAllRoomMessages(String chatRoomID) throws SQLException , RemoteException;
+    public Vector<Group> getAllGroups(int myID) throws SQLException , RemoteException;
 }

@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.*?>
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.layout.*?>
@@ -25,10 +28,17 @@
             </Text>
          </children>
       </VBox>
-      <Circle fx:id="profilePicID" fill="DODGERBLUE" radius="18.0" stroke="TRANSPARENT" strokeType="INSIDE">
+      <VBox alignment="CENTER" maxHeight="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 100; -fx-background-color: DODGERBLUE;">
          <HBox.margin>
-            <Insets right="10.0" />
+            <Insets right="6.0" />
          </HBox.margin>
-      </Circle>
+         <children>
+            <Text fx:id="senderLetter" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: lightgray;" text="S">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Text>
+         </children>
+      </VBox>
    </children>
 </HBox>

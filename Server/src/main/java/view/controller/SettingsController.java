@@ -31,7 +31,15 @@ public class SettingsController implements Initializable{
     private RemoteServerToRegistry remoteServerToRegistry;
 
     public void initialize(URL location, ResourceBundle resources) {
-        remoteServerToRegistry = RemoteServerToRegistry.getInstance();
+        try {
+            remoteServerToRegistry = RemoteServerToRegistry.getInstance();
+        } catch (RemoteException ReEx) {
+            if(ReEx.getClass().toString().contains("ExportException"))
+            {
+                showError("Server Is Already Running");
+                System.exit(0);
+            }
+        }
         stopButton.setDisable(true);
     }
 
@@ -82,7 +90,7 @@ public class SettingsController implements Initializable{
 
     private void showError(String errorMsg)
     {
-        Platform.runLater(()->{ new Alert(Alert.AlertType.ERROR , errorMsg).show();
+        Platform.runLater(()->{ new Alert(Alert.AlertType.ERROR , errorMsg).showAndWait();
         });
     }
 }

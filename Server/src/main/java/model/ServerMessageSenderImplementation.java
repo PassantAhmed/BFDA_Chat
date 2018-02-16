@@ -5,6 +5,7 @@
  */
 package model;
 
+import beans.Group;
 import beans.Message;
 import client.interfaces.ClientObj;
 import com.sun.security.ntlm.Server;
@@ -29,7 +30,6 @@ public class ServerMessageSenderImplementation extends UnicastRemoteObject imple
     public ServerMessageSenderImplementation() throws SQLException, ClassNotFoundException ,RemoteException {
         databaseChatOperation = new DatabaseChatOperation();
     }
-
 
     public String getChatOfClient(String user ,String clientName) throws SQLException {
         return databaseChatOperation.getChatRoomOfClient(user , clientName);
@@ -67,5 +67,9 @@ public class ServerMessageSenderImplementation extends UnicastRemoteObject imple
 
     public Vector<Message> getAllRoomMessages(String chatRoomID) throws SQLException {
         return databaseChatOperation.getAllRoomMessages(chatRoomID);
+    }
+
+    public Vector<Group> getAllGroups(int myID) throws SQLException {
+       return databaseChatOperation.getAllGroups(myID);
     }
 }

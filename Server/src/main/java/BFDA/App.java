@@ -21,6 +21,7 @@ public class App extends Application
         primaryStage.setScene(scene);
         primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setResizable(false);
+        primaryStage.setOnCloseRequest(param->{System.exit(0);});
         primaryStage.show();
     }
 

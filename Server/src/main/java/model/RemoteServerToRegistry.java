@@ -5,6 +5,7 @@
  */
 package model;
 
+import java.net.BindException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -18,21 +19,18 @@ public class RemoteServerToRegistry {
     private Registry serverRegistry;
     private static RemoteServerToRegistry instance;
 
-    public static RemoteServerToRegistry getInstance() {
+    public static RemoteServerToRegistry getInstance() throws RemoteException {
         if (instance == null)
             instance = new RemoteServerToRegistry();
         return instance;
     }
 
-    private RemoteServerToRegistry() {
-        try {
+    private RemoteServerToRegistry() throws RemoteException {
+
             serverRegistry = LocateRegistry.createRegistry(5220);
-        } catch (RemoteException ReEx) {
-            System.out.println(ReEx);
-        }
+
 
     }
-
     public void startServer() throws RemoteException, SQLException, ClassNotFoundException {
         serverRegistry.rebind("serverRegistry", new ServerObject());
 
