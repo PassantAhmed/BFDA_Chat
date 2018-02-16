@@ -73,6 +73,7 @@ public class MainController implements Initializable {
     private ServerConnection serverConnection;
     private ServerMessegeSender serverMessegeSender;
     private HashMap<String , Vector<Message>> messagesMap =  new HashMap<>();
+    private Vector<String> chatMembers = new Vector<>();
 
     public MainController() throws RemoteException {
 
@@ -122,7 +123,7 @@ public class MainController implements Initializable {
             new Thread(() -> {
 
                 try {
-                    serverMessegeSender.sendMsg(currentChatMemberID, message);
+                    serverMessegeSender.sendMsg(currentChatMemberID,currentChatID ,chatMembers, message);
                 } catch (SQLException | RemoteException e) {
                     Platform.runLater(()->{
                         new Alert(Alert.AlertType.ERROR,
@@ -168,6 +169,7 @@ public class MainController implements Initializable {
         serverMessegeSender = ServerConnection.getInstance().getRegisteryObject().getServerMessegeSender();
         currentChatID = serverMessegeSender.getChatRoomOfClient(ClientObject.getUserDataInternal().getUsername() , userName);
         currentChatMemberID = serverMessegeSender.getChatMemberID(ClientObject.getUserDataInternal().getUsername() ,currentChatID);
+        chatMembers = serverMessegeSender.getAllChatMember(currentChatID);
         setChat(currentChatID);
     }
 
@@ -195,6 +197,7 @@ public class MainController implements Initializable {
     public void setGroupChatRoom(String groupRoomID) throws SQLException, RemoteException {
 
         currentChatMemberID = serverMessegeSender.getChatMemberID(ClientObject.getUserDataInternal().getUsername() ,groupRoomID);
+        chatMembers = serverMessegeSender.getAllChatMember(groupRoomID);
         setChat(groupRoomID);
     }
 

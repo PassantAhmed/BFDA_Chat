@@ -227,7 +227,24 @@ public class DatabaseChatOperation {
         return groups;
     }
 
+    public synchronized Vector<String> getAllChatMember(String chatID) throws SQLException {
+        String query = "select User.username from User , ChatRoom , ChatMember " +
+                "where ChatRoom.id = ? " +
+                "and ChatMember.ChatRoom_id = ChatRoom.id " +
+                "and User.id = ChatMember.User_id";
 
+        preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setInt(1, Integer.parseInt(chatID));
+        resultSet = preparedStatement.executeQuery();
+        Vector<String> members = new Vector<>();
+        while (resultSet.next()) {
+            String res = resultSet.getString(1);
+            members.add(res);
+            System.out.println(res);
+        }
+        return members;
+
+    }
 
 
 }

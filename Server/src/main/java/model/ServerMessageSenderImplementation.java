@@ -34,29 +34,27 @@ public class ServerMessageSenderImplementation extends UnicastRemoteObject imple
         return databaseChatOperation.getChatRoomOfClient(user , clientName);
     }
 
-    public synchronized void sendMsg(String chatMemberID , Message msg) throws SQLException, RemoteException {
+    public synchronized void sendMsg(String chatMemberID ,String chatRoomID, Vector<String> members ,  Message msg)  {
         new Thread(()->{
-            String msgID = null;
             try {
-                msgID = databaseChatOperation.sendMsgtoDatabase(chatMemberID , msg);
-
-                String chatRoomID = databaseChatOperation.getChatRoomForChatMember(chatMemberID);
-        Vector<String> chatMembers = databaseChatOperation.chatMembers(msgID);
-        System.out.println("Message ID :"+msgID);
-        System.out.println("Got Chat Members : " + chatMembers.size());
-        ClientObj obj;
-        for(String chatMember : chatMembers)
-        {
-           obj = ClientServerRegisterImp.clientObjHashMap.get(chatMember);
-            if(obj != null)
-                obj.getChatHandler().updateChat(chatRoomID , msg);
-        }
+                databaseChatOperation.sendMsgtoDatabase(chatMemberID , msg);
             } catch (SQLException e) {
-
-            } catch (RemoteException e) {
-
+                e.printStackTrace();
             }
-        });
+        }).start();
+        new Thread(()->{
+            try {
+                System.out.println("Got Chat Members : " + members.size());
+                ClientObj obj;
+                for (String chatMember : members) {
+                    obj = ClientServerRegisterImp.clientObjHashMap.get(chatMember);
+                    if (obj != null)
+                        obj.getChatHandler().updateChat(chatRoomID, msg);
+                }
+            } catch (RemoteException e) {
+                System.out.println("Msg Not Sent !");
+            }
+        }).start();
 
     }
 
@@ -75,5 +73,11 @@ public class ServerMessageSenderImplementation extends UnicastRemoteObject imple
 
     public Vector<Group> getAllGroups(int myID) throws SQLException {
        return databaseChatOperation.getAllGroups(myID);
+    }
+
+    public Vector<String> getAllChatMember(String chatID) throws SQLException    {
+        return databaseChatOperation.getAllChatMember(chatID);
+
+
     }
 }
