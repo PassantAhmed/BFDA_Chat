@@ -42,18 +42,15 @@ public class ServerMessageSenderImplementation extends UnicastRemoteObject imple
 
         System.out.println("Message ID :"+msgID);
         System.out.println("Got Chat Members : " + chatMembers.size());
-
+        ClientObj obj;
         for(String chatMember : chatMembers)
         {
-            System.out.println(chatMember);
-            for(ClientObj obj : ClientServerRegisterImp.clientObject)
-            {
-                if(obj.getUserData().getUsername().equals(chatMember))
-                {
-                    obj.getChatHandler().updateChat(chatRoomID , msg);
-                }
-            }
+           obj = ClientServerRegisterImp.clientObjHashMap.get(chatMember);
+            if(obj != null)
+                obj.getChatHandler().updateChat(chatRoomID , msg);
         }
+
+
     }
 
     public String getChatRoomOfClient(String myName , String clientName) throws SQLException {

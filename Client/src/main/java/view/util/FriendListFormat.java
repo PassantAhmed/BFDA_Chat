@@ -69,7 +69,6 @@ public class FriendListFormat extends ListCell<User> {
             parent.setOnMouseClicked(param->{
                 try {
                     mainController.setSingleChatRoom(item.getUsername());
-
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 } catch (SQLException e) {

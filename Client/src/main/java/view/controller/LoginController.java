@@ -6,6 +6,7 @@ import java.rmi.RemoteException;
 import java.util.ResourceBundle;
 
 import beans.User;
+import client.interfaces.ClientObj;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -28,13 +29,14 @@ public class LoginController implements Initializable {
     @FXML private Button loginButton;
     @FXML private Hyperlink signupButton;
     @FXML private Label notValidLbl;
+    boolean loginResultFlag = false;
     ServerConnection serverConnection = ServerConnection.getInstance();
     ServerObj serverObj = serverConnection.getRegisteryObject();
 
     private ValidationChecks checker = new ValidationChecks();
-    public LoginController()
-    {
-        getServerObject();
+    public LoginController() throws RemoteException {
+
+
     }
 
     @FXML
@@ -54,7 +56,7 @@ public class LoginController implements Initializable {
 
     private boolean validateLogin(String userName, String password) {
         boolean valid = false;
-        if (checker.isUserName(userName) == true && checker.isValidPassword(password) == true) {
+        if (checker.isUserName(userName) && checker.isValidPassword(password)) {
             valid = true;
         } else {
             valid = false;
@@ -74,7 +76,18 @@ public class LoginController implements Initializable {
     }
 
     public void verificateUser(String userName , String password) throws RemoteException {
-        User loginUserResult = serverObj.getClientServerRegister().userLogin(userName , password);
+        User loginUserResult;
+        connectToServer(ControllerManager.getInstance().getWelcomeController().getIpAddress());
+        getServerObject();
+
+
+        if(serverObj != null)
+            loginUserResult = serverObj.getClientServerRegister().userLogin(userName , password);
+        else
+        {
+            Platform.runLater(()->{new Alert(Alert.AlertType.ERROR, "Server Is Not Reachable").show();});
+            return;
+        }
         if(loginUserResult == null)
         {
             new Alert(Alert.AlertType.ERROR, "Username or Password is Not Valid").show();
@@ -83,7 +96,16 @@ public class LoginController implements Initializable {
         {
             //if Registeration Success , set the Static variable with current User Object
             ClientObject.setUserData(loginUserResult);
-            startMainApp();
+            loginResultFlag = setNewObjectToServer();
+
+            System.out.println("User Name is : "+loginUserResult.getUsername());
+
+            if(loginResultFlag)
+            {
+                startMainApp();
+            }
+            else
+                Platform.runLater(()->{new Alert(Alert.AlertType.ERROR, "Server Is Not Reachable").show();});
         }
     }
 
@@ -104,6 +126,7 @@ public class LoginController implements Initializable {
                 Stage currentStage = (Stage)loginButton.getScene().getWindow();
                 currentStage.close();
                 stage.setResizable(false);
+                stage.setOnCloseRequest(param->{System.exit(0);});
                 stage.show();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -129,11 +152,57 @@ public class LoginController implements Initializable {
                 Stage currentStage = (Stage)loginButton.getScene().getWindow();
                 currentStage.close();
                 stage.setResizable(false);
+                stage.setOnCloseRequest(param->{System.exit(0);});
                 stage.show();
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
         });
+    }
+
+    private void connectToServer(String ipAddress) {
+        ServerConnection serverConnection = ServerConnection.getInstance();
+        serverConnection.setHost(ipAddress);
+        connectionEstablishingMode(true);
+        boolean flag = false;
+        if (serverConnection.establiseConnection())
+        {
+
+            flag =  true;
+        }
+        connectionEstablishingMode(false);
+
+    }
+
+
+    public void connectionEstablishingMode(boolean status)
+    {
+        if(status)
+            Platform.runLater(()-> {
+                loginButton.setText("Logging ... ");
+                loginButton.setDisable(true);
+                userNameFieldForLogIn.setDisable(true);
+                passwordFieldForLogIn.setDisable(true);
+
+            });
+        else
+            Platform.runLater(()-> {
+                loginButton.setDisable(false);
+                loginButton.setText("Login");
+                userNameFieldForLogIn.setDisable(false);
+                passwordFieldForLogIn.setDisable(false);
+            });
+    }
+
+    private boolean setNewObjectToServer()  {
+
+        try {
+            ServerObj serverObj = ServerConnection.getInstance().getRegisteryObject();
+            serverObj.getClientServerRegister().registerUser(ClientObject.getUserDataInternal().getUsername() , new ClientObject());
+        } catch (RemoteException e) {
+            return false;
+        }
+        return true;
     }
 }

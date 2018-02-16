@@ -1,6 +1,7 @@
 package view.controller;
 
 import beans.Group;
+import client.interfaces.ClientObj;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -215,8 +216,7 @@ public class MainController implements Initializable {
         showPanes(true);
     }
 
-    private void showPanes(Boolean status)
-    {
+    private void showPanes(Boolean status) {
        chatHeader.setVisible(status);
        ChatArea.setVisible(status);
     }
@@ -227,6 +227,8 @@ public class MainController implements Initializable {
 
     public void logoutBtn(MouseEvent mouseEvent) throws IOException {
         messagesMap.clear();
+        serverConnection.getRegisteryObject().getClientServerRegister()
+                .unRegisterUser(ClientObject.getUserDataInternal().getUsername());
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LoginScene.fxml"));
         Stage stage = new Stage();
         Parent root = fxmlLoader.load();
@@ -237,6 +239,7 @@ public class MainController implements Initializable {
         Stage currentStage = (Stage)friendsListView.getScene().getWindow();
         currentStage.close();
         stage.setResizable(false);
+        stage.setOnCloseRequest(param->{System.exit(0);});
         stage.show();
     }
 }

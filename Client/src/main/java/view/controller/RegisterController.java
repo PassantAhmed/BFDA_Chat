@@ -105,6 +105,7 @@ public class RegisterController implements Initializable {
                 Stage currentStage = (Stage)usernameid.getScene().getWindow();
                 currentStage.close();
                 stage.setResizable(false);
+                stage.setOnCloseRequest(param->{System.exit(0);});
                 stage.show();
             } catch (IOException e) {
                 e.printStackTrace();

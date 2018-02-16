@@ -21,7 +21,7 @@ public class DatabaseChatOperation {
 
     }
 
-    public String getChatRoomOfClient(String myName, String clientName) throws SQLException {
+    public synchronized String getChatRoomOfClient(String myName, String clientName) throws SQLException {
         System.out.println(clientName);
         System.out.println(myName);
         String query = "SELECT * FROM Chatdb.FullChatRoomData where userName = ? and ChatRoom_id in " +
@@ -39,7 +39,7 @@ public class DatabaseChatOperation {
 
     }
 
-    public String createChatRoomWithUser(String chatRoomName, String clientName, String myName) throws SQLException {
+    public synchronized String createChatRoomWithUser(String chatRoomName, String clientName, String myName) throws SQLException {
 
         String chatRoomID = createChatRoom(chatRoomName, "0");
         addClientToChatRoom(chatRoomID, myName);
@@ -49,7 +49,7 @@ public class DatabaseChatOperation {
 
     }
 
-    public String createChatRoomWithUsers(String chatRoomName, Vector<String> clients) throws SQLException {
+    public synchronized String createChatRoomWithUsers(String chatRoomName, Vector<String> clients) throws SQLException {
 
         if (isAvailableChatRoomName(chatRoomName)) {
             String chatRoomID = createChatRoom(chatRoomName, "1");
@@ -61,7 +61,7 @@ public class DatabaseChatOperation {
 
     }
 
-    public String sendMsgtoDatabase(String chatMemberID, Message message) throws SQLException {
+    public synchronized String sendMsgtoDatabase(String chatMemberID, Message message) throws SQLException {
         String query = "INSERT INTO ChatMsg " +
                 "(ChatMember_id, MsgBody, MsgFont, MsgSize, MsgIsBold, MsgIsItalic, MsgColor, DateStamp ) " +
                 "VALUES ( ? , ? , ? , ? , ? , ? , ? , ? );";
@@ -83,7 +83,7 @@ public class DatabaseChatOperation {
         return null;
     }
 
-    private boolean isAvailableChatRoomName(String chatRoomName) throws SQLException {
+    private synchronized boolean isAvailableChatRoomName(String chatRoomName) throws SQLException {
         String query = "SELECT * FROM Chatdb.ChatRoom where ChatName = ?";
         preparedStatement = connection.prepareStatement(query);
         preparedStatement.setString(1, chatRoomName);
@@ -94,7 +94,7 @@ public class DatabaseChatOperation {
             return true;
     }
 
-    private String createChatRoom(String chatRoomName, String type) throws SQLException {
+    private synchronized String createChatRoom(String chatRoomName, String type) throws SQLException {
 
         String query = "INSERT INTO `Chatdb`.`ChatRoom` (`ChatName`, `Type`, `Active`) VALUES (?, ?, '1');";
         preparedStatement = connection.prepareStatement(query, 1);
@@ -109,7 +109,7 @@ public class DatabaseChatOperation {
 
     }
 
-    private void addClientToChatRoom(String chatRoomID, String users) throws SQLException {
+    private synchronized void addClientToChatRoom(String chatRoomID, String users) throws SQLException {
         String query = "INSERT INTO `Chatdb`.`ChatMember` (`ChatRoom_id`, `User_id`, `isAdmin`) VALUES (?, (select User.id from User where username = ?), '0');";
         preparedStatement = connection.prepareStatement(query);
         preparedStatement.setString(1, chatRoomID);
@@ -119,11 +119,14 @@ public class DatabaseChatOperation {
 
     }
 
-    public String getChatMemberID(String userName, String chatRoomID) throws SQLException {
+    public synchronized String getChatMemberID(String userName, String chatRoomID) throws SQLException {
         String query = "select ChatMember.id from ChatMember , User where User.username = ? " +
                 "and ChatMember.User_id = User.id " +
                 "and ChatMember.ChatRoom_id = ? ";
         preparedStatement = connection.prepareStatement(query);
+        System.out.println("IngetChatMemberID");
+        System.out.println(userName);
+        System.out.println(chatRoomID);
         preparedStatement.setString(1, userName);
         preparedStatement.setString(2, chatRoomID);
 
@@ -134,7 +137,7 @@ public class DatabaseChatOperation {
             return null;
     }
 
-    public Vector<Message> getAllRoomMessages(String chatRoomID) throws SQLException {
+    public synchronized Vector<Message> getAllRoomMessages(String chatRoomID) throws SQLException {
         String query = "SELECT " +
                 "    User.username,\n" +
                 "    ChatMsg.MsgBody,\n" +
@@ -174,7 +177,7 @@ public class DatabaseChatOperation {
         return null;
     }
 
-    public Vector<String> chatMembers(String chatMsgID) throws SQLException {
+    public synchronized Vector<String> chatMembers(String chatMsgID) throws SQLException {
         String query = "select User.username from User , ChatMember , ChatRoom where " +
                 "ChatRoom_id = (select ChatRoom.id from ChatRoom , ChatMsg , ChatMember " +
                 "where ChatMsg.id = ? " +
@@ -196,7 +199,7 @@ public class DatabaseChatOperation {
 
     }
 
-    public String getChatRoomForChatMember(String chatMemberID) throws SQLException {
+    public synchronized String getChatRoomForChatMember(String chatMemberID) throws SQLException {
         String query = "select ChatMember.ChatRoom_id from ChatMember where ChatMember.id = ? ";
         preparedStatement = connection.prepareStatement(query);
         preparedStatement.setString(1, chatMemberID);
@@ -207,7 +210,7 @@ public class DatabaseChatOperation {
             return null;
     }
 
-    public Vector<Group> getAllGroups(int myID) throws SQLException {
+    public synchronized Vector<Group> getAllGroups(int myID) throws SQLException {
         String query = "SELECT * FROM ChatRoom , ChatMember " +
                 "where Type = 1 " +
                 "and ChatMember.User_id = ? " +

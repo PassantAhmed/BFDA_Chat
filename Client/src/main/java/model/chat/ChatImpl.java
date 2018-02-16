@@ -1,4 +1,4 @@
-package model;
+package model.chat;
 
 import beans.Message;
 import client.interfaces.ChatHandler;
