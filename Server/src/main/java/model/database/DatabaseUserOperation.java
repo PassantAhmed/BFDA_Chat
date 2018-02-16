@@ -19,8 +19,7 @@ import java.util.logging.Logger;
 /**
  * @author ahmedelgawesh
  */
-
-public class DatabaseUserOperation  {
+public class DatabaseUserOperation {
 
     Database dbClass;
     Connection conn;
@@ -29,15 +28,15 @@ public class DatabaseUserOperation  {
         try {
             dbClass = Database.getInstance();
             conn = dbClass.getConnection();
-        }catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException ex) {
             Logger.getLogger(DatabaseUserOperation.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     public boolean clientRegister(User clientData) throws RemoteException {
         try {
-            PreparedStatement pst = conn.prepareStatement("insert into User (id, name, username, email, password, gender, country, BirthDate, userPicture) " +
-                    "values ( ?,  ?, ?, ?, ?, ?, ?, ?, ?)");
+            PreparedStatement pst = conn.prepareStatement("insert into User (id, name, username, email, password, gender, country, BirthDate, userPicture) "
+                    + "values ( ?,  ?, ?, ?, ?, ?, ?, ?, ?)");
             pst.setInt(1, clientData.getId());
             pst.setString(2, clientData.getName());
             pst.setString(3, clientData.getUsername());
@@ -101,42 +100,42 @@ public class DatabaseUserOperation  {
         return user;
     }
 
-    public boolean isEmailExist(String email){
-        boolean emailExist =false;
+    public boolean isEmailExist(String email) {
+        boolean emailExist = false;
         try {
             PreparedStatement preparedStatement = conn.prepareStatement("select * from User where email = ?");
-             preparedStatement.setString(1, email);
+            preparedStatement.setString(1, email);
             ResultSet resultSet = preparedStatement.executeQuery();
-            if(resultSet.next()){
+            if (resultSet.next()) {
                 //email is exist
-                emailExist =  true;
-            }else{
-                emailExist =  false;
+                emailExist = true;
+            } else {
+                emailExist = false;
             }
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseUserOperation.class.getName()).log(Level.SEVERE, null, ex);
         }
         return emailExist;
     }
-    
-    public boolean isUsernameExist(String username){
-        boolean usernameExist =false;
+
+    public boolean isUsernameExist(String username) {
+        boolean usernameExist = false;
         try {
             PreparedStatement preparedStatement = conn.prepareStatement("select * from User where username = ?");
-             preparedStatement.setString(1, username);
+            preparedStatement.setString(1, username);
             ResultSet resultSet = preparedStatement.executeQuery();
-            if(resultSet.next()){
+            if (resultSet.next()) {
                 //username is exist
-                usernameExist =  true;
-            }else{
-                usernameExist =  false;
+                usernameExist = true;
+            } else {
+                usernameExist = false;
             }
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseUserOperation.class.getName()).log(Level.SEVERE, null, ex);
         }
         return usernameExist;
-    }    
-    
+    }
+
     public int clientCreateGroupChat(String groupName) throws RemoteException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -149,5 +148,32 @@ public class DatabaseUserOperation  {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    public int getUsersNumber() {
+        int usersNo = 0;
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement("select count(*) from User");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                usersNo = resultSet.getInt(0);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseUserOperation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return usersNo;
+    }
+
+    public int getStatistics() {
+        int statisticsNo = 0;
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement("select count(*) from User where statusMode = ?");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                statisticsNo = resultSet.getInt(0);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseUserOperation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return statisticsNo;
+    }
 
 }
