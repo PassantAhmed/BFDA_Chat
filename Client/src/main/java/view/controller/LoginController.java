@@ -7,6 +7,9 @@ import java.util.ResourceBundle;
 
 import beans.User;
 import client.interfaces.ClientObj;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,9 +27,9 @@ import server.interfaces.ServerObj;
 
 public class LoginController implements Initializable {
 
-    @FXML private TextField userNameFieldForLogIn;
-    @FXML private TextField passwordFieldForLogIn;
-    @FXML private Button loginButton;
+    @FXML private JFXTextField userNameFieldForLogIn;
+    @FXML private JFXPasswordField passwordFieldForLogIn;
+    @FXML private JFXButton loginButton;
     @FXML private Hyperlink signupButton;
     @FXML private Label notValidLbl;
     private boolean loginResultFlag = false;
@@ -144,9 +147,9 @@ public class LoginController implements Initializable {
             try {
 
                 Stage stage = new Stage();
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/RegisterScene.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/Register1Scene.fxml"));
                 root = fxmlLoader.load();
-                ControllerManager.getInstance().setRegisterController(fxmlLoader.getController());
+                ControllerManager.getInstance().setRegisterController1(fxmlLoader.getController());
                 Scene scene = new Scene(root);
                 stage.setTitle("BFDA Chat | Register");
                 stage.setScene(scene);

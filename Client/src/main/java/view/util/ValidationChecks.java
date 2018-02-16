@@ -1,5 +1,6 @@
 package view.util;
 
+import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -36,17 +37,18 @@ public class ValidationChecks {
 
     public boolean isIP(String ip) {
         patternMatcher = IP_PATTERN.matcher(ip);
-        return patternMatcher.matches();
+        return !isEmptyString(ip) && patternMatcher.matches();
     }
 
-    /*public boolean isLegalAged(Date dateOfBirth){
+    public boolean isLegalAged(LocalDate dateOfBirth){
         boolean legalAge = false;
-        if(dateOfBirth.getYear() >= 15){
+        if(!isEmptyString(dateOfBirth.toString()) && dateOfBirth.getYear() <= 2000){
             legalAge = true;
         }
     
         return legalAge;
-    }*/
+    }
+    
     public boolean isValidPassword(String pass) {
         boolean validPass = false;
         if (pass.length() >= 8 && pass.length() <= 30) {

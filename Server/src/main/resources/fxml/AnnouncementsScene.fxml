@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextArea?>
@@ -11,21 +11,21 @@
    <children>
       <AnchorPane layoutX="106.0" layoutY="101.0" prefHeight="499.0" prefWidth="494.0" style="-fx-background-color: #ffffe6; -fx-background-radius: 10 10 35 35;">
          <children>
-            <Label layoutX="36.0" layoutY="233.0" text="Hint: Announcements will be sent to online users" textFill="#bd2a2a">
+            <Label layoutX="37.0" layoutY="236.0" text="Hint: Announcements will be sent to online users" textFill="#ac1e1e">
                <font>
-                  <Font name="System Bold" size="13.0" />
+                  <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <Button fx:id="sendAnnouncementBtn" layoutX="156.0" layoutY="300.0" mnemonicParsing="false" onAction="#sendAnnounce" prefHeight="44.0" prefWidth="182.0" style="-fx-background-color: #003566; -fx-background-radius: 20 5 20 5;" text="SEND" textFill="WHITE">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Button>
             <ScrollPane fx:id="announcementScrollPane" hbarPolicy="NEVER" layoutX="22.0" layoutY="21.0" pannable="true" prefHeight="194.0" prefWidth="450.0">
                <content>
                   <TextArea fx:id="announcementText" prefHeight="192.0" prefWidth="447.0" style="-fx-background-radius: 20 5 20 5;" />
                </content>
             </ScrollPane>
+            <JFXButton fx:id="sendAnnouncementBtn" layoutX="160.0" layoutY="275.0" onAction="#sendAnnounce" prefHeight="51.0" prefWidth="174.0" style="-fx-background-color: #001a33; -fx-background-radius: 20 5 20 5;" text="SEND" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </JFXButton>
          </children>
       </AnchorPane>
    </children>

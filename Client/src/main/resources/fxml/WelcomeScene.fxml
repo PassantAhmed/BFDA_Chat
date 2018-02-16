@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXSpinner?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -18,11 +19,6 @@
                <font>
                   <Font size="18.0" />
                </font></TextField>
-            <Button fx:id="loginButton" layoutX="118.0" layoutY="207.0" mnemonicParsing="false" onAction="#connect" prefHeight="39.0" prefWidth="150.0" style="-fx-background-color: #001a33; -fx-background-radius: 20 5 20 5;" text="Connect" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Button>
             <Label fx:id="errorLabel" layoutX="28.0" layoutY="173.0" textFill="RED" />
             <Label fx:id="errorIpMessage" layoutX="42.0" layoutY="145.0" textFill="#8f1c1c">
                <font>
@@ -52,6 +48,27 @@
                   <Font size="18.0" />
                </font>
             </TextField>
+            <JFXButton fx:id="loginButton" layoutX="116.0" layoutY="203.0" onAction="#connect" prefHeight="39.0" prefWidth="164.0" style="-fx-background-color: #001a33; -fx-background-radius: 20 5 20 5;" text="Connect" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </JFXButton>
+            <Label layoutX="107.0" layoutY="126.0" text=".">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="196.0" layoutY="126.0" text=".">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="286.0" layoutY="126.0" text=".">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <JFXSpinner fx:id="loader" layoutX="180.0" layoutY="254.0" prefHeight="26.0" prefWidth="30.0" />
          </children>
       </AnchorPane>
       <Pane layoutX="237.0" layoutY="365.0" prefHeight="0.0" prefWidth="6.0" style="-fx-background-color: fff072;" />

@@ -36,6 +36,20 @@ public class User implements Serializable {
         this.status=status;
         this.mode=mode;
     }
+    
+    public User(User user) {
+        this.id = user.getId();
+        this.name = user.getName();
+        this.username = user.getUsername();
+        this.email = user.getEmail();
+        this.password = user.getPassword();
+        this.gender = user.getGender();
+        this.country = user.getCountry();
+        this.birthdate = user.getBirthdate();
+        this.userPic = user.getUserPic();
+        this.status = user.getStatus();
+        this.mode = user.getMode();
+    }
 
     public int getNewMsgCount() {
         return newMsgCount;
@@ -45,7 +59,7 @@ public class User implements Serializable {
         this.newMsgCount = newMsgCount;
     }
 
-        public User() 
+    public User() 
     {
     
     }
