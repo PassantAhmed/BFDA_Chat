@@ -44,7 +44,7 @@ public class RegisterController implements Initializable {
         getServerObject();
     }
     @FXML
-    private void registerAction(ActionEvent event) throws RemoteException {
+    private void registerAction(ActionEvent event) throws RemoteException, IOException {
         User user = new User();
         boolean genderBoolean;
         user.setUsername(usernameid.getText());
@@ -61,7 +61,22 @@ public class RegisterController implements Initializable {
             //check if passwords matches
             if(user.getPassword().equals(repassword)){
                 //data is valid send user object to server
-                serverObj.getClientServerRegister().newUserRegisteration(user);
+                boolean success = serverObj.getClientServerRegister().newUserRegisteration(user);
+                if(success== true){
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LoginScene.fxml"));
+                    Stage stage = new Stage();
+                    Parent root = fxmlLoader.load();
+                    ControllerManager.getInstance().setLoginController(fxmlLoader.getController());
+                    Scene scene = new Scene(root);
+                    stage.setTitle("BFDA Chat | Login");
+                    stage.setScene(scene);
+                    stage.setResizable(false);
+                    stage.show();
+                }else{
+                    new Alert(Alert.AlertType.ERROR, "Username or Password Already Exists").show();
+                }
+            }else{
+                new Alert(Alert.AlertType.ERROR, "Passwords do Not match").show();
             }
         }
     }
