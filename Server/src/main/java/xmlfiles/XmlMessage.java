@@ -49,6 +49,7 @@ public class XmlMessage {
 
             xmlStreamWriter.writeAttribute("xsi:noNamespaceSchemaLocation", "schema.xsd");
             xmlStreamWriter.writeAttribute("owner", userName);
+            xmlStreamWriter.writeAttribute("chatName", chatName);
             xmlStreamWriter.writeCharacters(System.lineSeparator());
 
             for (Message message : messages) {

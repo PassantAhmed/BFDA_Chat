@@ -19,6 +19,10 @@ public class ServerObject extends UnicastRemoteObject implements ServerObj, Seri
     private DatabaseUserOperation databaseUserOperation;
     private ServerMessegeSender serverMessegeSender;
     private FriendsDbOperations friendsDbOperations;
+    private ServerFileTransferImpl serverFileTransferImpl;
+
+
+
 
     public ServerObject() throws RemoteException, SQLException, ClassNotFoundException {
 
@@ -26,21 +30,21 @@ public class ServerObject extends UnicastRemoteObject implements ServerObj, Seri
         databaseUserOperation = new DatabaseUserOperation();
         serverMessegeSender = new ServerMessageSenderImplementation();
         friendsDbOperations = new FriendsDbOperationsImp();
+        serverFileTransferImpl = new ServerFileTransferImpl();
     }
 
+
+    @Override
     public ClientServerRegister getClientServerRegister() {
         return clientServerRegister;
     }
-
-
+    @Override
     public ServerMessegeSender getServerMessegeSender() {
         return serverMessegeSender;
     }
-
     @Override
-    public FriendsDbOperations getFriendsDbOperations() throws RemoteException {
-        return friendsDbOperations;
-    }
-
+    public FriendsDbOperations getFriendsDbOperations() throws RemoteException { return friendsDbOperations; }
+    @Override
+    public ServerFileTransferImpl getServerFileTransfer() { return serverFileTransferImpl; }
 
 }

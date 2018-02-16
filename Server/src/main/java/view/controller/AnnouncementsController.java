@@ -24,15 +24,17 @@ public class AnnouncementsController  {
     public void sendAnnounce(ActionEvent actionEvent) {
         String msg = announcementText.getText();
         new Thread(()->{
-                for (ClientObj clientObj : ClientServerRegisterImp.clientObject) {
+            for(ClientObj obj :  ClientServerRegisterImp.clientObjHashMap.values())
+            {
                     try
                     {
-                        clientObj.getChatHandler().updateAnnouncement(msg);
+                        obj.getChatHandler().updateAnnouncement(msg);
                     }
                     catch (RemoteException e)
                     {
                         e.printStackTrace();
                     }
-                }}).start();
-    }
+
+                }
+        }).start(); }
 }

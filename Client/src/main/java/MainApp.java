@@ -19,6 +19,7 @@ public class MainApp extends Application {
         primaryStage.setScene(scene);
         primaryStage.initStyle(StageStyle.DECORATED);
         ControllerManager.getInstance().setWelcomeController(fxmlLoader.getController());
+        primaryStage.setOnCloseRequest(param->{System.exit(0);});
         primaryStage.show();
     }
 }
