@@ -44,9 +44,9 @@ public class DatabaseUserOperation {
             pst.setString(4, clientData.getEmail());
             pst.setString(5, clientData.getPassword());
             System.out.println(clientData.getGender());
-            pst.setBoolean(6, clientData.getGender());
+//            pst.setBoolean(6, clientData.getGender());
+            pst.setBoolean(6, true);
             pst.setString(7, clientData.getCountry());
-            System.out.println(SqlParser.fromLocalToSql(clientData.getBirthdate()));
             pst.setDate(8, SqlParser.fromLocalToSql(clientData.getBirthdate()));
             pst.setString(9, clientData.getUserPic());
             pst.executeUpdate();
