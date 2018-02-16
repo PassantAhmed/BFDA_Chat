@@ -62,7 +62,7 @@ public class ClientServerRegisterImp extends UnicastRemoteObject implements Clie
             DatabaseUserOperation DBO = new DatabaseUserOperation();  
             String  email = user.getEmail();
             
-            if(DBO.isEmailExist(email) == true && DBO.isUsernameExist(username)== true){
+            if(DBO.isEmailExist(email) == true || DBO.isUsernameExist(username)== true){
                 // email or username is exists
                 registered = false;
             }else{
@@ -74,6 +74,7 @@ public class ClientServerRegisterImp extends UnicastRemoteObject implements Clie
             
             return registered;
         } catch (SQLException ex) {
+            System.out.println(ex.toString());
             Logger.getLogger(ClientServerRegisterImp.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;

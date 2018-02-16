@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -15,14 +16,6 @@
    <children>
       <AnchorPane layoutX="319.0" layoutY="19.0" prefHeight="546.0" prefWidth="406.0" style="-fx-background-radius: 10 10 10 10; -fx-background-color: #FFF;">
          <children>
-            <TextField fx:id="userNameFieldForLogIn" alignment="CENTER" layoutX="41.0" layoutY="140.0" prefHeight="48.0" prefWidth="327.0" promptText="Enter Your UserName" style="-fx-background-color: #ffe6ff; -fx-background-radius: 20 20 5 5;">
-               <font>
-                  <Font size="18.0" />
-               </font></TextField>
-            <TextField fx:id="passwordFieldForLogIn" accessibleRole="PASSWORD_FIELD" alignment="CENTER" layoutX="41.0" layoutY="213.0" prefHeight="48.0" prefWidth="327.0" promptText="Enter Your Password" style="-fx-background-color: #ffe6ff; -fx-background-radius: 5 5 20 20;">
-               <font>
-                  <Font size="18.0" />
-               </font></TextField>
             <Label layoutX="39.0" layoutY="328.0" text="Hint: Keep Saving Your Password">
                <font>
                   <Font name="System Bold" size="12.0" />
@@ -63,6 +56,16 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </JFXButton>
+            <JFXTextField fx:id="userNameFieldForLogIn" focusColor="#001a33" labelFloat="true" layoutX="40.0" layoutY="138.0" prefHeight="48.0" prefWidth="327.0" promptText="UserName" style="-fx-background-color: #ffe6ff; -fx-background-radius: 20 20 5 5; -fx-padding: 8;" unFocusColor="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
+            <JFXPasswordField fx:id="passwordFieldForLogIn" focusColor="#001a33" labelFloat="true" layoutX="42.0" layoutY="221.0" prefHeight="44.0" prefWidth="327.0" promptText="Password" style="-fx-background-color: #ffe6ff; -fx-background-radius: 5 5 20 20; -fx-padding: 8;" unFocusColor="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXPasswordField>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="14.0" layoutY="11.0" prefHeight="546.0" prefWidth="298.0">

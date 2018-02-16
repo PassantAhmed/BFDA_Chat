@@ -171,7 +171,7 @@ public class RegisterController2 implements Initializable {
     
     public void setUser(User user){
         this.user = new User(user);
-        //System.out.println(user.getEmail());
+        System.out.println(user.getEmail());
     }
 
 }

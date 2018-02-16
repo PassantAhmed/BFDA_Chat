@@ -112,7 +112,7 @@ public class RegisterController1 implements Initializable {
                     user.setEmail(emailid.getText());
                     user.setName(fullnameid.getText());
                     user.setCountry(countryid.getValue());
-                    //user.setGender();
+                    user.setGender(true);
                     user.setBirthdate(dobid.getValue());
 
                     Parent root = null;
@@ -121,6 +121,7 @@ public class RegisterController1 implements Initializable {
                         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/Register2Scene.fxml"));
                         root = fxmlLoader.load();
                         ControllerManager.getInstance().setRegisterController2(fxmlLoader.getController());
+                        user.setGender(true);
                         ControllerManager.getInstance().getRegisterController2().setUser(user);
                         Scene scene = new Scene(root);
                         stage.setTitle("BFDA Chat | Register2");

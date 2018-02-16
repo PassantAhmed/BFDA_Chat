@@ -8,6 +8,8 @@ import java.util.ResourceBundle;
 import beans.User;
 import client.interfaces.ClientObj;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,8 +27,8 @@ import server.interfaces.ServerObj;
 
 public class LoginController implements Initializable {
 
-    @FXML private TextField userNameFieldForLogIn;
-    @FXML private TextField passwordFieldForLogIn;
+    @FXML private JFXTextField userNameFieldForLogIn;
+    @FXML private JFXPasswordField passwordFieldForLogIn;
     @FXML private JFXButton loginButton;
     @FXML private Hyperlink signupButton;
     @FXML private Label notValidLbl;
