@@ -125,7 +125,7 @@ public class MainController implements Initializable {
                 } catch (SQLException | RemoteException e) {
                     Platform.runLater(()->{
                         new Alert(Alert.AlertType.ERROR,
-                                "Cannot Send Msg , System Error  "+e.toString());
+                                "Cannot Send Msg , System Error  "+e.toString()).show();
                     });
                     e.printStackTrace();
 
