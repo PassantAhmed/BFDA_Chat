@@ -22,7 +22,7 @@ public class ChatImpl extends UnicastRemoteObject implements ChatHandler {
 
 
     @Override
-    public void updateChat(String chatID, Message message)
+    public synchronized void updateChat(String chatID, Message message)
     {
         System.out.println(mainController.getWelcomeController() == null);
         if(mainController.getMainController().getCurrentChatID().equals(chatID))

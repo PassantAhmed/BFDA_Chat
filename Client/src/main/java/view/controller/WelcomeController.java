@@ -55,8 +55,16 @@ public class WelcomeController implements Initializable {
             setLoader();
         } else
         {
-            this.ipAddress = ipAddress;
-            openLogin();
+            new Thread(()->{
+            if(connectToServer(ipAddress))
+            {
+                openLogin();
+            }
+            else
+            {
+                Platform.runLater(()->{new Alert(Alert.AlertType.ERROR, "Server Is Not Reachable").show();});
+            }
+            }).start();
         }
 
     }
@@ -114,6 +122,19 @@ public class WelcomeController implements Initializable {
         });
 
 
+    }
+
+    private boolean connectToServer(String ipAddress) {
+        ServerConnection serverConnection = ServerConnection.getInstance();
+        serverConnection.setHost(ipAddress);
+        connectionEstablishingMode(true);
+        boolean flag = false;
+        if (serverConnection.establiseConnection())
+        {
+            flag =  true;
+        }
+        connectionEstablishingMode(false);
+        return flag;
     }
 
 }

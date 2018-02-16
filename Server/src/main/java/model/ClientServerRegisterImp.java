@@ -26,13 +26,13 @@ public class ClientServerRegisterImp extends UnicastRemoteObject implements Clie
     }
 
     @Override
-    public void registerUser(String username , ClientObj clientObject) {
+    public synchronized void registerUser(String username , ClientObj clientObject) {
         System.out.print("Registered");
         ClientServerRegisterImp.clientObjHashMap.put(username , clientObject);
     }
 
     @Override
-    public void unRegisterUser(String username ) {
+    public synchronized void unRegisterUser(String username ) {
         ClientServerRegisterImp.clientObjHashMap.remove(username);
     }
 

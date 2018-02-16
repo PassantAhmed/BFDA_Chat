@@ -30,13 +30,12 @@ public class LoginController implements Initializable {
     @FXML private JFXButton loginButton;
     @FXML private Hyperlink signupButton;
     @FXML private Label notValidLbl;
-    boolean loginResultFlag = false;
+    private boolean loginResultFlag = false;
     ServerConnection serverConnection = ServerConnection.getInstance();
     ServerObj serverObj = serverConnection.getRegisteryObject();
 
     private ValidationChecks checker = new ValidationChecks();
     public LoginController() throws RemoteException {
-
 
     }
 
@@ -67,18 +66,17 @@ public class LoginController implements Initializable {
 
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-
     }
 
     private void getServerObject()
     {
         serverConnection = ServerConnection.getInstance();
         serverObj = serverConnection.getRegisteryObject();
+
     }
 
     public void verificateUser(String userName , String password) throws RemoteException {
         User loginUserResult;
-        connectToServer(ControllerManager.getInstance().getWelcomeController().getIpAddress());
         getServerObject();
 
 
@@ -106,7 +104,10 @@ public class LoginController implements Initializable {
                 startMainApp();
             }
             else
-                Platform.runLater(()->{new Alert(Alert.AlertType.ERROR, "Server Is Not Reachable").show();});
+            {
+                Platform.runLater(()->{new Alert(Alert.AlertType.ERROR, "Login Failed").show();});
+            }
+
         }
     }
 
@@ -162,19 +163,7 @@ public class LoginController implements Initializable {
         });
     }
 
-    private void connectToServer(String ipAddress) {
-        ServerConnection serverConnection = ServerConnection.getInstance();
-        serverConnection.setHost(ipAddress);
-        connectionEstablishingMode(true);
-        boolean flag = false;
-        if (serverConnection.establiseConnection())
-        {
 
-            flag =  true;
-        }
-        connectionEstablishingMode(false);
-
-    }
 
 
     public void connectionEstablishingMode(boolean status)

@@ -13,7 +13,7 @@ public class ConnectionValidation {
 
     Vector<String> inActiveUsers = new Vector<>();
 
-    public void checkActiveUsers()
+    public synchronized void checkActiveUsers()
     {
 
 
@@ -40,7 +40,7 @@ public class ConnectionValidation {
 
     }
 
-    public void removeInactiveFromList()
+    public synchronized void removeInactiveFromList()
     {
         for(String clientObj : inActiveUsers)
         {

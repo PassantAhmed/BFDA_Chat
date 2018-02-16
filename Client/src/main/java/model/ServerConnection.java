@@ -12,19 +12,19 @@ public class ServerConnection {
     private String localIpAddress;
     private static ServerConnection instance;
     private ServerObj obj ;
-    public static ServerConnection getInstance()
-    {
+    private boolean isRegistered;
+
+
+
+    public boolean isRegistered() {
+        return isRegistered;
+    }
+    public static ServerConnection getInstance() {
         if (instance == null)
             instance = new ServerConnection();
 
         return instance;
     }
-
-    private ServerConnection ()
-    {
-
-    }
-
     public ServerObj getRegisteryObject()
     {
         return obj;
@@ -42,7 +42,9 @@ public class ServerConnection {
             System.out.println(e);
             return false;
         }
+        isRegistered = true;
         return true;
+
     }
 
 
