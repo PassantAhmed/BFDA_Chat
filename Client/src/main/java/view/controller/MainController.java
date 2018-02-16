@@ -120,15 +120,15 @@ public class MainController implements Initializable {
             message.setMessageDate(LocalDateTime.now());
 
             new Thread(() -> {
+
                 try {
                     serverMessegeSender.sendMsg(currentChatMemberID, message);
                 } catch (SQLException | RemoteException e) {
                     Platform.runLater(()->{
                         new Alert(Alert.AlertType.ERROR,
-                                "Cannot Send Msg , System Error  "+e.toString());
+                                "Cannot Send Msg"+e.toString()).show();
                     });
                     e.printStackTrace();
-
                 }
             }).start();
         }

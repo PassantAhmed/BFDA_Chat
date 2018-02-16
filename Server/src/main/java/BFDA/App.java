@@ -19,7 +19,7 @@ public class App extends Application
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/DashboardScene.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
-        primaryStage.initStyle(StageStyle.UNDECORATED);
+//        primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setResizable(false);
         primaryStage.setOnCloseRequest(param->{System.exit(0);});
         primaryStage.show();

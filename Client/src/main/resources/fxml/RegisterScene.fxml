@@ -4,7 +4,7 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.Spinner?>
+<!--<?import javafx.scene.control.Spinner?>-->
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
@@ -47,11 +47,9 @@
              <fx:define>
                  <ToggleGroup fx:id="genderGroup" />
              </fx:define>
-            <RadioButton layoutX="269.0" layoutY="297.0" mnemonicParsing="false" selected="true" text="Male" />
-            <RadioButton layoutX="333.0" layoutY="297.0" mnemonicParsing="false" text="Female">
-               <toggleGroup>
-                  <ToggleGroup fx:id="genderGroup" />
-               </toggleGroup></RadioButton>
+            <RadioButton toggleGroup="$genderGroup" layoutX="269.0" layoutY="297.0" mnemonicParsing="false" selected="true" text="Male" />
+            <RadioButton toggleGroup="$genderGroup" layoutX="333.0" layoutY="297.0" mnemonicParsing="false" text="Female">
+            </RadioButton>
             <DatePicker fx:id="dobid" layoutX="24.0" layoutY="293.0" prefHeight="26.0" prefWidth="170.0" style="-fx-background-radius: 20 5 5 5;" />
             <Label layoutX="24.0" layoutY="270.0" text="Date of Birth" />
          </children>

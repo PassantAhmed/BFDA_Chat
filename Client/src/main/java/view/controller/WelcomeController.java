@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -46,12 +47,21 @@ public class WelcomeController implements Initializable {
     }
     public void connect(ActionEvent actionEvent) {
         String ipAddress = serverIpField1.getText() + "." + serverIpField2.getText() + "." + serverIpField3.getText() + "." + serverIpField4.getText();
+
         if(!validateIp(ipAddress))
             errorLabel.setText("IP is not a valid IP, please re-write a valid one..");
         else
         {
-            this.ipAddress = ipAddress;
-            openLogin();
+            new Thread(()->{
+            if(connectToServer(ipAddress))
+            {
+                openLogin();
+            }
+            else
+            {
+                Platform.runLater(()->{new Alert(Alert.AlertType.ERROR, "Server Is Not Reachable").show();});
+            }
+            }).start();
         }
 
     }
@@ -107,6 +117,19 @@ public class WelcomeController implements Initializable {
         });
 
 
+    }
+
+    private boolean connectToServer(String ipAddress) {
+        ServerConnection serverConnection = ServerConnection.getInstance();
+        serverConnection.setHost(ipAddress);
+        connectionEstablishingMode(true);
+        boolean flag = false;
+        if (serverConnection.establiseConnection())
+        {
+            flag =  true;
+        }
+        connectionEstablishingMode(false);
+        return flag;
     }
 
 }

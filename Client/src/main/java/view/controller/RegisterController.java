@@ -55,6 +55,7 @@ public class RegisterController implements Initializable {
         user.setBirthdate(dobid.getValue());
         user.setCountry(countryid.getValue());
         genderBoolean = genderGroup.getSelectedToggle().getUserData().toString() == "male";
+        System.out.print(genderGroup.getSelectedToggle());
         user.setGender(genderBoolean);
         
         if(validateUser(user)){

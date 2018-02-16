@@ -200,6 +200,7 @@ public class DatabaseChatOperation {
     }
 
     public synchronized String getChatRoomForChatMember(String chatMemberID) throws SQLException {
+
         String query = "select ChatMember.ChatRoom_id from ChatMember where ChatMember.id = ? ";
         preparedStatement = connection.prepareStatement(query);
         preparedStatement.setString(1, chatMemberID);
