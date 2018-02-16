@@ -3,7 +3,12 @@ package view.controller;
 import beans.Group;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import model.ServerConnection;
 import server.interfaces.ClientServerRegister;
 import server.interfaces.ServerMessegeSender;
@@ -22,8 +27,10 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import model.ClientObject;
 import view.util.GroupListFormat;
+import xmlfiles.XmlMessage;
 
 
+import java.io.IOException;
 import java.net.URL;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
@@ -211,9 +218,25 @@ public class MainController implements Initializable {
     private void showPanes(Boolean status)
     {
        chatHeader.setVisible(status);
-       topSideArea.setVisible(status);
        ChatArea.setVisible(status);
-       sideArea.setVisible(status);
     }
 
+    public void saveChat(ActionEvent actionEvent) {
+        System.out.println(XmlMessage.writeXmlFile(ClientObject.getUserDataInternal().getUsername() , "" , messagesMap.get(currentChatID)));
+    }
+
+    public void logoutBtn(MouseEvent mouseEvent) throws IOException {
+        messagesMap.clear();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LoginScene.fxml"));
+        Stage stage = new Stage();
+        Parent root = fxmlLoader.load();
+        ControllerManager.getInstance().setLoginController(fxmlLoader.getController());
+        Scene scene = new Scene(root);
+        stage.setTitle("BFDA Chat | Login");
+        stage.setScene(scene);
+        Stage currentStage = (Stage)friendsListView.getScene().getWindow();
+        currentStage.close();
+        stage.setResizable(false);
+        stage.show();
+    }
 }
