@@ -48,7 +48,7 @@ public class RegisterController1 implements Initializable {
     private JFXTextField fullnameid;
     //@FXML private ToggleGroup genderGroup;
     @FXML
-    private JFXToggleButton genderBtn;
+    private JFXToggleButton userGender;
     @FXML
     private ImageView goToNextPageBtn;
 
@@ -77,6 +77,7 @@ public class RegisterController1 implements Initializable {
         countryid.getItems().addAll("Egypt", "USA", "Canada");
         countryid.getSelectionModel().select(0);
         dobid.setValue(LocalDate.now());
+        
         // TODO
     }
 
@@ -115,7 +116,7 @@ public class RegisterController1 implements Initializable {
                     user.setEmail(emailid.getText());
                     user.setName(fullnameid.getText());
                     user.setCountry(countryid.getValue());
-                    user.setGender(true);
+                    user.setGender(userGender.isSelected());
                     user.setBirthdate(dobid.getValue());
 
                     Parent root = null;
@@ -124,7 +125,6 @@ public class RegisterController1 implements Initializable {
                         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/Register2Scene.fxml"));
                         root = fxmlLoader.load();
                         ControllerManager.getInstance().setRegisterController2(fxmlLoader.getController());
-                        user.setGender(true);
                         ControllerManager.getInstance().getRegisterController2().setUser(user);
                         Scene scene = new Scene(root);
                         stage.setTitle("BFDA Chat | Register2");
@@ -141,7 +141,7 @@ public class RegisterController1 implements Initializable {
                     }
                 } else {
                     warningMsg.setText("Please be sure that you've entered a valid data");
-                    new Alert(Alert.AlertType.ERROR, "Check that you follow the following instructions:\n1. Full name only contain (a-z), (A-Z), and spaces."
+                    new Alert(Alert.AlertType.ERROR, "Check that you follow the following instructions:\n1. Full name only contain (a-z), (A-Z), and space."
                         + "\n2. Email format is true ex: ahmed@gmail.com"
                         + "\n3. Your age is more than the legal age."
                         + "\n4. And finally you have to choose a country." ).show();
@@ -164,14 +164,15 @@ public class RegisterController1 implements Initializable {
         return isValid;
     }
 
-    public void changeBtnText(MouseEvent mouseEvent) {
+    public void changeBtnText(ActionEvent actionEvent) {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-//                if(genderBtn.isSelected())
-//                    genderBtn.setText("Male");
-//                else
-//                    genderBtn.setText("Female");
+                if(userGender.isSelected()){
+                    userGender.setText("Male");
+                } else if (userGender.isSelected() == false){
+                    userGender.setText("Female");
+                }
             }
         });
     }

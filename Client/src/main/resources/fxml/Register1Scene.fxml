@@ -70,11 +70,11 @@
                      <children>
                         <JFXTextField fx:id="emailid" focusColor="#001a33" labelFloat="true" layoutX="22.0" layoutY="57.0" prefHeight="26.0" prefWidth="317.0" promptText="Email" unFocusColor="WHITE" />
                         <Label layoutX="23.0" layoutY="103.0" text="Date of Birth" />
-                        <JFXDatePicker fx:id="dobid" defaultColor="#cf4374"  layoutX="149.0" layoutY="90.0" prefHeight="28.0" prefWidth="128.0" />
+                        <JFXDatePicker fx:id="dobid" defaultColor="#cf4374" layoutX="149.0" layoutY="90.0" prefHeight="28.0" prefWidth="128.0" />
                         <Label layoutX="24.0" layoutY="150.0" text="Country" />
                         <JFXComboBox fx:id="countryid" focusColor="#cf4374" layoutX="148.0" layoutY="137.0" prefHeight="26.0" prefWidth="97.0" unFocusColor="#001a33" />
                         <Label layoutX="25.0" layoutY="191.0" text="Gender" />
-                        <JFXToggleButton fx:id="userGender" layoutX="137.0" layoutY="171.0" onMousePressed="#changeBtnText" text="Male" toggleColor="#04437f" toggleLineColor="#f0568c" unToggleColor="#ef558b" unToggleLineColor="#001a33" />
+                        <JFXToggleButton fx:id="userGender" layoutX="137.0" layoutY="171.0" onAction="#changeBtnText" selected="true" text="Male" toggleColor="#04437f" toggleLineColor="#f0568c" unToggleColor="#ef558b" unToggleLineColor="#001a33" />
                         <JFXTextField fx:id="fullnameid" focusColor="#001a33" labelFloat="true" layoutX="21.0" layoutY="8.0" prefHeight="26.0" prefWidth="317.0" promptText="Full Name" unFocusColor="WHITE" />
                         <Label fx:id="warningMsg" layoutX="24.0" layoutY="229.0" prefHeight="20.0" prefWidth="318.0" textFill="#972626">
                            <font>
