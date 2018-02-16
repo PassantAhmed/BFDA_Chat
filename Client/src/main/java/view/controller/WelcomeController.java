@@ -50,8 +50,10 @@ public class WelcomeController implements Initializable {
     }
     public void connect(ActionEvent actionEvent) {
         String ipAddress = serverIpField1.getText() + "." + serverIpField2.getText() + "." + serverIpField3.getText() + "." + serverIpField4.getText();
+
         loader.setVisible(true);
         if(!validateIp(ipAddress)){
+
             errorLabel.setText("IP is not a valid IP, please re-write a valid one..");
             setLoader();
         } else
