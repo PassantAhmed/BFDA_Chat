@@ -11,6 +11,7 @@ import com.jfoenix.controls.JFXToggleButton;
 import java.io.IOException;
 import java.net.URL;
 import java.rmi.RemoteException;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -74,6 +75,8 @@ public class RegisterController1 implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         user = new User();
         countryid.getItems().addAll("Egypt", "USA", "Canada");
+        countryid.getSelectionModel().select(0);
+        dobid.setValue(LocalDate.now());
         // TODO
     }
 

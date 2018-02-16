@@ -70,7 +70,7 @@
                      <children>
                         <JFXTextField fx:id="emailid" focusColor="#001a33" labelFloat="true" layoutX="22.0" layoutY="57.0" prefHeight="26.0" prefWidth="317.0" promptText="Email" unFocusColor="WHITE" />
                         <Label layoutX="23.0" layoutY="103.0" text="Date of Birth" />
-                        <JFXDatePicker fx:id="dobid" defaultColor="#cf4374" layoutX="149.0" layoutY="90.0" prefHeight="28.0" prefWidth="128.0" />
+                        <JFXDatePicker fx:id="dobid" defaultColor="#cf4374"  layoutX="149.0" layoutY="90.0" prefHeight="28.0" prefWidth="128.0" />
                         <Label layoutX="24.0" layoutY="150.0" text="Country" />
                         <JFXComboBox fx:id="countryid" focusColor="#cf4374" layoutX="148.0" layoutY="137.0" prefHeight="26.0" prefWidth="97.0" unFocusColor="#001a33" />
                         <Label layoutX="25.0" layoutY="191.0" text="Gender" />

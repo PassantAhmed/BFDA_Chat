@@ -66,6 +66,7 @@ public class WelcomeController implements Initializable {
             else
             {
                 Platform.runLater(()->{new Alert(Alert.AlertType.ERROR, "Server Is Not Reachable").show();});
+                setLoader();
             }
             }).start();
         }
