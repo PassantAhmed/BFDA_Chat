@@ -26,7 +26,24 @@ public class ChatImpl extends UnicastRemoteObject implements ChatHandler {
     {
         System.out.println(mainController.getWelcomeController() == null);
         if(mainController.getMainController().getCurrentChatID().equals(chatID))
+        {
+            mainController.getMainController().getMsgMap().get(chatID).add(message);
             Platform.runLater(()->{mainController.getMainController().getCurrentChatObserver().add(message);});
+        }
+        else
+        {
+            if(mainController.getMainController().getMsgMap().containsKey(chatID))
+            {
+                mainController.getMainController().getMsgMap().get(chatID).add(message);
+            }
+            else
+            {
+                Vector<Message> msgs = new Vector<Message>();
+                msgs.add(message);
+                mainController.getMainController().getMsgMap().put(chatID , msgs );
+            }
+
+        }
     }
 
     @Override

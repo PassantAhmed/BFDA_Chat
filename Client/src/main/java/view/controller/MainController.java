@@ -1,7 +1,9 @@
 package view.controller;
 
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import model.ServerConnection;
+import server.interfaces.ClientServerRegister;
 import server.interfaces.ServerMessegeSender;
 import view.util.ChatBoxFormat;
 import view.util.FriendListFormat;
@@ -23,9 +25,7 @@ import java.net.URL;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class MainController implements Initializable {
 
@@ -55,8 +55,13 @@ public class MainController implements Initializable {
     private boolean isItalic = false;
     private Color fontColor = Color.BLACK;
     private FriendListFormat friendListFormat;
+    private ServerConnection serverConnection;
+
+    private HashMap<String , Vector<Message>> messagesMap =  new HashMap<>();
+
     public MainController() throws RemoteException {
 
+        serverConnection = ServerConnection.getInstance();
 
     }
 
@@ -64,29 +69,13 @@ public class MainController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         friendsListView.setCellFactory(param -> new FriendListFormat(this));
-        List<User> userList = new ArrayList<>();
-
-            User user = new User();
-            user.setName("Mohamed Fawzy");
-            user.setUsername("Mohamedfawzy1993");
-            user.setStatus(false);
-            user.setMode("Hello From the Other Side");
-            userList.add(user);
-
-            user = new User();
-            user.setName("Ahmed");
-            user.setUsername("Ahmedahmed");
-            user.setStatus(false);
-            user.setMode("Hello From the Other Side");
-
-
-            userList.add(user);
-
         chatBoxListVIew.setStyle("-fx-padding: 10 0 0 0;");
         chatBoxListVIew.setCellFactory(param ->  new ChatBoxFormat());
-//        chatBoxListVIew.getItems().addAll(messages);
-
-        friendsListView.getItems().addAll(userList);
+        try {
+            updateFriendList();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
         announceArea1.setEditable(false);
         name.setText(ClientObject.getUserDataInternal().getUsername());
         formatBarValues();
@@ -112,6 +101,7 @@ public class MainController implements Initializable {
             message.setMessageDate(LocalDateTime.now());
         }
             serverMessegeSender.sendMsg(currentChatMemberID , message );
+            chatField.clear();
 
     }
 
@@ -143,10 +133,32 @@ public class MainController implements Initializable {
         return friendsListView.getItems();
     }
 
-    public void setCurrentChatID(String userName) throws RemoteException, SQLException {
+    public void setChatRoom(String userName) throws RemoteException, SQLException {
+
         ServerMessegeSender serverMessegeSender = ServerConnection.getInstance().getRegisteryObject().getServerMessegeSender();
         currentChatID = serverMessegeSender.getChatRoomOfClient(ClientObject.getUserDataInternal().getUsername() , userName);
         currentChatMemberID = serverMessegeSender.getChatMemberID(ClientObject.getUserDataInternal().getUsername() ,currentChatID);
+        if(!messagesMap.containsKey(currentChatID)){
+            System.out.println("Not Contain");
+            new Thread(()->{
+                try {
+                    messagesMap.put(currentChatID , serverMessegeSender.getAllRoomMessages(currentChatID));
+                    System.out.println("populated");
+                    Platform.runLater(()->{chatBoxListVIew.getItems().setAll(messagesMap.get(currentChatID));});
+
+                } catch (SQLException e) {
+                    System.out.println(e.toString());
+                    e.printStackTrace();
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+            }).start();
+        }
+        else
+        {
+            System.out.println("Vieweing");
+            Platform.runLater(()->{chatBoxListVIew.getItems().setAll(messagesMap.get(currentChatID));});
+        }
     }
 
     public String getCurrentChatID(){ return currentChatID; }
@@ -155,6 +167,18 @@ public class MainController implements Initializable {
     {
         return chatBoxListVIew.getItems();
     }
+
+    public void updateFriendList() throws RemoteException {
+        friendsListView.getItems().setAll(serverConnection.getRegisteryObject().getFriendsDbOperations()
+                .retrieveAllFriends(ClientObject.getUserDataInternal().getId()));
+    }
+
+
+    public HashMap<String , Vector<Message>> getMsgMap()
+    {
+        return messagesMap;
+    }
+
 
 
 

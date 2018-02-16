@@ -134,16 +134,41 @@ public class DatabaseChatOperation  {
             return null;
     }
 
-    public Vector<Message> getAllRoomMessages(String chatRoomID)
-    {
-        String sql = "select " +
-                "from ChatMsg , ChatMember , ChatRoom\n" +
-                "where ChatRoom.id = ? " +
+    public Vector<Message> getAllRoomMessages(String chatRoomID) throws SQLException {
+        String query = "SELECT " +
+                "    User.username,\n" +
+                "    ChatMsg.MsgBody,\n" +
+                "    ChatMsg.MsgFont,\n" +
+                "    ChatMsg.MsgSize,\n" +
+                "    ChatMsg.MsgIsBold,\n" +
+                "    ChatMsg.MsgIsItalic,\n" +
+                "    ChatMsg.MsgColor,\n" +
+                "    ChatMsg.DateStamp\n" +
+                "FROM ChatMsg , User , ChatMember , ChatRoom \n" +
+                "where ChatRoom.id = ? \n" +
                 "and ChatMember.ChatRoom_id = ChatRoom.id\n" +
-                "and ChatMsg.ChatMember_id = ChatMember.id\n" +
-                "order by ChatMsg.DateStamp ";
+                "and ChatMsg.ChatMember_id = ChatMember.id \n" +
+                "and User.id = ChatMember.User_id\n" +
+                "order by ChatMsg.DateStamp";
+        preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setString(1 , chatRoomID);
+        resultSet = preparedStatement.executeQuery();
+        Vector<Message> messages = new Vector<>();
+        while(resultSet.next())
+        {
+            Message message = new Message();
+            message.setFromUser(resultSet.getString(1));
+            message.setMessageContent(resultSet.getString(2));
+            message.setMessageFontFamily(resultSet.getString(3));
+            message.setMessageFontSize(resultSet.getString(4));
+            message.setBold(resultSet.getBoolean(5));
+            message.setItalic(resultSet.getBoolean(6));
+            message.setMessageFontColor(resultSet.getString(7));
+            message.setMessageDate(SqlParser.fromSqlTimeStampToLocalDateTime(resultSet.getTimestamp(8)));
+            messages.add(message);
+        }
+            return messages;
 
-        return null;
     }
 
     public Message getMessage(String chatMsgID)

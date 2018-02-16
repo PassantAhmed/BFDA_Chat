@@ -76,7 +76,7 @@ public class ChatBoxFormat extends ListCell<Message> {
                 FontPosture fontPosture = item.isItalic() ? FontPosture.ITALIC : FontPosture.REGULAR;
                 msgText.setFont(Font.font(item.getMessageFontFamily() ,fontWeight , fontPosture , Integer.valueOf(item.getMessageFontSize())));
                 msgText.setText(item.getMessageContent());
-
+                msgText.setStyle("-fx-fill: "+item.getMessageFontColor());
                 setGraphic(usedParent);
                 this.setStyle("-fx-background-color: white");
             }

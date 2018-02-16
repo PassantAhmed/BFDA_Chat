@@ -44,7 +44,7 @@
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </Label>
-                  <Hyperlink fx:id="signupButton" layoutX="151.0" layoutY="53.0" text="Sign up" textFill="#001a33" underline="true">
+                  <Hyperlink fx:id="signupButton" layoutX="151.0" layoutY="53.0" onAction="#signUp" text="Sign up" textFill="#001a33" underline="true">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>

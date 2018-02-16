@@ -37,7 +37,6 @@ public class FriendListFormat extends ListCell<User> {
             statusCircle = (Circle)parent.lookup("#statusCircle");
             name = (Label)parent.lookup("#name");
             status = (Label)parent.lookup("#status");
-            msgCount = (Label)parent.lookup("#msgCount");
             img = new Image("https://www.filmibeat.com/img/220x90x275/popcorn/profile_photos/scarlett-johansson-20141121172716-5935.jpg");
 
         } catch (IOException e) {
@@ -63,11 +62,10 @@ public class FriendListFormat extends ListCell<User> {
                 statusCircle.setFill(Color.RED);
             name.setText(item.getName());
             status.setText(item.getMode());
-            msgCount.setText(Integer.toString(item.getNewMsgCount()));
             setGraphic(parent);
             parent.setOnMouseClicked(param->{
                 try {
-                    mainController.setCurrentChatID(item.getUsername());
+                    mainController.setChatRoom(item.getUsername());
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 } catch (SQLException e) {

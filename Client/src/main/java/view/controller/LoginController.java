@@ -113,4 +113,27 @@ public class LoginController implements Initializable {
 
     }
 
+    public void signUp(ActionEvent actionEvent) {
+        Platform.runLater(()->{
+
+            Parent root = null;
+            try {
+
+                Stage stage = new Stage();
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/RegisterScene.fxml"));
+                root = fxmlLoader.load();
+                ControllerManager.getInstance().setRegisterController(fxmlLoader.getController());
+                Scene scene = new Scene(root);
+                stage.setTitle("BFDA Chat | Register");
+                stage.setScene(scene);
+                Stage currentStage = (Stage)loginButton.getScene().getWindow();
+                currentStage.close();
+                stage.setResizable(false);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        });
+    }
 }
