@@ -109,20 +109,25 @@ public class MainController implements Initializable {
     public void sendBtn(ActionEvent actionEvent) throws RemoteException, SQLException {
         ServerMessegeSender serverMessegeSender = ServerConnection.getInstance().getRegisteryObject().getServerMessegeSender();
         Message message = new Message();
-        if(!chatField.getText().isEmpty() || chatField.getText() != null)
-        {
+        if(!chatField.getText().isEmpty() || chatField.getText() != null) {
             message.setMessageContent(chatField.getText());
             message.setMessageFontFamily(fontList.getValue());
             message.setMessageFontSize(sizeList.getValue().toString());
-            message.setMessageFontColor(fontColor.toString().replace("0x" , "#"));
+            message.setMessageFontColor(fontColor.toString().replace("0x", "#"));
             message.setFromUser(ClientObject.getUserDataInternal().getUsername());
             message.setBold(isBold);
             message.setItalic(isItalic);
             message.setMessageDate(LocalDateTime.now());
+            new Thread(() -> {
+                try {
+                    serverMessegeSender.sendMsg(currentChatMemberID, message);
+                } catch (SQLException | RemoteException e) {
+                    new Alert(Alert.AlertType.ERROR, "Cannot Send Msg , System Error");
+                    e.printStackTrace();
+                }
+            }).start();
         }
-            serverMessegeSender.sendMsg(currentChatMemberID , message );
-            chatField.clear();
-
+        chatField.clear();
     }
 
     private void updateTextStyle() {
