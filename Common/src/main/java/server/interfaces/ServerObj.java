@@ -12,5 +12,5 @@ public interface ServerObj extends Remote {
     public ServerMessegeSender getServerMessegeSender()throws RemoteException;
     public FriendsDbOperations getFriendsDbOperations() throws RemoteException;
     public ServerFileTransferInterface getServerFileTransfer() throws RemoteException;
-
+    public UserStatuesChangeInterface getUserStatuesChangeImpl() throws RemoteException;
     }
