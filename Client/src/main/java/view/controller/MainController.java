@@ -8,6 +8,9 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
@@ -32,6 +35,7 @@ import javafx.scene.text.FontWeight;
 import model.ClientObject;
 import view.util.GroupListFormat;
 
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -39,10 +43,12 @@ import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 import javafx.event.Event;
 import javafx.scene.image.ImageView;
 import server.interfaces.FriendsDbOperations;
+import view.util.Notification;
 import xmlfiles.XmlMessage;
 
 public class MainController implements Initializable {
@@ -188,7 +194,7 @@ public class MainController implements Initializable {
         fontColorPicker.setValue(Color.BLACK);
     }
 
-    public ObservableList getFriendList()
+    public ObservableList<User> getFriendList()
     {
         return friendsListView.getItems();
     }
