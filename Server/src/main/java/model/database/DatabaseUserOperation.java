@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.ClientServerRegisterImp;
 import utilities.SqlParser;
 
 /**
@@ -61,7 +62,7 @@ public class DatabaseUserOperation {
         try {
             PreparedStatement pst = conn.prepareStatement("update User set statusFlag=?  where id=?");
             pst.setBoolean(1, clientFlag);
-            pst.setInt(2, user.getId());
+            pst.setInt(1, user.getId());
             pst.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
@@ -157,26 +158,16 @@ public class DatabaseUserOperation {
             PreparedStatement preparedStatement = conn.prepareStatement("select count(*) from User");
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                usersNo = resultSet.getInt(0);
+                usersNo = resultSet.getInt(1);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(DatabaseUserOperation.class.getName()).log(Level.SEVERE, null, ex);
+            usersNo=0;
         }
         return usersNo;
     }
 
     public int getStatistics() {
-        int statisticsNo = 0;
-        try {
-            PreparedStatement preparedStatement = conn.prepareStatement("select count(*) from User where statusMode = ?");
-            ResultSet resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
-                statisticsNo = resultSet.getInt(0);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(DatabaseUserOperation.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return statisticsNo;
+        return ClientServerRegisterImp.clientObjHashMap.keySet().size();
     }
 
 }

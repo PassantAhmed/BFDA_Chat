@@ -11,18 +11,18 @@
       <PieChart fx:id="usersNoChart" layoutX="8.0" layoutY="161.0" prefHeight="338.0" prefWidth="410.0" />
       <AnchorPane layoutX="428.0" layoutY="264.0" prefHeight="122.0" prefWidth="208.0" style="-fx-background-radius: 10; -fx-background-color: #f0f0f0;">
          <children>
-            <Label fx:id="onlineUsersNo" layoutX="159.0" layoutY="24.0" text="55" textFill="#001a33">
+            <Label fx:id="onlineUsersNo" layoutX="159.0" layoutY="24.0" text="0" textFill="#001a33">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="offlineUsersNo" layoutX="160.0" layoutY="66.0" text="55" textFill="#001a33">
+            <Label fx:id="offlineUsersNo" layoutX="160.0" layoutY="66.0" text="0" textFill="#001a33">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Circle fx:id="onlineUsersCircle" fill="#001a33" layoutX="39.0" layoutY="40.0" radius="9.0" stroke="#001a33" strokeType="INSIDE" />
-            <Circle fx:id="offlineUsersCircle" fill="#b9798b" layoutX="39.0" layoutY="81.0" radius="9.0" stroke="#b9798b" strokeType="INSIDE" />
+            <Circle fx:id="onlineUsersCircle" fill="#001a33" layoutX="39.0" layoutY="81.0" radius="9.0" stroke="#001a33" strokeType="INSIDE" />
+            <Circle fx:id="offlineUsersCircle" fill="#b9798b" layoutX="39.0" layoutY="39.0" radius="9.0" stroke="#b9798b" strokeType="INSIDE" />
             <Label layoutX="59.0" layoutY="27.0" text="Online Users">
                <font>
                   <Font size="16.0" />

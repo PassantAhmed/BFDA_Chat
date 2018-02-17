@@ -11,13 +11,14 @@
 						<xs:element name="content" type="xs:string" >
 							<xs:attribute name="color" type="xs:string" default="#000"/>
 							<xs:attribute name="font-size" type="xs:string" default="15"/>
-							<xs:attribute name="font-family" type="xs:string" default="Calibri"/>
+							<xs:attribute name="font-family" type="xs:string" default="calibri"/>
 						</xs:element>
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
-        <xs:attribute name="owner" type="xs:string" default="system"/>
+        <xs:attribute name="owner" type="xs:string" default="None"/>
+        <xs:attribute name="chatName" type="xs:string" default="None"/>
 </xs:element>
 </xs:schema>

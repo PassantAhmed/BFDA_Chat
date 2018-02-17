@@ -38,7 +38,7 @@ public class XmlMessage {
             xmlStreamWriter.writeStartDocument("utf-8", "1.0");
             xmlStreamWriter.writeCharacters(System.lineSeparator());
 
-            xmlStreamWriter.writeProcessingInstruction("xml-stylesheet type=" + "\"text/xsl\"", "href=" + "\"src\\xmlfiles\\xmlStyle.xsl\"");
+            xmlStreamWriter.writeProcessingInstruction("xml-stylesheet type=" + "\"text/xsl\"", "href=" + "\"xmlStyle.xsl\"");
 
             xmlStreamWriter.writeCharacters(System.lineSeparator());
 
