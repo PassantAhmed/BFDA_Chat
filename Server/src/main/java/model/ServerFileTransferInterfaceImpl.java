@@ -30,10 +30,10 @@ public class ServerFileTransferInterfaceImpl extends UnicastRemoteObject impleme
     }
 
     @Override
-    public synchronized void sendFileParts(String senderID , String receiverID , FileObject fileObject) throws IOException {
+    public synchronized void sendFileParts(String senderID , String receiverID , FileObject fileObject , boolean lastPart) throws IOException {
 
         ClientObj clientObj =  ClientServerRegisterImp.clientObjHashMap.get(receiverID);
-        clientObj.getClientFileTransfer().receiveFileParts(senderID , receiverID , fileObject);
+        clientObj.getClientFileTransfer().receiveFileParts(senderID , receiverID , fileObject , lastPart);
     }
 
 

@@ -10,6 +10,7 @@ public class FileObject implements Serializable{
     private String partName;
     private int byteAmount;
     private File locationToSave;
+    private String fileActualName;
 
 
 
@@ -21,11 +22,17 @@ public class FileObject implements Serializable{
         this.locationToSave = locationToSave;
     }
 
-    public FileObject(byte[] fileByte, String partName, int byteAmount , File locationToSave) {
+    public FileObject(File locationToSave , String fileActualName) {
+        this.locationToSave = locationToSave;
+        this.fileActualName = fileActualName;
+    }
+
+    public FileObject(byte[] fileByte, String partName, int byteAmount , File locationToSave , String fileActualName) {
         this.fileByte = fileByte;
         this.partName = partName;
         this.byteAmount = byteAmount;
         this.locationToSave = locationToSave;
+        this.fileActualName = fileActualName;
     }
 
 
@@ -53,6 +60,11 @@ public class FileObject implements Serializable{
         this.byteAmount = byteAmount;
     }
 
+    public String getFileActualName() {
+        return fileActualName;
+    }
 
-
+    public void setFileActualName(String fileActualName) {
+        this.fileActualName = fileActualName;
+    }
 }
