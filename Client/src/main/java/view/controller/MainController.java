@@ -40,6 +40,7 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
+import javafx.event.Event;
 import javafx.scene.image.ImageView;
 
 public class MainController implements Initializable {
@@ -72,7 +73,7 @@ public class MainController implements Initializable {
     @FXML Pane ChatArea;
     @FXML Pane sideArea;
 
-    //--TextFormatFlags
+ //--TextFormatFlags
     private boolean isBold = false;
     private boolean isItalic = false;
     private Color fontColor = Color.BLACK;
@@ -116,7 +117,7 @@ public class MainController implements Initializable {
         announceArea1.setText(accouncementString);
     }
 
-    public void sendBtn(MouseEvent mouseEvent) throws RemoteException, SQLException {
+    public void sendBtn(Event event) throws RemoteException, SQLException {
         ServerMessegeSender serverMessegeSender = ServerConnection.getInstance().getRegisteryObject().getServerMessegeSender();
         Message message = new Message();
         if(!chatField.getText().isEmpty() && chatField.getText() != null) {
@@ -298,6 +299,7 @@ public class MainController implements Initializable {
                     new FileHandler().splitFile(fileDist , senderID , currentChatUser , locationToSave);
                 }
             } catch (IOException e) {
+                System.out.println(e.toString());
                 Platform.runLater(()->{new Alert(Alert.AlertType.ERROR , "Error Happen While Transfering File").showAndWait();});
 
             } catch (InterruptedException | ExecutionException e) {
@@ -317,4 +319,6 @@ public class MainController implements Initializable {
     }
 
 
+    public void searchBtn(ActionEvent actionEvent) {
+    }
 }
