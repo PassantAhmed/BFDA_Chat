@@ -2,6 +2,7 @@ package view.controller;
 
 import beans.Group;
 import client.interfaces.ClientObj;
+import controller.FileHandler;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.ServerConnection;
 import server.interfaces.ClientServerRegister;
@@ -29,12 +31,14 @@ import javafx.scene.text.FontWeight;
 import model.ClientObject;
 import view.util.GroupListFormat;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.concurrent.ExecutionException;
 
 public class MainController implements Initializable {
 
@@ -44,6 +48,7 @@ public class MainController implements Initializable {
     @FXML private TextArea announceArea1;
     @FXML private Button sendBtn;
     @FXML private TextField chatField;
+    @FXML private Button sendFileBtn;
 
     //--Formating Components
     @FXML private Button bold;
@@ -57,6 +62,7 @@ public class MainController implements Initializable {
     private Label name;
     private String currentChatID ;
     private String currentChatMemberID ;
+    private String currentChatUser;
     //--
 
     @FXML Pane chatHeader;
@@ -169,7 +175,19 @@ public class MainController implements Initializable {
         currentChatID = serverMessegeSender.getChatRoomOfClient(ClientObject.getUserDataInternal().getUsername() , userName);
         currentChatMemberID = serverMessegeSender.getChatMemberID(ClientObject.getUserDataInternal().getUsername() ,currentChatID);
         chatMembers = serverMessegeSender.getAllChatMember(currentChatID);
+        currentChatUser = userName;
+        sendFileBtn.setDisable(false);
         setChat(currentChatID);
+    }
+
+    public void setGroupChatRoom(String groupRoomID) throws SQLException, RemoteException {
+
+        currentChatMemberID = serverMessegeSender.getChatMemberID(ClientObject.getUserDataInternal().getUsername() ,groupRoomID);
+        chatMembers = serverMessegeSender.getAllChatMember(groupRoomID);
+        sendFileBtn.setDisable(true);
+        currentChatUser = groupRoomID;
+        setChat(groupRoomID);
+
     }
 
     public String getCurrentChatID(){ return currentChatID; }
@@ -191,13 +209,6 @@ public class MainController implements Initializable {
     public HashMap<String , Vector<Message>> getMsgMap()
     {
         return messagesMap;
-    }
-
-    public void setGroupChatRoom(String groupRoomID) throws SQLException, RemoteException {
-
-        currentChatMemberID = serverMessegeSender.getChatMemberID(ClientObject.getUserDataInternal().getUsername() ,groupRoomID);
-        chatMembers = serverMessegeSender.getAllChatMember(groupRoomID);
-        setChat(groupRoomID);
     }
 
     private void setChat(String groupID) {
@@ -253,4 +264,45 @@ public class MainController implements Initializable {
         stage.setOnCloseRequest(param->{System.exit(0);});
         stage.show();
     }
+
+    public void sendFile(ActionEvent actionEvent) throws IOException, ExecutionException, InterruptedException {
+
+        File fileDist = getFileToSend();
+        if(fileDist == null)
+            return ;
+
+        String senderID = ClientObject.getUserDataInternal().getUsername();
+        String receiverID = currentChatUser;
+        File locationToSave = serverConnection.getRegisteryObject().getServerFileTransfer().requestSendFile(senderID , receiverID , fileDist.getName());
+        new Thread(()->{
+            try {
+
+                if(locationToSave == null)
+                {
+                   Platform.runLater(()->{new Alert(Alert.AlertType.ERROR , "User Refused To Receive file").showAndWait();});
+                   return;
+                }
+                else
+                {
+                    System.out.println(locationToSave);
+                    new FileHandler().splitFile(fileDist , senderID , currentChatUser , locationToSave);
+                }
+            } catch (IOException e) {
+                Platform.runLater(()->{new Alert(Alert.AlertType.ERROR , "Error Happen While Transfering File").showAndWait();});
+            }
+        }).start();
+    }
+
+    public File getFileToSend()
+    {
+        FileChooser fileChooser = new FileChooser();
+        File selectedFile = fileChooser.showOpenDialog(bold.getScene().getWindow());
+        if (selectedFile != null)
+            return selectedFile;
+        else
+           return null;
+
+    }
+
+
 }

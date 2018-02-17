@@ -19,7 +19,7 @@ public class ServerObject extends UnicastRemoteObject implements ServerObj, Seri
     private DatabaseUserOperation databaseUserOperation;
     private ServerMessegeSender serverMessegeSender;
     private FriendsDbOperations friendsDbOperations;
-    private ServerFileTransferImpl serverFileTransferImpl;
+    private ServerFileTransferInterfaceImpl serverFileTransferImpl;
 
 
 
@@ -30,7 +30,7 @@ public class ServerObject extends UnicastRemoteObject implements ServerObj, Seri
         databaseUserOperation = new DatabaseUserOperation();
         serverMessegeSender = new ServerMessageSenderImplementation();
         friendsDbOperations = new FriendsDbOperationsImp();
-        serverFileTransferImpl = new ServerFileTransferImpl();
+        serverFileTransferImpl = new ServerFileTransferInterfaceImpl();
     }
 
 
@@ -45,6 +45,6 @@ public class ServerObject extends UnicastRemoteObject implements ServerObj, Seri
     @Override
     public FriendsDbOperations getFriendsDbOperations() throws RemoteException { return friendsDbOperations; }
     @Override
-    public ServerFileTransferImpl getServerFileTransfer() { return serverFileTransferImpl; }
+    public ServerFileTransferInterfaceImpl getServerFileTransfer() { return serverFileTransferImpl; }
 
 }

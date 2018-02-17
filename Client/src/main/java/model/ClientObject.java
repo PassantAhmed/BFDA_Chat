@@ -2,9 +2,11 @@ package model;
 
 import beans.User;
 import client.interfaces.ChatHandler;
+import client.interfaces.ClientFileTransferInterface;
 import client.interfaces.ClientObj;
 import client.interfaces.UserAccount;
 import model.chat.ChatImpl;
+import model.filetranfer.ClientFileTransferImpl;
 import model.user.UserAccountImpl;
 
 import java.io.Serializable;
@@ -18,6 +20,7 @@ public class ClientObject extends UnicastRemoteObject implements ClientObj, Seri
 
     private ChatHandler chatHandler;
     private UserAccount userAccount;
+    private ClientFileTransferImpl clientFileTransfer;
     private static User userData;
 
     public static void setUserData(User userData) {
@@ -29,6 +32,7 @@ public class ClientObject extends UnicastRemoteObject implements ClientObj, Seri
     public ClientObject() throws RemoteException {
         chatHandler = new ChatImpl();
         userAccount = new UserAccountImpl();
+        clientFileTransfer = new ClientFileTransferImpl();
     }
 
     public ChatHandler getChatHandler() {
@@ -45,6 +49,11 @@ public class ClientObject extends UnicastRemoteObject implements ClientObj, Seri
 
     public void setUserAccount(UserAccount userAccount) {
         this.userAccount = userAccount;
+    }
+
+    @Override
+    public ClientFileTransferInterface getClientFileTransfer() throws RemoteException {
+        return clientFileTransfer;
     }
 
     @Override

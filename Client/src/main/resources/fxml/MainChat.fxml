@@ -86,7 +86,7 @@
             </ScrollPane>
             <HBox alignment="CENTER" prefHeight="67.0" prefWidth="440.0" spacing="3.0" style="-fx-background-color: #ffe6ff;">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="71.0" text="Send File" />
+                  <Button fx:id="sendFileBtn" mnemonicParsing="false" prefHeight="26.0" prefWidth="71.0" text="Send File" onAction="#sendFile" />
                   <ColorPicker fx:id="fontColorPicker" prefHeight="26.0" prefWidth="47.0" style="-fx-background-color: #ff6699;" />
                   <Button fx:id="bold" mnemonicParsing="false" prefHeight="26.0" prefWidth="33.0" text="B">
                      <font>

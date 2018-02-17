@@ -1,11 +1,15 @@
 package client.interfaces;
 
+import beans.FileObject;
+
+import java.io.File;
+import java.io.IOException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.concurrent.ExecutionException;
 
 public interface ClientFileTransferInterface extends Remote {
 
-    public void receiveFile() throws RemoteException;
-    public void receiveFileParts(boolean lastPart) throws RemoteException;
-    public void approveFileTransfer() throws RemoteException;
+    public File receiveFile(String senderID , String receiverID , String filename) throws RemoteException, ExecutionException, InterruptedException;
+    public void receiveFileParts(String senderID , String receiverID , FileObject fileObject) throws IOException;
 }
