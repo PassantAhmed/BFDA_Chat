@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="671.0" prefWidth="1016.0" style="-fx-background-color: #001a33;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane fx:id="chatHeader" layoutX="342.0" layoutY="-1.0" prefHeight="94.0" prefWidth="442.0" style="-fx-background-color: #001a33;">
+         <children>
+            <AnchorPane fx:id="chatHead" layoutY="-1.0" prefHeight="94.0" prefWidth="441.0" style="-fx-background-color: #001a33; -fx-border-color: #001a33;">
+               <children>
+                  <Label fx:id="name" layoutX="73.0" layoutY="33.0" text="Name" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <Circle fx:id="profilePicCircle1" fill="DODGERBLUE" layoutX="36.0" layoutY="50.0" radius="20.0" smooth="true" stroke="BLACK" strokeType="INSIDE" style="" />
+                  <Circle fill="#1fff3e" layoutX="54.0" layoutY="60.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Button layoutX="354.0" layoutY="37.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="26.0" style="-fx-background-radius: 5px 10px;" text="C" />
+                  <Button layoutX="318.0" layoutY="37.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="26.0" style="-fx-background-radius: 5px 10px;" text="V" />
+                  <Button fx:id="saveChat" layoutX="283.0" layoutY="37.0" mnemonicParsing="false" onAction="#saveChat" prefHeight="26.0" prefWidth="26.0" style="-fx-background-radius: 5px 10px;" text="+" />
+                  <Label layoutX="79.0" layoutY="54.0" text="Hello from the other side..." textFill="WHITE" />
+               </children>
+            </AnchorPane>
+         </children>
+      </Pane>
+      <VBox alignment="CENTER" prefHeight="93.0" prefWidth="94.0" style="-fx-background-color: #001a33;">
+         <children>
+            <Circle fx:id="profilePicCircle" fill="DODGERBLUE" radius="26.0" smooth="true" stroke="BLACK" strokeType="INSIDE" style="" />
+         </children>
+      </VBox>
+      <Pane layoutX="94.0" layoutY="-1.0" prefHeight="94.0" prefWidth="248.0" style="-fx-background-color: #001a33;">
+         <children>
+            <HBox alignment="CENTER" layoutX="1.0" prefHeight="100.0" prefWidth="250.0" spacing="10.0">
+               <children>
+                  <TextField fx:id="searchTxtField" prefHeight="30.0" prefWidth="200.0" promptText="Search" style="-fx-background-color: #ffe6ff; -fx-background-radius: 5;">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <Button fx:id="searchBtn" mnemonicParsing="false" onAction="#searchBtn" prefHeight="30.0" prefWidth="31.0" style="-fx-background-color: #e7ebf1; -fx-background-radius: 5px 10px;" text="+" />
+               </children>
+               <padding>
+                  <Insets left="10.0" right="10.0" />
+               </padding>
+            </HBox>
+         </children>
+      </Pane>
+      <HBox alignment="CENTER" layoutX="784.0" layoutY="-1.0" prefHeight="94.0" prefWidth="232.0" style="-fx-background-color: #001a33;">
+         <children>
+            <AnchorPane prefHeight="78.0" prefWidth="210.0">
+               <children>
+                  <ImageView fx:id="logOutBtn" fitHeight="30.0" fitWidth="30.0" layoutX="179.0" layoutY="13.0" onMouseClicked="#logoutBtn" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../styles/logout.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+      <VBox fx:id="ChatArea" layoutX="342.0" layoutY="98.0" prefHeight="566.0" prefWidth="442.0" style="-fx-background-color: #ffe6ff; -fx-border-color: lightgray;">
+         <children>
+            <ScrollPane prefHeight="450.0" prefWidth="441.0" style="-fx-background-color: #FFF;">
+               <content>
+                  <VBox prefHeight="444.0" prefWidth="438.0" style="-fx-background-color: #ffe6ff;">
+                     <children>
+                        <ListView fx:id="chatBoxListVIew" prefHeight="455.0" prefWidth="438.0" style="-fx-background-color: #ffe6ff;" />
+                     </children>
+                  </VBox>
+               </content>
+            </ScrollPane>
+            <HBox alignment="CENTER" prefHeight="67.0" prefWidth="440.0" spacing="3.0" style="-fx-background-color: #ffe6ff; -fx-border-color: #FFF;">
+               <children>
+                  <Button fx:id="sendFileBtn" mnemonicParsing="false" onAction="#sendFile" prefHeight="26.0" prefWidth="71.0" text="Send File" />
+                  <AnchorPane prefHeight="66.0" prefWidth="49.0">
+                     <children>
+                        <ImageView fx:id="sendFileBtn" fitHeight="26.0" fitWidth="26.0" layoutX="4.0" layoutY="22.0" onMousePressed="#sendFile" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../styles/saveChat.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="66.0" prefWidth="49.0">
+                     <children>
+                        <ImageView fx:id="bold" fitHeight="18.0" fitWidth="26.0" layoutX="4.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../styles/boldIcon.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="italic" fitHeight="26.0" fitWidth="18.0" layoutX="26.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../styles/italicIcon.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+                  <ComboBox fx:id="fontList" prefHeight="25.0" prefWidth="133.0" />
+                  <ComboBox fx:id="sizeList" prefHeight="25.0" prefWidth="81.0" />
+                  <ColorPicker fx:id="fontColorPicker" prefHeight="26.0" prefWidth="47.0" style="-fx-background-color: #001a33; -fx-background-radius: 9 20 20 9;" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="59.0" prefWidth="441.0" spacing="10.0">
+               <children>
+                  <TextField fx:id="chatField" onAction="#sendBtn" prefHeight="41.0" prefWidth="358.0" />
+                  <AnchorPane prefHeight="49.0" prefWidth="28.0">
+                     <children>
+                        <ImageView fx:id="sendBtn" fitHeight="34.0" fitWidth="34.0" layoutX="4.0" layoutY="11.0" onMousePressed="#sendBtn" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../styles/sendIcon.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <AnchorPane layoutX="789.0" layoutY="97.0" prefHeight="506.0" prefWidth="222.0">
+         <children>
+            <AnchorPane layoutY="1.0" prefHeight="566.0" prefWidth="222.0" style="-fx-background-color: #001a33;">
+               <children>
+                  <TextArea fx:id="announceArea1" layoutX="19.0" layoutY="51.0" prefHeight="498.0" prefWidth="186.0" style="-fx-background-color: #ffe6ff;" />
+                  <Label layoutX="14.0" layoutY="7.0" text="Server Announcements" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <TabPane layoutX="26.0" layoutY="98.0" prefHeight="566.0" prefWidth="310.0" side="LEFT" stylesheets="@../styles/MainWindow.css" tabClosingPolicy="UNAVAILABLE">
+         <tabs>
+            <Tab style="-fx-background-color: #b0697d; -fx-text-base-color: #FFF;" text="Friends">
+               <content>
+                  <ListView fx:id="friendsListView" prefHeight="591.0" prefWidth="296.0" />
+               </content>
+            </Tab>
+            <Tab style="-fx-background-color: #ffe6ff;" text="Groups">
+               <content>
+                  <ListView fx:id="chatGroupsList" prefHeight="200.0" prefWidth="200.0" />
+               </content>
+            </Tab>
+            <Tab style="-fx-background-color: #ffe6ff;" text="Req Friends">
+               <content>
+                  <ListView fx:id="reqFriendsListView" prefHeight="200.0" prefWidth="200.0" />
+               </content>
+            </Tab>
+         </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
