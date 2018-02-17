@@ -179,4 +179,13 @@ public class FriendsCrudDB
         return clients;
     }
 
+        /************************************ select one user  to check is exist *******************************************************/
+
+    public boolean select(String strStatement,String x)
+    {
+        boolean check=true;
+        return check;
+    }
+
+    
 }

@@ -100,5 +100,17 @@ public class FriendsDbOperationsImp extends UnicastRemoteObject implements Frien
         return (ArrayList<User>) friendsCrud.select(selectStatement);
     }
 
+    @Override
+    public boolean isExist(int myId, int userId) throws RemoteException 
+    {
+            String selectStatment="select  user_id from friend whrere  (user_id,friend_id) VALUES ('"+myId+"','"+userId+"')";
+            
+            return friendsCrud.select(selectStatment,"");
+            
+    }
+
+        /*********************check if user isExist as a friend **********************************/
+    
+
 
 }
