@@ -265,7 +265,7 @@ public class MainController implements Initializable {
         stage.show();
     }
 
-    public void sendFile(ActionEvent actionEvent) throws IOException, ExecutionException, InterruptedException {
+    public void sendFile(ActionEvent actionEvent){
 
         File fileDist = getFileToSend();
         if(fileDist == null)
@@ -273,9 +273,9 @@ public class MainController implements Initializable {
 
         String senderID = ClientObject.getUserDataInternal().getUsername();
         String receiverID = currentChatUser;
-        File locationToSave = serverConnection.getRegisteryObject().getServerFileTransfer().requestSendFile(senderID , receiverID , fileDist.getName());
         new Thread(()->{
             try {
+                File locationToSave = serverConnection.getRegisteryObject().getServerFileTransfer().requestSendFile(senderID , receiverID , fileDist.getName());
 
                 if(locationToSave == null)
                 {
@@ -289,12 +289,14 @@ public class MainController implements Initializable {
                 }
             } catch (IOException e) {
                 Platform.runLater(()->{new Alert(Alert.AlertType.ERROR , "Error Happen While Transfering File").showAndWait();});
+
+            } catch (InterruptedException | ExecutionException e) {
+                e.printStackTrace();
             }
         }).start();
     }
 
-    public File getFileToSend()
-    {
+    public File getFileToSend() {
         FileChooser fileChooser = new FileChooser();
         File selectedFile = fileChooser.showOpenDialog(bold.getScene().getWindow());
         if (selectedFile != null)

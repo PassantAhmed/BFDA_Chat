@@ -13,8 +13,10 @@ public class FileHandler {
     public synchronized void splitFile(File f  ,String sender , String receiver , File locationToSave) throws IOException {
 
         int partCounter = 1;//I like to name parts from 001, 002, 003, ...
+
         //you can change it to 0 if you want 000, 001, ...
-        int sizeOfFiles = 1024*1024;// 1MB
+        int sizeOfFiles = 5120*1024;// 1MB
+
         byte[] buffer = new byte[sizeOfFiles];
 
         String fileName = f.getName();
@@ -27,10 +29,15 @@ public class FileHandler {
 
                 //write each chunk of data into separate file with different number in name
                 String filePartName = String.format("%s.%03d", fileName, partCounter++);
-                FileObject fileObject = new FileObject(buffer , filePartName , bytesAmount , locationToSave);
-                ServerConnection.getInstance().getRegisteryObject().getServerFileTransfer().sendFileParts(sender , receiver , fileObject);
+                FileObject fileObject = new FileObject(buffer , filePartName , bytesAmount , locationToSave , f.getName());
+                ServerConnection.getInstance().getRegisteryObject().getServerFileTransfer().sendFileParts(sender , receiver , fileObject , false);
 
             }
+            String filePartName = String.format("%s.%03d", fileName, 1);
+            System.out.println(locationToSave.toString());
+            ServerConnection.getInstance().getRegisteryObject().getServerFileTransfer().sendFileParts(sender , receiver ,
+                    new FileObject(new File(locationToSave.toString()+"\\"+ filePartName) , f.getName()) , true);
+
         }
     }
 

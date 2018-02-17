@@ -44,8 +44,13 @@ public class ClientFileTransferImpl extends UnicastRemoteObject implements Clien
     }
 
     @Override
-    public synchronized void receiveFileParts(String senderID, String receiverID, FileObject fileObject) throws IOException {
-        fileHandler.retrieveFile(fileObject);
+    public synchronized void receiveFileParts(String senderID, String receiverID, FileObject fileObject , boolean lastPart) throws IOException {
+        if(!lastPart)
+            fileHandler.retrieveFile(fileObject);
+        else {
+            fileHandler.mergeFiles(fileHandler.listOfFilesToMerge(fileObject.getLocationToSave()) ,
+                    new File(fileObject.getLocationToSave().toString()+"\\"+fileObject.getFileActualName()));
+        }
     }
 
     private File getSaveLocation() {
