@@ -297,6 +297,7 @@ public class MainController implements Initializable {
                     new FileHandler().splitFile(fileDist , senderID , currentChatUser , locationToSave);
                 }
             } catch (IOException e) {
+                System.out.println(e.toString());
                 Platform.runLater(()->{new Alert(Alert.AlertType.ERROR , "Error Happen While Transfering File").showAndWait();});
 
             } catch (InterruptedException | ExecutionException e) {
@@ -316,4 +317,6 @@ public class MainController implements Initializable {
     }
 
 
+    public void searchBtn(ActionEvent actionEvent) {
+    }
 }
