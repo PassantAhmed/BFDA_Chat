@@ -62,7 +62,7 @@ public class DatabaseUserOperation {
         try {
             PreparedStatement pst = conn.prepareStatement("update User set statusFlag=?  where id=?");
             pst.setBoolean(1, clientFlag);
-            pst.setInt(1, user.getId());
+            pst.setInt(2, user.getId());
             pst.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
@@ -75,7 +75,7 @@ public class DatabaseUserOperation {
         try {
             PreparedStatement pst = conn.prepareStatement("update User set statusMode=?  where id=?");
             pst.setString(1, clientMode);
-            pst.setInt(1, user.getId());
+            pst.setInt(2, user.getId());
             pst.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);

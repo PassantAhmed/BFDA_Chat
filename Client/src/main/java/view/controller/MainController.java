@@ -271,7 +271,11 @@ public class MainController implements Initializable {
     }
 
     public void sendFile(ActionEvent actionEvent){
-
+//          for(User user : friendsListView.getItems())
+//          {
+//              user.setStatus(false);
+//          }
+//          friendsListView.refresh();
         File fileDist = getFileToSend();
         if(fileDist == null)
             return ;

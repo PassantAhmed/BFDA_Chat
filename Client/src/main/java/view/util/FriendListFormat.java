@@ -62,7 +62,7 @@ public class FriendListFormat extends ListCell<User> {
             if(item.getStatus())
                 statusCircle.setFill(Color.GREEN);
             else
-                statusCircle.setFill(Color.RED);
+                statusCircle.setFill(Color.GRAY);
             name.setText(item.getName());
             status.setText(item.getMode());
             setGraphic(parent);
