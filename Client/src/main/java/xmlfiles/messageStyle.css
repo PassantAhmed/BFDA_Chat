@@ -7,7 +7,7 @@
 #logo{
     width: 100%;
     height: 100%;
-    background-image: url("bfda.jpg");
+    background-image: url("Duke-.png");
     background-size:cover;
     background-repeat: no-repeat;
 }
@@ -34,7 +34,13 @@
 }
 
 .sideDiv2{
-	height: 300px;
+	width: 250px;
+        height: 200px;
+	background-color: #001a33;
+	margin: 5px;
+	padding: 5px;
+	border-radius: 10px;
+        color: #FFF;
 	background-color: #001a33;
         
 }
@@ -42,7 +48,7 @@
 #ownerImg{
 	width: 27%;
 	height: 60px;
-	background-image: url("Java-Duke.jpg");
+	background-image: url("Male.png");
 	background-size:cover;
 	background-repeat: no-repeat;
 	border-radius: 50%;
@@ -70,7 +76,7 @@
 	width: 27%;
 	height: 60px;
 	float: left;
-	background-image: url("Java-Duke.jpg");
+	background-image: url("Male.png");
 	background-size:cover;
 	background-repeat: no-repeat;
 	border-radius: 50%;
@@ -88,7 +94,6 @@
 
 .messagesContainer{
 	width: 1060px;
-	height: 450px;
 	border-radius: 10px;
         background-color: #001a33;
 	float:right;

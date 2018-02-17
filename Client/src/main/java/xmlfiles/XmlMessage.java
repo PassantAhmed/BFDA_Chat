@@ -33,9 +33,9 @@ public class XmlMessage {
         boolean writeFlag = false;
         try {
             XMLOutputFactory xmlOutputFactory = XMLOutputFactory.newFactory();
-            XMLStreamWriter xmlStreamWriter = xmlOutputFactory.createXMLStreamWriter(new FileOutputStream("src\\xmlfiles\\" + userName + "_" +chatName+ "_" +date.getTime() + ".xml"));
+            XMLStreamWriter xmlStreamWriter = xmlOutputFactory.createXMLStreamWriter(new FileOutputStream(System.getProperty("user.dir")+"\\src\\main\\java\\xmlfiles\\" + userName + "_" +chatName+ "_" +date.getTime() + ".xml"));
 
-            xmlStreamWriter.writeStartDocument("utf-8", "1.0");
+            xmlStreamWriter.writeStartDocument("1.0");
             xmlStreamWriter.writeCharacters(System.lineSeparator());
 
             xmlStreamWriter.writeProcessingInstruction("xml-stylesheet type=" + "\"text/xsl\"", "href=" + "\"xmlStyle.xsl\"");
@@ -52,32 +52,32 @@ public class XmlMessage {
             xmlStreamWriter.writeAttribute("chatName", chatName);
             xmlStreamWriter.writeCharacters(System.lineSeparator());
 
-            for (Message message : messages) {
+            for (int counter=0; counter<messages.size(); counter++) {
                 // Writing All Messages 
                 xmlStreamWriter.writeStartElement("message");
                 xmlStreamWriter.writeCharacters(System.lineSeparator());
                 xmlStreamWriter.writeStartElement("from");
-                xmlStreamWriter.writeCharacters(message.getFromUser());
+                xmlStreamWriter.writeCharacters(messages.get(counter).getFromUser());
                 xmlStreamWriter.writeEndElement();
                 xmlStreamWriter.writeCharacters(System.lineSeparator());
 
-                for (int counter = 0; counter < message.getToUsers().size(); counter++) {
+               /* for (int secondCounter = 0; secondCounter < messages.get(counter).getToUsers().size(); secondCounter++) {
                     xmlStreamWriter.writeStartElement("to");
-                    xmlStreamWriter.writeCharacters(message.getToUsers().get(counter));
+                    xmlStreamWriter.writeCharacters(messages.get(counter).getToUsers().get(secondCounter));
                     xmlStreamWriter.writeEndElement();
                     xmlStreamWriter.writeCharacters(System.lineSeparator());
-                }
+                }*/
 
                 xmlStreamWriter.writeStartElement("date");
-                xmlStreamWriter.writeCharacters(String.valueOf(message.getMessageDate()));
+                xmlStreamWriter.writeCharacters(String.valueOf(messages.get(counter).getMessageDate()));
                 xmlStreamWriter.writeEndElement();
                 xmlStreamWriter.writeCharacters(System.lineSeparator());
 
                 xmlStreamWriter.writeStartElement("content");
-                xmlStreamWriter.writeAttribute("color", message.getMessageFontColor());
-                xmlStreamWriter.writeAttribute("font-size", message.getMessageFontSize());
-                xmlStreamWriter.writeAttribute("font-family", message.getMessageFontFamily());
-                xmlStreamWriter.writeCharacters(message.getMessageContent());
+                xmlStreamWriter.writeAttribute("color", messages.get(counter).getMessageFontColor());
+                xmlStreamWriter.writeAttribute("font-size", messages.get(counter).getMessageFontSize());
+                xmlStreamWriter.writeAttribute("font-family", messages.get(counter).getMessageFontFamily());
+                xmlStreamWriter.writeCharacters(messages.get(counter).getMessageContent());
                 xmlStreamWriter.writeEndElement();
                 xmlStreamWriter.writeCharacters(System.lineSeparator());
 

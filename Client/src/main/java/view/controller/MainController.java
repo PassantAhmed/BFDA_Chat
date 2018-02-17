@@ -8,9 +8,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
@@ -35,7 +32,6 @@ import javafx.scene.text.FontWeight;
 import model.ClientObject;
 import view.util.GroupListFormat;
 
-import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -43,11 +39,11 @@ import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.*;
-import java.util.List;
 import java.util.concurrent.ExecutionException;
 import javafx.event.Event;
 import javafx.scene.image.ImageView;
-import view.util.Notification;
+import server.interfaces.FriendsDbOperations;
+import xmlfiles.XmlMessage;
 
 public class MainController implements Initializable {
 
@@ -58,6 +54,8 @@ public class MainController implements Initializable {
     @FXML private ImageView sendBtn;
     @FXML private TextField chatField;
     @FXML private ImageView sendFileBtn;
+    
+    @FXML private TextField searchTxt;
 
     //--Formating Components
     @FXML private ImageView bold;
@@ -72,6 +70,7 @@ public class MainController implements Initializable {
     private String currentChatID ;
     private String currentChatMemberID ;
     private String currentChatUser;
+    private String chatGroupName;
     //--
 
     @FXML Pane chatHeader;
@@ -118,7 +117,7 @@ public class MainController implements Initializable {
         formatBarActions();
         showPanes(false);
 
-        new Thread(()->{
+          new Thread(()->{
             try {
                 while(true)
                 {
@@ -148,6 +147,7 @@ public class MainController implements Initializable {
             message.setBold(isBold);
             message.setItalic(isItalic);
             message.setMessageDate(LocalDateTime.now());
+            message.setToUsers(chatMembers);
 
             new Thread(() -> {
 
@@ -188,7 +188,7 @@ public class MainController implements Initializable {
         fontColorPicker.setValue(Color.BLACK);
     }
 
-    public ObservableList<User> getFriendList()
+    public ObservableList getFriendList()
     {
         return friendsListView.getItems();
     }
@@ -204,13 +204,14 @@ public class MainController implements Initializable {
         setChat(currentChatID);
     }
 
-    public void setGroupChatRoom(String groupRoomID) throws SQLException, RemoteException {
+    public void setGroupChatRoom(Group groupRoomID) throws SQLException, RemoteException {
 
-        currentChatMemberID = serverMessegeSender.getChatMemberID(ClientObject.getUserDataInternal().getUsername() ,groupRoomID);
-        chatMembers = serverMessegeSender.getAllChatMember(groupRoomID);
+        chatGroupName = groupRoomID.getGroupName();
+        currentChatMemberID = serverMessegeSender.getChatMemberID(ClientObject.getUserDataInternal().getUsername() ,groupRoomID.getRoomID());
+        chatMembers = serverMessegeSender.getAllChatMember(groupRoomID.getRoomID());
         sendFileBtn.setDisable(true);
-        currentChatUser = groupRoomID;
-        setChat(groupRoomID);
+        currentChatUser = groupRoomID.getRoomID();
+        setChat(groupRoomID.getRoomID());
 
     }
 
@@ -268,7 +269,9 @@ public class MainController implements Initializable {
     }
 
     public void saveChat(MouseEvent mouseEvent) {
-        //System.out.println(XmlMessage.writeXmlFile(ClientObject.getUserDataInternal().getUsername() , "" , messagesMap.get(currentChatID)));
+        System.out.println("Calling");
+        XmlMessage.writeXmlFile(ClientObject.getUserDataInternal().getUsername() , currentChatUser , messagesMap.get(currentChatID));
+        System.out.println("Done");
     }
 
     public void logoutBtn(MouseEvent mouseEvent) throws IOException {
@@ -337,10 +340,22 @@ public class MainController implements Initializable {
 
     }
 
-    public void searchBtn(ActionEvent actionEvent) {
-    }
 
-    private void checkUsersStatus() {
+    public void searchBtn(ActionEvent actionEvent) {
+        new Thread(()->
+        {
+            try {
+                ArrayList<User> userID=new ArrayList<>();
+                FriendsDbOperations friendOperations = ServerConnection.getInstance().getRegisteryObject().getFriendsDbOperations();
+                friendOperations.testShowMessage();
+            } catch (RemoteException ex)
+            {
+                ex.printStackTrace();
+            }                    
+        }).start();
+      }
+
+        private void checkUsersStatus() {
 
         for(User user : getFriendList())
         {
