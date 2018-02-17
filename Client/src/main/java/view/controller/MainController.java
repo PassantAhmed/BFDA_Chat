@@ -40,6 +40,7 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
+import javafx.scene.image.ImageView;
 
 public class MainController implements Initializable {
 
@@ -47,13 +48,13 @@ public class MainController implements Initializable {
     @FXML private ListView<Message> chatBoxListVIew;
     @FXML private ListView<Group> chatGroupsList;
     @FXML private TextArea announceArea1;
-    @FXML private Button sendBtn;
+    @FXML private ImageView sendBtn;
     @FXML private TextField chatField;
-    @FXML private Button sendFileBtn;
+    @FXML private ImageView sendFileBtn;
 
     //--Formating Components
-    @FXML private Button bold;
-    @FXML private Button italic;
+    @FXML private ImageView bold;
+    @FXML private ImageView italic;
     @FXML private ColorPicker fontColorPicker;
     @FXML private ComboBox<String> fontList;
     @FXML private ComboBox<Integer> sizeList;
@@ -115,7 +116,7 @@ public class MainController implements Initializable {
         announceArea1.setText(accouncementString);
     }
 
-    public void sendBtn(ActionEvent actionEvent) throws RemoteException, SQLException {
+    public void sendBtn(MouseEvent mouseEvent) throws RemoteException, SQLException {
         ServerMessegeSender serverMessegeSender = ServerConnection.getInstance().getRegisteryObject().getServerMessegeSender();
         Message message = new Message();
         if(!chatField.getText().isEmpty() && chatField.getText() != null) {
@@ -152,8 +153,8 @@ public class MainController implements Initializable {
     }
 
     private void formatBarActions() {
-        bold.setOnAction(param->{isBold = !isBold; updateTextStyle();});
-        italic.setOnAction(param->{isItalic = !isItalic; updateTextStyle();});
+        bold.setOnMousePressed(param->{isBold = !isBold; updateTextStyle();});
+        italic.setOnMousePressed(param->{isItalic = !isItalic; updateTextStyle();});
         fontColorPicker.setOnAction(param->{fontColor = fontColorPicker.getValue(); updateTextStyle();});
         fontList.setOnAction(param->{updateTextStyle();});
         sizeList.setOnAction(param->{updateTextStyle();});
@@ -246,7 +247,7 @@ public class MainController implements Initializable {
        ChatArea.setVisible(status);
     }
 
-    public void saveChat(ActionEvent actionEvent) {
+    public void saveChat(MouseEvent mouseEvent) {
         //System.out.println(XmlMessage.writeXmlFile(ClientObject.getUserDataInternal().getUsername() , "" , messagesMap.get(currentChatID)));
     }
 
@@ -270,7 +271,7 @@ public class MainController implements Initializable {
         stage.show();
     }
 
-    public void sendFile(ActionEvent actionEvent){
+    public void sendFile(MouseEvent mouseEvent){
 //          for(User user : friendsListView.getItems())
 //          {
 //              user.setStatus(false);
@@ -297,7 +298,6 @@ public class MainController implements Initializable {
                     new FileHandler().splitFile(fileDist , senderID , currentChatUser , locationToSave);
                 }
             } catch (IOException e) {
-                System.out.println(e.toString());
                 Platform.runLater(()->{new Alert(Alert.AlertType.ERROR , "Error Happen While Transfering File").showAndWait();});
 
             } catch (InterruptedException | ExecutionException e) {
@@ -317,6 +317,4 @@ public class MainController implements Initializable {
     }
 
 
-    public void searchBtn(ActionEvent actionEvent) {
-    }
 }
