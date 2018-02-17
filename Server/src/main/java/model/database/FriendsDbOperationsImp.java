@@ -90,26 +90,33 @@ public class FriendsDbOperationsImp extends UnicastRemoteObject implements Frien
     }
 
     @Override
-    public ArrayList<User> getAllFriendRequests(String myId) throws RemoteException {
+    public ArrayList<User> getAllFriendRequests(int myId) throws RemoteException {
 //
         String selectStatement = "select User.id , name , username , email , password , gender , country , " +
-                "birthdate , userPicture , statusFlag , statusMode" +
-                "from User , Friend " +
-                "where Friend.User_id = "+myId+" and Friend.RequestFlag = 0 " +
-                "and User.id = Friend.Friend_id";
+                "birthdate , userPicture , statusFlag , statusMode " +
+                " from User , Friend " +
+                " where Friend.User_id = "+myId+" and Friend.RequestFlag = 0 " +
+                " and User.id = Friend.Friend_id";
         return (ArrayList<User>) friendsCrud.select(selectStatement);
     }
+    
+        /*********************check if user isExist as a friend **********************************/
 
     @Override
     public boolean isExist(int myId, int userId) throws RemoteException 
     {//select  id from Friend where (user_id,friend_id) = (1,2)
-            String selectStatment="select  id from Friend whrere  (user_id,friend_id) VALUES ('"+myId+"','"+userId+"')";
+            String selectStatment="select  id from Friend where  (user_id,friend_id) = ('"+myId+"','"+userId+"')";
             
             return friendsCrud.select(selectStatment,"");
             
     }
 
-        /*********************check if user isExist as a friend **********************************/
+    @Override
+    public void testShowMessage() throws RemoteException 
+    {  
+            System.out.println("Well Fromed");
+    }
+
     
 
 

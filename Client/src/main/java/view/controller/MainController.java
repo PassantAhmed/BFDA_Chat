@@ -42,6 +42,7 @@ import java.util.*;
 import java.util.concurrent.ExecutionException;
 import javafx.event.Event;
 import javafx.scene.image.ImageView;
+import server.interfaces.FriendsDbOperations;
 import xmlfiles.XmlMessage;
 
 public class MainController implements Initializable {
@@ -53,6 +54,8 @@ public class MainController implements Initializable {
     @FXML private ImageView sendBtn;
     @FXML private TextField chatField;
     @FXML private ImageView sendFileBtn;
+    
+    @FXML private TextField searchTxt;
 
     //--Formating Components
     @FXML private ImageView bold;
@@ -326,5 +329,16 @@ public class MainController implements Initializable {
 
 
     public void searchBtn(ActionEvent actionEvent) {
-    }
+        new Thread(()->
+        {
+            try {
+                ArrayList<User> userID=new ArrayList<>();
+                FriendsDbOperations friendOperations = ServerConnection.getInstance().getRegisteryObject().getFriendsDbOperations();
+                friendOperations.testShowMessage();
+            } catch (RemoteException ex)
+            {
+                ex.printStackTrace();
+            }                    
+        }).start();
+      }
 }
