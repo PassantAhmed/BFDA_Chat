@@ -9,7 +9,7 @@
             </head>   
         
             <body>
-                <div class="header"></div>
+                <div class="header"><div id="logo" /></div>
             
                 <div id="container">
                     <div class="side">
@@ -31,7 +31,7 @@
                             <xsl:choose>
                                 <xsl:when test="from = $owner">
                                     <div id="myMessages">
-                                        <div style="margin-bottom: 2px; margin-top: 5px;float: right; margin: 4px;">
+                                        <div style="margin-bottom: 2px; margin-top: 5px;float: right; margin: 4px; color: #FFF;">
                                             <xsl:value-of select="from" />
                                         </div><br/>
                                         
@@ -39,7 +39,12 @@
                                             <xsl:value-of select="date" />
                                         </div>
                                         
-                                        <div style="background-color:#ccc; border-radius: 5px; padding:5 5 5 10; margin-left: 10px; ">  
+                                        <div style="background-color:#ffe6ff;
+                                             border-bottom-left-radius: 40px; 
+                                             border-top-left-radius: 40px; 
+                                             border-bottom-right-radius: 10px; 
+                                             border-top-right-radius: 5px; 
+                                             padding:5 5 5 10; margin-left: 10px; ">  
                                             <xsl:variable name="content" select="content"/>
                                             <xsl:for-each select="content">
                                                 <xsl:variable name="color" select="@color"/>
@@ -57,7 +62,7 @@
                                 
                                 <xsl:otherwise>
                                     <div id="otherMessages">
-                                        <div style="margin-bottom: 2px; margin-top: 5px; margin-left: 7%;">
+                                        <div style="margin-bottom: 2px; margin-top: 5px; margin-left: 7%; color: #FFF;">
                                             <xsl:value-of select="from" />
                                         </div>
                                         
@@ -65,7 +70,12 @@
                                             <xsl:value-of select="date" />
                                         </div>
                                         
-                                        <div style="background-color:#ccc; border-radius: 5px; padding:5 5 5 10; margin-left: 10px; ">  
+                                        <div style="background-color:#ffe6ff;
+                                             border-bottom-left-radius: 10px; 
+                                             border-top-left-radius: 10px; 
+                                             border-bottom-right-radius: 40px; 
+                                             border-top-right-radius: 40px; 
+                                             padding:5 10 5 10; margin-left: 10px;">  
                                             <xsl:variable name="content" select="content"/>
                                             <xsl:for-each select="content">
                                                 <xsl:variable name="color" select="@color"/>
