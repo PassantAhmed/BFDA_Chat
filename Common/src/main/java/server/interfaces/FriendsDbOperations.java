@@ -29,4 +29,5 @@ public interface FriendsDbOperations extends Remote {
 
     public ArrayList<User> getAllFriendRequests(String myId) throws RemoteException;
 
+    public boolean isExist(int myId,int userId)throws RemoteException;
 }
