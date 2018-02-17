@@ -6,9 +6,12 @@
 package view.controller;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -17,6 +20,7 @@ import javafx.geometry.Side;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import javafx.scene.shape.Circle;
+import model.database.DatabaseUserOperation;
 
 /**
  *
@@ -32,7 +36,13 @@ public class StatisticsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        setStatistics(700,50);
+        try {
+            DatabaseUserOperation db = new DatabaseUserOperation();
+            //setStatistics(700,50);
+            setStatistics(db.getUsersNumber(), db.getStatistics());
+        } catch (SQLException ex) {
+            Logger.getLogger(StatisticsController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void setStatistics(int allNo, int onlineNo) {
