@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.ClientServerRegisterImp;
 import utilities.SqlParser;
 
 /**
@@ -166,17 +167,7 @@ public class DatabaseUserOperation {
     }
 
     public int getStatistics() {
-        int statisticsNo = 0;
-        try {
-            PreparedStatement preparedStatement = conn.prepareStatement("select count(*) from User where statusMode = ?");
-            ResultSet resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
-                statisticsNo = resultSet.getInt(1);
-            }
-        } catch (SQLException ex) {
-            statisticsNo = 0;
-        }
-        return statisticsNo;
+        return ClientServerRegisterImp.clientObjHashMap.keySet().size();
     }
 
 }

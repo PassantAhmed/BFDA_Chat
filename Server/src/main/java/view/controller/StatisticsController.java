@@ -10,17 +10,24 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Side;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import javafx.scene.shape.Circle;
+import javafx.util.Duration;
 import model.database.DatabaseUserOperation;
 
 /**
@@ -40,18 +47,35 @@ public class StatisticsController implements Initializable {
     @FXML
     private Circle onlineUsersCircle;
 
+    DatabaseUserOperation db;
+    int online = 0;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         try {
             DatabaseUserOperation db = new DatabaseUserOperation();
-            setStatistics(db.getUsersNumber(), db.getStatistics());
-            
+            online = db.getStatistics();
+            setStatistics(db.getUsersNumber(), online);
         } catch (SQLException ex) {
             Logger.getLogger(StatisticsController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        Timeline updates = new Timeline(new KeyFrame(Duration.seconds(120), new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    db = new DatabaseUserOperation();
+                    setStatistics(db.getUsersNumber(), db.getStatistics());
+                } catch (SQLException ex) {
+                    Logger.getLogger(StatisticsController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }));
+        updates.setCycleCount(Timeline.INDEFINITE);
+        updates.play();
     }
-    
+
     public void setStatistics(int allNo, int onlineNo) {
         onlineUsersNo.setText(String.valueOf(onlineNo));
         offlineUsersNo.setText(String.valueOf(allNo - onlineNo));
