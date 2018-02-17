@@ -48,7 +48,8 @@ public class ClientFileTransferImpl extends UnicastRemoteObject implements Clien
         if(!lastPart)
             fileHandler.retrieveFile(fileObject);
         else {
-            fileHandler.mergeFiles(fileHandler.listOfFilesToMerge(fileObject.getLocationToSave()) , new File(fileObject.getFileActualName()));
+            fileHandler.mergeFiles(fileHandler.listOfFilesToMerge(fileObject.getLocationToSave()) ,
+                    new File(fileObject.getLocationToSave().toString()+"\\"+fileObject.getFileActualName()));
         }
     }
 

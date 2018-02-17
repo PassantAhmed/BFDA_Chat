@@ -33,8 +33,10 @@ public class FileHandler {
                 ServerConnection.getInstance().getRegisteryObject().getServerFileTransfer().sendFileParts(sender , receiver , fileObject , false);
 
             }
+            String filePartName = String.format("%s.%03d", fileName, 1);
+            System.out.println(locationToSave.toString());
             ServerConnection.getInstance().getRegisteryObject().getServerFileTransfer().sendFileParts(sender , receiver ,
-                    new FileObject(locationToSave , f.getName()) , true);
+                    new FileObject(new File(locationToSave.toString()+"\\"+ filePartName) , f.getName()) , true);
 
         }
     }
