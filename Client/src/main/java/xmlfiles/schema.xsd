@@ -6,7 +6,7 @@
 				<xs:complexType>
 					<xs:sequence>
 						<xs:element name="from" type="xs:string" />
-						<xs:element name="to" type="xs:string" minOccurs="1" maxOccurs="unbounded"></xs:element>
+						<!--<xs:element name="to" type="xs:string" minOccurs="1" maxOccurs="unbounded"></xs:element>-->
 						<xs:element name="date" type="xs:string" />
 						<xs:element name="content" type="xs:string" >
 							<xs:attribute name="color" type="xs:string" default="#000"/>

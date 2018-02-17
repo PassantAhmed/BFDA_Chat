@@ -18,7 +18,7 @@
                             <div id="ownerName"><xsl:value-of select="/messages/@owner" /></div>  
                         </div>
                     
-                        <div class="sideDiv sideDiv2">
+                        <div class="sideDiv2">
                             <div id="chat">
                                 <div id="chatImg"></div>
                                 <div id="chatName"><xsl:value-of select="/messages/@chatName" /></div>
@@ -35,16 +35,17 @@
                                             <xsl:value-of select="from" />
                                         </div><br/>
                                         
-                                        <div style="margin-bottom: 2px; margin-top: 5px;">
+                                        <div style="margin-bottom: 7px; margin-top: 5px;float: right; color: #FFF;">
                                             <xsl:value-of select="date" />
-                                        </div>
+                                        </div><br/>
                                         
                                         <div style="background-color:#ffe6ff;
                                              border-bottom-left-radius: 40px; 
                                              border-top-left-radius: 40px; 
                                              border-bottom-right-radius: 10px; 
                                              border-top-right-radius: 5px; 
-                                             padding:5 5 5 10; margin-left: 10px; ">  
+                                             padding:5 5 5 10; margin-left: 10px; 
+                                             margin-top: 5px;">  
                                             <xsl:variable name="content" select="content"/>
                                             <xsl:for-each select="content">
                                                 <xsl:variable name="color" select="@color"/>
@@ -52,7 +53,9 @@
                                                 <xsl:variable name="family" select="@font-family"/>
                                                 <p style=" color: {$color} ;
                                                    font-size: {$size} px;
-                                                   font-family: {$family} ;">
+                                                   font-family: {$family} ;
+                                                   max-width: 600px;
+                                                   word-wrap:break-word; ">
                                                     <xsl:value-of select="$content" />
                                                 </p>
                                             </xsl:for-each>
@@ -66,7 +69,7 @@
                                             <xsl:value-of select="from" />
                                         </div>
                                         
-                                        <div style="margin-bottom: 2px; margin-top: 5px;">
+                                        <div style="margin-bottom: 2px; margin-top: 5px; margin-left: 7%; color: #FFF;">
                                             <xsl:value-of select="date" />
                                         </div>
                                         
@@ -75,13 +78,15 @@
                                              border-top-left-radius: 10px; 
                                              border-bottom-right-radius: 40px; 
                                              border-top-right-radius: 40px; 
-                                             padding:5 10 5 10; margin-left: 10px;">  
+                                             padding:5 10 5 10; margin-left: 10px;
+                                             max-width: 500px;
+                                             word-wrap:break-word; ">  
                                             <xsl:variable name="content" select="content"/>
                                             <xsl:for-each select="content">
                                                 <xsl:variable name="color" select="@color"/>
                                                 <xsl:variable name="size" select="@font-size"/>
                                                 <xsl:variable name="family" select="@font-family"/>
-                                                <p style=" color: {$color} ;
+                                                <p style=" color: {$color} max-width: 500px ;
                                                    font-size: {$size} px;
                                                    font-family: {$family} ;">
                                                     <xsl:value-of select="$content" />
@@ -91,7 +96,7 @@
                                     </div>
                                 </xsl:otherwise>
                             </xsl:choose>
-                            </div><br/><br/><br/>
+                            </div><br/><br/><br/><br/><br/><br/><br/><br/><br/>
                         </xsl:for-each>
                     </div>
                 </div>

@@ -36,7 +36,7 @@
                   <Label layoutX="79.0" layoutY="54.0" text="Hello from the other side..." textFill="WHITE" />
                   <AnchorPane layoutX="396.0" layoutY="28.0" prefHeight="43.0" prefWidth="39.0">
                      <children>
-                        <ImageView fx:id="saveChat" fitHeight="30.0" fitWidth="34.0" layoutX="-15.0" layoutY="8.0" onMousePressed="#sendFile" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="saveChat" fitHeight="30.0" fitWidth="34.0" layoutX="-15.0" layoutY="8.0" onMousePressed="#saveChat" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../styles/saveChat.png" />
                            </image>

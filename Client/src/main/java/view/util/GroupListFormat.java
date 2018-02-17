@@ -55,7 +55,7 @@ public class GroupListFormat extends ListCell<Group> {
             setGraphic(parent);
             parent.setOnMouseClicked(param->{
                 try {
-                    mainController.setGroupChatRoom(item.getRoomID());
+                    mainController.setGroupChatRoom(item);
 
                 } catch (RemoteException e) {
                     e.printStackTrace();
