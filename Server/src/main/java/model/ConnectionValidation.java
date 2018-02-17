@@ -33,11 +33,6 @@ public class ConnectionValidation {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
-
-
-
-
     }
 
     public synchronized void removeInactiveFromList()
@@ -48,6 +43,13 @@ public class ConnectionValidation {
             ClientServerRegisterImp.clientObjHashMap.remove(clientObj);
         }
         inActiveUsers.clear();
+    }
+
+    public synchronized void sendCloseNotify() throws RemoteException {
+        for(String chatMember :  ClientServerRegisterImp.clientObjHashMap.keySet())
+        {
+            ClientServerRegisterImp.clientObjHashMap.get(chatMember).getConnectionValidation().closeRequest();
+        }
     }
 
 }

@@ -8,6 +8,9 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
@@ -32,6 +35,7 @@ import javafx.scene.text.FontWeight;
 import model.ClientObject;
 import view.util.GroupListFormat;
 
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -39,9 +43,11 @@ import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 import javafx.event.Event;
 import javafx.scene.image.ImageView;
+import view.util.Notification;
 
 public class MainController implements Initializable {
 
@@ -111,6 +117,19 @@ public class MainController implements Initializable {
         formatBarValues();
         formatBarActions();
         showPanes(false);
+
+        new Thread(()->{
+            try {
+                while(true)
+                {
+                    Thread.sleep(2000);
+                    System.out.println("Checking");
+                    checkUsersStatus();
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }).start();
     }
 
     public void updateAnnounce(String accouncementString) {
@@ -169,7 +188,7 @@ public class MainController implements Initializable {
         fontColorPicker.setValue(Color.BLACK);
     }
 
-    public ObservableList getFriendList()
+    public ObservableList<User> getFriendList()
     {
         return friendsListView.getItems();
     }
@@ -318,7 +337,26 @@ public class MainController implements Initializable {
 
     }
 
-
     public void searchBtn(ActionEvent actionEvent) {
+    }
+
+    private void checkUsersStatus() {
+
+        for(User user : getFriendList())
+        {
+            try {
+                boolean oldStatus = user.getStatus();
+                boolean res = serverConnection.getRegisteryObject().getUserStatuesChangeImpl().checkOnline(user.getUsername());
+                user.setStatus(res);
+                if(!oldStatus && res)
+                    Notification.displayTray(user.getName()+"Is Online" , "User "+user.getName()+" Is Now Online");
+            } catch (RemoteException e) {
+               Platform.runLater(()->{new Alert(Alert.AlertType.ERROR , "Server is Off , Application Exiting .... !").showAndWait();});
+               System.exit(0);
+            } catch (AWTException e) {
+                e.printStackTrace();
+            }
+        }
+        friendsListView.refresh();
     }
 }

@@ -5,7 +5,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+import model.ConnectionValidation;
+
+import java.rmi.RemoteException;
 
 
 public class App extends Application
@@ -21,7 +23,17 @@ public class App extends Application
         primaryStage.setScene(scene);
 //        primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setResizable(false);
-        primaryStage.setOnCloseRequest(param->{System.exit(0);});
+        primaryStage.setOnCloseRequest(param->{
+            new Thread(()->{
+                try {
+                    new ConnectionValidation().sendCloseNotify();
+                    System.exit(0);
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+            }).start();
+
+        });
         primaryStage.show();
     }
 

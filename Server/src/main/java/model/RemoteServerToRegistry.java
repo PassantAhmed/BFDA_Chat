@@ -26,18 +26,25 @@ public class RemoteServerToRegistry {
     }
 
     private RemoteServerToRegistry() throws RemoteException {
-
-            serverRegistry = LocateRegistry.createRegistry(5220);
-
-
+        serverRegistry = LocateRegistry.createRegistry(5220);
     }
     public void startServer() throws RemoteException, SQLException, ClassNotFoundException {
         serverRegistry.rebind("serverRegistry", new ServerObject());
-
     }
 
-    public void stopServer() throws RemoteException, NotBoundException {
-        serverRegistry.unbind("serverRegistry");
+    public void stopServer(){
+        new Thread(()->{
+            try {
+                new ConnectionValidation().sendCloseNotify();
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+            try {
+                serverRegistry.unbind("serverRegistry");
+            } catch (RemoteException | NotBoundException e) {
+                e.printStackTrace();
+            }
+        }).start();
     }
 
     public String[] boundedObjects() throws RemoteException {

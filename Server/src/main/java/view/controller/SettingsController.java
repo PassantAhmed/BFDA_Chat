@@ -46,13 +46,7 @@ public class SettingsController implements Initializable{
 
     public void stopServer(ActionEvent actionEvent)  {
         new Thread(()->{
-            try {
-                remoteServerToRegistry.stopServer();
-            } catch (RemoteException e) {
-                e.printStackTrace();
-            } catch (NotBoundException e) {
-                e.printStackTrace();
-            }
+            remoteServerToRegistry.stopServer();
         }).start();
         isServerRunning = false;
         startButton.setDisable(false);

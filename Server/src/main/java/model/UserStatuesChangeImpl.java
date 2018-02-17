@@ -42,5 +42,10 @@ public class UserStatuesChangeImpl extends UnicastRemoteObject implements UserSt
             DBO.clientSignHisFlagStatus(user, false);
         }
     }
+
+    public synchronized boolean checkOnline(String userName)
+    {
+        return ClientServerRegisterImp.clientObjHashMap.get(userName)!= null;
+    }
     
 }

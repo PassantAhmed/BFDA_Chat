@@ -18,7 +18,7 @@
             </Label>
             <ScrollPane fx:id="announcementScrollPane" hbarPolicy="NEVER" layoutX="22.0" layoutY="21.0" pannable="true" prefHeight="194.0" prefWidth="450.0">
                <content>
-                  <TextArea fx:id="announcementText" prefHeight="192.0" prefWidth="447.0" style="-fx-background-radius: 20 5 20 5;" />
+                  <TextArea fx:id="announcementText" prefHeight="192.0" prefWidth="447.0" wrapText="true" style="-fx-background-radius: 20 5 20 5;" />
                </content>
             </ScrollPane>
             <JFXButton fx:id="sendAnnouncementBtn" layoutX="160.0" layoutY="275.0" onAction="#sendAnnounce" prefHeight="51.0" prefWidth="174.0" style="-fx-background-color: #001a33; -fx-background-radius: 20 5 20 5;" text="SEND" textFill="WHITE">

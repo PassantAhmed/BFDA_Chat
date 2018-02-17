@@ -1,10 +1,7 @@
 package model;
 
 import beans.User;
-import client.interfaces.ChatHandler;
-import client.interfaces.ClientFileTransferInterface;
-import client.interfaces.ClientObj;
-import client.interfaces.UserAccount;
+import client.interfaces.*;
 import model.chat.ChatImpl;
 import model.filetranfer.ClientFileTransferImpl;
 import model.user.UserAccountImpl;
@@ -21,6 +18,7 @@ public class ClientObject extends UnicastRemoteObject implements ClientObj, Seri
     private ChatHandler chatHandler;
     private UserAccount userAccount;
     private ClientFileTransferImpl clientFileTransfer;
+    private ConnectionValidationImpl connectionValidation;
     private static User userData;
 
     public static void setUserData(User userData) {
@@ -33,6 +31,7 @@ public class ClientObject extends UnicastRemoteObject implements ClientObj, Seri
         chatHandler = new ChatImpl();
         userAccount = new UserAccountImpl();
         clientFileTransfer = new ClientFileTransferImpl();
+        connectionValidation = new ConnectionValidationImpl();
     }
 
     public ChatHandler getChatHandler() {
@@ -59,5 +58,10 @@ public class ClientObject extends UnicastRemoteObject implements ClientObj, Seri
     @Override
     public User getUserData() throws RemoteException {
         return userData;
+    }
+
+    @Override
+    public ConnectionValidation getConnectionValidation() throws RemoteException {
+        return connectionValidation;
     }
 }

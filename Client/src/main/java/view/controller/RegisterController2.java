@@ -62,7 +62,7 @@ public class RegisterController2 implements Initializable {
     }
 
     @FXML
-    private void registerAction(ActionEvent event) throws RemoteException, IOException {
+    private void registerAction(ActionEvent event) throws IOException {
         boolean genderBoolean;
         user.setUsername(usernameid.getText());
         user.setPassword(passwordid.getText());
@@ -72,7 +72,8 @@ public class RegisterController2 implements Initializable {
             //check if passwords matches
             if (user.getPassword().equals(repassword)) {
                 //data is valid send user object to server
-                boolean success = serverObj.getClientServerRegister().newUserRegisteration(user);
+                boolean success = false;
+                success = serverObj.getClientServerRegister().newUserRegisteration(user);
                 if (success == true) {
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LoginScene.fxml"));
                     Stage stage = new Stage();
@@ -87,7 +88,7 @@ public class RegisterController2 implements Initializable {
                     new Alert(Alert.AlertType.ERROR, "Username already exists...").show();
                 }
             } else {
-                new Alert(Alert.AlertType.ERROR, "Please be sure that you worte the confirmation password correct.").show();
+                new Alert(Alert.AlertType.ERROR, "Please be sure that you wrote the confirmation password correct.").show();
             }
         } else{
             new Alert(Alert.AlertType.ERROR, "Check that you follow the following instructions:"
