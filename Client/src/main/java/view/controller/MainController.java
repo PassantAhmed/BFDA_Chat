@@ -42,9 +42,13 @@ import java.util.*;
 import java.util.concurrent.ExecutionException;
 import javafx.event.Event;
 import javafx.scene.image.ImageView;
+import server.interfaces.FriendsDbOperations;
 
 public class MainController implements Initializable {
 
+     @FXML   private TextField searchTxt;
+
+        
     @FXML private ListView<User> friendsListView;
     @FXML private ListView<Message> chatBoxListVIew;
     @FXML private ListView<Group> chatGroupsList;
@@ -320,5 +324,21 @@ public class MainController implements Initializable {
 
 
     public void searchBtn(ActionEvent actionEvent) {
-    }
+
+           new Thread(()->
+           {
+            try {
+                                    ArrayList<User> userID=new ArrayList<>();
+                                    FriendsDbOperations friendOperations = ServerConnection.getInstance().getRegisteryObject().getFriendsDbOperations();
+                                      friendOperations.testShowMessage();
+
+                                    
+                }
+                        catch (RemoteException ex)
+                    {
+                               ex.printStackTrace();
+                    }                    
+            }).start();
+      }
+    
 }
