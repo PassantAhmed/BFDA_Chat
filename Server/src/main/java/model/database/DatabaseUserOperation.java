@@ -157,10 +157,10 @@ public class DatabaseUserOperation {
             PreparedStatement preparedStatement = conn.prepareStatement("select count(*) from User");
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                usersNo = resultSet.getInt(0);
+                usersNo = resultSet.getInt(1);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(DatabaseUserOperation.class.getName()).log(Level.SEVERE, null, ex);
+            usersNo=0;
         }
         return usersNo;
     }
@@ -171,10 +171,10 @@ public class DatabaseUserOperation {
             PreparedStatement preparedStatement = conn.prepareStatement("select count(*) from User where statusMode = ?");
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                statisticsNo = resultSet.getInt(0);
+                statisticsNo = resultSet.getInt(1);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(DatabaseUserOperation.class.getName()).log(Level.SEVERE, null, ex);
+            statisticsNo = 0;
         }
         return statisticsNo;
     }
