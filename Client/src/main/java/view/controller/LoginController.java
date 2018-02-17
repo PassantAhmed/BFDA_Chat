@@ -97,8 +97,10 @@ public class LoginController implements Initializable {
         {
             //if Registeration Success , set the Static variable with current User Object
             ClientObject.setUserData(loginUserResult);
-            loginResultFlag = setNewObjectToServer();
-
+            
+            loginResultFlag = setNewObjectToServer();            
+            serverConnection.getRegisteryObject().getUserStatuesChangeImpl().changeStatues(ClientObject.getUserDataInternal());
+            ClientObject.getUserDataInternal().setStatus(true);
             System.out.println("User Name is : "+loginUserResult.getUsername());
 
             if(loginResultFlag)

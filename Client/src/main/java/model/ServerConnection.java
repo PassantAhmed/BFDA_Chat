@@ -6,6 +6,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import server.interfaces.UserStatuesChangeInterface;
 
 public class ServerConnection {
 
@@ -13,9 +14,7 @@ public class ServerConnection {
     private static ServerConnection instance;
     private ServerObj obj ;
     private boolean isRegistered;
-
-
-
+    private UserStatuesChangeInterface userStatuesObj;
     public boolean isRegistered() {
         return isRegistered;
     }
@@ -45,6 +44,9 @@ public class ServerConnection {
         isRegistered = true;
         return true;
 
+    }
+    public UserStatuesChangeInterface getUserStatuesChangeObject(){
+        return userStatuesObj;
     }
 
 

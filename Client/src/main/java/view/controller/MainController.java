@@ -19,6 +19,7 @@ import view.util.ChatBoxFormat;
 import view.util.FriendListFormat;
 import beans.Message;
 import beans.User;
+import server.interfaces.UserStatuesChangeInterface;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -76,6 +77,7 @@ public class MainController implements Initializable {
     private Color fontColor = Color.BLACK;
     private FriendListFormat friendListFormat;
     private ServerConnection serverConnection;
+    private UserStatuesChangeInterface userStatuesChange;
     private ServerMessegeSender serverMessegeSender;
     private HashMap<String , Vector<Message>> messagesMap =  new HashMap<>();
     private Vector<String> chatMembers = new Vector<>();
@@ -83,6 +85,7 @@ public class MainController implements Initializable {
     public MainController() throws RemoteException {
 
         serverConnection = ServerConnection.getInstance();
+        userStatuesChange = serverConnection.getUserStatuesChangeObject();
         serverMessegeSender = serverConnection.getRegisteryObject().getServerMessegeSender();
     }
 
@@ -249,6 +252,8 @@ public class MainController implements Initializable {
 
     public void logoutBtn(MouseEvent mouseEvent) throws IOException {
         messagesMap.clear();
+        serverConnection.getRegisteryObject().getUserStatuesChangeImpl()
+                .changeStatues(ClientObject.getUserDataInternal());
         serverConnection.getRegisteryObject().getClientServerRegister()
                 .unRegisterUser(ClientObject.getUserDataInternal().getUsername());
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LoginScene.fxml"));
