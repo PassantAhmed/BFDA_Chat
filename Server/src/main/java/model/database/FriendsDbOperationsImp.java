@@ -34,7 +34,7 @@ public class FriendsDbOperationsImp extends UnicastRemoteObject implements Frien
     public ArrayList<User> searchForUser(String usrInformation)
 
     {
-        String selectStatement = "select id,name,username,email,password,gender,country,birthdate,userPic,status,mode from user where id= '"+usrInformation+"' or username= '"+usrInformation+"'";
+        String selectStatement = "select id,name,username,email,password,gender,country,birthdate,userpicture,statusflag,statusmode from User where id= '"+usrInformation+"' or username= '"+usrInformation+"'";
         return (ArrayList<User>) friendsCrud.select(selectStatement);
     }
 
@@ -46,7 +46,7 @@ public class FriendsDbOperationsImp extends UnicastRemoteObject implements Frien
     public boolean sendFriendRequest(int myId,int userId)
     {
 
-        String sqlStatm= "INSERT INTO Friend (userid,friendid,requestflag) VALUES ('"+myId+",'"+userId+"',0)";
+        String sqlStatm= "INSERT INTO Friend (user_id,friend_id,requestflag) VALUES ('"+myId+",'"+userId+"',0)";
         boolean checkOperation = friendsCrud.insert(sqlStatm);
         return checkOperation;
     }
@@ -57,9 +57,9 @@ public class FriendsDbOperationsImp extends UnicastRemoteObject implements Frien
     public boolean approveFriendRequset(int myId,int userId)
     {
         //user update for the flag to true where id
-        String sqlStatm = "update Friend set requestflag=true where (userid,friendid) VALUES ('"+myId+"','"+userId+"')";
+        String sqlStatm = "update Friend set requestflag=true where (user_id,friend_id) = ('"+myId+"','"+userId+"')";
         boolean checkOperation = friendsCrud.update(sqlStatm);
-        sqlStatm= "INSERT INTO Friend (userid,friendid,requestflag) VALUES ('"+userId+",'"+myId+"',1)";
+        sqlStatm= "INSERT INTO Friend (user_id,friend_id,requestflag) VALUES ('"+userId+",'"+myId+"',1)";
         checkOperation = friendsCrud.update(sqlStatm);
 
         return checkOperation;
@@ -70,7 +70,7 @@ public class FriendsDbOperationsImp extends UnicastRemoteObject implements Frien
     public boolean refuseFriendRequest(int myId,int userId)
     {
         //use delete statment
-        String sqlStatm = "delete * from Friend  where (userid,friendid) VALUES ('"+myId+"','"+userId+"')";
+        String sqlStatm = "delete  from Friend  where (user_id,friend_id) =  ('"+myId+"','"+userId+"')";
         boolean checkOperation= friendsCrud.delete(sqlStatm);
         return checkOperation;
 
@@ -93,7 +93,7 @@ public class FriendsDbOperationsImp extends UnicastRemoteObject implements Frien
     public ArrayList<User> getAllFriendRequests(String myId) throws RemoteException {
 //
         String selectStatement = "select User.id , name , username , email , password , gender , country , " +
-                "birthdate , userPicture , statusFlag , statusMode \n" +
+                "birthdate , userPicture , statusFlag , statusMode" +
                 "from User , Friend " +
                 "where Friend.User_id = "+myId+" and Friend.RequestFlag = 0 " +
                 "and User.id = Friend.Friend_id";
@@ -102,8 +102,8 @@ public class FriendsDbOperationsImp extends UnicastRemoteObject implements Frien
 
     @Override
     public boolean isExist(int myId, int userId) throws RemoteException 
-    {
-            String selectStatment="select  user_id from friend whrere  (user_id,friend_id) VALUES ('"+myId+"','"+userId+"')";
+    {//select  id from Friend where (user_id,friend_id) = (1,2)
+            String selectStatment="select  id from Friend whrere  (user_id,friend_id) VALUES ('"+myId+"','"+userId+"')";
             
             return friendsCrud.select(selectStatment,"");
             

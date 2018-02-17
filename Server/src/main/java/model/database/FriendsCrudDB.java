@@ -179,12 +179,30 @@ public class FriendsCrudDB
         return clients;
     }
 
-        /************************************ select one user  to check is exist *******************************************************/
+        /************************************ select one user  to check is exist  in your friends list*******************************************************/
 
     public boolean select(String strStatement,String x)
     {
-        boolean check=true;
-        return check;
+        int count=0;
+        try
+        {
+            
+                stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(strStatement);
+                while (rs.next())
+                {
+                        count++;
+                }
+        }
+        catch (SQLException ex)
+        {
+            Logger.getLogger(DatabaseUserOperation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         if(count == 0)
+            return false;
+         else
+             return true;
+    
     }
 
     
