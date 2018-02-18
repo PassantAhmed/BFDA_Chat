@@ -18,7 +18,7 @@
          <children>
             <AnchorPane layoutX="661.0" layoutY="451.0" prefHeight="18.0" prefWidth="25.0">
                <children>
-                  <ImageView fx:id="goToNextPageBtn" fitHeight="26.0" fitWidth="31.0" layoutX="-4.0" layoutY="-2.0" onMousePressed="#changeToNextScene" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="goToNextPageBtn" fitHeight="26.0" fitWidth="31.0" layoutX="-5.0" layoutY="-2.0" onMousePressed="#changeToNextScene" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../styles/gotoreg2.png" />
                      </image>
