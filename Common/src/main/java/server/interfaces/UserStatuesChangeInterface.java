@@ -17,4 +17,5 @@ public interface UserStatuesChangeInterface extends Remote {
     
     public void changeStatues(User user) throws RemoteException;
     public boolean checkOnline(String userName) throws RemoteException;
+    public void changeModes(User user) throws RemoteException;
 }

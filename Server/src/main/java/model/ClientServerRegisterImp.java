@@ -20,7 +20,7 @@ public class ClientServerRegisterImp extends UnicastRemoteObject implements Clie
 
 //    public static Vector<ClientObj> clientObject = new Vector<ClientObj>();
     public static HashMap<String , ClientObj> clientObjHashMap = new HashMap<>();
-
+    public static Vector<ClientObj> anonymousUsers = new Vector<>();
     protected ClientServerRegisterImp() throws RemoteException {
 
     }
@@ -34,6 +34,11 @@ public class ClientServerRegisterImp extends UnicastRemoteObject implements Clie
     @Override
     public synchronized void unRegisterUser(String username ) {
         ClientServerRegisterImp.clientObjHashMap.remove(username);
+    }
+
+    @Override
+    public void registerAnonymousUser(ClientObj clientObj) throws RemoteException {
+        anonymousUsers.add(clientObj);
     }
 
 

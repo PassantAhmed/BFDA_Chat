@@ -47,5 +47,12 @@ public class UserStatuesChangeImpl extends UnicastRemoteObject implements UserSt
     {
         return ClientServerRegisterImp.clientObjHashMap.get(userName)!= null;
     }
+
+    @Override
+    public void changeModes(User user) throws RemoteException {
+        
+        //TODO 
+        
+    }
     
 }

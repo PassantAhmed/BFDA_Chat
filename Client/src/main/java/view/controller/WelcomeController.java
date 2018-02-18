@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXSpinner;
 import java.io.IOException;
 import java.net.URL;
+import java.rmi.RemoteException;
 import java.util.ResourceBundle;
 
 import javafx.application.Platform;
@@ -131,12 +132,18 @@ public class WelcomeController implements Initializable {
 
     private boolean connectToServer(String ipAddress) {
         ServerConnection serverConnection = ServerConnection.getInstance();
+
         serverConnection.setHost(ipAddress);
         connectionEstablishingMode(true);
         boolean flag = false;
         if (serverConnection.establiseConnection())
         {
             flag =  true;
+            try {
+                serverConnection.getRegisteryObject().getClientServerRegister().registerAnonymousUser(new ClientObject());
+            } catch (RemoteException e) {
+                Platform.runLater(()->{new Alert(Alert.AlertType.ERROR , "Cannot Register Anonymous User").show();});
+            }
         }
         connectionEstablishingMode(false);
         return flag;

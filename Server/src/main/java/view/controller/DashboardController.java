@@ -68,7 +68,7 @@ public class DashboardController implements Initializable {
     public void viewStatistics(ActionEvent actionEvent) throws IOException {
         Node newLoadedPane = FXMLLoader.load(getClass().getResource("/fxml/StatisticsScene.fxml"));
         basePane.getChildren().clear();
-        basePane.getChildren().add(newLoadedPane);
+        basePane.getChildren().add(viewStatNode);
         setButtonStyle(viewStatisticsBtn);
 
     }
