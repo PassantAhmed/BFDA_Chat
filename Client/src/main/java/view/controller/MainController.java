@@ -22,6 +22,7 @@ import view.util.ChatBoxFormat;
 import view.util.FriendListFormat;
 import beans.Message;
 import beans.User;
+import com.jfoenix.controls.JFXButton;
 import server.interfaces.UserStatuesChangeInterface;
 
 import javafx.event.ActionEvent;
@@ -66,6 +67,8 @@ public class MainController implements Initializable {
     @FXML private ImageView sendFileBtn;
     
     @FXML private TextField searchTxtField;
+    
+    @FXML private JFXButton addGroupBtn;
 
     //--Formating Components
     @FXML private ImageView bold;
@@ -76,7 +79,7 @@ public class MainController implements Initializable {
 
     //Temp
     @FXML
-    private Label name;
+    
     private String currentChatID ;
     private String currentChatMemberID ;
     private String currentChatUser;
@@ -126,7 +129,7 @@ public class MainController implements Initializable {
             e.printStackTrace();
         }
         announceArea1.setEditable(false);
-        name.setText(ClientObject.getUserDataInternal().getUsername());
+        //name.setText(ClientObject.getUserDataInternal().getUsername());
         formatBarValues();
         formatBarActions();
         showPanes(false);
@@ -374,6 +377,10 @@ public class MainController implements Initializable {
     
     public void changeStatus(ActionEvent actionEvent){
         
+    }
+    
+    public void addGroup(){
+    
     }
     
 /***********keep away****************/
