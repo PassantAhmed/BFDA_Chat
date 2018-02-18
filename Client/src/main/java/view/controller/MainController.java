@@ -399,7 +399,20 @@ public class MainController implements Initializable {
     }
     
     public void addGroup(){
-    
+        try {
+            Parent root = null;
+            Stage stage = new Stage();
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/NewGroupScene.fxml"));
+            root = fxmlLoader.load();
+            ControllerManager.getInstance().setNewGroupController(fxmlLoader.getController());
+            Scene scene = new Scene(root);
+            stage.setTitle("BFDA Chat | Main");
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 /***********keep away****************/
