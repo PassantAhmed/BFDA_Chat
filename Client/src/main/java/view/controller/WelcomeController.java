@@ -62,7 +62,6 @@ public class WelcomeController implements Initializable {
             new Thread(()->{
             if(connectToServer(ipAddress))
             {
-
                 openLogin();
             }
             else
@@ -131,7 +130,7 @@ public class WelcomeController implements Initializable {
 
     }
 
-    private boolean connectToServer(String ipAddress)  {
+    private boolean connectToServer(String ipAddress) {
         ServerConnection serverConnection = ServerConnection.getInstance();
 
         serverConnection.setHost(ipAddress);
@@ -140,15 +139,13 @@ public class WelcomeController implements Initializable {
         if (serverConnection.establiseConnection())
         {
             flag =  true;
+            try {
+                serverConnection.getRegisteryObject().getClientServerRegister().registerAnonymousUser(new ClientObject());
+            } catch (RemoteException e) {
+                Platform.runLater(()->{new Alert(Alert.AlertType.ERROR , "Cannot Register Anonymous User").show();});
+            }
         }
         connectionEstablishingMode(false);
-        try {
-            serverConnection.getRegisteryObject().getClientServerRegister().registerAnonymousUser(new ClientObject());
-        } catch (RemoteException e) {
-            Platform.runLater(()->{
-                new Alert(Alert.AlertType.ERROR , "Error Assigning to Server as AnonymousUser");
-            });
-        }
         return flag;
     }
 
