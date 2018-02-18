@@ -57,7 +57,7 @@ public class FriendsDbOperationsImp extends UnicastRemoteObject implements Frien
     public synchronized boolean approveFriendRequset(int myId,int userId)
     {
         //user update for the flag to true where id
-        String sqlStatm = "update Friend set requestflag = true where (user_id,friend_id) = ('"+myId+"','"+userId+"')";
+        String sqlStatm = "update Friend set requestflag = 1 where (user_id,friend_id) = ('"+myId+"','"+userId+"')";
         boolean checkOperation = friendsCrud.update(sqlStatm);
         sqlStatm= "INSERT INTO Friend (user_id,friend_id,requestflag) VALUES ('"+myId+"','"+userId+"',1)";
         checkOperation = friendsCrud.update(sqlStatm);
