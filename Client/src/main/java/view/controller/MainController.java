@@ -79,6 +79,8 @@ public class MainController implements Initializable {
     private String chatGroupName;
     //--
 
+    @FXML ComboBox<String> userStatus;
+    
     @FXML Pane chatHeader;
     @FXML Pane topSideArea;
     @FXML Pane ChatArea;
@@ -104,7 +106,8 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        
+        userStatus.getItems().addAll("Available","Away","Busy");
         friendsListView.setCellFactory(param -> new FriendListFormat(this));
         chatBoxListVIew.setStyle("-fx-padding: 10 0 0 0;");
         chatBoxListVIew.setCellFactory(param ->  new ChatBoxFormat());
@@ -345,6 +348,11 @@ public class MainController implements Initializable {
            return null;
 
     }
+    
+    public void changeStatus(ActionEvent actionEvent){
+        
+    }
+    
 /***********keep away****************/
 
     public void searchBtn(ActionEvent actionEvent) {
