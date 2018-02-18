@@ -23,14 +23,19 @@ public class ClientFriendRequestImpl extends UnicastRemoteObject implements Frie
     public void friendRequestResult(User receiver , boolean result) throws RemoteException {
         if(result)
         {
-            ControllerManager.getInstance().getMainController().getFriendList().add(receiver);
-            ControllerManager.getInstance().getMainController().updateFriendRequests().remove(receiver);
-            ControllerManager.getInstance().getMainController().getReqFriendsListView().refresh();
+
+           Platform.runLater(()->{
+               ControllerManager.getInstance().getMainController().getFriendList().add(receiver);
+               ControllerManager.getInstance().getMainController().updateFriendRequests().remove(receiver);
+               ControllerManager.getInstance().getMainController().getReqFriendsListView().refresh();
+           });
         }
         else
         {
+            Platform.runLater(()->{
             ControllerManager.getInstance().getMainController().updateFriendRequests().remove(receiver);
             ControllerManager.getInstance().getMainController().getReqFriendsListView().refresh();
+            });
         }
     }
 }
