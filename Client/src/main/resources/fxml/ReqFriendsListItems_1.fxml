@@ -24,9 +24,9 @@
     </Pane>
       <Pane prefHeight="82.0" prefWidth="116.0">
          <children>
-          <VBox alignment="CENTER" layoutX="-15.0" layoutY="2.0" prefHeight="91.0" prefWidth="191.0" spacing="4.0">
+          <VBox alignment="CENTER" layoutX="-15.0" layoutY="-6.0" prefHeight="99.0" prefWidth="178.0" spacing="10.0">
             <children>
-              <Label fx:id="name" prefHeight="20.0" prefWidth="137.0" text="Muhammed Fawzy" textAlignment="CENTER">
+              <Label fx:id="name" prefHeight="22.0" prefWidth="127.0" text="Muhammed Fawzy">
                 <font>
                   <Font size="14.0" />
                 </font>
@@ -34,10 +34,10 @@
                   <Insets top="10.0" />
                 </VBox.margin>
               </Label>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                  <HBox alignment="CENTER" prefHeight="31.0" prefWidth="169.0" spacing="20.0">
                      <children>
-                        <Button mnemonicParsing="false" text="Button" />
-                        <Button mnemonicParsing="false" text="Button" />
+                        <Button fx:id="acceptButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="111.0" text="Accept" />
+                        <Button fx:id="rejectButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="117.0" text="Reject" />
                      </children>
                   </HBox>
             </children>
