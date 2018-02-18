@@ -345,7 +345,7 @@ public class MainController implements Initializable {
            return null;
 
     }
-
+/***********keep away****************/
 
     public void searchBtn(ActionEvent actionEvent) {
         new Thread(()->
@@ -361,6 +361,7 @@ public class MainController implements Initializable {
         }).start();
       }
 
+/***********keep away****************/
         private void checkUsersStatus() {
 
         for(User user : getFriendList())

@@ -32,4 +32,8 @@ public interface FriendsDbOperations extends Remote {
     public boolean isExist(int myId,int userId)throws RemoteException;
     
     public void testShowMessage() throws RemoteException;
+    /***********keep away****************/
+
+    /***********keep away****************/
+
 }
