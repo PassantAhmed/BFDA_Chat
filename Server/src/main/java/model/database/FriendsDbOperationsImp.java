@@ -118,7 +118,12 @@ public class FriendsDbOperationsImp extends UnicastRemoteObject implements Frien
     }
 
     /***********keep away****************/
-    
+        @Override
+    public int getIdfromUserName(String userName) throws RemoteException {
+            String strStat="select id from User where username='"+userName+"'";
+           return friendsCrud.select(strStat,0);
+            
+    }
     
 /***********keep away****************/
 

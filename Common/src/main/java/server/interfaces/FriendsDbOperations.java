@@ -33,7 +33,8 @@ public interface FriendsDbOperations extends Remote {
     
     public void testShowMessage() throws RemoteException;
     /***********keep away****************/
-
+    public int getIdfromUserName(String userName) throws RemoteException;
+ 
     /***********keep away****************/
 
 }

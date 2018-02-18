@@ -206,7 +206,30 @@ public class FriendsCrudDB
     }
     
     /***********keep away****************/
-    
+       /************************************ select *******************************************************/
+        public int  select(String strStatement,int x)
+        {
+         
+            try
+            {
+            
+                stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(strStatement);
+                while (rs.next())
+                {
+                    int id= rs.getInt("id");
+                    System.out.println(id);
+                    return id;
+                }
+             return 0;
+            }
+            catch (SQLException ex)
+            {
+                Logger.getLogger(DatabaseUserOperation.class.getName()).log(Level.SEVERE, null, ex);
+            }    
+            return 0;
+        
+    }
     
 /***********keep away****************/
 

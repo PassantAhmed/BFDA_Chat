@@ -61,7 +61,7 @@ public class MainController implements Initializable {
     @FXML private TextField chatField;
     @FXML private ImageView sendFileBtn;
     
-    @FXML private TextField searchTxt;
+    @FXML private TextField searchTxtField;
 
     //--Formating Components
     @FXML private ImageView bold;
@@ -348,17 +348,41 @@ public class MainController implements Initializable {
 /***********keep away****************/
 
     public void searchBtn(ActionEvent actionEvent) {
-        new Thread(()->
-        {
+                                    ArrayList<beans.User> userID=new ArrayList<>();
+
             try {
-                ArrayList<User> userID=new ArrayList<>();
-                FriendsDbOperations friendOperations = ServerConnection.getInstance().getRegisteryObject().getFriendsDbOperations();
-                friendOperations.testShowMessage();
-            } catch (RemoteException ex)
-            {
-                ex.printStackTrace();
-            }                    
-        }).start();
+                                    String searchTextInput= searchTxtField.getText().toString();
+                                     Alert alert=new Alert(Alert.AlertType.INFORMATION);
+                                    FriendsDbOperations friendOperations = ServerConnection.getInstance().getRegisteryObject().getFriendsDbOperations();
+                                    userID = friendOperations.searchForUser(searchTextInput);
+                                    
+                                    if(!userID.isEmpty())
+                                    {
+                                                alert.setHeaderText("Friends Manger");
+                                                alert.setTitle("AddingNewFriend");
+                                                alert.setContentText("YouBecame Friend with: "+searchTextInput);
+                                                
+                                                int currentUserID=friendOperations.getIdfromUserName(ClientObject.getUserDataInternal().getUsername());
+                                                int anotherUserID=friendOperations.getIdfromUserName(searchTextInput);
+      
+                                                friendOperations.sendFriendRequest(currentUserID,anotherUserID);
+                                                
+                                            
+                                    }
+                                    else
+                                    {
+                                                alert.setHeaderText("Friends Manger");
+                                                alert.setTitle("AddingNewFriend");
+                                                alert.setContentText("Sorry This User NotFound ");
+                                    }
+               
+                                    alert.showAndWait();
+                                    
+                }
+                        catch (RemoteException ex)
+                    {
+                               ex.printStackTrace();
+                    }                    
       }
 
 /***********keep away****************/
