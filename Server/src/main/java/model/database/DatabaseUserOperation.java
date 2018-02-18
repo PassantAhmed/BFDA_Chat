@@ -97,6 +97,12 @@ public class DatabaseUserOperation {
                 user.setUsername(resultSet.getString(3));
                 user.setEmail(resultSet.getString(4));
                 user.setPassword(resultSet.getString(5));
+                user.setGender(resultSet.getBoolean(6));
+                user.setCountry(resultSet.getString(7));
+                user.setBirthdate(SqlParser.fromSqlToLocalDate(resultSet.getDate(8)));
+                user.setStatus(resultSet.getBoolean(10));
+                user.setMode(resultSet.getString(11));
+
             }
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseUserOperation.class.getName()).log(Level.SEVERE, null, ex);
