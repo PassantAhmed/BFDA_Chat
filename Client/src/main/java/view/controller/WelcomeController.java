@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXSpinner;
 import java.io.IOException;
 import java.net.URL;
+import java.rmi.RemoteException;
 import java.util.ResourceBundle;
 
 import javafx.application.Platform;
@@ -61,6 +62,7 @@ public class WelcomeController implements Initializable {
             new Thread(()->{
             if(connectToServer(ipAddress))
             {
+
                 openLogin();
             }
             else
@@ -129,8 +131,9 @@ public class WelcomeController implements Initializable {
 
     }
 
-    private boolean connectToServer(String ipAddress) {
+    private boolean connectToServer(String ipAddress)  {
         ServerConnection serverConnection = ServerConnection.getInstance();
+
         serverConnection.setHost(ipAddress);
         connectionEstablishingMode(true);
         boolean flag = false;
@@ -139,6 +142,13 @@ public class WelcomeController implements Initializable {
             flag =  true;
         }
         connectionEstablishingMode(false);
+        try {
+            serverConnection.getRegisteryObject().getClientServerRegister().registerAnonymousUser(new ClientObject());
+        } catch (RemoteException e) {
+            Platform.runLater(()->{
+                new Alert(Alert.AlertType.ERROR , "Error Assigning to Server as AnonymousUser");
+            });
+        }
         return flag;
     }
 

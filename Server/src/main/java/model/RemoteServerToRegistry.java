@@ -34,11 +34,12 @@ public class RemoteServerToRegistry {
 
     public void stopServer(){
         new Thread(()->{
-            try {
+//            try {
                 new ConnectionValidation().sendCloseNotify();
-            } catch (RemoteException e) {
-                e.printStackTrace();
-            }
+//            }
+//            catch (RemoteException e) {
+//                e.printStackTrace();
+//            }
             try {
                 serverRegistry.unbind("serverRegistry");
             } catch (RemoteException | NotBoundException e) {

@@ -14,6 +14,7 @@ public interface ClientServerRegister extends Remote {
 
     public void registerUser(String username , ClientObj clientObject) throws RemoteException;
     public void unRegisterUser(String username)throws RemoteException;
+    public void registerAnonymousUser(ClientObj clientObj) throws RemoteException;
 
     public User userLogin(String username , String password) throws RemoteException;
     public Boolean newUserRegisteration(User user) throws RemoteException;

@@ -45,10 +45,14 @@ public class ConnectionValidation {
         inActiveUsers.clear();
     }
 
-    public synchronized void sendCloseNotify() throws RemoteException {
-        for(String chatMember :  ClientServerRegisterImp.clientObjHashMap.keySet())
+    public synchronized void sendCloseNotify()  {
+        for(ClientObj chatMember :  ClientServerRegisterImp.anonymousUsers)
         {
-            ClientServerRegisterImp.clientObjHashMap.get(chatMember).getConnectionValidation().closeRequest();
+            try {
+                chatMember.getConnectionValidation().closeRequest();
+            } catch (RemoteException e) {
+               System.out.println("Skipping User");
+            }
         }
     }
 
