@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ColorPicker?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -22,25 +20,33 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="671.0" prefWidth="1016.0" style="-fx-background-color: #001a33;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.MainController">
    <children>
-      <Pane fx:id="chatHeader" layoutX="342.0" layoutY="-1.0" prefHeight="94.0" prefWidth="442.0" style="-fx-background-color: #001a33;">
+      <Pane fx:id="chatHeader" layoutX="359.0" layoutY="-1.0" prefHeight="94.0" prefWidth="426.0" style="-fx-background-color: #001a33;">
          <children>
-            <AnchorPane fx:id="chatHead" layoutY="-1.0" prefHeight="94.0" prefWidth="441.0" style="-fx-background-color: #001a33; -fx-border-color: #001a33;">
+            <AnchorPane fx:id="chatHead" layoutX="381.0" layoutY="-1.0" prefHeight="94.0" prefWidth="60.0" style="-fx-background-color: #001a33; -fx-border-color: #001a33;">
                <children>
-                  <AnchorPane layoutX="396.0" layoutY="28.0" prefHeight="43.0" prefWidth="39.0">
+                  <AnchorPane layoutX="16.0" layoutY="28.0" prefHeight="43.0" prefWidth="39.0">
                      <children>
-                        <ImageView fx:id="saveChat" fitHeight="30.0" fitWidth="34.0" layoutX="-15.0" layoutY="8.0" onMousePressed="#saveChat" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="saveChat" fitHeight="30.0" fitWidth="34.0" layoutX="-10.0" layoutY="3.0" onMousePressed="#saveChat" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../styles/saveChat.png" />
                            </image>
                         </ImageView>
                      </children>
                   </AnchorPane>
-                  <Button fx:id="searchBtn" layoutX="315.0" layoutY="34.0" mnemonicParsing="false" onAction="#searchBtn" prefHeight="30.0" prefWidth="31.0" style="-fx-background-color: #e7ebf1; -fx-background-radius: 5px 10px;" text="+" />
-                  <TextField fx:id="searchTxtField" layoutX="27.0" layoutY="33.0" prefHeight="30.0" prefWidth="258.0" promptText="Search" style="-fx-background-color: #ffe6ff; -fx-background-radius: 5;">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </TextField>
+               </children>
+            </AnchorPane>
+            <TextField fx:id="searchTxtField" layoutX="-19.0" layoutY="29.0" prefHeight="30.0" prefWidth="310.0" promptText="Search" style="-fx-background-color: #ffe6ff; -fx-background-radius: 5;">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <AnchorPane layoutX="300.0" layoutY="28.0" prefHeight="43.0" prefWidth="39.0">
+               <children>
+                  <ImageView fx:id="searchBtn" fitHeight="30.0" fitWidth="34.0" layoutX="7.0" layoutY="2.0" onMousePressed="#searchBtn" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../styles/adduser.png" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
          </children>
@@ -52,11 +58,19 @@
       </VBox>
       <Pane layoutX="94.0" layoutY="-1.0" prefHeight="94.0" prefWidth="248.0" style="-fx-background-color: #001a33;">
          <children>
-            <ComboBox fx:id="userStatus" layoutX="-8.0" layoutY="33.0" onAction="#changeStatus" prefHeight="34.0" prefWidth="100.0" promptText="Available" style="-fx-background-color: #001a33; -fx-text-base-color: #FFF;" />
-            <JFXButton fx:id="addGroupBtn" layoutX="151.0" layoutY="35.0" onAction="#addGroup" style="-fx-background-color: #FFF;" text="Create Group" textFill="#9c1d1d" />
+            <ComboBox fx:id="userStatus" layoutX="-8.0" layoutY="35.0" onAction="#changeStatus" prefHeight="34.0" prefWidth="119.0" promptText="Available" style="-fx-background-color: #001a33; -fx-text-base-color: #FFF;" />
+            <AnchorPane layoutX="175.0" layoutY="25.0" prefHeight="43.0" prefWidth="39.0">
+               <children>
+                  <ImageView fx:id="addGroupBtn" fitHeight="30.0" fitWidth="34.0" layoutX="3.0" layoutY="2.0" onMousePressed="#addGroup" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../styles/addgroup.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
          </children>
       </Pane>
-      <HBox alignment="CENTER" layoutX="784.0" layoutY="-1.0" prefHeight="94.0" prefWidth="232.0" style="-fx-background-color: #001a33;">
+      <HBox alignment="CENTER" layoutX="783.0" layoutY="-1.0" prefHeight="94.0" prefWidth="232.0" style="-fx-background-color: #001a33;">
          <children>
             <AnchorPane prefHeight="78.0" prefWidth="210.0">
                <children>
@@ -69,63 +83,6 @@
             </AnchorPane>
          </children>
       </HBox>
-      <VBox fx:id="ChatArea" layoutX="342.0" layoutY="98.0" prefHeight="566.0" prefWidth="442.0" style="-fx-background-color: #ffe6ff; -fx-border-color: lightgray;">
-         <children>
-            <ScrollPane prefHeight="450.0" prefWidth="441.0" style="-fx-background-color: #FFF;">
-               <content>
-                  <VBox prefHeight="444.0" prefWidth="438.0" style="-fx-background-color: #ffe6ff;">
-                     <children>
-                        <ListView fx:id="chatBoxListVIew" prefHeight="455.0" prefWidth="438.0" style="-fx-background-color: #ffe6ff;" />
-                     </children>
-                  </VBox>
-               </content>
-            </ScrollPane>
-            <HBox alignment="CENTER" prefHeight="37.0" prefWidth="441.0" spacing="3.0" style="-fx-background-color: #ffe6ff; -fx-border-color: #FFF;">
-               <children>
-                  <AnchorPane prefHeight="59.0" prefWidth="109.0">
-                     <children>
-                        <ComboBox fx:id="fontList" layoutX="233.0" layoutY="7.0" prefHeight="26.0" prefWidth="34.0" />
-                        <ImageView fx:id="sendFileBtn" fitHeight="30.0" fitWidth="34.0" layoutX="-1.0" layoutY="7.0" onMousePressed="#sendFile" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../styles/addfile.png" />
-                           </image>
-                        </ImageView>
-                        <AnchorPane layoutX="295.0" prefHeight="42.0" prefWidth="40.0">
-                           <children>
-                              <ImageView fx:id="bold" fitHeight="18.0" fitWidth="26.0" layoutX="-1.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../styles/boldIcon.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fx:id="italic" fitHeight="26.0" fitWidth="18.0" layoutX="26.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../styles/italicIcon.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                        </AnchorPane>
-                        <ComboBox fx:id="sizeList" layoutX="104.0" layoutY="7.0" prefHeight="26.0" prefWidth="119.0" />
-                        <ColorPicker fx:id="fontColorPicker" layoutX="348.0" layoutY="6.0" prefHeight="26.0" prefWidth="47.0" style="-fx-background-color: #001a33; -fx-background-radius: 9 20 20 9;" />
-                     </children>
-                  </AnchorPane>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="59.0" prefWidth="441.0" spacing="10.0">
-               <children>
-                  <TextField fx:id="chatField" onAction="#sendBtn" prefHeight="41.0" prefWidth="358.0" />
-                  <AnchorPane prefHeight="49.0" prefWidth="28.0">
-                     <children>
-                        <ImageView fx:id="sendBtn" fitHeight="34.0" fitWidth="34.0" layoutX="4.0" layoutY="11.0" onMousePressed="#sendBtn" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../styles/sendIcon.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </AnchorPane>
-               </children>
-            </HBox>
-         </children>
-      </VBox>
       <AnchorPane layoutX="789.0" layoutY="97.0" prefHeight="506.0" prefWidth="222.0">
          <children>
             <AnchorPane layoutY="1.0" prefHeight="566.0" prefWidth="222.0" style="-fx-background-color: #001a33;">
@@ -159,5 +116,80 @@
             </Tab>
          </tabs>
       </TabPane>
+      <AnchorPane layoutX="399.0" layoutY="97.0" prefHeight="554.0" prefWidth="298.0">
+         <children>
+            <AnchorPane layoutX="48.0" layoutY="73.0" prefHeight="90.0" prefWidth="138.0">
+               <children>
+                  <ImageView fitHeight="189.0" fitWidth="225.0" layoutX="8.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../styles/logo.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <ImageView fitHeight="145.0" fitWidth="247.0" layoutX="47.0" layoutY="199.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../styles/bfda.png" />
+               </image>
+            </ImageView>
+            <VBox fx:id="ChatArea" layoutX="-54.0" prefHeight="566.0" prefWidth="442.0" style="-fx-background-color: #ffe6ff; -fx-border-color: lightgray;">
+               <children>
+                  <ScrollPane prefHeight="450.0" prefWidth="441.0" style="-fx-background-color: #FFF;">
+                     <content>
+                        <VBox prefHeight="444.0" prefWidth="438.0" style="-fx-background-color: #ffe6ff;">
+                           <children>
+                              <ListView fx:id="chatBoxListVIew" prefHeight="455.0" prefWidth="438.0" style="-fx-background-color: #ffe6ff;" />
+                           </children>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+                  <HBox alignment="CENTER" prefHeight="37.0" prefWidth="441.0" spacing="3.0" style="-fx-background-color: #ffe6ff; -fx-border-color: #FFF;">
+                     <children>
+                        <AnchorPane prefHeight="59.0" prefWidth="109.0">
+                           <children>
+                              <ComboBox fx:id="fontList" layoutX="233.0" layoutY="7.0" prefHeight="26.0" prefWidth="34.0" />
+                              <ImageView fx:id="sendFileBtn" fitHeight="30.0" fitWidth="34.0" layoutX="-1.0" layoutY="7.0" onMousePressed="#sendFile" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../styles/addfile.png" />
+                                 </image>
+                              </ImageView>
+                              <AnchorPane layoutX="295.0" prefHeight="42.0" prefWidth="40.0">
+                                 <children>
+                                    <ImageView fx:id="bold" fitHeight="18.0" fitWidth="26.0" layoutX="-1.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../styles/boldIcon.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="italic" fitHeight="26.0" fitWidth="18.0" layoutX="26.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../styles/italicIcon.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </AnchorPane>
+                              <ComboBox fx:id="sizeList" layoutX="104.0" layoutY="7.0" prefHeight="26.0" prefWidth="119.0" />
+                              <ColorPicker fx:id="fontColorPicker" layoutX="348.0" layoutY="6.0" prefHeight="26.0" prefWidth="47.0" style="-fx-background-color: #001a33; -fx-background-radius: 9 20 20 9;" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="59.0" prefWidth="441.0" spacing="10.0">
+                     <children>
+                        <TextField fx:id="chatField" onAction="#sendBtn" prefHeight="41.0" prefWidth="358.0" />
+                        <AnchorPane prefHeight="49.0" prefWidth="28.0">
+                           <children>
+                              <ImageView fx:id="sendBtn" fitHeight="34.0" fitWidth="34.0" layoutX="4.0" layoutY="11.0" onMousePressed="#sendBtn" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../styles/sendIcon.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

@@ -66,9 +66,10 @@ public class MainController implements Initializable {
     @FXML private TextField chatField;
     @FXML private ImageView sendFileBtn;
     @FXML private ImageView saveChat;
+    @FXML private ImageView searchBtn;
     @FXML private TextField searchTxtField;
     
-    @FXML private JFXButton addGroupBtn;
+    @FXML private ImageView addGroupBtn;
 
     //--Formating Components
     @FXML private ImageView bold;
@@ -398,7 +399,7 @@ public class MainController implements Initializable {
         }
     }
     
-    public void addGroup(){
+    public void addGroup(MouseEvent mouseEvent){
         try {
             Parent root = null;
             Stage stage = new Stage();
@@ -417,7 +418,7 @@ public class MainController implements Initializable {
     
 /***********keep away****************/
 
-public void searchBtn(ActionEvent actionEvent) {
+public void searchBtn(MouseEvent mouseEvent) {
     ArrayList<beans.User> userID = new ArrayList<>();
 
     try {
