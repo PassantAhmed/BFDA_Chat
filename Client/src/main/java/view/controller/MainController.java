@@ -416,18 +416,56 @@ public class MainController implements Initializable {
                                     
                                     if(!userID.isEmpty())
                                     {
-                                                alert.setHeaderText("Friends Manger");
-                                                alert.setTitle("AddingNewFriend");
-                                                alert.setContentText("YouSend a request to : "+searchTextInput);
-                                                
                                                 int currentUserID=friendOperations.getIdfromUserName(ClientObject.getUserDataInternal().getUsername());
                                                 int anotherUserID=friendOperations.getIdfromUserName(searchTextInput);
+                                                int checkFlag=friendOperations.selectFriendsFlag(currentUserID, anotherUserID);
+                                                alert.setHeaderText("Friends Manger");
+                                                alert.setTitle("AddingNewFriend");
+                                                //just as test
                                                  System.out.println(currentUserID);
-                                                System.out.println(anotherUserID);
-
-                                                friendOperations.sendFriendRequest(currentUserID,anotherUserID);
+                                                 System.out.println(anotherUserID);
+                                                  Vector<String> reqUsers = new Vector<>();
+                                                  for(User user :  reqFriendsListView.getItems())
+                                                  {
+                                                      reqUsers.add(user.getUsername());
+                                                      
+                                                  }
+                                                // case 1 send to myself
+                                                if(currentUserID==anotherUserID)
+                                                {
+                                                   alert.setHeaderText("Friends Manger");
+                                                    alert.setTitle("AddingNewFriend");
+                                                    alert.setContentText("Cant send to yourSelf ");
+                                                }
+                                                //case 2 send to one already i sent to him before and the request suspend
+                                                else if(checkFlag==0)
+                                                {
+                                                   alert.setHeaderText("Friends Manger");
+                                                   alert.setTitle("AddingNewFriend");
+                                                   alert.setContentText("You already sent to this account");
                                                 
-                                            
+                                                }
+                                                //send to any one who already in my friends list 
+                                                else if(checkFlag==1)
+                                                {
+                                                             alert.setHeaderText("Friends Manger");
+                                                             alert.setTitle("AddingNewFriend");
+                                                             alert.setContentText("You are already Friends ");
+                                                }
+                                                else if(reqUsers.contains(searchTextInput))
+                                                {
+                                                             alert.setHeaderText("Friends Manger");
+                                                             alert.setTitle("AddingNewFriend");
+                                                             alert.setContentText(searchTextInput+" had send to you a request ");
+                                                }
+                                                else
+                                                {
+                                                            alert.setHeaderText("Friends Manger");
+                                                            alert.setTitle("AddingNewFriend");
+                                                            alert.setContentText("Request sent to "+searchTextInput);
+                                                            friendOperations.sendFriendRequest(currentUserID,anotherUserID);
+
+                                                }
                                     }
                                     else
                                     {
