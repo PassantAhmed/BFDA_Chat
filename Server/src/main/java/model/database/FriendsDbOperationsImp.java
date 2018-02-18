@@ -46,7 +46,7 @@ public class FriendsDbOperationsImp extends UnicastRemoteObject implements Frien
     public boolean sendFriendRequest(int myId,int userId)
     {
 
-        String sqlStatm= "INSERT INTO Friend (user_id,friend_id,requestflag) VALUES ('"+myId+",'"+userId+"',0)";
+        String sqlStatm= "INSERT INTO Friend (user_id,friend_id,requestflag) VALUES ('"+myId+"','"+userId+"',0)";
         boolean checkOperation = friendsCrud.insert(sqlStatm);
         return checkOperation;
     }

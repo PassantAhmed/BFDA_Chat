@@ -368,11 +368,13 @@ public class MainController implements Initializable {
                                     {
                                                 alert.setHeaderText("Friends Manger");
                                                 alert.setTitle("AddingNewFriend");
-                                                alert.setContentText("YouBecame Friend with: "+searchTextInput);
+                                                alert.setContentText("YouSend a request to : "+searchTextInput);
                                                 
                                                 int currentUserID=friendOperations.getIdfromUserName(ClientObject.getUserDataInternal().getUsername());
                                                 int anotherUserID=friendOperations.getIdfromUserName(searchTextInput);
-      
+                                                 System.out.println(currentUserID);
+                                                System.out.println(anotherUserID);
+
                                                 friendOperations.sendFriendRequest(currentUserID,anotherUserID);
                                                 
                                             
