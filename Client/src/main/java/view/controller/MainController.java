@@ -45,9 +45,12 @@ import java.time.LocalDateTime;
 import java.util.*;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.Event;
 import javafx.scene.image.ImageView;
 import server.interfaces.FriendsDbOperations;
+import view.util.FriendRequestFormat;
 import view.util.Notification;
 import xmlfiles.XmlMessage;
 
@@ -56,6 +59,7 @@ public class MainController implements Initializable {
     @FXML private ListView<User> friendsListView;
     @FXML private ListView<Message> chatBoxListVIew;
     @FXML private ListView<Group> chatGroupsList;
+    @FXML private ListView<User> reqFriendsListView;
     @FXML private TextArea announceArea1;
     @FXML private ImageView sendBtn;
     @FXML private TextField chatField;
@@ -112,6 +116,7 @@ public class MainController implements Initializable {
         chatBoxListVIew.setStyle("-fx-padding: 10 0 0 0;");
         chatBoxListVIew.setCellFactory(param ->  new ChatBoxFormat());
         chatGroupsList.setCellFactory(param -> new GroupListFormat(this));
+        reqFriendsListView.setCellFactory(param->new FriendRequestFormat(this) );
         try {
             updateFriendList();
             updateGroupList();
@@ -125,13 +130,30 @@ public class MainController implements Initializable {
         formatBarValues();
         formatBarActions();
         showPanes(false);
-
+       
+            
+   new Thread(()->{      
+       try {
+       ArrayList<User> allFriendRequest = serverConnection.getRegisteryObject().getFriendsDbOperations()
+               .getAllFriendRequests(ClientObject.getUserDataInternal().getId());
+       for(User user : allFriendRequest)
+       {
+           updateFriendRequests(user);
+       }
+       } catch (RemoteException ex) {
+           Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+            
+            }).start();
+        
+        
+        
+        //Check all Clients Activity 
           new Thread(()->{
             try {
                 while(true)
                 {
-                    Thread.sleep(2000);
-                    System.out.println("Checking");
+                    Thread.sleep(2000);       
                     checkUsersStatus();
                 }
             } catch (InterruptedException e) {
@@ -142,6 +164,7 @@ public class MainController implements Initializable {
 
     public void updateAnnounce(String accouncementString) {
         announceArea1.setText(accouncementString);
+        
     }
 
     public void sendBtn(Event event) throws RemoteException, SQLException {
@@ -415,4 +438,9 @@ public class MainController implements Initializable {
         }
         friendsListView.refresh();
     }
+        
+        public void updateFriendRequests(User user)
+        {
+           reqFriendsListView.getItems().addAll(user);
+        }
 }
