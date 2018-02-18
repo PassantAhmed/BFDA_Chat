@@ -230,6 +230,29 @@ public class FriendsCrudDB
             return 0;
         
     }
+        
+        
+        public int  select(String strStatement,int x,int y)
+        {
+         try
+            {
+                stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(strStatement);
+                while (rs.next())
+                {
+                    int flag= rs.getInt("RequestFlag");
+                    //System.out.println(flag);
+                    return flag;
+                }
+             return 9;
+            }
+            catch (SQLException ex)
+            {
+                Logger.getLogger(DatabaseUserOperation.class.getName()).log(Level.SEVERE, null, ex);
+            }    
+            return 5;
+        
+    }
     
 /***********keep away****************/
 
