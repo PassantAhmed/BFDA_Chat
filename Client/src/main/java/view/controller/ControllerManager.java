@@ -5,7 +5,6 @@ import beans.User;
 public class ControllerManager {
 
     private WelcomeController welcomeController;
-    private RegisterController registerController;
     private RegisterController1 registerController1;
     private RegisterController2 registerController2;
     private MainController mainController;
@@ -29,10 +28,6 @@ public class ControllerManager {
     public void setWelcomeController(WelcomeController welcomeController) {
         this.welcomeController = welcomeController;
     }
-
-    public RegisterController getRegisterController() {
-        return registerController;
-    }
     
     public RegisterController1 getRegisterController1() {
         return registerController1;
@@ -42,11 +37,6 @@ public class ControllerManager {
         return registerController2;
     }
 
-    
-    public void setRegisterController(RegisterController registerController) {
-        this.registerController = registerController;
-    }
-    
     public void setRegisterController1(RegisterController1 registerController1) {
         this.registerController1 = registerController1;
     }
