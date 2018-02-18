@@ -9,6 +9,7 @@ public class ControllerManager {
     private RegisterController2 registerController2;
     private MainController mainController;
     private LoginController loginController;
+    private NewGroupController newGroupController;
     private User user;
 
     private static ControllerManager instance;
@@ -43,6 +44,14 @@ public class ControllerManager {
     
     public void setRegisterController2(RegisterController2 registerController2) {
         this.registerController2 = registerController2;
+    }
+
+    public void setNewGroupController(NewGroupController newGroupController) {
+        this.newGroupController = newGroupController;
+    }
+
+    public NewGroupController getNewGroupController() {
+        return newGroupController;
     }
     
     public MainController getMainController() {
