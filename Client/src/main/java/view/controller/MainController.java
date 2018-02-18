@@ -108,7 +108,7 @@ public class MainController implements Initializable {
     public MainController() throws RemoteException {
 
         serverConnection = ServerConnection.getInstance();
-        userStatuesChange = serverConnection.getUserStatuesChangeObject();
+        userStatuesChange = serverConnection.getRegisteryObject().getUserStatuesChangeImpl();
         serverMessegeSender = serverConnection.getRegisteryObject().getServerMessegeSender();
     }
 
