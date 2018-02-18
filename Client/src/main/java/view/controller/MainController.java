@@ -97,6 +97,7 @@ public class MainController implements Initializable {
     private boolean isBold = false;
     private boolean isItalic = false;
     private Color fontColor = Color.BLACK;
+    
     private FriendListFormat friendListFormat;
     private ServerConnection serverConnection;
     private UserStatuesChangeInterface userStatuesChange;
@@ -113,8 +114,8 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        
-        userStatus.getItems().addAll("Available","Away","Busy");
+                
+        initStatus();
         friendsListView.setCellFactory(param -> new FriendListFormat(this));
         chatBoxListVIew.setStyle("-fx-padding: 10 0 0 0;");
         chatBoxListVIew.setCellFactory(param ->  new ChatBoxFormat());
@@ -168,6 +169,17 @@ public class MainController implements Initializable {
     public void updateAnnounce(String accouncementString) {
         announceArea1.setText(accouncementString);
         
+    }
+    
+    private void initStatus(){
+        userStatus.getItems().addAll("Available","Away","Busy");
+        if(ClientObject.getUserDataInternal().getMode().equals("Available")){
+            userStatus.getSelectionModel().select(0);
+        } else if(ClientObject.getUserDataInternal().getMode().equals("Away")){
+            userStatus.getSelectionModel().select(1);
+        } else {
+            userStatus.getSelectionModel().select(2);
+        }
     }
 
     public void sendBtn(Event event) throws RemoteException, SQLException {
@@ -376,7 +388,15 @@ public class MainController implements Initializable {
     }
     
     public void changeStatus(ActionEvent actionEvent){
-        
+        if(!userStatus.getValue().equals(ClientObject.getUserDataInternal().getMode())){
+            try {
+                ClientObject.getUserDataInternal().setMode(userStatus.getValue());
+                userStatuesChange.changeModes(ClientObject.getUserDataInternal());
+                initStatus();
+            } catch (RemoteException ex) {
+                Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     public void addGroup(){
