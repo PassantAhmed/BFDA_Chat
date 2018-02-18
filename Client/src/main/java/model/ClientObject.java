@@ -19,6 +19,10 @@ public class ClientObject extends UnicastRemoteObject implements ClientObj, Seri
     private UserAccount userAccount;
     private ClientFileTransferImpl clientFileTransfer;
     private ConnectionValidationImpl connectionValidation;
+
+
+
+    private ClientFriendRequestImpl clientFriendRequest;
     private static User userData;
 
     public static void setUserData(User userData) {
@@ -32,6 +36,7 @@ public class ClientObject extends UnicastRemoteObject implements ClientObj, Seri
         userAccount = new UserAccountImpl();
         clientFileTransfer = new ClientFileTransferImpl();
         connectionValidation = new ConnectionValidationImpl();
+        clientFriendRequest = new ClientFriendRequestImpl();
     }
 
     public ChatHandler getChatHandler() {
@@ -63,5 +68,9 @@ public class ClientObject extends UnicastRemoteObject implements ClientObj, Seri
     @Override
     public ConnectionValidation getConnectionValidation() throws RemoteException {
         return connectionValidation;
+    }
+
+    public ClientFriendRequestImpl getClientFriendRequest() {
+        return clientFriendRequest;
     }
 }

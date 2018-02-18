@@ -15,8 +15,6 @@ public class ConnectionValidation {
 
     public synchronized void checkActiveUsers()
     {
-
-
             try {
                 Thread.sleep(1000);
                 for(String key : ClientServerRegisterImp.clientObjHashMap.keySet())

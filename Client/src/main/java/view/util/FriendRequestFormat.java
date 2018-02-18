@@ -24,7 +24,7 @@ import view.controller.MainController;
  *
  * @author ahmedelgawesh
  */
-public class FriendRequestFormat   extends ListCell<User>{
+public class FriendRequestFormat extends ListCell<User>{
     private Node parent ;
     private Circle profilePicCircle;
     private Button acceptButton;
@@ -64,6 +64,25 @@ public class FriendRequestFormat   extends ListCell<User>{
             profilePicCircle.setFill(new ImagePattern(img));
            
             name.setText(item.getName());
+            acceptButton.setOnAction(param->{
+                System.out.println("inAccept");
+                try {
+                    mainController.approveFriendRequest(item);
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            });
+            rejectButton.setOnAction(param->{
+                try {
+                    mainController.rejectFriendRequest(item);
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            });
             setGraphic(parent);
 //            acceptButton.setOnAction(value);
 //            rejectButton.setOnAction(value);

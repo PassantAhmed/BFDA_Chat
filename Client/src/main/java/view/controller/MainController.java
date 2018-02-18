@@ -65,7 +65,7 @@ public class MainController implements Initializable {
     @FXML private ImageView sendBtn;
     @FXML private TextField chatField;
     @FXML private ImageView sendFileBtn;
-    
+    @FXML private ImageView saveChat;
     @FXML private TextField searchTxtField;
     
     @FXML private JFXButton addGroupBtn;
@@ -114,7 +114,7 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-                
+        userStatus.getItems().addAll("Available","Away","Busy");
         initStatus();
         friendsListView.setCellFactory(param -> new FriendListFormat(this));
         chatBoxListVIew.setStyle("-fx-padding: 10 0 0 0;");
@@ -142,7 +142,7 @@ public class MainController implements Initializable {
                .getAllFriendRequests(ClientObject.getUserDataInternal().getId());
        for(User user : allFriendRequest)
        {
-           updateFriendRequests(user);
+           updateFriendRequests().addAll(allFriendRequest);
        }
        } catch (RemoteException ex) {
            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
@@ -172,7 +172,6 @@ public class MainController implements Initializable {
     }
     
     private void initStatus(){
-        userStatus.getItems().addAll("Available","Away","Busy");
         if(ClientObject.getUserDataInternal().getMode().equals("Available")){
             userStatus.getSelectionModel().select(0);
         } else if(ClientObject.getUserDataInternal().getMode().equals("Away")){
@@ -316,7 +315,7 @@ public class MainController implements Initializable {
     }
 
     private void showPanes(Boolean status) {
-       chatHeader.setVisible(status);
+        saveChat.setVisible(status);
        ChatArea.setVisible(status);
     }
 
@@ -405,83 +404,73 @@ public class MainController implements Initializable {
     
 /***********keep away****************/
 
-    public void searchBtn(ActionEvent actionEvent) {
-                                    ArrayList<beans.User> userID=new ArrayList<>();
+public void searchBtn(ActionEvent actionEvent) {
+    ArrayList<beans.User> userID = new ArrayList<>();
 
-            try {
-                                    String searchTextInput= searchTxtField.getText().toString();
-                                     Alert alert=new Alert(Alert.AlertType.INFORMATION);
-                                    FriendsDbOperations friendOperations = ServerConnection.getInstance().getRegisteryObject().getFriendsDbOperations();
-                                    userID = friendOperations.searchForUser(searchTextInput);
-                                    
-                                    if(!userID.isEmpty())
-                                    {
-                                                int currentUserID=friendOperations.getIdfromUserName(ClientObject.getUserDataInternal().getUsername());
-                                                int anotherUserID=friendOperations.getIdfromUserName(searchTextInput);
-                                                int checkFlag=friendOperations.selectFriendsFlag(currentUserID, anotherUserID);
-                                                alert.setHeaderText("Friends Manger");
-                                                alert.setTitle("AddingNewFriend");
-                                                //just as test
-                                                 System.out.println(currentUserID);
-                                                 System.out.println(anotherUserID);
-                                                  Vector<String> reqUsers = new Vector<>();
-                                                  for(User user :  reqFriendsListView.getItems())
-                                                  {
-                                                      reqUsers.add(user.getUsername());
-                                                      
-                                                  }
-                                                // case 1 send to myself
-                                                if(currentUserID==anotherUserID)
-                                                {
-                                                   alert.setHeaderText("Friends Manger");
-                                                    alert.setTitle("AddingNewFriend");
-                                                    alert.setContentText("Cant send to yourSelf ");
-                                                }
-                                                //case 2 send to one already i sent to him before and the request suspend
-                                                else if(checkFlag==0)
-                                                {
-                                                   alert.setHeaderText("Friends Manger");
-                                                   alert.setTitle("AddingNewFriend");
-                                                   alert.setContentText("You already sent to this account");
-                                                
-                                                }
-                                                //send to any one who already in my friends list 
-                                                else if(checkFlag==1)
-                                                {
-                                                             alert.setHeaderText("Friends Manger");
-                                                             alert.setTitle("AddingNewFriend");
-                                                             alert.setContentText("You are already Friends ");
-                                                }
-                                                else if(reqUsers.contains(searchTextInput))
-                                                {
-                                                             alert.setHeaderText("Friends Manger");
-                                                             alert.setTitle("AddingNewFriend");
-                                                             alert.setContentText(searchTextInput+" had send to you a request ");
-                                                }
-                                                else
-                                                {
-                                                            alert.setHeaderText("Friends Manger");
-                                                            alert.setTitle("AddingNewFriend");
-                                                            alert.setContentText("Request sent to "+searchTextInput);
-                                                            friendOperations.sendFriendRequest(currentUserID,anotherUserID);
+    try {
+        String searchTextInput = searchTxtField.getText().toString();
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        FriendsDbOperations friendOperations = ServerConnection.getInstance().getRegisteryObject().getFriendsDbOperations();
+        userID = friendOperations.searchForUser(searchTextInput);
 
-                                                }
-                                    }
-                                    else
-                                    {
-                                                alert.setHeaderText("Friends Manger");
-                                                alert.setTitle("AddingNewFriend");
-                                                alert.setContentText("Sorry This User NotFound ");
-                                    }
-               
-                                    alert.showAndWait();
-                                    
-                }
-                        catch (RemoteException ex)
-                    {
-                               ex.printStackTrace();
-                    }                    
-      }
+        if (!userID.isEmpty()) {
+            int currentUserID = friendOperations.getIdfromUserName(ClientObject.getUserDataInternal().getUsername());
+            int anotherUserID = friendOperations.getIdfromUserName(searchTextInput);
+            int checkFlag = friendOperations.selectFriendsFlag(currentUserID, anotherUserID);
+            alert.setHeaderText("Friends Manger");
+            alert.setTitle("AddingNewFriend");
+            //just as test
+            System.out.println(currentUserID);
+            System.out.println(anotherUserID);
+            Vector<String> reqUsers = new Vector<>();
+            for (User user : reqFriendsListView.getItems()) {
+                reqUsers.add(user.getUsername());
+
+            }
+            // case 1 send to myself
+            if (currentUserID == anotherUserID) {
+                alert.setHeaderText("Friends Manger");
+                alert.setTitle("AddingNewFriend");
+                alert.setContentText("Cant send to yourSelf ");
+            }
+            //case 2 send to one already i sent to him before and the request suspend
+            else if (checkFlag == 0) {
+                alert.setHeaderText("Friends Manger");
+                alert.setTitle("AddingNewFriend");
+                alert.setContentText("You already sent to this account");
+
+            }
+            //send to any one who already in my friends list
+            else if (checkFlag == 1) {
+                alert.setHeaderText("Friends Manger");
+                alert.setTitle("AddingNewFriend");
+                alert.setContentText("You are already Friends ");
+            } else if (reqUsers.contains(searchTextInput)) {
+                alert.setHeaderText("Friends Manger");
+                alert.setTitle("AddingNewFriend");
+                alert.setContentText(searchTextInput + " had send to you a request ");
+            } else {
+                alert.setHeaderText("Friends Manger");
+                alert.setTitle("AddingNewFriend");
+                alert.setContentText("Request sent to " + searchTextInput);
+//                friendOperations.sendFriendRequest(currentUserID, anotherUserID);
+                serverConnection.getRegisteryObject().getServerFriendRequest().sendFriendRequest(ClientObject.getUserDataInternal() , userID.get(0));
+
+            }
+        } else {
+            alert.setHeaderText("Friends Manger");
+            alert.setTitle("AddingNewFriend");
+            alert.setContentText("Sorry This User NotFound ");
+        }
+
+        alert.showAndWait();
+
+    } catch (RemoteException ex) {
+        ex.printStackTrace();
+    } catch (SQLException e) {
+       Platform.runLater(()->{new Alert(Alert.AlertType.ERROR , "Cannot Add New Friend");});
+    }
+}
 
 /***********keep away****************/
         private void checkUsersStatus() {
@@ -504,8 +493,27 @@ public class MainController implements Initializable {
         friendsListView.refresh();
     }
         
-        public void updateFriendRequests(User user)
+        public ObservableList<User> updateFriendRequests()
         {
-           reqFriendsListView.getItems().addAll(user);
+           return reqFriendsListView.getItems();
+        }
+
+        public ListView<User> getReqFriendsListView()
+        {
+            return reqFriendsListView;
+        }
+
+
+        public void approveFriendRequest(User requester) throws RemoteException, SQLException {
+            serverConnection.getRegisteryObject().getServerFriendRequest()
+                    .friendRequestResult(ClientObject.getUserDataInternal() , requester , true);
+            updateFriendRequests().remove(requester);
+            friendsListView.getItems().addAll(requester);
+        }
+
+        public void rejectFriendRequest(User requester) throws RemoteException, SQLException {
+            serverConnection.getRegisteryObject().getServerFriendRequest()
+                    .friendRequestResult(ClientObject.getUserDataInternal() , requester , false);
+            updateFriendRequests().remove(requester);
         }
 }

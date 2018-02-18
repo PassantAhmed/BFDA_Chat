@@ -2,10 +2,7 @@ package model;
 
 import model.database.DatabaseUserOperation;
 import model.database.FriendsDbOperationsImp;
-import server.interfaces.ClientServerRegister;
-import server.interfaces.FriendsDbOperations;
-import server.interfaces.ServerMessegeSender;
-import server.interfaces.ServerObj;
+import server.interfaces.*;
 
 import java.io.Serializable;
 import java.rmi.RemoteException;
@@ -21,7 +18,7 @@ public class ServerObject extends UnicastRemoteObject implements ServerObj, Seri
     private FriendsDbOperations friendsDbOperations;
     private ServerFileTransferInterfaceImpl serverFileTransferImpl;
     private UserStatuesChangeImpl userStatuesChangeImpl;
-
+    private ServerFriendRequestImpl serverFriendRequest;
    
    
     public ServerObject() throws RemoteException, SQLException, ClassNotFoundException {
@@ -32,6 +29,7 @@ public class ServerObject extends UnicastRemoteObject implements ServerObj, Seri
         friendsDbOperations = new FriendsDbOperationsImp();
         serverFileTransferImpl = new ServerFileTransferInterfaceImpl();
         userStatuesChangeImpl = new UserStatuesChangeImpl();
+        serverFriendRequest = new ServerFriendRequestImpl();
     }
 
 
@@ -48,8 +46,9 @@ public class ServerObject extends UnicastRemoteObject implements ServerObj, Seri
     @Override
     public ServerFileTransferInterfaceImpl getServerFileTransfer() { return serverFileTransferImpl; }
 
-     public UserStatuesChangeImpl getUserStatuesChangeImpl() {
+    public UserStatuesChangeImpl getUserStatuesChangeImpl() {
         return userStatuesChangeImpl;
     }
 
+    public FriendRequest getServerFriendRequest() { return serverFriendRequest; }
 }

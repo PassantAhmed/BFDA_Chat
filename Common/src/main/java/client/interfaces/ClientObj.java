@@ -18,4 +18,5 @@ public interface ClientObj extends Remote {
     public ClientFileTransferInterface getClientFileTransfer()throws RemoteException;
     public User getUserData() throws RemoteException;
     public ConnectionValidation getConnectionValidation() throws RemoteException;
+    public FriendRequest getClientFriendRequest() throws RemoteException;
 }
