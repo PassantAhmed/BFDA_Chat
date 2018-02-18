@@ -327,11 +327,17 @@ public class MainController implements Initializable {
     }
 
     public void logoutBtn(MouseEvent mouseEvent) throws IOException {
+
+
         messagesMap.clear();
         serverConnection.getRegisteryObject().getUserStatuesChangeImpl()
                 .changeStatues(ClientObject.getUserDataInternal());
         serverConnection.getRegisteryObject().getClientServerRegister()
                 .unRegisterUser(ClientObject.getUserDataInternal().getUsername());
+        getFriendList().clear();
+        getMsgMap().clear();
+        chatMembers.clear();
+
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LoginScene.fxml"));
         Stage stage = new Stage();
         Parent root = fxmlLoader.load();

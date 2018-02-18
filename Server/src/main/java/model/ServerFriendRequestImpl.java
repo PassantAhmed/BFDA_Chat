@@ -29,14 +29,14 @@ public class ServerFriendRequestImpl extends UnicastRemoteObject implements Frie
         FriendsDbOperationsImp friendsDbOperationsImp = new FriendsDbOperationsImp();
         if(result)
         {
-            friendsDbOperationsImp.approveFriendRequset(requested.getId() , requester.getId());
+            friendsDbOperationsImp.approveFriendRequset( requester.getId() , requested.getId() );
             if(ClientServerRegisterImp.clientObjHashMap.get(requester.getUsername()) != null)
                 ClientServerRegisterImp.clientObjHashMap.get(requester.getUsername()).getClientFriendRequest()
                 .friendRequestResult(requested , result);
         }
         else
         {
-            friendsDbOperationsImp.refuseFriendRequest( requested.getId() , requester.getId());
+            friendsDbOperationsImp.refuseFriendRequest(  requester.getId() , requested.getId());
             if(ClientServerRegisterImp.clientObjHashMap.get(requester.getUsername()) != null)
                 ClientServerRegisterImp.clientObjHashMap.get(requester.getUsername()).getClientFriendRequest()
                         .friendRequestResult(requested , result);
