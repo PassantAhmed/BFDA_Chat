@@ -280,7 +280,12 @@ public class MainController implements Initializable {
                 try {
                     messagesMap.put(groupID , serverMessegeSender.getAllRoomMessages(groupID));
                     System.out.println("populated");
-                    Platform.runLater(()->{chatBoxListVIew.getItems().setAll(messagesMap.get(groupID));});
+                    Platform.runLater(()->{
+
+                        chatBoxListVIew.getItems().setAll(messagesMap.get(groupID));
+                        chatBoxListVIew.scrollTo(chatBoxListVIew.getItems().size()-1);
+
+                    });
 
                 } catch (SQLException e) {
                     System.out.println(e.toString());
@@ -330,11 +335,6 @@ public class MainController implements Initializable {
     }
 
     public void sendFile(MouseEvent mouseEvent){
-//          for(User user : friendsListView.getItems())
-//          {
-//              user.setStatus(false);
-//          }
-//          friendsListView.refresh();
         File fileDist = getFileToSend();
         if(fileDist == null)
             return ;

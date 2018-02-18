@@ -25,12 +25,10 @@ public class App extends Application
         primaryStage.setResizable(false);
         primaryStage.setOnCloseRequest(param->{
             new Thread(()->{
-                try {
+
                     new ConnectionValidation().sendCloseNotify();
                     System.exit(0);
-                } catch (RemoteException e) {
-                    e.printStackTrace();
-                }
+
             }).start();
 
         });
