@@ -14,7 +14,6 @@ public class ServerConnection {
     private static ServerConnection instance;
     private ServerObj obj ;
     private boolean isRegistered;
-    private UserStatuesChangeInterface userStatuesObj;
     public boolean isRegistered() {
         return isRegistered;
     }
@@ -44,9 +43,6 @@ public class ServerConnection {
         isRegistered = true;
         return true;
 
-    }
-    public UserStatuesChangeInterface getUserStatuesChangeObject(){
-        return userStatuesObj;
     }
 
 

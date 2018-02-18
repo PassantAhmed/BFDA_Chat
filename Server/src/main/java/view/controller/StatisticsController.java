@@ -25,6 +25,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Side;
 import javafx.scene.chart.PieChart;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
@@ -58,7 +59,9 @@ public class StatisticsController implements Initializable {
             online = db.getStatistics();
             setStatistics(db.getUsersNumber(), online);
         } catch (SQLException ex) {
-            Logger.getLogger(StatisticsController.class.getName()).log(Level.SEVERE, null, ex);
+            Platform.runLater(()->{new Alert(Alert.AlertType.ERROR , "Error Connecting to Database " +
+                    ", Check your Connection ! ").showAndWait();});
+            return;
         }
         Timeline updates = new Timeline(new KeyFrame(Duration.seconds(120), new EventHandler<ActionEvent>() {
 
@@ -68,12 +71,19 @@ public class StatisticsController implements Initializable {
                     db = new DatabaseUserOperation();
                     setStatistics(db.getUsersNumber(), db.getStatistics());
                 } catch (SQLException ex) {
-                    Logger.getLogger(StatisticsController.class.getName()).log(Level.SEVERE, null, ex);
+                    Platform.runLater(()->{new Alert(Alert.AlertType.ERROR , "Error Connecting to Database " +
+                            ", Check your Connection ! ").showAndWait();});
+
                 }
+
+
+
             }
+
         }));
         updates.setCycleCount(Timeline.INDEFINITE);
         updates.play();
+
     }
 
     public void setStatistics(int allNo, int onlineNo) {

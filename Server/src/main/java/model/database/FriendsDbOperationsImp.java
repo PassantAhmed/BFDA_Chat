@@ -31,7 +31,7 @@ public class FriendsDbOperationsImp extends UnicastRemoteObject implements Frien
 
     /********************  search for user to add *******************************/
     @Override
-    public ArrayList<User> searchForUser(String usrInformation)
+    public synchronized ArrayList<User> searchForUser(String usrInformation)
 
     {
         String selectStatement = "select id,name,username,email,password,gender,country,birthdate,userpicture,statusflag,statusmode from User where id= '"+usrInformation+"' or username= '"+usrInformation+"'";
@@ -43,7 +43,7 @@ public class FriendsDbOperationsImp extends UnicastRemoteObject implements Frien
 
     /********************** send to user a friend request  **********************************/
     @Override
-    public boolean sendFriendRequest(int myId,int userId)
+    public synchronized boolean sendFriendRequest(int myId,int userId)
     {
 
         String sqlStatm= "INSERT INTO Friend (user_id,friend_id,requestflag) VALUES ('"+myId+"','"+userId+"',0)";
@@ -54,7 +54,7 @@ public class FriendsDbOperationsImp extends UnicastRemoteObject implements Frien
 
     /******************************* accept a friend request ******************************/
     @Override
-    public boolean approveFriendRequset(int myId,int userId)
+    public synchronized boolean approveFriendRequset(int myId,int userId)
     {
         //user update for the flag to true where id
         String sqlStatm = "update Friend set requestflag=true where (user_id,friend_id) = ('"+myId+"','"+userId+"')";
@@ -67,7 +67,7 @@ public class FriendsDbOperationsImp extends UnicastRemoteObject implements Frien
 
     /****************** don't accept friend request  *******************************/
     @Override
-    public boolean refuseFriendRequest(int myId,int userId)
+    public synchronized boolean refuseFriendRequest(int myId,int userId)
     {
         //use delete statment
         String sqlStatm = "delete  from Friend  where (user_id,friend_id) =  ('"+myId+"','"+userId+"')";
@@ -79,7 +79,7 @@ public class FriendsDbOperationsImp extends UnicastRemoteObject implements Frien
 
     /********************* select all your friends **********************************/
     @Override
-    public ArrayList<User> retrieveAllFriends(int myId)
+    public synchronized ArrayList<User> retrieveAllFriends(int myId)
     {
         //as select but from friend table
         String selectStatement = "select User.id , name , username , email , password , gender , country , birthdate , userPicture , statusFlag , statusMode " +
@@ -90,7 +90,7 @@ public class FriendsDbOperationsImp extends UnicastRemoteObject implements Frien
     }
 
     @Override
-    public ArrayList<User> getAllFriendRequests(int myId) throws RemoteException {
+    public synchronized ArrayList<User> getAllFriendRequests(int myId) throws RemoteException {
 //
         String selectStatement = "select User.id , name , username , email , password , gender , country , " +
                 "birthdate , userPicture , statusFlag , statusMode " +
@@ -103,7 +103,7 @@ public class FriendsDbOperationsImp extends UnicastRemoteObject implements Frien
         /*********************check if user isExist as a friend **********************************/
 
     @Override
-    public boolean isExist(int myId, int userId) throws RemoteException 
+    public synchronized boolean isExist(int myId, int userId) throws RemoteException 
     {//select  id from Friend where (user_id,friend_id) = (1,2)
             String selectStatment="select  id from Friend where  (user_id,friend_id) = ('"+myId+"','"+userId+"')";
             
@@ -119,10 +119,17 @@ public class FriendsDbOperationsImp extends UnicastRemoteObject implements Frien
 
     /***********keep away****************/
         @Override
-    public int getIdfromUserName(String userName) throws RemoteException {
+    public synchronized int getIdfromUserName(String userName) throws RemoteException {
             String strStat="select id from User where username='"+userName+"'";
            return friendsCrud.select(strStat,0);
             
+    }
+
+    @Override
+    public synchronized int selectFriendsFlag(int myID, int userID) throws RemoteException 
+    {
+        String statm= "select RequestFlag from Friend where User_id='"+myID+"' and Friend_id='"+userID+"'";
+        return friendsCrud.select(statm,0,0);
     }
     
 /***********keep away****************/
