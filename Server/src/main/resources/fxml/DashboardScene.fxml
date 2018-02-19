@@ -26,7 +26,7 @@
                <children>
                   <VBox prefHeight="242.0" prefWidth="223.0" style="-fx-background-color: #b9798b; -fx-background-radius: 5;">
                      <children>
-                        <Button fx:id="viewClientsBtn" mnemonicParsing="false" onAction="#viewClient" prefHeight="64.0" prefWidth="235.0" style="-fx-background-color: #b9798b;" text="View Client Info" textFill="WHITE">
+                        <Button fx:id="viewClientsBtn" disable="true" mnemonicParsing="false" onAction="#viewClient" prefHeight="64.0" prefWidth="235.0" style="-fx-background-color: #b9798b;" text="View Client Info" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
