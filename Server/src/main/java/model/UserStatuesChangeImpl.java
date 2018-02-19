@@ -50,9 +50,7 @@ public class UserStatuesChangeImpl extends UnicastRemoteObject implements UserSt
 
     @Override
     public void changeModes(User user) throws RemoteException {
-        
-        //TODO 
-        
+        DBO.clientSignHisModeStatus(user,user.getMode());
     }
     
 }
