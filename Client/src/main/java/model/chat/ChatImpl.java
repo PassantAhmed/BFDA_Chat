@@ -1,5 +1,6 @@
 package model.chat;
 
+import beans.Group;
 import beans.Message;
 import client.interfaces.ChatHandler;
 import javafx.application.Platform;
@@ -62,7 +63,12 @@ public class ChatImpl extends UnicastRemoteObject implements ChatHandler {
         return true;
     }
 
-
+    @Override
+    public void notifyGroupChat(Group group) throws RemoteException {
+        Platform.runLater(()->{
+            ControllerManager.getInstance().getMainController().getChatGroupsList().getItems().add(group);
+        });
+    }
 
 
 }

@@ -535,4 +535,9 @@ public void searchBtn(ActionEvent actionEvent) {
                     .friendRequestResult(ClientObject.getUserDataInternal() , requester , false);
             updateFriendRequests().remove(requester);
         }
+
+        public ListView<Group> getChatGroupsList()
+        {
+            return chatGroupsList;
+        }
 }
