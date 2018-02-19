@@ -5,6 +5,7 @@
  */
 package view.controller;
 
+import beans.User;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
@@ -19,6 +20,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
 /**
  *
@@ -37,6 +39,7 @@ public class ProfileController implements Initializable{
     @FXML private JFXButton cancelBtn;
     @FXML private JFXButton saveChangesBtn;
 
+    private User user;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         userStatusInit();
@@ -57,7 +60,18 @@ public class ProfileController implements Initializable{
     }
     
     public void cancelChanges(ActionEvent actionEvent)  { 
-        cancelBtn.setDisable(false);
-        saveChangesBtn.setDisable(false);
+        Stage stage = (Stage) userName.getScene().getWindow();
+        stage.close();
+    }
+    
+    public void setUser(User user){
+        this.user = new User(user);
+    }
+    
+    private void setComponents(){
+        userFullName.setText(user.getName());
+        userName.setText(user.getUsername());
+        userEmail.setText(user.getEmail());
+        userPassword.setText(user.getPassword());
     }
 }

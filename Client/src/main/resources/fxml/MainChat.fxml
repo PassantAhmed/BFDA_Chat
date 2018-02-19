@@ -53,7 +53,7 @@
       </Pane>
       <VBox alignment="CENTER" prefHeight="94.0" prefWidth="106.0" style="-fx-background-color: #001a33;">
          <children>
-            <Circle fx:id="profilePicCircle" fill="DODGERBLUE" radius="26.0" smooth="true" stroke="BLACK" strokeType="INSIDE" style="" />
+            <Circle fx:id="profilePicCircle" fill="DODGERBLUE" onMousePressed="#viewProfile" radius="26.0" smooth="true" stroke="BLACK" strokeType="INSIDE" style="" />
          </children>
       </VBox>
       <Pane layoutX="94.0" layoutY="-1.0" prefHeight="94.0" prefWidth="248.0" style="-fx-background-color: #001a33;">

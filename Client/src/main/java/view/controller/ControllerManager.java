@@ -10,6 +10,7 @@ public class ControllerManager {
     private MainController mainController;
     private LoginController loginController;
     private NewGroupController newGroupController;
+    private ProfileController profileController;
     private User user;
 
     private static ControllerManager instance;
@@ -44,6 +45,14 @@ public class ControllerManager {
     
     public void setRegisterController2(RegisterController2 registerController2) {
         this.registerController2 = registerController2;
+    }
+
+    public ProfileController getProfileController() {
+        return profileController;
+    }
+
+    public void setProfileController(ProfileController profileController) {
+        this.profileController = profileController;
     }
 
     public void setNewGroupController(NewGroupController newGroupController) {
