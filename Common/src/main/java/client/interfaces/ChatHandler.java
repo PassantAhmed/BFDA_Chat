@@ -1,5 +1,6 @@
 package client.interfaces;
 
+import beans.Group;
 import beans.Message;
 import beans.User;
 
@@ -14,5 +15,6 @@ public interface ChatHandler extends Remote , Serializable{
     public void registerChat(String chatID , Vector<String> users) throws RemoteException;
     public void updateAnnouncement(String msg)throws RemoteException;
     public boolean updateConnection() throws RemoteException;
+    public void notifyGroupChat(Group group) throws RemoteException;
 
 }

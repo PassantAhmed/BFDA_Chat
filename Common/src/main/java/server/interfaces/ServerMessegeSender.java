@@ -27,4 +27,7 @@ public interface ServerMessegeSender extends Remote
     public Vector<Message> getAllRoomMessages(String chatRoomID) throws SQLException , RemoteException;
     public Vector<Group> getAllGroups(int myID) throws SQLException , RemoteException;
     public Vector<String> getAllChatMember(String chatID) throws SQLException , RemoteException;
+    public String createGroupChat(String chatRoomName, Vector<String> clients) throws SQLException , RemoteException;
+    public void notifyUsersGroupChat(Vector<String> users , Group group) throws RemoteException;
+
 }

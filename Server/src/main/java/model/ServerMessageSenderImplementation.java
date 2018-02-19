@@ -80,4 +80,19 @@ public class ServerMessageSenderImplementation extends UnicastRemoteObject imple
 
 
     }
+
+    public String createGroupChat(String chatRoomName, Vector<String> clients) throws SQLException
+    {
+        return databaseChatOperation.createChatRoomWithUsers(chatRoomName , clients);
+    }
+
+    public void notifyUsersGroupChat(Vector<String> users , Group group) throws RemoteException {
+        for(String user : users)
+        {
+            if(ClientServerRegisterImp.clientObjHashMap.get(user) != null)
+            {
+                ClientServerRegisterImp.clientObjHashMap.get(user).getChatHandler().notifyGroupChat(group);
+            }
+        }
+    }
 }
