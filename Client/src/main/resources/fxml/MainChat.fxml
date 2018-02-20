@@ -26,13 +26,12 @@
                <children>
                   <AnchorPane layoutX="16.0" layoutY="28.0" prefHeight="43.0" prefWidth="39.0">
                      <children>
-                        <ImageView fx:id="saveChat" fitHeight="30.0" fitWidth="34.0" layoutX="-10.0" layoutY="3.0" onMousePressed="#saveChat" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="sendEmailBtn" fitHeight="30.0" fitWidth="34.0" layoutX="-8.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../styles/saveChat.png" />
+                              <Image url="@../styles/email.png" />
                            </image>
                         </ImageView>
-                     </children>
-                  </AnchorPane>
+                     </children></AnchorPane>
                </children>
             </AnchorPane>
             <TextField fx:id="searchTxtField" layoutX="-19.0" layoutY="29.0" prefHeight="30.0" prefWidth="310.0" promptText="Search" style="-fx-background-color: #ffe6ff; -fx-background-radius: 5;">
@@ -59,7 +58,7 @@
       <Pane layoutX="94.0" layoutY="-1.0" prefHeight="94.0" prefWidth="248.0" style="-fx-background-color: #001a33;">
          <children>
             <ComboBox fx:id="userStatus" layoutX="-8.0" layoutY="35.0" onAction="#changeStatus" prefHeight="34.0" prefWidth="119.0" promptText="Available" style="-fx-background-color: #001a33; -fx-text-base-color: #FFF;" />
-            <AnchorPane layoutX="175.0" layoutY="25.0" prefHeight="43.0" prefWidth="39.0">
+            <AnchorPane layoutX="166.0" layoutY="25.0" prefHeight="43.0" prefWidth="39.0">
                <children>
                   <ImageView fx:id="addGroupBtn" fitHeight="30.0" fitWidth="34.0" layoutX="3.0" layoutY="2.0" onMousePressed="#addGroup" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -169,6 +168,11 @@
                               </AnchorPane>
                               <ComboBox fx:id="sizeList" layoutX="198.0" layoutY="7.0" prefHeight="26.0" prefWidth="83.0" />
                               <ColorPicker fx:id="fontColorPicker" layoutX="348.0" layoutY="6.0" prefHeight="26.0" prefWidth="47.0" style="-fx-background-color: #001a33; -fx-background-radius: 9 20 20 9;" />
+                              <ImageView fx:id="saveChat" fitHeight="30.0" fitWidth="34.0" layoutX="39.0" layoutY="6.0" onMousePressed="#saveChat" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../styles/saveChat.png" />
+                                 </image>
+                              </ImageView>
                            </children>
                         </AnchorPane>
                      </children>
