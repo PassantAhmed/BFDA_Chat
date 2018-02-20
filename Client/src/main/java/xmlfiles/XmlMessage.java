@@ -33,7 +33,7 @@ public class XmlMessage {
         boolean writeFlag = false;
         try {
             XMLOutputFactory xmlOutputFactory = XMLOutputFactory.newFactory();
-            XMLStreamWriter xmlStreamWriter = xmlOutputFactory.createXMLStreamWriter(new FileOutputStream(System.getProperty("user.dir")+"\\src\\main\\java\\xmlfiles\\" + userName + "_" +chatName+ "_" +date.getTime() + ".xml"));
+            XMLStreamWriter xmlStreamWriter = xmlOutputFactory.createXMLStreamWriter(new FileOutputStream(System.getProperty("user.dir")+ userName + "_" +chatName+ "_" +date.getTime() + ".xml"));
 
             xmlStreamWriter.writeStartDocument("1.0");
             xmlStreamWriter.writeCharacters(System.lineSeparator());

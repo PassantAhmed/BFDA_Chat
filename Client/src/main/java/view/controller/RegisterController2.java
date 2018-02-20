@@ -55,7 +55,6 @@ public class RegisterController2 implements Initializable {
     ServerObj serverObj = serverConnection.getRegisteryObject();
 
     User user;
-    
 
     public RegisterController2() {
         getServerObject();
@@ -82,7 +81,12 @@ public class RegisterController2 implements Initializable {
                     Scene scene = new Scene(root);
                     stage.setTitle("BFDA Chat | Login");
                     stage.setScene(scene);
+                    Stage currentStage = (Stage) passwordid.getScene().getWindow();
+                    currentStage.close();
                     stage.setResizable(false);
+                    stage.setOnCloseRequest(param -> {
+                        System.exit(0);
+                    });
                     stage.show();
                 } else {
                     new Alert(Alert.AlertType.ERROR, "Username already exists...").show();
@@ -90,10 +94,10 @@ public class RegisterController2 implements Initializable {
             } else {
                 new Alert(Alert.AlertType.ERROR, "Please be sure that you wrote the confirmation password correct.").show();
             }
-        } else{
+        } else {
             new Alert(Alert.AlertType.ERROR, "Check that you follow the following instructions:"
-                        + "\n1. Username only contain (a-z), (A-Z), (1-9), and spaces."
-                        + "\n2. Password is more than or equal 8 digits." ).show();
+                    + "\n1. Username only contain (a-z), (A-Z), (1-9), and spaces."
+                    + "\n2. Password is more than or equal 8 digits.").show();
         }
     }
 
@@ -129,7 +133,7 @@ public class RegisterController2 implements Initializable {
                 Scene scene = new Scene(root);
                 stage.setTitle("BFDA Chat | Register2");
                 stage.setScene(scene);
-                Stage currentStage = (Stage) usernameid.getScene().getWindow();
+                Stage currentStage = (Stage) passwordid.getScene().getWindow();
                 currentStage.close();
                 stage.setResizable(false);
                 stage.setOnCloseRequest(param -> {
@@ -169,8 +173,8 @@ public class RegisterController2 implements Initializable {
             }
         });
     }
-    
-    public void setUser(User user){
+
+    public void setUser(User user) {
         this.user = new User(user);
         System.out.println(user.getEmail());
     }
