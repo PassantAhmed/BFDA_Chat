@@ -21,10 +21,20 @@ import model.database.DatabaseUserOperation;
  */
 public class UserStatuesChangeImpl extends UnicastRemoteObject implements UserStatuesChangeInterface, Serializable{
     DatabaseUserOperation DBO ;
-    
+ 
+    /**
+     *
+     * @throws RemoteException 
+    **/
     public UserStatuesChangeImpl() throws RemoteException
     {
     }
+    
+    /**
+     *
+     * @param user
+     * @throws RemoteException 
+    **/
     @Override
     public void changeStatues(User user) throws RemoteException {
        
@@ -43,11 +53,20 @@ public class UserStatuesChangeImpl extends UnicastRemoteObject implements UserSt
         }
     }
 
+    /**
+     *
+     * @param userName
+    **/
     public synchronized boolean checkOnline(String userName)
     {
         return ClientServerRegisterImp.clientObjHashMap.get(userName)!= null;
     }
 
+    /**
+     *
+     * @param user
+     * @throws RemoteException 
+    **/
     @Override
     public void changeModes(User user) throws RemoteException {
         DBO.clientSignHisModeStatus(user,user.getMode());

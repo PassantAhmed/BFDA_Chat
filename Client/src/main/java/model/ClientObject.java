@@ -30,7 +30,10 @@ public class ClientObject extends UnicastRemoteObject implements ClientObj, Seri
     }
     public static User getUserDataInternal(){return userData;};
 
-
+    /**
+    * 
+    * @throws RemoteException 
+    **/
     public ClientObject() throws RemoteException {
         chatHandler = new ChatImpl();
         userAccount = new UserAccountImpl();
@@ -55,16 +58,28 @@ public class ClientObject extends UnicastRemoteObject implements ClientObj, Seri
         this.userAccount = userAccount;
     }
 
+    /**
+    * 
+    * @throws RemoteException 
+    **/
     @Override
     public ClientFileTransferInterface getClientFileTransfer() throws RemoteException {
         return clientFileTransfer;
     }
 
+    /**
+    * 
+    * @throws RemoteException 
+    **/
     @Override
     public User getUserData() throws RemoteException {
         return userData;
     }
 
+    /**
+    * 
+    * @throws RemoteException 
+    **/
     @Override
     public ConnectionValidation getConnectionValidation() throws RemoteException {
         return connectionValidation;

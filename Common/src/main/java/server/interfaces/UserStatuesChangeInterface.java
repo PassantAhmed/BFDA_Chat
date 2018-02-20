@@ -15,7 +15,24 @@ import java.rmi.RemoteException;
  */
 public interface UserStatuesChangeInterface extends Remote {
     
+   /**
+     *
+     * @param user
+     * @throws RemoteException
+     */
     public void changeStatues(User user) throws RemoteException;
+    
+   /**
+     *
+     * @param userName 
+     * @throws RemoteException
+     */
     public boolean checkOnline(String userName) throws RemoteException;
+    
+   /**
+     *
+     * @param user
+     * @throws RemoteException
+     */
     public void changeModes(User user) throws RemoteException;
 }

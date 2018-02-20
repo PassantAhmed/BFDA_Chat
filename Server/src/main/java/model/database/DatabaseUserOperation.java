@@ -26,6 +26,10 @@ public class DatabaseUserOperation {
     Database dbClass;
     Connection conn;
 
+    /**
+     *
+     * @throws SQLException
+    **/
     public DatabaseUserOperation() throws SQLException {
         try {
             dbClass = Database.getInstance();
@@ -35,6 +39,11 @@ public class DatabaseUserOperation {
         }
     }
 
+    /**
+     *
+     * @param  clientData 
+     * @throws RemoteException 
+    **/
     public boolean clientRegister(User clientData) throws RemoteException {
         try {
             PreparedStatement pst = conn.prepareStatement("insert into User (id, name, username, email, password, gender, country, BirthDate, userPicture) "
@@ -58,6 +67,13 @@ public class DatabaseUserOperation {
         return true;
     }
 
+
+    /**
+     *
+     * @param user
+     * @param clientFlag 
+     * @throws RemoteException 
+    **/
     public boolean clientSignHisFlagStatus(beans.User user, boolean clientFlag) throws RemoteException {
         try {
             PreparedStatement pst = conn.prepareStatement("update User set statusFlag=?  where id=?");
@@ -71,6 +87,12 @@ public class DatabaseUserOperation {
         return true;
     }
 
+    /**
+     *
+     * @param user
+     * @param clientMode 
+     * @throws RemoteException 
+    **/
     public boolean clientSignHisModeStatus(beans.User user, String clientMode) throws RemoteException {
         try {
             PreparedStatement pst = conn.prepareStatement("update User set statusMode=?  where id=?");
@@ -85,6 +107,11 @@ public class DatabaseUserOperation {
 
     }
 
+    /**
+     *
+     * @param anotherClientToAdd 
+     * @throws RemoteException 
+    **/
     public User clientAddAnotherClient(String anotherClientToAdd) throws RemoteException {
         User user = new beans.User();
         try {
@@ -110,6 +137,10 @@ public class DatabaseUserOperation {
         return user;
     }
 
+    /**
+     *
+     * @param email
+    **/
     public boolean isEmailExist(String email) {
         boolean emailExist = false;
         try {
@@ -128,6 +159,10 @@ public class DatabaseUserOperation {
         return emailExist;
     }
 
+    /**
+     *
+     * @param username
+    **/
     public boolean isUsernameExist(String username) {
         boolean usernameExist = false;
         try {
@@ -146,14 +181,30 @@ public class DatabaseUserOperation {
         return usernameExist;
     }
 
+    /**
+     *
+     * @param groupName
+     * @throws RemoteException 
+    **/
     public int clientCreateGroupChat(String groupName) throws RemoteException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     *
+     * @param groupID 
+     * @param whichUserYouWillAdd 
+     * @throws RemoteException 
+    **/
     public void addMemberToGroup(int groupID, String whichUserYouWillAdd) throws RemoteException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     *
+     * @param whichUserWillGet 
+     * @throws RemoteException 
+    **/
     public List<beans.User> clientSearchForUser(String whichUserWillGet) throws RemoteException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

@@ -23,6 +23,11 @@ public class FriendsDbOperationsImp extends UnicastRemoteObject implements Frien
 
     FriendsCrudDB friendsCrud;
 
+   /**
+     *
+     * @throws  RemoteException
+     * @throws SQLException
+     */
     public  FriendsDbOperationsImp() throws RemoteException, SQLException
     {
         friendsCrud = new FriendsCrudDB();
@@ -30,6 +35,12 @@ public class FriendsDbOperationsImp extends UnicastRemoteObject implements Frien
     }
 
     /********************  search for user to add *******************************/
+
+
+   /**
+     *
+     * @param usrInformation 
+     */
     @Override
     public synchronized ArrayList<User> searchForUser(String usrInformation)
 
@@ -42,6 +53,13 @@ public class FriendsDbOperationsImp extends UnicastRemoteObject implements Frien
 
 
     /********************** send to user a friend request  **********************************/
+    
+
+   /**
+     *
+     * @param myId
+     * @param userId
+     */
     @Override
     public synchronized boolean sendFriendRequest(int myId,int userId)
     {
@@ -53,6 +71,12 @@ public class FriendsDbOperationsImp extends UnicastRemoteObject implements Frien
 
 
     /******************************* accept a friend request ******************************/
+    
+   /**
+     *
+     * @param myId
+     * @param userId
+     */
     @Override
     public synchronized boolean approveFriendRequset(int myId,int userId)
     {
@@ -66,6 +90,12 @@ public class FriendsDbOperationsImp extends UnicastRemoteObject implements Frien
     }
 
     /****************** don't accept friend request  *******************************/
+    
+   /**
+     *
+     * @param myId
+     * @param userId
+     */
     @Override
     public synchronized boolean refuseFriendRequest(int myId,int userId)
     {
@@ -78,6 +108,11 @@ public class FriendsDbOperationsImp extends UnicastRemoteObject implements Frien
     }
 
     /********************* select all your friends **********************************/
+    
+   /**
+     *
+     * @param myId
+     */
     @Override
     public synchronized ArrayList<User> retrieveAllFriends(int myId)
     {
@@ -89,6 +124,11 @@ public class FriendsDbOperationsImp extends UnicastRemoteObject implements Frien
         return (ArrayList<User>) friendsCrud.select(selectStatement);
     }
 
+   /**
+     *
+     * @param myId
+     * @throws RemoteException
+     */
     @Override
     public synchronized ArrayList<User> getAllFriendRequests(int myId) throws RemoteException {
 //
@@ -102,6 +142,12 @@ public class FriendsDbOperationsImp extends UnicastRemoteObject implements Frien
     
         /*********************check if user isExist as a friend **********************************/
 
+   /**
+     *
+     * @param myId
+     * @param userId
+     * @throws RemoteException
+     */
     @Override
     public synchronized boolean isExist(int myId, int userId) throws RemoteException 
     {//select  id from Friend where (user_id,friend_id) = (1,2)
@@ -111,6 +157,10 @@ public class FriendsDbOperationsImp extends UnicastRemoteObject implements Frien
             
     }
 
+   /**
+     *
+     * @throws RemoteException
+     */
     @Override
     public void testShowMessage() throws RemoteException 
     {  
@@ -118,6 +168,12 @@ public class FriendsDbOperationsImp extends UnicastRemoteObject implements Frien
     }
 
     /***********keep away****************/
+    
+   /**
+     *
+     * @param userName 
+     * @throws RemoteException
+     */
         @Override
     public synchronized int getIdfromUserName(String userName) throws RemoteException {
             String strStat="select id from User where username='"+userName+"'";
@@ -125,6 +181,12 @@ public class FriendsDbOperationsImp extends UnicastRemoteObject implements Frien
             
     }
 
+   /**
+     *
+     * @param myId
+     * @param userID 
+     * @throws RemoteException
+     */
     @Override
     public synchronized int selectFriendsFlag(int myID, int userID) throws RemoteException 
     {

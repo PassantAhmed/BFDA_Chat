@@ -13,10 +13,22 @@ import java.util.concurrent.ExecutionException;
 
 public class ServerFileTransferInterfaceImpl extends UnicastRemoteObject implements ServerFileTransferInterface {
 
-
+    /**
+     *
+     * @throws RemoteException
+     */
     public ServerFileTransferInterfaceImpl() throws RemoteException {
     }
 
+    /**
+     *
+     * @param senderID
+     * @param receiverID
+     * @param fileName
+     * @throws RemoteException
+     * @throws ExecutionException
+     * @throws InterruptedException
+     */
     @Override
     public synchronized File requestSendFile(String senderID, String receiverID, String fileName) throws RemoteException, ExecutionException, InterruptedException {
 
@@ -29,6 +41,15 @@ public class ServerFileTransferInterfaceImpl extends UnicastRemoteObject impleme
         return response;
     }
 
+    /**
+     *
+     * @param senderID
+     * @param receiverID
+     * @param fileObject
+     * @param lastPart
+     * @throws RemoteException
+     * @throws IOException
+     */
     @Override
     public synchronized void sendFileParts(String senderID , String receiverID , FileObject fileObject , boolean lastPart) throws RemoteException , IOException {
         ClientObj clientObj =  ClientServerRegisterImp.clientObjHashMap.get(receiverID);

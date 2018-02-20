@@ -27,6 +27,11 @@ public class ServerConnection {
     {
         return obj;
     }
+    
+    /**
+    * 
+    * @param host
+    **/
     public void setHost(String host){localIpAddress = host;};
     public boolean establiseConnection()  {
         try {

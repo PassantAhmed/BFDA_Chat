@@ -19,6 +19,11 @@ public class UserLogin implements LoginInterface {
     private User resultUser;
     private DatabaseUserOperation serverOperationClass;
 
+    /**
+     *
+     * @param userName
+     * @param password
+    **/
     public UserLogin(String userName, String password) {
         this.userName = userName;
         this.password = password;
@@ -33,12 +38,22 @@ public class UserLogin implements LoginInterface {
         }
     }
 
+    /**
+     *
+     * @param userName
+     * @param password
+    **/
     public void setUser(String userName, String password) {
         this.userName = userName;
         this.password = password;
     }
 
     //for add user and login
+    
+    /**
+     *
+     * @throws SQLException
+    **/
     public void searchForUser() throws SQLException {
 
         try {
@@ -58,6 +73,10 @@ public class UserLogin implements LoginInterface {
             return false;
     }
 
+    /**
+     *
+     * @throws SQLException
+    **/
     public boolean login() throws SQLException {
         searchForUser();
         if (verifyUser())

@@ -9,9 +9,21 @@ import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
 
 public class ServerFriendRequestImpl extends UnicastRemoteObject implements FriendRequest {
+    
+    /**
+     *
+     * @throws RemoteException 
+    **/
     protected ServerFriendRequestImpl() throws RemoteException {
     }
 
+    /**
+     *
+     * @param requester
+     * @param requested
+     * @throws RemoteException 
+     * @throws SQLException
+    **/
     @Override
     public void sendFriendRequest(User requester, User requested) throws RemoteException, SQLException {
 
@@ -24,6 +36,14 @@ public class ServerFriendRequestImpl extends UnicastRemoteObject implements Frie
 
     }
 
+    /**
+     *
+     * @param requested
+     * @param requester
+     * @param result
+     * @throws RemoteException 
+     * @throws SQLException
+    **/
     @Override
     public void friendRequestResult(User requested , User requester , boolean result) throws RemoteException, SQLException {
         FriendsDbOperationsImp friendsDbOperationsImp = new FriendsDbOperationsImp();

@@ -4,7 +4,12 @@ import java.awt.*;
 
 public class Notification {
 
-
+    /**
+    * displaying the notification to the active user  
+    * @param title
+    * @param notificationMsg
+    * @throws AWTException
+    **/
     public static void displayTray(String title, String notificationMsg) throws AWTException {
 
         SystemTray tray = SystemTray.getSystemTray();

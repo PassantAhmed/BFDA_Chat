@@ -20,7 +20,12 @@ public class ServerObject extends UnicastRemoteObject implements ServerObj, Seri
     private UserStatuesChangeImpl userStatuesChangeImpl;
     private ServerFriendRequestImpl serverFriendRequest;
    
-   
+    /**
+     *
+     * @throws RemoteException 
+     * @throws SQLException
+     * @throws ClassNotFoundException
+    **/
     public ServerObject() throws RemoteException, SQLException, ClassNotFoundException {
 
         clientServerRegister = new ClientServerRegisterImp();

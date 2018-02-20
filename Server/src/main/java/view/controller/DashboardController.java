@@ -59,12 +59,23 @@ public class DashboardController implements Initializable {
         }
     }
 
+   /**
+     *
+     * @param actionEvent 
+     * @throws IOException
+     */
     public void viewClient(ActionEvent actionEvent) throws IOException {
         basePane.getChildren().clear();
         basePane.getChildren().add(viewClientNode);
         setButtonStyle(viewClientsBtn);
     }
 
+    
+   /**
+     *
+     * @param actionEvent 
+     * @throws IOException
+     */
     public void viewStatistics(ActionEvent actionEvent) throws IOException {
         Node newLoadedPane = FXMLLoader.load(getClass().getResource("/fxml/StatisticsScene.fxml"));
         basePane.getChildren().clear();
@@ -73,6 +84,12 @@ public class DashboardController implements Initializable {
 
     }
 
+    
+   /**
+     *
+     * @param actionEvent 
+     * @throws IOException
+     */
     public void viewAnnounce(ActionEvent actionEvent) throws IOException {
         Node newLoadedPane = FXMLLoader.load(getClass().getResource("/fxml/AnnouncementsScene.fxml"));
         basePane.getChildren().clear();
@@ -81,6 +98,12 @@ public class DashboardController implements Initializable {
 
     }
 
+    
+   /**
+     *
+     * @param actionEvent 
+     * @throws IOException
+     */
     public void viewSettings(ActionEvent actionEvent) throws IOException {
         Node newLoadedPane = FXMLLoader.load(getClass().getResource("/fxml/SettingsScene.fxml"));
         basePane.getChildren().clear();

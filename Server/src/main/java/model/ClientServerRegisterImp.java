@@ -21,27 +21,51 @@ public class ClientServerRegisterImp extends UnicastRemoteObject implements Clie
 //    public static Vector<ClientObj> clientObject = new Vector<ClientObj>();
     public static HashMap<String , ClientObj> clientObjHashMap = new HashMap<>();
     public static Vector<ClientObj> anonymousUsers = new Vector<>();
+    
+    /**
+    * 
+    * @throws RemoteException
+    **/
     protected ClientServerRegisterImp() throws RemoteException {
 
     }
 
+    /**
+    * 
+    * @param username
+    * @param clientObject
+    **/
     @Override
     public synchronized void registerUser(String username , ClientObj clientObject) {
         System.out.print("Registered");
         ClientServerRegisterImp.clientObjHashMap.put(username , clientObject);
     }
 
+    /**
+    * 
+    * @param username
+    **/
     @Override
     public synchronized void unRegisterUser(String username ) {
         ClientServerRegisterImp.clientObjHashMap.remove(username);
     }
 
+    /**
+    * 
+    * @param clientObj
+    * @throws RemoteException
+    **/
     @Override
     public void registerAnonymousUser(ClientObj clientObj) throws RemoteException {
         anonymousUsers.add(clientObj);
     }
 
-
+    /**
+    * 
+    * @param username
+    * @param password
+    * @throws RemoteException
+    **/
     @Override
     public User userLogin(String username, String password) throws RemoteException {
         UserLogin login = new UserLogin(username , password);
@@ -58,6 +82,11 @@ public class ClientServerRegisterImp extends UnicastRemoteObject implements Clie
 
     }
 
+    /**
+    *
+    * @param user
+    * @throws RemoteException
+    **/
     @Override
     public Boolean newUserRegisteration(User user) throws RemoteException {
         boolean registered= false;

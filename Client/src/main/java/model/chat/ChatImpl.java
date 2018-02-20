@@ -21,7 +21,11 @@ public class ChatImpl extends UnicastRemoteObject implements ChatHandler {
 
 
 
-
+    /**
+    * 
+    * @param chatID
+    * @param message
+    **/
     @Override
     public synchronized void updateChat(String chatID, Message message)
     {
@@ -47,10 +51,20 @@ public class ChatImpl extends UnicastRemoteObject implements ChatHandler {
         }
     }
 
+    /**
+    * 
+    * @param chatID
+    * @param users
+    * @throws RemoteException 
+    **/
     @Override
     public void registerChat(String chatID, Vector<String> users) throws RemoteException {
     }
 
+    /**
+    * 
+    * @param msg
+    **/
     @Override
     public void updateAnnouncement(String msg)
     {
@@ -63,6 +77,11 @@ public class ChatImpl extends UnicastRemoteObject implements ChatHandler {
         return true;
     }
 
+    /**
+    * 
+    * @param group
+    * @throws RemoteException 
+    **/
     @Override
     public void notifyGroupChat(Group group) throws RemoteException {
         Platform.runLater(()->{

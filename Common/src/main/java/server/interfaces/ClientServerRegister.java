@@ -12,10 +12,40 @@ import java.rmi.RemoteException;
  */
 public interface ClientServerRegister extends Remote {
 
+   /**
+     *
+     * @param username
+     * @param clientObject 
+     * @throws RemoteException
+     */
     public void registerUser(String username , ClientObj clientObject) throws RemoteException;
+    
+   /**
+     *
+     * @param username
+     * @throws RemoteException
+     */
     public void unRegisterUser(String username)throws RemoteException;
+    
+   /**
+     *
+     * @param clientObj
+     * @throws RemoteException
+     */
     public void registerAnonymousUser(ClientObj clientObj) throws RemoteException;
 
+   /**
+     *
+     * @param username
+     * @param password 
+     * @throws RemoteException
+     */
     public User userLogin(String username , String password) throws RemoteException;
+    
+   /**
+     *
+     * @param user 
+     * @throws RemoteException
+     */
     public Boolean newUserRegisteration(User user) throws RemoteException;
 }

@@ -26,6 +26,15 @@ public class ClientFileTransferImpl extends UnicastRemoteObject implements Clien
         fileHandler = new FileHandler();
     }
 
+    /**
+    * receiving files from users
+    * @param senderID
+    * @param receiverID
+    * @param fileName
+    * @throws RemoteException
+    * @throws ExecutionException
+    * @throws InterruptedException
+    **/
     @Override
     public synchronized File receiveFile(String senderID, String receiverID, String fileName) throws RemoteException, ExecutionException, InterruptedException {
         File response = null;
@@ -43,6 +52,13 @@ public class ClientFileTransferImpl extends UnicastRemoteObject implements Clien
         return response;
     }
 
+    /**
+    * receiving files into parts then merge all parts 
+    * @param senderID
+    * @param receiverID
+    * @param fileObject
+    * @throws IOException
+    **/
     @Override
     public synchronized void receiveFileParts(String senderID, String receiverID, FileObject fileObject , boolean lastPart) throws IOException {
         if(!lastPart)
@@ -63,6 +79,11 @@ public class ClientFileTransferImpl extends UnicastRemoteObject implements Clien
         return null;
     }
 
+    /**
+    * 
+    * @param senderID
+    * @param fileName
+    **/
     private boolean getAcceptation(String senderID , String fileName)
     {
         Optional<ButtonType> result;

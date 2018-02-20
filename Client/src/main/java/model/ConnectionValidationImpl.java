@@ -8,9 +8,18 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 public class ConnectionValidationImpl extends UnicastRemoteObject implements ConnectionValidation {
+
+    /**
+    * 
+    * @throws RemoteException 
+    **/
     public ConnectionValidationImpl() throws RemoteException {
     }
 
+    /**
+    * 
+    * @throws RemoteException 
+    **/
     @Override
     public void closeRequest() throws RemoteException {
         Platform.runLater(()->{

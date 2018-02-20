@@ -26,14 +26,33 @@ public class ServerMessageSenderImplementation extends UnicastRemoteObject imple
 
     DatabaseChatOperation databaseChatOperation;
 
+    /**
+     *
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     * @throws RemoteException 
+    **/
     public ServerMessageSenderImplementation() throws SQLException, ClassNotFoundException ,RemoteException {
         databaseChatOperation = new DatabaseChatOperation();
     }
 
+    /**
+     *
+     * @param user
+     * @param clientName
+     * @throws SQLException
+    **/
     public String getChatOfClient(String user ,String clientName) throws SQLException {
         return databaseChatOperation.getChatRoomOfClient(user , clientName);
     }
 
+    /**
+     *
+     * @param chatMemberID 
+     * @param chatRoomID 
+     * @param members 
+     * @param msg
+    **/
     public synchronized void sendMsg(String chatMemberID ,String chatRoomID, Vector<String> members ,  Message msg)  {
         new Thread(()->{
             try {
@@ -58,34 +77,71 @@ public class ServerMessageSenderImplementation extends UnicastRemoteObject imple
 
     }
 
+    /**
+     *
+     * @param myName
+     * @param clientName
+     * @throws SQLException
+    **/
     public String getChatRoomOfClient(String myName , String clientName) throws SQLException {
         return databaseChatOperation.getChatRoomOfClient(myName , clientName);
 
     }
 
+    /**
+     *
+     * @param userName
+     * @param chatRoomID 
+     * @throws SQLException
+    **/
     public String getChatMemberID(String userName , String chatRoomID) throws SQLException {
         return databaseChatOperation.getChatMemberID(userName , chatRoomID);
     }
 
+     /**
+     *
+     * @param chatRoomID 
+     * @throws SQLException
+    **/   
     public Vector<Message> getAllRoomMessages(String chatRoomID) throws SQLException {
         return databaseChatOperation.getAllRoomMessages(chatRoomID);
     }
 
+    /**
+     *
+     * @param myID 
+     * @throws SQLException
+    **/
     public Vector<Group> getAllGroups(int myID) throws SQLException {
        return databaseChatOperation.getAllGroups(myID);
     }
 
+    /**
+     *
+     * @param chatID
+     * @throws SQLException
+    **/
     public Vector<String> getAllChatMember(String chatID) throws SQLException    {
         return databaseChatOperation.getAllChatMember(chatID);
-
-
     }
 
+    /**
+     *
+     * @param chatRoomName 
+     * @param clients
+     * @throws SQLException
+    **/
     public String createGroupChat(String chatRoomName, Vector<String> clients) throws SQLException
     {
         return databaseChatOperation.createChatRoomWithUsers(chatRoomName , clients);
     }
 
+    /**
+     *
+     * @param users
+     * @param group
+     * @throws RemoteException 
+    **/
     public void notifyUsersGroupChat(Vector<String> users , Group group) throws RemoteException {
         for(String user : users)
         {
