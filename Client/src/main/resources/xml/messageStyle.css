@@ -1,0 +1,114 @@
+.header{
+    width: 50%;
+    height: 20%;
+    margin-left: 40%;
+}
+
+#logo{
+    width: 100%;
+    height: 100%;
+    background-image: url("Duke-.png");
+    background-size:cover;
+    background-repeat: no-repeat;
+}
+
+#container{
+	width: 90%;
+	padding: 0px;
+	margin: 0px;
+}
+
+.side{
+	margin-right: 10px;
+	float: left;
+}
+
+.sideDiv{
+	height: 120px;
+	width: 250px;
+	background-color: #001a33;
+	margin: 5px;
+	padding: 5px;
+	border-radius: 10px;
+        color: #FFF;
+}
+
+.sideDiv2{
+	width: 250px;
+        height: 200px;
+	background-color: #001a33;
+	margin: 5px;
+	padding: 5px;
+	border-radius: 10px;
+        color: #FFF;
+	background-color: #001a33;
+        
+}
+
+#ownerImg{
+	width: 27%;
+	height: 60px;
+	background-image: url("Male.png");
+	background-size:cover;
+	background-repeat: no-repeat;
+	border-radius: 50%;
+        margin-top: 7%;
+        margin-left: 36%;
+        margin-right: 36%;
+}
+
+#ownerName{
+    margin-left: 40%;
+    margin-top: 10px;
+}
+
+#chat{
+	width: 90%;
+	height: 80px;
+	background-color: #b0697d;
+	border-radius: 35px;
+	margin-top: 20px;
+        margin-left: 8px;
+        color: #FFF;
+}
+
+#chatImg{
+	width: 27%;
+	height: 60px;
+	float: left;
+	background-image: url("Male.png");
+	background-size:cover;
+	background-repeat: no-repeat;
+	border-radius: 50%;
+	margin-top: 8px;
+	margin-left: 20px;
+	margin-bottom: 8px;
+	margin-right: 12px;
+}
+
+#chatName{
+	padding-top: 30px;
+	height: 30px;
+	float: left;
+}
+
+.messagesContainer{
+	width: 1060px;
+	border-radius: 10px;
+        background-color: #001a33;
+	float:right;
+}
+
+
+#myMessages{
+   float:right; 
+   margin-right: 3%;
+   margin-bottom: 2%;
+   margin-top: 2%;
+}
+
+#otherMessages{
+    float: left;
+    margin-left:3%;
+    margin-top: 2%;
+}

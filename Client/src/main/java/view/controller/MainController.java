@@ -359,7 +359,8 @@ public class MainController implements Initializable {
 
     public void saveChat(MouseEvent mouseEvent) {
         System.out.println("Calling");
-        XmlMessage.writeXmlFile(ClientObject.getUserDataInternal().getUsername(), currentChatUser, messagesMap.get(currentChatID));
+        XmlMessage xmlMessage = new XmlMessage();
+        xmlMessage.writeXmlFile(ClientObject.getUserDataInternal().getUsername(), currentChatUser, messagesMap.get(currentChatID));
         System.out.println("Done");
     }
 

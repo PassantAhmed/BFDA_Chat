@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <?xml-stylesheet type="text/xsl" href="xmlStyle.xsl"?>
-<messages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd" owner="Ali" chatName="A">
+<messages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../resources/xml/schema.xsd" owner="Ali" chatName="A">
 <message>
 <from>Ali</from>
 <date>2018-02-16T08:28:46</date>

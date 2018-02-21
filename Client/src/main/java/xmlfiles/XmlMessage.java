@@ -6,16 +6,17 @@
 package xmlfiles;
 
 import beans.Message;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import javafx.stage.DirectoryChooser;
+
+import java.io.*;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Vector;
-import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLOutputFactory;
 import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamReader;
 import javax.xml.stream.XMLStreamWriter;
 
 /**
@@ -28,12 +29,14 @@ public class XmlMessage {
     private static final String NAME_SPACE = "http://www.w3.org/2001/XMLSchema-instance";
     private static String fileName;
 
-    public static boolean writeXmlFile(String userName, String chatName, Vector<Message> messages) {
+    public boolean writeXmlFile(String userName, String chatName, Vector<Message> messages) {
         Date date = new Date();
         boolean writeFlag = false;
+        File file = getSaveLocation();
+        if(file != null)
         try {
             XMLOutputFactory xmlOutputFactory = XMLOutputFactory.newFactory();
-            XMLStreamWriter xmlStreamWriter = xmlOutputFactory.createXMLStreamWriter(new FileOutputStream(System.getProperty("user.dir")+ userName + "_" +chatName+ "_" +date.getTime() + ".xml"));
+            XMLStreamWriter xmlStreamWriter = xmlOutputFactory.createXMLStreamWriter(new FileOutputStream(file.toString()+"\\"+ userName + "_" +chatName+ "_" +date.getTime() + ".xml"));
 
             xmlStreamWriter.writeStartDocument("1.0");
             xmlStreamWriter.writeCharacters(System.lineSeparator());
@@ -93,12 +96,38 @@ public class XmlMessage {
 
             writeFlag = true;
 
+
+
+            URL xmlStyle = getClass().getResource("/xml/xmlStyle.xsl");
+            URL schema = getClass().getResource("/xml/schema.xsd");
+            URL cssFile = getClass().getResource("/xml/messageStyle.css");
+            URL pic = getClass().getResource("/xml/Male.png");
+
+
+            Files.copy(xmlStyle.openStream() , new File(file.toString()+"\\"+"xmlStyle.xsl").toPath() , StandardCopyOption.REPLACE_EXISTING);
+            Files.copy(schema.openStream() ,  new File(file.toString()+"\\"+"schema.xsd").toPath() , StandardCopyOption.REPLACE_EXISTING);
+            Files.copy(cssFile.openStream() , new File(file.toString()+"\\"+"messageStyle.css").toPath() , StandardCopyOption.REPLACE_EXISTING);
+            Files.copy(pic.openStream() , new File(file.toString()+"\\"+"Male.png").toPath() , StandardCopyOption.REPLACE_EXISTING);
+
+
+
         } catch (XMLStreamException | FileNotFoundException  ex) {
             System.out.println(ex.toString());
             writeFlag = false;
-        } 
-        
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
         return writeFlag;
     }
+    private File getSaveLocation() {
+        DirectoryChooser chooser = new DirectoryChooser();
+        File file = chooser.showDialog(null);
 
+        if (file != null) {
+            return file;
+        }
+        return null;
+    }
 }
