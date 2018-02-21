@@ -41,7 +41,6 @@ public class ClientFileTransferImpl extends UnicastRemoteObject implements Clien
 
         FutureTask query = new FutureTask(() -> getAcceptation(senderID , fileName));
         Platform.runLater(query);
-        System.out.println(query.get());
         if((Boolean)query.get())
         {
             query = new FutureTask(() -> getSaveLocation());

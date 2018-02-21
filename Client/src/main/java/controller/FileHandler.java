@@ -14,16 +14,14 @@ public class FileHandler {
 
     public synchronized void splitFile(File f  ,String sender , String receiver , File locationToSave) throws IOException {
 
-        int partCounter = 1;//I like to name parts from 001, 002, 003, ...
+        int partCounter = 1;
 
-        //you can change it to 0 if you want 000, 001, ...
         int sizeOfFiles = 5120*1024;// 1MB
 
         byte[] buffer = new byte[sizeOfFiles];
 
         String fileName = f.getName();
 
-        //try-with-resources to ensure closing stream
         try (FileInputStream fis = new FileInputStream(f); BufferedInputStream bis = new BufferedInputStream(fis)) {
 
             int bytesAmount = 0;
@@ -73,16 +71,19 @@ public class FileHandler {
         String tmpName = oneOfFiles.getName();//{name}.{number}
         String destFileName = tmpName.substring(0, tmpName.lastIndexOf('.'));//remove .{number}
         ArrayList<File> files = new ArrayList<>() ;
+
         for(File file : oneOfFiles.getParentFile().listFiles())
         {
-            System.out.println(file.toString());
+            System.out.println("In File List");
+            System.out.println("File to String  "+file.getName());
             String fileName = file.getName();
-            if(fileName.substring(fileName.length()-4).trim().matches( "[.]\\d+")
+            if(fileName.contains("."))
+                if(fileName.substring(fileName.length()-4).trim().matches( "[.]\\d+")
                     && fileName.substring(0, fileName.lastIndexOf('.')).equals(destFileName))
-            {
-                System.out.println("Inside File : "+file.toString());
-                files.add(file);
-            }
+                {
+                    System.out.println("Inside File : "+file.toString());
+                    files.add(file);
+                }
         }
 
         System.out.println("destFileName :"+destFileName);

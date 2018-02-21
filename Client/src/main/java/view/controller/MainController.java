@@ -425,7 +425,7 @@ public class MainController implements Initializable {
 
     public File getFileToSend() {
         FileChooser fileChooser = new FileChooser();
-        File selectedFile = fileChooser.showOpenDialog(bold.getScene().getWindow());
+        File selectedFile = fileChooser.showOpenDialog(null);
         if (selectedFile != null) {
             return selectedFile;
         } else {
